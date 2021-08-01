@@ -16,3 +16,5 @@ the default bot prefix is `>`, so to get a list of all the commands, you can typ
 
 # Who is this for?
 People who are interested in making thier own bot! and i think i have used some public APIs very nicely in this!
+
+![discordbot](https://user-images.githubusercontent.com/36286877/127767330-d3e68d90-67a0-4672-b3e1-6193b323bc21.png)
