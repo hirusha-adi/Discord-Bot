@@ -1,3 +1,4 @@
+
 # Discord-Bot
 The only discord bot you will ever need!
 
@@ -24,4 +25,4 @@ People who are interested in making thier own bot! and i think i have used some 
 Need this image for the bot, just neglect this :)
 ![discordbot](https://user-images.githubusercontent.com/36286877/127767330-d3e68d90-67a0-4672-b3e1-6193b323bc21.png)
 ![image](https://user-images.githubusercontent.com/36286877/129659769-e8b1f8a8-ed17-4ffa-904c-459af4280748.png)
-
+![SeekPng com_globe-png_75029](https://user-images.githubusercontent.com/36286877/129850352-33345963-273b-42bf-b2bc-5523c8158229.png)
