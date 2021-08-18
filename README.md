@@ -3,7 +3,7 @@
 The only discord bot you will ever need!
 
 # YES, I DIDNT USE COGs! 
-and please don't ask me to, because that would take some serious time as there are over 160 commands!
+and please don't ask me to, because that would take some serious time as there are over 150 commands!
 
 # How to start the bot?
 1. Make sure to have a ".env" file with the following inside it `TOKEN=YourTokenGoesHere`
