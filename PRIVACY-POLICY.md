@@ -15,7 +15,7 @@ The following is a list of bots, services, and applications to which this privac
 The bots and services do not automatically store any information and never will! We matter the pricacy of our users!
 
 ## Data collected using commands!
-The bot will collect data which you have to trigger/use a command, but all of the collected data will be deleted when the bot is restarted.
+The bot will collect data which you have to trigger/use a command, but all of the collected data will be deleted when the bot is restarted **but the command you entered will be logged in the Official server ( https://discord.gg/6kKNXx4AfH ) and the log can be seen only by Moderators of the Server.**
 
 ## Feedback
 Feedback on any and all provided services is appreciated. When you submit comments, suggestions, bug reports, and any other forms of feedback, that will help in the phase of development of additional commands and the credits will be given to you!
