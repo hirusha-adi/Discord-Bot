@@ -1,0 +1,11 @@
+{
+    "msg-prefix":">",
+    "invite-link":"https://discord.com/api/oauth2/authorize?client_id=858303945167208448&permissions=8&scope=bot",
+    "bot-status-message":">Help for help",
+    "info-command-thumbnail-link":"https://cdn.discordapp.com/attachments/856461730695217172/868832176496594944/Avatar.png",
+    "bot-creator-name":"ZeaCeR#5641",
+    "bot-version":"2.1",
+    "ownerid":584662127470575616,
+    "log-user-data":"yes",
+    "log-channel-id":861859505981489172
+}
