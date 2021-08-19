@@ -3308,7 +3308,6 @@ async def slots(ctx):
   await loading_message.delete()
   await ctx.send(embed=embed)
 
-
 @client.command(aliases=["show-help", "showhelp", "needhelp", "need-help", "pls-help", "plshelp", "help"])
 async def Help(ctx, category="none"):
   loading_message = await ctx.send(embed=please_wait_emb)
@@ -3696,12 +3695,7 @@ async def Help(ctx, category="none"):
     await ctx.send(embed=em12)
 
 
-
-
-
-
 # CHAT BOT //////////////////////////////////////////////////////////////////////////////////////////
-
 
 rs = RandomStuffV2()
 
