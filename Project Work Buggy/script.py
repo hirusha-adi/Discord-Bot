@@ -2208,15 +2208,26 @@ async def cleanuri(ctx, *, websiteurl):
   await ctx.send(embed=em)
 
 @client.command(aliases=["generate-pwd", "gen-pwd", "generate-password", "gen-password", "newpassword", "password", "newpass", "passwordnew"])
-async def genpwd(ctx, *, numberofcharacters):
+async def genpwd(ctx, *, numberofcharacters=16):
   loading_message = await ctx.send(embed=please_wait_emb)
-  url = f"https://passwordinator.herokuapp.com/generate?num=true&char=true&caps=true&len={numberofcharacters}"
-  r = requests.get(url)
-  c = r.json()
-  em = discord.Embed(color=0xff0000)
-  em.add_field(name="a Secure Password", value=c['data'], inline=False)
-  await loading_message.delete()
-  await ctx.send(embed=em)
+  pwd_lenlis = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40)
+  try:
+    numberofcharsinint = int(numberofcharacters)
+  except Exception as e:
+    await loading_message.delete()
+    await ctx.send(f"Error: {e}")
+    return
+  if numberofcharsinint in pwd_lenlis:
+    url = f"https://passwordinator.herokuapp.com/generate?num=true&char=true&caps=true&len={numberofcharacters}"
+    r = requests.get(url)
+    c = r.json()
+    em = discord.Embed(color=0xff0000)
+    em.add_field(name="a Secure Password", value=c['data'], inline=False)
+    await loading_message.delete()
+    await ctx.send(embed=em)
+  else:
+    await loading_message.delete()
+    await ctx.send("Please enter a value below 40")
 
 @client.command()
 async def advice(ctx):
