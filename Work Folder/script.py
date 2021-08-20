@@ -3325,7 +3325,7 @@ async def status(ctx):
   text = str(datetime.timedelta(seconds=difference))
 
   embed=discord.Embed(color=0xff0000)
-  embed.add_field(name="Announcements", value=f"``` -YourBot {bot_current_version}- Hello! If been nearly two months after the first release of this discord bot. Most of the commands are very stable now, but not all of them. Specially the Chat feature. use {bp}help to check all the commands available! ```", inline=False)
+  embed.add_field(name="Announcements", value=f"``` -YourBot {bot_current_version}- Hello! If been nearly two months after the first release of this discord bot. Most of the commands are very stable now, but not all of them. Specially the Chat feature. use {bot_prefix}help to check all the commands available! ```", inline=False)
   embed.add_field(name="Servers", value=f"{len(client.guilds)}", inline=True)
   embed.add_field(name="Uptime", value=f"{text}", inline=True)
   embed.add_field(name="Version", value=f"{bot_current_version}", inline=True)
