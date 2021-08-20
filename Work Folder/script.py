@@ -1,10 +1,10 @@
-from discord import permissions
+# my files
+
 from keep_alive import keep_alive
 import installerm
 
 import platform
 import os
-
 try:
   # os.system("pip3 install prsaw")
   # installerm.pip_install("prsaw")
@@ -18,7 +18,9 @@ try:
 except Exception as e:
   print("error: ", e)
 
+# all imports
 
+from discord import permissions
 from prsaw import RandomStuffV2
 from password_strength import PasswordStats
 import discord
@@ -45,6 +47,8 @@ from pyfiglet import Figlet
 import subprocess
 import threading
 from multiprocessing import Process
+
+# these will be needed almost everywhere
 
 botconfigdata = json.load(open("config.json", "r"))
 bot_prefix = botconfigdata["msg-prefix"]
@@ -504,7 +508,6 @@ async def fake(ctx, *, fake_mode="help"):
 
     # this is the loading message and this will be deleted when the originallly requested message has been ready to send
     loading_message = await ctx.send(embed=please_wait_emb)
-
     
     if fake_mode == "high":
       fake = Faker()
@@ -3009,43 +3012,43 @@ async def passwordcheck(ctx, *, passowrdhere):
   await loading_message.delete()
   await ctx.send(embed=embed)
 
-def SHERLOCK_THING(usernametofind):
-  change_directory("dsherlock")
-  try:
-    print("RUNNING THE COMMAND!")
-    data = subprocess.check_output(['python3', 'sherlock', f'{usernametofind}']).decode('utf-8', errors="backslashreplace")
-    print("RAN THE COMMAND!")
-    change_directory("..")
-    with open(f"{usernametofind}.txt", "w+") as slf:
-      slf.write(data)
-    print("FILE CREATED SUCCESSFULLY!")
-    with open(f"{usernametofind}.txt", "r+") as slfs:
-      filedataig = slfs.read()
-    return data
-  except Exception as e:
-    print(e)
-    return
+# def SHERLOCK_THING(usernametofind):
+#   change_directory("dsherlock")
+#   try:
+#     print("RUNNING THE COMMAND!")
+#     data = subprocess.check_output(['python3', 'sherlock', f'{usernametofind}']).decode('utf-8', errors="backslashreplace")
+#     print("RAN THE COMMAND!")
+#     change_directory("..")
+#     with open(f"{usernametofind}.txt", "w+") as slf:
+#       slf.write(data)
+#     print("FILE CREATED SUCCESSFULLY!")
+#     with open(f"{usernametofind}.txt", "r+") as slfs:
+#       filedataig = slfs.read()
+#     return data
+#   except Exception as e:
+#     print(e)
+#     return
 
 
-@client.command()
-async def shln(ctx, *, usernametofind):
+# @client.command()
+# async def shln(ctx, *, usernametofind):
 
-  # x = threading.Thread(target=SHERLOCK_THING, args=(usernametofind,))
-  SHERLOCK_THING(usernametofind)
-  # x.start()
-  p1 = Process(target=SHERLOCK_THING, args=(usernametofind,))
-  p1.start()
-  p1.join()
-  
-  try:
-    with open(f"{usernametofind}.txt", "r+") as slfs:
-      await ctx.send(file=discord.File(slfs, f"{usernametofind}.txt"))
+#   # x = threading.Thread(target=SHERLOCK_THING, args=(usernametofind,))
+#   SHERLOCK_THING(usernametofind)
+#   # x.start()
+#   p1 = Process(target=SHERLOCK_THING, args=(usernametofind,))
+#   p1.start()
+#   p1.join()
+
+#   try:
+#     with open(f"{usernametofind}.txt", "r+") as slfs:
+#       await ctx.send(file=discord.File(slfs, f"{usernametofind}.txt"))
     
-    os.system(f"rm {usernametofind}.txt")
+#     os.system(f"rm {usernametofind}.txt")
 
-  except Exception as e:
-    print(e)
-    return
+#   except Exception as e:
+#     print(e)
+#     return
 
 
 @client.command()
