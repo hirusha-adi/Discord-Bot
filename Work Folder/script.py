@@ -65,6 +65,8 @@ client.remove_command('help')
 
 token = os.environ['TOKEN']
 
+# THE FUNCTIONS BELOW ARE TO HELP THE MAIN COMMANDS!
+
 def give_server_invite_link():
     bot_inv_link = botconfigdata["invite-link"]
     link = bot_inv_link
@@ -370,37 +372,44 @@ def ipinfoshit(ipfromuser):
     ipinfo = f'\n[+] Status: {data["status"]} \n[+] Country: {data["country"]} \n[+] Country Code: {data["countryCode"]} \n[+] Region: {data["region"]} \n[+] Region Name: {data["regionName"]} \n[+] City: {data["city"]} \n[+] ZIP: {data["zip"]} \n[+] Latitude: {data["lat"]} \n[+] Longitude: {data["lon"]} \n[+] TimeZone: {data["timezone"]} \n[+] ISP: {data["isp"]} \n[+] Organization: {data["org"]} \n[+] ASN: {data["as"]} \n[+] Query: {data["query"]} \n'
     return ipinfo
 
+# THE MAIN COMMANDS OF THE BOT START HERE!
+
 start_time = None
 
 @client.event
 async def on_ready():
-    print('Bot is ready!')
+    # SHOW INFO
     print(f'Logged in as {client.user.name}')
     print(f'Discord.py API version: {discord.__version__}')
     print(f'Python version: {platform.python_version()}')
+    # ASSIGN A VALUE TO THE start_time GLOBAL VARIABLE
     global start_time
     start_time = time.time()
     await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"{len(client.guilds)} servers!"))
+    print('Bot is ready!')
+    # NOW, THE BOT IS READY TO BE USED!
 
-
+# THIS IS THE PLASE WAIT TEMPLATE!
+# Almost all the commands use this, you can change it here!
 please_wait_emb = discord.Embed(title="```  Processing your request  ```", color=0xff0000)
 please_wait_emb.set_author(name="YourBot")
 please_wait_emb.set_thumbnail(url="https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif")
 please_wait_emb.set_footer(text="Bot created by ZeaCeR#5641")
 please_wait_wt_bfd = 2
 
+# ctx is for 'context'
 @client.command()
 async def changeprefix(ctx):
   loading_message = await ctx.send(embed=please_wait_emb)
   await loading_message.delete()
   await ctx.send(f'This feature will be available in the future! Make sure to type the info command to see more information')
 
-# ctx is for 'context'
 @client.command() 
 async def ping(ctx):
     loading_message = await ctx.send(embed=please_wait_emb)
     try:
         await loading_message.delete()
+        # Multiplying it by 1000 to make it Seconds!
         await ctx.send(f'```[+] Ping: {round(client.latency * 1000)}ms```')
     except Exception as e:
         await loading_message.delete()
@@ -408,11 +417,15 @@ async def ping(ctx):
 
 @client.command()
 async def clear(ctx, amount=5):
+    # Delete messages, 1 will do nothing because it will delete the message you sent
+    # So, use amount + 1 when entering
     await ctx.channel.purge(limit=amount)
 
 @client.command(aliases=["8ball", "eightball"])
 async def _8ball(ctx, *, question):
     loading_message = await ctx.send(embed=please_wait_emb)
+
+    # reponse list
     responses = ["It is certain.",
                 "Without a doubt",
                 "You may rely on it",
@@ -427,7 +440,11 @@ async def _8ball(ctx, *, question):
                 'That is a definite yes!',
                 'Maybe',
                 'There is a good chance']
+
+    # This is what i had earlier             
     # await ctx.send(f'```Question: {question}\nAnswer: {random.choice(responses)}```')
+    
+    # Then, i added it to a embed
     answer = random.choice(responses)
     embed = discord.Embed()
     embed.add_field(name="Question", value=question, inline=False)
@@ -443,12 +460,16 @@ async def _8ball(ctx, *, question):
 async def kick(ctx, member : discord.Member, *, reason=None): # call the member as in member object from discord module
     loading_message = await ctx.send(embed=please_wait_emb)
     try:
+        # Kick the member from the server with a reason provided
         await member.kick(reason=reason)
+
+        # Already kicked! this is to inform the user that the action is done!
         ban = discord.Embed(title=f":boom: Kicked {member.name}!", description=f"Reason: {reason}\nBy: {ctx.author.mention}")
         await ctx.channel.send(embed=ban)
         await loading_message.delete()
         await member.send(embed=ban)
     except Exception as e:
+        # If something bad happens
         await loading_message.delete()
         await ctx.send("```" + str(e) + "```")
 
@@ -457,12 +478,16 @@ async def kick(ctx, member : discord.Member, *, reason=None): # call the member 
 async def ban(ctx, user: discord.Member, *, reason="No reason provided"):
     loading_message = await ctx.send(embed=please_wait_emb)
     try:
+        # Ban the user from the server with a reason
         await user.ban(reason=reason)
+
+        # Already banned! this is to inform the user that the action is done!
         ban = discord.Embed(title=f":boom: Banned {user.name}!", description=f"Reason: {reason}\nBy: {ctx.author.mention}")
         await ctx.channel.send(embed=ban)
         await loading_message.delete()
         await user.send(embed=ban)
     except Exception as e:
+        # If something bad happens
         await loading_message.delete()
         await ctx.send("```" + str(e) + "```")
 
@@ -475,6 +500,7 @@ async def unban(ctx, *, member):
     for ban_entry in banned_users:
         user = ban_entry.user
 
+        # the unbanning happens here!
         if (user.name, user.discriminator) == (member_name, member_discriminator):
             await ctx.guild.unban(user)
             await loading_message.delete()
@@ -483,11 +509,13 @@ async def unban(ctx, *, member):
 
 @client.command()
 async def join(ctx):
+    # Get the voice channel that the user is connected to and join to it
     channel = ctx.author.voice.channel
     await channel.connect()
     
 @client.command()
 async def leave(ctx):
+    # Leave from any connected voice channel
     await ctx.voice_client.disconnect()
 
 @client.command()
@@ -498,6 +526,7 @@ async def inv(ctx):
 async def inspire(ctx):
   loading_message = await ctx.send(embed=please_wait_emb)
   embed = discord.Embed(title="Inspiration", color=0xff0000)
+  # Uses the functions above
   embed.add_field(name=" ", value=f"{get_quote()}", inline=True)
   await loading_message.delete()
   await ctx.send(embed=embed)
