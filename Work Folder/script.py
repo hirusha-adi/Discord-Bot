@@ -43,8 +43,8 @@ from typing import Optional, Text
 import instaloader
 from pyfiglet import Figlet
 import subprocess
-from threading import Thread
-
+import threading
+from multiprocessing import Process
 
 botconfigdata = json.load(open("config.json", "r"))
 bot_prefix = botconfigdata["msg-prefix"]
@@ -3009,6 +3009,43 @@ async def passwordcheck(ctx, *, passowrdhere):
   await loading_message.delete()
   await ctx.send(embed=embed)
 
+def SHERLOCK_THING(usernametofind):
+  change_directory("dsherlock")
+  try:
+    print("RUNNING THE COMMAND!")
+    data = subprocess.check_output(['python3', 'sherlock', f'{usernametofind}']).decode('utf-8', errors="backslashreplace")
+    print("RAN THE COMMAND!")
+    change_directory("..")
+    with open(f"{usernametofind}.txt", "w+") as slf:
+      slf.write(data)
+    print("FILE CREATED SUCCESSFULLY!")
+    with open(f"{usernametofind}.txt", "r+") as slfs:
+      filedataig = slfs.read()
+    return data
+  except Exception as e:
+    print(e)
+    return
+
+
+@client.command()
+async def shln(ctx, *, usernametofind):
+
+  # x = threading.Thread(target=SHERLOCK_THING, args=(usernametofind,))
+  SHERLOCK_THING(usernametofind)
+  # x.start()
+  p1 = Process(target=SHERLOCK_THING, args=(usernametofind,))
+  p1.start()
+  p1.join()
+  
+  try:
+    with open(f"{usernametofind}.txt", "r+") as slfs:
+      await ctx.send(file=discord.File(slfs, f"{usernametofind}.txt"))
+    
+    os.system(f"rm {usernametofind}.txt")
+
+  except Exception as e:
+    print(e)
+    return
 
 
 @client.command()
@@ -3312,7 +3349,7 @@ async def uptime(ctx):
   difference = int(round(current_time - start_time))
   text = str(datetime.timedelta(seconds=difference))
   embed=discord.Embed(color=0xff0000)
-  embed.add_field(name="The bot was online for: ", value=f"{text}", inline=False)
+  embed.add_field(name="The bot was online for: ", value=f":alarm_clock: {text}", inline=False)
   embed.set_footer(text=f"Requested by {ctx.author.name}")
   await loading_message.delete()
   await ctx.send(embed=embed)
@@ -3325,11 +3362,13 @@ async def status(ctx):
   text = str(datetime.timedelta(seconds=difference))
 
   embed=discord.Embed(color=0xff0000)
-  embed.add_field(name="Announcements", value=f"``` -YourBot {bot_current_version}- Hello! If been nearly two months after the first release of this discord bot. Most of the commands are very stable now, but not all of them. Specially the Chat feature. use {bot_prefix}help to check all the commands available! ```", inline=False)
+  embed.add_field(name="Announcements", value=f"``` -YourBot {bot_current_version}- Hello! Its been nearly two months after the first release of this discord bot. Most of the commands are very stable now, but not all of them. Help me make this bot have 500+ commands. use {bot_prefix}help to check all the commands available! ```", inline=False)
   embed.add_field(name="Servers", value=f"{len(client.guilds)}", inline=True)
   embed.add_field(name="Uptime", value=f"{text}", inline=True)
   embed.add_field(name="Version", value=f"{bot_current_version}", inline=True)
   embed.add_field(name="Errors", value="``` There is bug when the chatbot feature is being used simultaneously in many channels, This issue will be fixed soon!  ```", inline=True)
+  embed.add_field(name="Source Code", value="https://github.com/hirusha-adi/Discord-Bot", inline=True)
+  embed.add_field(name="Creator", value=f"{bot_creator_name}", inline=True)
   embed.set_footer(text=f"Requested by {ctx.author.name}")
   await loading_message.delete()
   await ctx.send(embed=embed)
