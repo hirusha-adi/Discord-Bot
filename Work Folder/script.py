@@ -366,13 +366,18 @@ def ipinfoshit(ipfromuser):
     ipinfo = f'\n[+] Status: {data["status"]} \n[+] Country: {data["country"]} \n[+] Country Code: {data["countryCode"]} \n[+] Region: {data["region"]} \n[+] Region Name: {data["regionName"]} \n[+] City: {data["city"]} \n[+] ZIP: {data["zip"]} \n[+] Latitude: {data["lat"]} \n[+] Longitude: {data["lon"]} \n[+] TimeZone: {data["timezone"]} \n[+] ISP: {data["isp"]} \n[+] Organization: {data["org"]} \n[+] ASN: {data["as"]} \n[+] Query: {data["query"]} \n'
     return ipinfo
 
+start_time = None
+
 @client.event
 async def on_ready():
     print('Bot is ready!')
     print(f'Logged in as {client.user.name}')
     print(f'Discord.py API version: {discord.__version__}')
     print(f'Python version: {platform.python_version()}')
+    global start_time
+    start_time = time.time()
     await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"{len(client.guilds)} servers!"))
+
 
 please_wait_emb = discord.Embed(title="```  Processing your request  ```", color=0xff0000)
 please_wait_emb.set_author(name="YourBot")
@@ -3229,7 +3234,7 @@ async def sherlock(ctx, *, usernametofind):
   embed1.set_thumbnail(url="https://user-images.githubusercontent.com/27065646/53551960-ae4dff80-3b3a-11e9-9075-cef786c69364.png")
   embed1.add_field(name="All Possible Profiles!", value=all_possible_accounts_1, inline=False)
   embed1.set_footer(text="All links won't work! We will add a check real soon!")
-  
+
   embed2=discord.Embed(title="Sherlock! - 2", color=0xff0000)
   embed2.set_thumbnail(url="https://user-images.githubusercontent.com/27065646/53551960-ae4dff80-3b3a-11e9-9075-cef786c69364.png")
   embed2.add_field(name="All Possible Profiles!", value=all_possible_accounts_2, inline=False)
@@ -3298,6 +3303,36 @@ async def sherlock(ctx, *, usernametofind):
   await ctx.send(embed=embed10)
   await ctx.send(embed=embed11)
   await ctx.send(embed=embed12)
+
+
+@client.command()
+async def uptime(ctx):
+  loading_message = await ctx.send(embed=please_wait_emb)
+  current_time = time.time()
+  difference = int(round(current_time - start_time))
+  text = str(datetime.timedelta(seconds=difference))
+  embed=discord.Embed(color=0xff0000)
+  embed.add_field(name="The bot was online for: ", value=f"{text}", inline=False)
+  embed.set_footer(text=f"Requested by {ctx.author.name}")
+  await loading_message.delete()
+  await ctx.send(embed=embed)
+
+@client.command()
+async def status(ctx):
+  loading_message = await ctx.send(embed=please_wait_emb)
+  current_time = time.time()
+  difference = int(round(current_time - start_time))
+  text = str(datetime.timedelta(seconds=difference))
+
+  embed=discord.Embed(color=0xff0000)
+  embed.add_field(name="Announcements", value=f"``` -YourBot {bot_current_version}- Hello! If been nearly two months after the first release of this discord bot. Most of the commands are very stable now, but not all of them. Specially the Chat feature. use {bp}help to check all the commands available! ```", inline=False)
+  embed.add_field(name="Servers", value=f"{len(client.guilds)}", inline=True)
+  embed.add_field(name="Uptime", value=f"{text}", inline=True)
+  embed.add_field(name="Version", value=f"{bot_current_version}", inline=True)
+  embed.add_field(name="Errors", value="``` There is bug when the chatbot feature is being used simultaneously in many channels, This issue will be fixed soon!  ```", inline=True)
+  embed.set_footer(text=f"Requested by {ctx.author.name}")
+  await loading_message.delete()
+  await ctx.send(embed=embed)
 
 @client.command()
 async def slots(ctx):
@@ -3774,7 +3809,6 @@ async def on_message(message):
 
       # await channel.send(f'{message.content}')
       await channel.send(embed=embed)
-
   
   await client.process_commands(message)
 
