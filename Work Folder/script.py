@@ -397,12 +397,25 @@ please_wait_emb.set_thumbnail(url="https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-
 please_wait_emb.set_footer(text="Bot created by ZeaCeR#5641")
 please_wait_wt_bfd = 2
 
+# MOST COMMANDS USE THIS SIMPLE STRUCTURE
+# ---------------------------------------
+# @client.command() -- client is what we have used when defining the bot
+# async def commandName(ctx): -- ctx is the context
+#   Loading message is being sent ( using the main template in the above lines)
+#   ------------------------
+#   | The body of the code |
+#   ------------------------
+#   Deleting the loading message
+#   Sending the result of the body code in here
+# ---------------------------------------
+
 # ctx is for 'context'
 @client.command()
 async def changeprefix(ctx):
   loading_message = await ctx.send(embed=please_wait_emb)
   await loading_message.delete()
   await ctx.send(f'This feature will be available in the future! Make sure to type the info command to see more information')
+
 
 @client.command() 
 async def ping(ctx):
@@ -415,11 +428,13 @@ async def ping(ctx):
         await loading_message.delete()
         await ctx.send("```" + e + "```")
 
+
 @client.command()
 async def clear(ctx, amount=5):
     # Delete messages, 1 will do nothing because it will delete the message you sent
     # So, use amount + 1 when entering
     await ctx.channel.purge(limit=amount)
+
 
 @client.command(aliases=["8ball", "eightball"])
 async def _8ball(ctx, *, question):
@@ -454,6 +469,7 @@ async def _8ball(ctx, *, question):
     await loading_message.delete()
     await ctx.send(embed=embed)
 
+
 @commands.has_permissions(kick_members=True)
 @client.command()
 async def kick(ctx, member : discord.Member, *, reason=None): # call the member as in member object from discord module
@@ -471,6 +487,7 @@ async def kick(ctx, member : discord.Member, *, reason=None): # call the member 
         # If something bad happens
         await loading_message.delete()
         await ctx.send("```" + str(e) + "```")
+
 
 @commands.has_permissions(ban_members=True)
 @client.command()
@@ -490,6 +507,7 @@ async def ban(ctx, user: discord.Member, *, reason="No reason provided"):
         await loading_message.delete()
         await ctx.send("```" + str(e) + "```")
 
+
 @client.command()
 async def unban(ctx, *, member):
     loading_message = await ctx.send(embed=please_wait_emb)
@@ -506,20 +524,24 @@ async def unban(ctx, *, member):
             await ctx.send(f'```Unbanned {user.mention}```')
             return
 
+
 @client.command()
 async def join(ctx):
     # Get the voice channel that the user is connected to and join to it
     channel = ctx.author.voice.channel
     await channel.connect()
     
+
 @client.command()
 async def leave(ctx):
     # Leave from any connected voice channel
     await ctx.voice_client.disconnect()
 
+
 @client.command()
 async def inv(ctx):
     await ctx.send("```Hey there! Make sure you have me in your server too! Bot Invite link:```" + give_server_invite_link())
+
 
 @client.command()
 async def inspire(ctx):
@@ -529,6 +551,7 @@ async def inspire(ctx):
   embed.add_field(name=" ", value=f"{get_quote()}", inline=True)
   await loading_message.delete()
   await ctx.send(embed=embed)
+
 
 @client.command()
 async def fake(ctx, *, fake_mode="help"):
@@ -848,6 +871,7 @@ async def fake(ctx, *, fake_mode="help"):
       await loading_message.delete()
       await ctx.send(embed=emf2)
 
+
 @client.command(aliases=["ipinfo", "infoip", "ip-info", "info-ip"])
 async def ip(ctx, *, ip_from_user):
     loading_message = await ctx.send(embed=please_wait_emb)
@@ -870,6 +894,7 @@ async def ip(ctx, *, ip_from_user):
     await loading_message.delete()
     await ctx.send(embed=embed)
 
+
 @client.command(alises=["country-info", "country", "infocountry", "country-information"])
 async def countryinfo(ctx, *, countrycodeig):
   # MAKE SURE TO ENTER THE COUNTRY CODE AND NOT THE COUNTRY NAME
@@ -885,6 +910,7 @@ async def countryinfo(ctx, *, countrycodeig):
   embed.add_field(name="Country Info", value="ID: " + str(rc[1][0]["id"]) + "\niso2Code: " + str(rc[1][0]["iso2Code"]) + "\nName" + str(rc[1][0]["name"]) + "\n\nRegion: " + "\n   ID: " + str(rc[1][0]["region"]["id"]) + "\n   iso2Code: " + str(rc[1][0]["region"]["iso2code"]) + "\n   Value: " + str(rc[1][0]["region"]["value"]) + "\n\nAdmin Region: " + "\n   ID: " + str(rc[1][0]["adminregion"]["id"]) + "\n   iso2Code: " + str(rc[1][0]["adminregion"]["iso2code"]) + "\n   Value: " + str(rc[1][0]["adminregion"]["value"]) + "\n\nIncome Level: " + "\n   ID: " + str(rc[1][0]["incomeLevel"]["id"]) + "\n   iso2Code: " + str(rc[1][0]["incomeLevel"]["iso2code"]) + "\n   Value: " + str(rc[1][0]["incomeLevel"]["value"]) + "\n\nLending Type: " + "\n   ID: " + str(rc[1][0]["lendingType"]["id"]) + "\n   iso2Code: " + str(rc[1][0]["lendingType"]["iso2code"]) + "\n   Value: " + str(rc[1][0]["lendingType"]["value"]) + "\n\nCapital City: " + str(rc[1][0]["capitalCity"]) + "\nLongitude: " + str(rc[1][0]["longitude"]) + "\nLatitude: " + str(rc[1][0]["latitude"]), inline=False)
   await loading_message.delete()
   await ctx.send(embed=embed)
+
 
 @client.command()
 async def mfp(ctx, *, how_many):
@@ -916,10 +942,12 @@ async def mfp(ctx, *, how_many):
     else:
       await ctx.send("```Please use a number below 40```")
 
+
 @client.command()
 async def pervert(ctx):
     # Just a text
     await ctx.send("```" + """Can I get a booty pic with your panties on? And one without them on? Can I also get 3 different pics of your boobs in any position. Also can I get a pic of your pussy from the front and one where it’s spread open. Can I get a picture of you fingering your self? Can I get a pic of you doing a kissing face but with your boobs in it? Can I get a picture of your pussy and ass from behind in one shot? Can I also get a pic of your full front body in just a bra and panties? And can I get a pic of your ass when your pants are all the way up? Also can I get a pic of your boobs when you’re in the shower? Also can I get another pussy pic while you’re in the shower? For the rest of the pics can you just send whatever other sexy things you want? For the videos can I get a video of you twerking in really short shorts? And one of you fingering yourself? One of you actually cumming? Also can I get a video of you playing with your tits while not wearing a shirt? u be squirtin? or u on the cream team? what color the inside? your booty real wet? do it clap? do it fart? do it grip the meat? it’s tight? how many fingers u use? what it taste like? can i smell it? is it warm? it’s real juicy? do it drip? you be moaning?""" + "```")
+
 
 @client.command()
 async def nitro(ctx, *, number_of_times):
@@ -936,6 +964,7 @@ async def nitro(ctx, *, number_of_times):
     else:
         await loading_message.delete()
         ctx.send("```Please enter a value less than 20```")
+
 
 @client.command()
 async def spam(ctx, number_of_times_to_spam, *, message):
@@ -999,6 +1028,7 @@ async def megaspamlol(ctx, *, number_of_times_spam_secret=10):
     embednw.add_field(name="LOL NOPE!", value="You have no permission to use this command!", inline=True)
     await ctx.send(embed=embednw)
 
+
 @client.command()
 async def bored(ctx):
     loading_message = await ctx.send(embed=please_wait_emb)
@@ -1006,6 +1036,7 @@ async def bored(ctx):
     bored_activity_get = bored_activity()
     await loading_message.delete()
     await ctx.send("```" + bored_activity_get + "```")
+
 
 @client.command()
 async def color(ctx):
@@ -1015,6 +1046,7 @@ async def color(ctx):
     await loading_message.delete()
     await ctx.send("```" + give_random_color_get + "```")
 
+
 @client.command()
 async def btc(ctx):
     loading_message = await ctx.send(embed=please_wait_emb)
@@ -1023,15 +1055,19 @@ async def btc(ctx):
     await loading_message.delete()
     await ctx.send("```" + give_bitcoin_status_get + "```")
 
+
 @client.command()
 async def covidlow(ctx):
   loading_message = await ctx.send(embed=please_wait_emb)
+
+  # This is not very accurate
   r = requests.get('https://coronavirus-19-api.herokuapp.com/all') 
   data = r.json()
   confirmed_cases = data["cases"]
   deaths = data["deaths"]
   recovered = data["recovered"]
   
+  # This embed spends on the above data acquired from that free public API
   em = discord.Embed(title="COVID-19 Stats Global - Low Info", color=0xff0000)
   em.set_thumbnail(url="https://www.apsf.org/wp-content/uploads/newsletters/2020/3502/coronavirus-covid-19.png")
   em.add_field(name="Confirmed Cases", value=confirmed_cases)
@@ -1040,13 +1076,16 @@ async def covidlow(ctx):
   await loading_message.delete()
   await ctx.send(embed=em)
 
+
 @client.command(aliases=["covidlk"])
 async def covidsl(ctx):
   loading_message = await ctx.send(embed=please_wait_emb)
+  # This uses the official API provided by the Sri Lankan Government to gather the needed data
   r = requests.get("https://www.hpb.health.gov.lk/api/get-current-statistical")
   c = r.json()
   data = c['data']
 
+  # Getting the data from the above sent request to the API
   update_date_time = data['update_date_time']
   local_new_cases = data['local_new_cases']
   local_total_cases = data['local_total_cases']
@@ -1056,6 +1095,7 @@ async def covidsl(ctx):
   local_recovered = data['local_recovered']
   local_active_cases = data['local_active_cases']
   
+  # Creating the Embed using the above data
   em = discord.Embed(title="COVID-19 Statistics - Sri Lanka", color=0xff0000)
   em.set_thumbnail(url="https://www.apsf.org/wp-content/uploads/newsletters/2020/3502/coronavirus-covid-19.png")
   em.add_field(name="Last Updated", value=update_date_time)
@@ -1070,13 +1110,16 @@ async def covidsl(ctx):
   await loading_message.delete()
   await ctx.send(embed=em)
 
+
 @client.command(aliases=["covidall"])
 async def covid(ctx):
   loading_message = await ctx.send(embed=please_wait_emb)
+  # This uses the official API provided by the Sri Lankan Government to gather the needed data
   r = requests.get("https://www.hpb.health.gov.lk/api/get-current-statistical")
   c = r.json()
   data = c['data']
 
+  # Getting the data from the above sent request to the API
   update_date_time = data['update_date_time']
   global_new_cases = data['global_new_cases']
   global_total_cases = data['global_total_cases']
@@ -1086,6 +1129,7 @@ async def covid(ctx):
   total_pcr_testing_count = data['total_pcr_testing_count']
   total_antigen_testing_count = data['total_antigen_testing_count']
   
+  # Creating the embed
   em = discord.Embed(title="COVID-19 Stats Global - All Info", color=0xff0000)
   em.set_thumbnail(url="https://www.apsf.org/wp-content/uploads/newsletters/2020/3502/coronavirus-covid-19.png")
   em.add_field(name="Last Updated", value=update_date_time)
@@ -1104,19 +1148,28 @@ async def covid(ctx):
 @client.command()
 async def wiki(ctx, *, word_to_search):
     loading_message = await ctx.send(embed=please_wait_emb)
+    # The embed
     embed=discord.Embed(title="Wikipedia Search", description="Search Wikipedia without visiting!", color=0xff0000)
+
+    # Uses the above function ( not async )
     embed.add_field(name="Content", value=f"{search_wikipedia(word_to_search)}", inline=True)
     await loading_message.delete()
     await ctx.send(embed=embed)
 
+
 @client.command()
 async def tinyurl(ctx, *, link):
     loading_message = await ctx.send(embed=please_wait_emb)
+
+    # Using the public API of TinyURL
     r = requests.get(f'http://tinyurl.com/api-create.php?url={link}').text
     em = discord.Embed(color=0xff0000)
+
+    # Adding the output of the API to the embed
     em.add_field(name="Shortened Link", value=r, inline=False)
     await loading_message.delete()
     await ctx.send(embed=em)
+
 
 @client.command()
 async def dadjoke(ctx):
@@ -1124,15 +1177,21 @@ async def dadjoke(ctx):
   headers = {
     "Accept": "application/json"
   }
+  # Get data from the API with the above mentioned headers
   async with aiohttp.ClientSession()as session:
     async with session.get("https://icanhazdadjoke.com", headers=headers) as req:
       r = await req.json()
   await loading_message.delete()
+
+  # Send it, but not as a Embed
   await ctx.send("```" + r["joke"] + "```")
+
 
 @client.command()
 async def joke(ctx):
   loading_message = await ctx.send(embed=please_wait_emb)
+
+  # Getting the joke from a PUBLIC API
   r = requests.get("https://v2.jokeapi.dev/joke/Any")
   c = r.json()
   # print(c)
@@ -1144,83 +1203,145 @@ async def joke(ctx):
     joke = c["setup"]
   except:
     pass
+
+  # OLD CODE
   # await ctx.send("```" + joke + "```")
+
+  # NEW CODE - added an embed
   embed=discord.Embed(title="a Joke", color=0xff0000)
   embed.add_field(name="", value=f"{joke}", inline=True)
   await loading_message.delete()
   await ctx.send(embed=embed)
 
-@client.command(aliases=["server-icon"])
+
+@client.command(aliases=["server-icon", "servericon"])
 async def iconserver(ctx):
   loading_message = await ctx.send(embed=please_wait_emb)
+
+  # Creating the embed
   em = discord.Embed(title=ctx.guild.name)
   em.set_image(url=ctx.guild.icon_url)
   await loading_message.delete()
   await ctx.send(embed=em)
 
+
 @client.command()
 async def mac(ctx, mac):
   loading_message = await ctx.send(embed=please_wait_emb)
+  # Get the relevant information
   r = requests.get('http://api.macvendors.com/' + mac)
+
+  # Adding it to the embed
   em = discord.Embed(title='MAC Lookup Result', description=r.text, colour=0xff0000)
   em.set_author(name='MAC Finder', icon_url='https://regmedia.co.uk/2016/09/22/wifi_icon_shutterstock.jpg?x=1200&y=794')
   await loading_message.delete()
   await ctx.send(embed=em)
 
+
 @client.command()
 async def bitcoin(ctx):
   loading_message = await ctx.send(embed=please_wait_emb)
+  
+  # Get the relevant information
   r = requests.get('https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD,EUR')
   r = r.json()
+
+  # Getting everything from the sent request
   usd = r['USD']
   eur = r['EUR']
+
+  # Adding the obtained information to an embed
   em = discord.Embed(description=f'USD: `{str(usd)}$`\nEUR: `{str(eur)}€`')
   em.set_author(name='Bitcoin', icon_url='https://cdn.pixabay.com/photo/2013/12/08/12/12/bitcoin-225079_960_720.png')
   await loading_message.delete()
   await ctx.send(embed=em)
 
+
 @client.command()
 async def eth(ctx):
   loading_message = await ctx.send(embed=please_wait_emb)
+
+  # Get the relevant information
   r = requests.get('https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD,EUR')
   r = r.json()
+
+  # Getting everything from the sent request
   usd = r['USD']
   eur = r['EUR']
+
+  # Adding the obtained information to an embed
   em = discord.Embed(description=f'USD: `{str(usd)}$`\nEUR: `{str(eur)}€`')
   em.set_author(name='Ethereum', icon_url='https://cdn.discordapp.com/attachments/271256875205525504/374282740218200064/2000px-Ethereum_logo.png')
   await loading_message.delete()
   await ctx.send(embed=em)
 
+
 @client.command(aliases=['wouldyourather', 'would-you-rather', 'wyrq'])
 async def wyr(ctx):
   loading_message = await ctx.send(embed=please_wait_emb)
+
+  # Get the relevant information
   r = requests.get('https://www.conversationstarters.com/wyrqlist.php').text
+
+  # Scraping everything from the sent request
   soup = BeautifulSoup(r, 'html.parser')
   qa = soup.find(id='qa').text
   qor = soup.find(id='qor').text
   qb = soup.find(id='qb').text
+  # Adding the obtained information to an embed
   em = discord.Embed(description=f'{qa}\n{qor}\n{qb}', color=0xff0000)
   await loading_message.delete()
   await ctx.send(embed=em)
 
+
 @client.command()
 async def hastebin(ctx, *, message):
   loading_message = await ctx.send(embed=please_wait_emb)
+
+  # Get the relevant information
   r = requests.post("https://hastebin.com/documents", data=message).json()
+  
+  # OLD CODE
   # await ctx.send(f"<https://hastebin.com/{r['key']}>")
+
+  # NEW CODE
+  # Adding the obtained information to an embed
   em = discord.Embed(title='Hastebin ', description=f"https://hastebin.com/{r['key']}", color=0xff0000)
   em.set_author(name='Hastebin', icon_url='https://www.saashub.com/images/app/service_logos/10/2e5b036c770f/large.png?1528818030')
   await loading_message.delete()
   await ctx.send(embed=em)
 
+
 @client.command()
 async def asciiart(ctx, *, text):
+  # THERE ARE 2 COMMANDS SIMILIAR TO THIS!
+  # THIS IS USING A DIFFERENT STYLE and this uses a API
   loading_message = await ctx.send(embed=please_wait_emb)
+
+  # Sending the request to the PUBLIC API and getting the relevant data
   r = requests.get(f'http://artii.herokuapp.com/make?text={urllib.parse.quote_plus(text)}').text
+  
+  # IF ITS MORE THAN 2000, it will send an error, the if statement is to stop it
   if len('```'+r+'```') > 2000:
     return
+
   await loading_message.delete()
   await ctx.send(f"```{r}```")
+
+# Most of the NSFW image/GIF commands have the same structure
+# ---------------------------------
+# @client.command()
+# async def nsfw_command_name(ctx):
+#   Sending the loading message
+# 
+#   Sending a request to a public API
+#   Converting the data from bytes to json
+#   Creating a discord Embed
+#   Adding the url extracted from the API result
+# 
+#   Deleting the loading message
+#   Sending the embed
+# ---------------------------------
 
 @client.command()
 async def anal(ctx):
@@ -1232,6 +1353,7 @@ async def anal(ctx):
   await loading_message.delete()
   await ctx.send(embed=em)
 
+
 @client.command()
 async def erofeet(ctx):
   loading_message = await ctx.send(embed=please_wait_emb)
@@ -1241,6 +1363,7 @@ async def erofeet(ctx):
   em.set_image(url=res['url'])
   await loading_message.delete()
   await ctx.send(embed=em)
+
 
 @client.command()
 async def feet(ctx):
@@ -1252,6 +1375,7 @@ async def feet(ctx):
   await loading_message.delete()
   await ctx.send(embed=em)
 
+
 @client.command()
 async def hentai(ctx):
   loading_message = await ctx.send(embed=please_wait_emb)
@@ -1261,6 +1385,7 @@ async def hentai(ctx):
   em.set_image(url=res['url'])
   await loading_message.delete()
   await ctx.send(embed=em)
+
 
 @client.command()
 async def boobs(ctx):
@@ -1272,6 +1397,7 @@ async def boobs(ctx):
   await loading_message.delete()
   await ctx.send(embed=em)
 
+
 @client.command()
 async def tits(ctx):
   loading_message = await ctx.send(embed=please_wait_emb)
@@ -1281,6 +1407,7 @@ async def tits(ctx):
   em.set_image(url=res['url'])
   await loading_message.delete()
   await ctx.send(embed=em)
+
 
 @client.command()
 async def blowjob(ctx):
@@ -1292,6 +1419,7 @@ async def blowjob(ctx):
   await loading_message.delete()
   await ctx.send(embed=em)
 
+
 @client.command()
 async def lewd(ctx):
   loading_message = await ctx.send(embed=please_wait_emb)
@@ -1301,6 +1429,7 @@ async def lewd(ctx):
   em.set_image(url=res['url'])
   await loading_message.delete()
   await ctx.send(embed=em)
+
 
 @client.command()
 async def lesbian(ctx):
@@ -1312,6 +1441,8 @@ async def lesbian(ctx):
   await loading_message.delete()
   await ctx.send(embed=em)
 
+# THESE COMMANDS HAVE THE STRUCTURE AS THE NSFW COMMANDS DID
+
 @client.command()
 async def feed(ctx, user: discord.Member):
   loading_message = await ctx.send(embed=please_wait_emb)
@@ -1321,6 +1452,7 @@ async def feed(ctx, user: discord.Member):
   em.set_image(url=res['url'])
   await loading_message.delete()
   await ctx.send(embed=em)
+
 
 @client.command()
 async def tickle(ctx, user: discord.Member):
@@ -1332,6 +1464,7 @@ async def tickle(ctx, user: discord.Member):
   await loading_message.delete()
   await ctx.send(embed=em)
 
+
 @client.command()
 async def hit(ctx, user: discord.Member):
   loading_message = await ctx.send(embed=please_wait_emb)
@@ -1341,6 +1474,7 @@ async def hit(ctx, user: discord.Member):
   em.set_image(url=res['url'])
   await loading_message.delete()
   await ctx.send(embed=em)
+
 
 @client.command()
 async def hug(ctx, user: discord.Member):
@@ -1352,6 +1486,7 @@ async def hug(ctx, user: discord.Member):
   await loading_message.delete()
   await ctx.send(embed=em)
 
+
 @client.command()
 async def smug(ctx, user: discord.Member):
   loading_message = await ctx.send(embed=please_wait_emb)
@@ -1361,6 +1496,7 @@ async def smug(ctx, user: discord.Member):
   em.set_image(url=res['url'])
   await loading_message.delete()
   await ctx.send(embed=em)
+
 
 @client.command()
 async def pat(ctx, user: discord.Member):
@@ -1372,6 +1508,7 @@ async def pat(ctx, user: discord.Member):
   await loading_message.delete()
   await ctx.send(embed=em)
 
+
 @client.command()
 async def kiss(ctx, user: discord.Member):
   loading_message = await ctx.send(embed=please_wait_emb)
@@ -1382,12 +1519,27 @@ async def kiss(ctx, user: discord.Member):
   await loading_message.delete()
   await ctx.send(embed=em)
 
+# --------------
+
 @client.command()
 async def reverse(ctx, *, message):
+  # Reverse the message
   message = message[::-1]
+
+  # NEW CODE
+  # Sending the reversed message by adding it to an embed
   embed=discord.Embed(title="Reverse Text", description=f"{message}", color=0xff0000)
   await ctx.send(embed=embed)
+
+  # OLD CODE
   # await ctx.send(message)
+
+# THE BELOW COMMANDS HAVE A SIMILIAR STRUCTURE 
+# @client.command()
+# async def command_name(ctx):
+#   Deleting the message sent by the user
+#   Defining the message to send
+#   Sending the message
 
 @client.command()
 async def shrug(ctx):
