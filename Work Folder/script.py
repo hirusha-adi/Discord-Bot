@@ -2226,6 +2226,16 @@ async def av(ctx, *, user: discord.User = None):
       await loading_message.delete()
       await ctx.send(file=discord.File(file, f"Avatar.{format}"))
 
+@client.command(aliases=["av2"])
+async def newav(ctx, user: discord.User = None):
+  loading_message = await ctx.send(embed=please_wait_emb)
+
+  link = f"{ctx.author.avatar_url}"
+  await ctx.send(link)
+  await loading_message.delete()
+
+
+
 @client.command(aliases=["guildinfo", "serverinfo", "si"])
 async def infoserver(ctx):
   loading_message = await ctx.send(embed=please_wait_emb)
