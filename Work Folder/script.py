@@ -454,7 +454,6 @@ async def _8ball(ctx, *, question):
     await loading_message.delete()
     await ctx.send(embed=embed)
 
-
 @commands.has_permissions(kick_members=True)
 @client.command()
 async def kick(ctx, member : discord.Member, *, reason=None): # call the member as in member object from discord module
@@ -533,16 +532,18 @@ async def inspire(ctx):
 
 @client.command()
 async def fake(ctx, *, fake_mode="help"):
+    # This was the old code
     # await ctx.send("```" + FAKE_PROFILE(fake_mode) + "```")
 
+    # New code
     # this is the loading message and this will be deleted when the originallly requested message has been ready to send
     loading_message = await ctx.send(embed=please_wait_emb)
     
+    # All the information generated is in sync with each other
     if fake_mode == "high":
       fake = Faker()
       simple_dict = fake.profile()
       # fake_info_simple = "Name: " + str(simple_dict['name']) + "\nJob: " + str(simple_dict['job']) + "\nBirthdate: " + str(simple_dict['birthdate']) + "\nCompany: " + str(simple_dict['company']) + "\SSN: " + str(simple_dict['ssn']) + "\nRecidence: " + simple_dict['residence'] + "\nCurrent Location:" + str(simple_dict['current_location']) + "\nBlood Group: " + str(simple_dict['blood_group']) + "\nUsername: " + str(simple_dict['username']) + "\nAddress: " + str(simple_dict['address']) + "\nMail: " + str(simple_dict['mail'])
-      
       emf = discord.Embed(title="Fake Information Generator", color=0xF00000)
       emf.set_thumbnail(url="https://www.nicepng.com/png/detail/214-2146883_4-fake-stamp-vector-fake-news-logo-png.png")
       emf.add_field(name="Name", value=f"{str(simple_dict['name'])}")
@@ -557,10 +558,10 @@ async def fake(ctx, *, fake_mode="help"):
       emf.add_field(name="Address", value=f"{str(simple_dict['address'])}")
       emf.add_field(name="Mail", value=f"{str(simple_dict['mail'])}")
       # await ctx.channel.purge(limit=please_wait_wt_bfd) # DOESNT WORK
-    
       await loading_message.delete()
       await ctx.send(embed=emf)
     
+    # Only a name
     elif fake_mode == "name":
       faker = Faker()
       try:
@@ -575,6 +576,7 @@ async def fake(ctx, *, fake_mode="help"):
         await loading_message.delete()
         await ctx.send(f"Error: {e}")
     
+    # Only the Date of Birth
     elif fake_mode == "dob":
       faker = Faker()
       try:
@@ -589,6 +591,7 @@ async def fake(ctx, *, fake_mode="help"):
         await loading_message.delete()
         await ctx.send(f"Error: {e}")
     
+    # Only the Address
     elif fake_mode == "addr":
       faker = Faker()
       try:
@@ -603,6 +606,7 @@ async def fake(ctx, *, fake_mode="help"):
         await loading_message.delete()
         await ctx.send(f"Error: {e}")
     
+    # Only the JOB
     elif fake_mode == "job":
       faker = Faker()
       try:
@@ -617,6 +621,7 @@ async def fake(ctx, *, fake_mode="help"):
         await loading_message.delete()
         await ctx.send(f"Error: {e}")
     
+    # Only the color
     elif fake_mode == "color":
       faker = Faker()
       try:
@@ -631,6 +636,7 @@ async def fake(ctx, *, fake_mode="help"):
         await loading_message.delete()
         await ctx.send(f"Error: {e}")
     
+    # Only the ZipCode
     elif fake_mode == "zipcode":
       faker = Faker()
       try:
@@ -645,6 +651,7 @@ async def fake(ctx, *, fake_mode="help"):
         await loading_message.delete()
         await ctx.send(f"Error: {e}")
     
+    # Only the city
     elif fake_mode == "city":
       faker = Faker()
       try:
@@ -659,6 +666,7 @@ async def fake(ctx, *, fake_mode="help"):
         await loading_message.delete()
         await ctx.send(f"Error: {e}")
     
+    # Only a lisence plate number
     elif fake_mode == "licenseplate":
       faker = Faker()
       try:
@@ -673,6 +681,7 @@ async def fake(ctx, *, fake_mode="help"):
         await loading_message.delete()
         await ctx.send(f"Error: {e}")
     
+    # Only a Basic Bank Account Number
     elif fake_mode == "bban":
       faker = Faker()
       try:
@@ -687,6 +696,7 @@ async def fake(ctx, *, fake_mode="help"):
         await loading_message.delete()
         await ctx.send(f"Error: {e}")
     
+    # Only a International Bank Account Number
     elif fake_mode == "iban":
       faker = Faker()
       try:
@@ -701,6 +711,7 @@ async def fake(ctx, *, fake_mode="help"):
         await loading_message.delete()
         await ctx.send(f"Error: {e}")
     
+    # Only a BSc
     elif fake_mode == "bs":
       faker = Faker()
       try:
@@ -715,6 +726,7 @@ async def fake(ctx, *, fake_mode="help"):
         await loading_message.delete()
         await ctx.send(f"Error: {e}")
     
+    # Only credit card information, provides everything
     elif fake_mode == "cc":
       faker = Faker()
       try:
@@ -729,6 +741,7 @@ async def fake(ctx, *, fake_mode="help"):
         await loading_message.delete()
         await ctx.send(f"Error: {e}")
     
+    # only a Company Email
     elif fake_mode == "cemail":
       faker = Faker()
       try:
@@ -743,6 +756,7 @@ async def fake(ctx, *, fake_mode="help"):
         await loading_message.delete()
         await ctx.send(f"Error: {e}")
     
+    # Only a Phone Number
     elif fake_mode == "pno":
       faker = Faker()
       try:
@@ -757,6 +771,7 @@ async def fake(ctx, *, fake_mode="help"):
         await loading_message.delete()
         await ctx.send(f"Error: {e}")
     
+    # Only a Catch Phrase
     elif fake_mode == "cp":
       faker = Faker()
       try:
@@ -771,6 +786,7 @@ async def fake(ctx, *, fake_mode="help"):
         await loading_message.delete()
         await ctx.send(f"Error: {e}")
     
+    # Only a SSN
     elif fake_mode == "ssn":
       faker = Faker()
       try:
@@ -785,6 +801,7 @@ async def fake(ctx, *, fake_mode="help"):
         await loading_message.delete()
         await ctx.send(f"Error: {e}")
     
+    # Generate the basic information
     elif fake_mode == "low":
       fake_low = Faker()
       try:
@@ -804,6 +821,7 @@ async def fake(ctx, *, fake_mode="help"):
         await loading_message.delete()
         await ctx.send(f"Error: {e}")
     
+    # Show help
     elif fake_mode == "help":
       bp = bot_prefix
       emf2 = discord.Embed(title="Fake Information Generator", color=0xF00000)
@@ -830,21 +848,21 @@ async def fake(ctx, *, fake_mode="help"):
       await loading_message.delete()
       await ctx.send(embed=emf2)
 
-
-
-@client.command()
+@client.command(aliases=["ipinfo", "infoip", "ip-info", "info-ip"])
 async def ip(ctx, *, ip_from_user):
     loading_message = await ctx.send(embed=please_wait_emb)
 
-    # old shit
+    # OLD CODE
     # ip_information_data_text = ipinfoshit(ip_from_user)
     # await loading_message.delete()
     # await ctx.send("```" + ip_information_data_text + "```")
 
-    # new shit
+    # NEW CODE
+    # Getting the adeqaute data
     r = requests.get(f"https://ipapi.co/{ip_from_user}/json").json()
     rc = requests.get(f"https://api.worldbank.org/v2/country/{r['country_code']}?format=json").json()
 
+    # The embed
     embed=discord.Embed(title="IP Information", color=0xff0000)
     embed.set_thumbnail(url="https://user-images.githubusercontent.com/36286877/127773181-c98b63be-b18b-4d8b-a8b6-9426bd031b7c.png")
     embed.add_field(name="IP Info", value="IP Address: " + str(r["ip"]) + "\nCity: " + str(r["city"]) + "\nRegion: " + str(r["region"]) + "\nCountry Name: " + str(r["country_name"]) + "\nLatitude: " + str(r["latitude"]) + "\nLongitude: " + str(r["longitude"]) + "\nTime Zone: " + str(r["timezone"]) + "\nUTC Offset: " + str(r["utc_offset"]) + "\nPostal Code: " + str(r["postal"]) + str("\nISP: " + r["org"]) + "\nASN: " + str(r["asn"]) + "\nCountry Code: " + str(r["country_code"]) + "\nCountry TLD: " + str(r["country_tld"]) + "\nPopulation: " + str(r["country_population"]) + "\nCurrency: " + str(r["currency"]) + "\n Curreny Name: " + str(r["currency_name"]) + "\nCountry Area: " + str(r["country_area"]) + "\nLanguages: " + str(r["languages"]) + "\nCalling Code: " + str(r["country_calling_code"]) + "\nGOOGLE MAPS Link: " + f"https://maps.google.com/?q={r['latitude']},{r['longitude']}", inline=False)
@@ -854,7 +872,13 @@ async def ip(ctx, *, ip_from_user):
 
 @client.command(alises=["country-info", "country", "infocountry", "country-information"])
 async def countryinfo(ctx, *, countrycodeig):
+  # MAKE SURE TO ENTER THE COUNTRY CODE AND NOT THE COUNTRY NAME
+  # eg- sg ( for Singapore ), us for ( United States )
+  
   loading_message = await ctx.send(embed=please_wait_emb)
+
+  # Part is extracted from the above code ( the >ipinfo command )
+  # This code uses the original worldbank public API to get information regarding a country
   rc = requests.get(f"https://api.worldbank.org/v2/country/{countrycodeig}?format=json").json()
   embed=discord.Embed(title="Country Information", color=0xff0000)
   embed.set_thumbnail(url="https://user-images.githubusercontent.com/36286877/129850352-33345963-273b-42bf-b2bc-5523c8158229.png")
@@ -865,10 +889,14 @@ async def countryinfo(ctx, *, countrycodeig):
 @client.command()
 async def mfp(ctx, *, how_many):
     fake_how_many = int(how_many)
+    # This is the limit for this command to stop spamming!
     if fake_how_many <= 40:
       await ctx.send("```Sending " + str(how_many) + " Fake Profiles```")
       for i in range(fake_how_many):
+          # Old Code
           # await ctx.send("```" + CREATE_FAKE_PROFILES_MANY() + "```")
+
+          # New Code
           fake = Faker()
           simple_dict = fake.profile()
           emf = discord.Embed(title="Fake Information Generator", color=0xF00000)
@@ -890,14 +918,18 @@ async def mfp(ctx, *, how_many):
 
 @client.command()
 async def pervert(ctx):
+    # Just a text
     await ctx.send("```" + """Can I get a booty pic with your panties on? And one without them on? Can I also get 3 different pics of your boobs in any position. Also can I get a pic of your pussy from the front and one where it’s spread open. Can I get a picture of you fingering your self? Can I get a pic of you doing a kissing face but with your boobs in it? Can I get a picture of your pussy and ass from behind in one shot? Can I also get a pic of your full front body in just a bra and panties? And can I get a pic of your ass when your pants are all the way up? Also can I get a pic of your boobs when you’re in the shower? Also can I get another pussy pic while you’re in the shower? For the rest of the pics can you just send whatever other sexy things you want? For the videos can I get a video of you twerking in really short shorts? And one of you fingering yourself? One of you actually cumming? Also can I get a video of you playing with your tits while not wearing a shirt? u be squirtin? or u on the cream team? what color the inside? your booty real wet? do it clap? do it fart? do it grip the meat? it’s tight? how many fingers u use? what it taste like? can i smell it? is it warm? it’s real juicy? do it drip? you be moaning?""" + "```")
 
 @client.command()
 async def nitro(ctx, *, number_of_times):
     loading_message = await ctx.send(embed=please_wait_emb)
+    # The limit is 20 to prevent spamming
     if int(number_of_times) <= 20:
         await ctx.send("```Sending " + str(number_of_times) + " Random Nitro Codes!```")
         await loading_message.delete()
+        
+        # This part of code with send the nitro codes using a non-async function above
         for iteration, x in enumerate(range(int(number_of_times))):
             await ctx.send(give_nice_codes())
             time.sleep(0.5)
@@ -908,13 +940,20 @@ async def nitro(ctx, *, number_of_times):
 @client.command()
 async def spam(ctx, number_of_times_to_spam, *, message):
     loading_message = await ctx.send(embed=please_wait_emb)
+
+    # OLD CODE - PART 1
     # await ctx.send("```Spaming " + str(number_of_times_to_spam) + " times!```")
 
+    # NEW CODE - PART 1
     embed=discord.Embed(title="Spam Messages!", color=0xff0000)
     embed.add_field(name="Requested by: ", value=f"{ctx.author}", inline=False)
     embed.add_field(name="Number of Messages: ", value=f"{number_of_times_to_spam}", inline=False)
     embed.add_field(name="Message: ", value=f"{message}", inline=False)
     await ctx.send(embed=embed)
+
+    # I THOUGHT OF LOGGING IT TO A TEXT FILE,
+    # THEN I COMMENTED IT OUT BECAUSE NOW THE BOT LOGS EVERY COMMAND USED
+    # AND HAS A SPECIAL LOGGING THING ABOUT THE SPAM COMMAND
 
     # if os.path.exists("spam_log.txt"):
     #   pass
@@ -933,21 +972,29 @@ async def spam(ctx, number_of_times_to_spam, *, message):
 
     await loading_message.delete()
 
+    # THE SPAM WILL HAPPEN HERE
+    # ONLY 2 MESSAGES WILL BE SENT FOR A SECOND
     for iteration, x in enumerate(range(int(number_of_times_to_spam))):
         await ctx.send(message)
         time.sleep(0.5)
 
-
+# Commented the below line because i dont know what it does, lol
 # @commands.is_owner()
 @client.command()
 async def megaspamlol(ctx, *, number_of_times_spam_secret=10):
+
+  # ONLY I CAN USE THIS COMMAND, if someone else tries this, They will get a no permission message
   if ctx.author.id == bot_owner_id_zeacer:
     embed=discord.Embed(title="MEGA SPAM LOL", description="The very secret feature of this bot has been used!", color=0xff0000)
     await ctx.send(embed=embed)
+
+    # This is the spam command, just the normal spam command
     for iteration, x in enumerate(range(int(number_of_times_spam_secret))):
         await ctx.send("@everyone @here lol")
         time.sleep(0.5)
   else:
+
+    # This is the no permission message
     embednw=discord.Embed(title="NO PERMISSIONS", color=0xff0000)
     embednw.add_field(name="LOL NOPE!", value="You have no permission to use this command!", inline=True)
     await ctx.send(embed=embednw)
@@ -955,6 +1002,7 @@ async def megaspamlol(ctx, *, number_of_times_spam_secret=10):
 @client.command()
 async def bored(ctx):
     loading_message = await ctx.send(embed=please_wait_emb)
+    # Uses a def function above
     bored_activity_get = bored_activity()
     await loading_message.delete()
     await ctx.send("```" + bored_activity_get + "```")
@@ -962,6 +1010,7 @@ async def bored(ctx):
 @client.command()
 async def color(ctx):
     loading_message = await ctx.send(embed=please_wait_emb)
+    # Uses a function from above
     give_random_color_get = give_rand_color()
     await loading_message.delete()
     await ctx.send("```" + give_random_color_get + "```")
@@ -969,6 +1018,7 @@ async def color(ctx):
 @client.command()
 async def btc(ctx):
     loading_message = await ctx.send(embed=please_wait_emb)
+    # Uses an above function
     give_bitcoin_status_get = get_bitcoin_status()
     await loading_message.delete()
     await ctx.send("```" + give_bitcoin_status_get + "```")
