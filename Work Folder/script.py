@@ -1696,11 +1696,13 @@ async def txt1(ctx):
   middlef = r"ヾ(•ω•`)o"
   await ctx.send(middlef)
 
+
 @client.command()
 async def txt2(ctx):
   await ctx.message.delete()
   middlef = r"\(￣︶￣*\))"
   await ctx.send(middlef)
+
 
 @client.command()
 async def txt3(ctx):
@@ -1708,11 +1710,13 @@ async def txt3(ctx):
   middlef = r"(* ￣3)(ε￣ *)"
   await ctx.send(middlef)
 
+
 @client.command()
 async def txt4(ctx):
   await ctx.message.delete()
   middlef = r"－O－"
   await ctx.send(middlef)
+
 
 @client.command()
 async def txt5(ctx):
@@ -1720,11 +1724,13 @@ async def txt5(ctx):
   middlef = r"(*￣3￣)╭)"
   await ctx.send(middlef)
 
+
 @client.command()
 async def txt6(ctx):
   await ctx.message.delete()
   middlef = r"( ´･･)ﾉ(._.`)"
   await ctx.send(middlef)
+
 
 @client.command()
 async def txt7(ctx):
@@ -1732,11 +1738,13 @@ async def txt7(ctx):
   middlef = r"(｡･∀･)ﾉﾞ"
   await ctx.send(middlef)
 
+
 @client.command()
 async def txt8(ctx):
   await ctx.message.delete()
   middlef = r"o(*￣▽￣*)ブ"
   await ctx.send(middlef)
+
 
 @client.command()
 async def txt9(ctx):
@@ -1744,11 +1752,13 @@ async def txt9(ctx):
   middlef = r"(_　_)。゜zｚＺ"
   await ctx.send(middlef)
 
+
 @client.command()
 async def txt10(ctx):
   await ctx.message.delete()
   middlef = r"(ToT)/~~~"
   await ctx.send(middlef)
+
 
 @client.command()
 async def txt11(ctx):
@@ -1756,11 +1766,13 @@ async def txt11(ctx):
   middlef = r"(∪.∪ )...zzz"
   await ctx.send(middlef)
 
+
 @client.command()
 async def txt12(ctx):
   await ctx.message.delete()
   middlef = r"!(*￣(￣　*)"
   await ctx.send(middlef)
+
 
 @client.command()
 async def txt13(ctx):
@@ -1768,11 +1780,13 @@ async def txt13(ctx):
   middlef = r"(￣o￣) . z Z)"
   await ctx.send(middlef)
 
+
 @client.command()
 async def txt14(ctx):
   await ctx.message.delete()
   middlef = r"(づ￣ 3￣)づ"
   await ctx.send(middlef)
+
 
 @client.command()
 async def txt15(ctx):
@@ -1780,11 +1794,13 @@ async def txt15(ctx):
   middlef = r"（＾∀＾●）ﾉｼ"
   await ctx.send(middlef)
 
+
 @client.command()
 async def txt16(ctx):
   await ctx.message.delete()
   middlef = r"（づ￣3￣）づ╭❤～"
   await ctx.send(middlef)
+
 
 @client.command()
 async def txt17(ctx):
@@ -1792,11 +1808,13 @@ async def txt17(ctx):
   middlef = r"\(@^0^@)/"
   await ctx.send(middlef)
 
+
 @client.command()
 async def txt18(ctx):
   await ctx.message.delete()
   middlef = r"ヾ(^▽^*)))"
   await ctx.send(middlef)
+
 
 @client.command()
 async def txt19(ctx):
@@ -1804,11 +1822,13 @@ async def txt19(ctx):
   middlef = r"(～﹃～)~zZ"
   await ctx.send(middlef)
 
+
 @client.command()
 async def txt20(ctx):
   await ctx.message.delete()
   middlef = r"☆⌒(*＾-゜)v"
   await ctx.send(middlef)
+
 
 @client.command()
 async def txt21(ctx):
@@ -1816,11 +1836,13 @@ async def txt21(ctx):
   middlef = r"(￣o￣) . z Z"
   await ctx.send(middlef)
 
+
 @client.command()
 async def txt22(ctx):
   await ctx.message.delete()
   middlef = r"(*￣;(￣ *)"
   await ctx.send(middlef)
+
 
 @client.command()
 async def txt23(ctx):
@@ -1828,11 +1850,13 @@ async def txt23(ctx):
   middlef = r"||ヽ(*￣▽￣*)ノミ|Ю"
   await ctx.send(middlef)
 
+
 @client.command()
 async def txt24(ctx):
   await ctx.message.delete()
   middlef = r"☆⌒(*＾-゜)v"
   await ctx.send(middlef)
+
 
 @client.command()
 async def txt25(ctx):
@@ -1840,11 +1864,13 @@ async def txt25(ctx):
   middlef = r"(＾Ｕ＾)ノ~ＹＯ)"
   await ctx.send(middlef)
 
+
 @client.command()
 async def txt26(ctx):
   await ctx.message.delete()
   middlef = r"o(*°▽°*)o"
   await ctx.send(middlef)
+
 
 @client.command()
 async def txt27(ctx):
@@ -1852,11 +1878,13 @@ async def txt27(ctx):
   middlef = r"ヾ(￣▽￣) Bye~Bye~"
   await ctx.send(middlef)
 
+
 @client.command()
 async def txt28(ctx):
   await ctx.message.delete()
   middlef = r"( ﾟдﾟ)つ Bye)"
   await ctx.send(middlef)
+
 
 @client.command()
 async def txt29(ctx):
@@ -1864,11 +1892,13 @@ async def txt29(ctx):
   middlef = r"(๑•̀ㅂ•́)و✧)"
   await ctx.send(middlef)
 
+
 @client.command()
 async def txt30(ctx):
   await ctx.message.delete()
   middlef = r"(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧"
   await ctx.send(middlef)
+
 
 @client.command()
 async def txt31(ctx):
@@ -1882,11 +1912,13 @@ async def txt32(ctx):
   middlef = r"✪ ω ✪"
   await ctx.send(middlef)
 
+
 @client.command()
 async def txt33(ctx):
   await ctx.message.delete()
   middlef = r"d=====(￣▽￣*)b"
   await ctx.send(middlef)
+
 
 @client.command()
 async def txt34(ctx):
@@ -1894,11 +1926,13 @@ async def txt34(ctx):
   middlef = r"＜（＾－＾）＞"
   await ctx.send(middlef)
 
+
 @client.command()
 async def txt35(ctx):
   await ctx.message.delete()
   middlef = r"o(*￣▽￣*)o"
   await ctx.send(middlef)
+
 
 @client.command()
 async def txt36(ctx):
@@ -1906,11 +1940,13 @@ async def txt36(ctx):
   middlef = r"o(￣▽￣)ｄ"
   await ctx.send(middlef)
 
+
 @client.command()
 async def txt37(ctx):
   await ctx.message.delete()
   middlef = r"(╹ڡ╹ ))"
   await ctx.send(middlef)
+
 
 @client.command()
 async def txt38(ctx):
@@ -1918,11 +1954,13 @@ async def txt38(ctx):
   middlef = r"(u‿ฺu✿ฺ))"
   await ctx.send(middlef)
 
+
 @client.command()
 async def txt39(ctx):
   await ctx.message.delete()
   middlef = r"♪(´▽｀)"
   await ctx.send(middlef)
+
 
 @client.command()
 async def txt40(ctx):
@@ -1930,11 +1968,13 @@ async def txt40(ctx):
   middlef = r"(╯▽╰ ))"
   await ctx.send(middlef)
 
+
 @client.command()
 async def txt41(ctx):
   await ctx.message.delete()
   middlef = r"ヽ(✿ﾟ▽ﾟ)ノ"
   await ctx.send(middlef)
+
 
 @client.command()
 async def txt42(ctx):
@@ -1942,11 +1982,13 @@ async def txt42(ctx):
   middlef = r"( •̀ .̫ •́ )✧"
   await ctx.send(middlef)
 
+
 @client.command()
 async def txt43(ctx):
   await ctx.message.delete()
   middlef = r"(^^ゞ"
   await ctx.send(middlef)
+
 
 @client.command()
 async def txt44(ctx):
@@ -1954,11 +1996,13 @@ async def txt44(ctx):
   middlef = r"(＠＾０＾)"
   await ctx.send(middlef)
 
+
 @client.command()
 async def txt45(ctx):
   await ctx.message.delete()
   middlef = r"（。＾▽＾）"
   await ctx.send(middlef)
+
 
 @client.command()
 async def txt46(ctx):
@@ -1966,11 +2010,13 @@ async def txt46(ctx):
   middlef = r"Ψ(￣∀￣)Ψ"
   await ctx.send(middlef)
 
+
 @client.command()
 async def txt47(ctx):
   await ctx.message.delete()
   middlef = r"*★,°*:.☆(￣▽￣)/$:*.°★* 。"
   await ctx.send(middlef)
+
 
 @client.command()
 async def txt48(ctx):
@@ -1978,11 +2024,13 @@ async def txt48(ctx):
   middlef = r"o(≧∀≦)o"
   await ctx.send(middlef)
 
+
 @client.command()
 async def txt49(ctx):
   await ctx.message.delete()
   middlef = r"(。・∀・)ノ"
   await ctx.send(middlef)
+
 
 @client.command()
 async def txt50(ctx):
@@ -1990,11 +2038,13 @@ async def txt50(ctx):
   middlef = r"~\(≧▽≦)/~"
   await ctx.send(middlef)
 
+
 @client.command()
 async def txt51(ctx):
   await ctx.message.delete()
   middlef = r"b(￣▽￣)d"
   await ctx.send(middlef)
+
 
 @client.command()
 async def txt52(ctx):
@@ -2002,11 +2052,13 @@ async def txt52(ctx):
   middlef = r"o(^▽^)o"
   await ctx.send(middlef)
 
+
 @client.command()
 async def txt53(ctx):
   await ctx.message.delete()
   middlef = r"(☞ﾟヮﾟ)☞"
   await ctx.send(middlef)
+
 
 @client.command()
 async def txt54(ctx):
@@ -2014,11 +2066,13 @@ async def txt54(ctx):
   middlef = r"☜(ﾟヮﾟ☜)"
   await ctx.send(middlef)
 
+
 @client.command()
 async def txt55(ctx):
   await ctx.message.delete()
   middlef = r"☜(⌒▽⌒)☞"
   await ctx.send(middlef)
+
 
 @client.command()
 async def txt56(ctx):
@@ -2026,11 +2080,13 @@ async def txt56(ctx):
   middlef = r"(¬‿¬)"
   await ctx.send(middlef)
 
+
 @client.command()
 async def txt57(ctx):
   await ctx.message.delete()
   middlef = r"(•_•)"
   await ctx.send(middlef)
+
 
 @client.command()
 async def txt58(ctx):
@@ -2038,11 +2094,13 @@ async def txt58(ctx):
   middlef = r"( •_•)>⌐■-■"
   await ctx.send(middlef)
 
+
 @client.command()
 async def txt59(ctx):
   await ctx.message.delete()
   middlef = r"(⌐■_■)"
   await ctx.send(middlef)
+
 
 @client.command()
 async def txt60(ctx):
@@ -2050,17 +2108,20 @@ async def txt60(ctx):
   middlef = r"ヾ(⌐■_■)ノ♪"
   await ctx.send(middlef)
 
+
 @client.command()
 async def txt61(ctx):
   await ctx.message.delete()
   middlef = r"(▀̿Ĺ̯▀̿ ̿)"
   await ctx.send(middlef)
 
+
 @client.command()
 async def txt62(ctx):
   await ctx.message.delete()
   middlef = r"＼(ﾟｰﾟ＼)"
   await ctx.send(middlef)
+
 
 @client.command()
 async def txt63(ctx):
@@ -2072,14 +2133,19 @@ async def txt63(ctx):
 @client.command(aliases=['dong', 'penis', 'pp', 'psize', 'dicksize', 'penissize'])
 async def dick(ctx, *, user: discord.User = None):
   loading_message = await ctx.send(embed=please_wait_emb)
+  
+  # You can tag someone or you dont do it
+  # This is if i tag someone
   if user is None:
     user = ctx.author
-    size = random.randint(2, 20)
+    size = random.randint(2, 20) # this is the random dick size!
     em = discord.Embed(title=f"{user}'s Dick size:", description=f"{size} Inches", colour=0xff0000)
     await loading_message.delete()
     await ctx.send(embed=em)
     if size < 6:
       await ctx.send(f"{user.mention} - Your dick is very small that a girl will not just feel theres something in, Just get a new life!")
+  
+  # If a user is tagged in the message, this will execute
   else:
     size = random.randint(2, 20)
     em = discord.Embed(title=f"{user.mention}'s Dick size:", description=f"{size} Inches", colour=0xff0000)
@@ -2089,12 +2155,14 @@ async def dick(ctx, *, user: discord.User = None):
       await ctx.send(f"{user.mention} - Your dick is very small that a girl will not just feel theres something in, Just get a new life!")
 
 
-
-
 @client.command()
 async def panda(ctx):
   loading_message = await ctx.send(embed=please_wait_emb)
+  
+  # Getting data from the API
   r = requests.get("https://some-random-api.ml/img/panda").json()
+
+  # Creating/Adding data for the embed and sending it
   embed = discord.Embed(color=0xff0000)
   embed.set_author(name="a Panda.", icon_url="https://cdn.freebiesupply.com/logos/large/2x/panda-7-logo-png-transparent.png") 
   embed.set_image(url=str(r["link"]))
@@ -2104,14 +2172,21 @@ async def panda(ctx):
 @client.command(aliases=["lol"])
 async def meme(ctx):
   loading_message = await ctx.send(embed=please_wait_emb)
+
+  # Getting data from the API
   r = requests.get("https://some-random-api.ml/meme").json()
+
+  # Creating/Adding data for the embed and sending it
   embed = discord.Embed(color=0xff0000)
   embed.set_author(name="a Meme.", icon_url="https://freepngimg.com/thumb/internet_meme/3-2-troll-face-meme-png-thumb.png") 
+  
+  # Sometimes, the caption is not given by the API
   try:
     caption = str(r["caption"])
     embed.add_field(name="Just a random Meme", value=caption)
   except:
     pass
+  
   embed.set_image(url=str(r["image"]))
   await loading_message.delete()
   await ctx.send(embed=embed)
