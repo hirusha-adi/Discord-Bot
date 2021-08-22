@@ -1214,7 +1214,7 @@ async def joke(ctx):
   await ctx.send(embed=embed)
 
 
-@client.command(aliases=["server-icon", "servericon"])
+@client.command(aliases=["server-icon"])
 async def iconserver(ctx):
   loading_message = await ctx.send(embed=please_wait_emb)
 
@@ -4181,6 +4181,7 @@ async def Help(ctx, category="none"):
 {bp}make_server_new_roles -> will create the main roles needed for a new discord server ( no colored roles ) - kind of a template to get started
 {bp}howpropose name -> will tell you how to propose to "name"
 {bp}countryinfo lk -> will tell you information about Sri Lanka (sg for Singapore, etc...)
+{bp}uptime -> will show the bots uptime
 """
 
   help_nsfw = f"""{bp}feed @user -> will send it in an embed by tagging the user
@@ -4283,7 +4284,8 @@ async def Help(ctx, category="none"):
   math_wl = ("maths", "math", "mathematics")
   imgfx_wl = ("imageeffects", "imgfx", "imagefx", "imageeffect", "imgfxstuff", "effects", "imgfxs", "imgfun")
   animals_wl = ("animal", "animals", "pet", "pets")
-  
+  all_small_list = ("all", "everything")
+
   if category.lower() in old_wl:
     await loading_message.delete()
     await ctx.send("```" + help_1 + "```")
@@ -4347,7 +4349,7 @@ async def Help(ctx, category="none"):
     em3.add_field(name=f'{bp}lyricsof', value=f'`{bp}lyricsof [songs_name]` - Lyrics of any song', inline=True)
     em3.add_field(name=f'{bp}av', value=f'`{bp}av [@user_or_id]` - Get the profile picture of any user', inline=True)
     em3.add_field(name=f'{bp}serverinfo', value=f'`{bp}serverinfo` - Current server Information', inline=True)
-    em3.add_field(name=f'{bp}guildicon', value=f'`{bp}serverinfo` - Current server icon', inline=True)
+    em3.add_field(name=f'{bp}guildicon', value=f'`{bp}guildicon` - Current server icon', inline=True)
     em3.add_field(name=f'{bp}accdate', value=f'`{bp}accdate [@user]` - See the account creation date', inline=True)
     em3.add_field(name=f'{bp}userinfo', value=f'`{bp}userinfo [@user]` - See the public account information', inline=True)
     em3.add_field(name=f'{bp}ig_pfp', value=f'`{bp}ig_pfp [@ig_username]` - Get the Instagram profile picture of anyone!', inline=True)
@@ -4508,6 +4510,18 @@ async def Help(ctx, category="none"):
     em12.add_field(name=f'{bp}redpanda', value=f'`{bp}redpanda` - Get a Image', inline=True)
     await loading_message.delete()
     await ctx.send(embed=em12)
+  
+  elif category.lower() in all_small_list:
+    em13 = discord.Embed(title=f'Animals', description=f'use >Help [category]', color=0xff0000)
+    em13.set_thumbnail(url=bot_info_cmnd_thumbnail_link)
+    em13.add_field(name=f"Moderation", value=f"`{bp}kick [user]`, `{bp}ban [@user]`, `{bp}unban [user#id]`, `{bp}spam [how-many] [message]`, `{bp}clear [no-to-del]`, `{bp}make_server_new_roles`, `{bp}newemoji [name] [link] [file-ext]`, `{bp}slowmode [amt-in-secs]`, `{bp}cnick [user] [new-nickname]`, `{bp}slap [user] [reason]`, `{bp}mute [user]`", inline=False)
+    em13.add_field(name=f"Information", value=f"`{bp}fake [arg]`, `{bp}mfp [number]`, `{bp}ip [ip-addr]`, `{bp}mac [mac-addr]`, `{bp}bitcoin`, `{bp}eth`, `{bp}covid`, `{bp}covidlow`, `{bp}covidlk`, `{bp}minecraftinfo [mc-uname]`, `{bp}pokemon [type]`, `{bp}lyricsof [song-name]`, `{bp}av [user]`, `{bp}serverinfo`, `{bp}guildicon`, `{bp}accdate [user]`, `{bp}userinfo [user]`, `{bp}ig_pfp [ig-profile-name]`, `{bp}sherlock [user]`, `{bp}checkpassword` ", inline=False)
+    em13.add_field(name=f"NSFW", value=f"`{bp}lesbian`, `{bp}anal`, `{bp}feet`, `{bp}hentai`, `{bp}boobs`, `{bp}tits`, `{bp}blowjob`, `{bp}lewd`, `{bp}pervert`, `{bp}dick`, `{bp}daddy`    ", inline=False)
+    
+    em13.add_field(name=f"Tools/Games", value=f"`{bp}ping`, `{bp}8ball [question]`, `{bp}inspire`, `{bp}inv`, `{bp}nitro [no-of-codes]`, `{bp}bored`, `{bp}color`, `{bp}wiki [search-query]`, `{bp}tinyurl [any-url]`, `{bp}cleanuri [any-url]`, `{bp}joke`, `{bp}iconserver`, `{bp}wyr [question]`, `{bp}bastebin [text]`, `{bp}ascii [text]`, `{bp}asciiart [text]`, `{bp}guessage [name]`, `{bp}advice`, `{bp}chuckjoke`, `{bp}poll [question]`, `{bp}csnd`, `{bp}howdie [user]`, `{bp}chatbot`, `{bp}countryinfo [country-code]` ", inline=False)
+
+    await loading_message.delete()
+    await ctx.send(embed=em13)
 
 
 # CHAT BOT //////////////////////////////////////////////////////////////////////////////////////////
