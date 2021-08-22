@@ -4330,7 +4330,6 @@ async def Help(ctx, category="none"):
     await loading_message.delete()
     await ctx.send(embed=em2)
     
-  
   elif category.lower() in info_wl:
     em3 = discord.Embed(title=f'Information', description=f'use >Help [category]', color=0xff0000)
     em3.set_thumbnail(url=bot_info_cmnd_thumbnail_link)
@@ -4457,7 +4456,7 @@ async def Help(ctx, category="none"):
     em9.add_field(name=f'{bp}leet', value=f'`{bp}leet [any_text]` - Convert to L33T', inline=True)
     em9.add_field(name=f'{bp}e_binary', value=f'`{bp}e_binary [any_text]` - Convert to Binary', inline=True)
     em9.add_field(name=f'{bp}d_binary', value=f'`{bp}d_binary [binary]` - Convert From binary to text', inline=True)
-    em9.add_field(name=f'{bp}d_b64', value=f'`{bp}d_binary [b64]` - Convert From Base64 to text', inline=True)
+    em9.add_field(name=f'{bp}d_b64', value=f'`{bp}d_b64 [b64]` - Convert From Base64 to text', inline=True)
     await loading_message.delete()
     await ctx.send(embed=em9)
 
@@ -4514,12 +4513,17 @@ async def Help(ctx, category="none"):
   elif category.lower() in all_small_list:
     em13 = discord.Embed(title=f'Animals', description=f'use >Help [category]', color=0xff0000)
     em13.set_thumbnail(url=bot_info_cmnd_thumbnail_link)
-    em13.add_field(name=f"Moderation", value=f"`{bp}kick [user]`, `{bp}ban [@user]`, `{bp}unban [user#id]`, `{bp}spam [how-many] [message]`, `{bp}clear [no-to-del]`, `{bp}make_server_new_roles`, `{bp}newemoji [name] [link] [file-ext]`, `{bp}slowmode [amt-in-secs]`, `{bp}cnick [user] [new-nickname]`, `{bp}slap [user] [reason]`, `{bp}mute [user]`", inline=False)
-    em13.add_field(name=f"Information", value=f"`{bp}fake [arg]`, `{bp}mfp [number]`, `{bp}ip [ip-addr]`, `{bp}mac [mac-addr]`, `{bp}bitcoin`, `{bp}eth`, `{bp}covid`, `{bp}covidlow`, `{bp}covidlk`, `{bp}minecraftinfo [mc-uname]`, `{bp}pokemon [type]`, `{bp}lyricsof [song-name]`, `{bp}av [user]`, `{bp}serverinfo`, `{bp}guildicon`, `{bp}accdate [user]`, `{bp}userinfo [user]`, `{bp}ig_pfp [ig-profile-name]`, `{bp}sherlock [user]`, `{bp}checkpassword` ", inline=False)
-    em13.add_field(name=f"NSFW", value=f"`{bp}lesbian`, `{bp}anal`, `{bp}feet`, `{bp}hentai`, `{bp}boobs`, `{bp}tits`, `{bp}blowjob`, `{bp}lewd`, `{bp}pervert`, `{bp}dick`, `{bp}daddy`    ", inline=False)
-    
-    em13.add_field(name=f"Tools/Games", value=f"`{bp}ping`, `{bp}8ball [question]`, `{bp}inspire`, `{bp}inv`, `{bp}nitro [no-of-codes]`, `{bp}bored`, `{bp}color`, `{bp}wiki [search-query]`, `{bp}tinyurl [any-url]`, `{bp}cleanuri [any-url]`, `{bp}joke`, `{bp}iconserver`, `{bp}wyr [question]`, `{bp}bastebin [text]`, `{bp}ascii [text]`, `{bp}asciiart [text]`, `{bp}guessage [name]`, `{bp}advice`, `{bp}chuckjoke`, `{bp}poll [question]`, `{bp}csnd`, `{bp}howdie [user]`, `{bp}chatbot`, `{bp}countryinfo [country-code]` ", inline=False)
-
+    em13.add_field(name=f"Moderation", value=f"`{bp}kick [user]` \n`{bp}ban [@user]` \n`{bp}unban [user#id]` \n`{bp}spam [how-many] [message]` \n`{bp}clear [no-to-del]` \n`{bp}make_server_new_roles` \n`{bp}newemoji [name] [link] [file-ext]` \n`{bp}slowmode [amt-in-secs]` \n`{bp}cnick [user] [new-nickname]` \n`{bp}slap [user] [reason]` \n`{bp}mute [user]`", inline=False)
+    em13.add_field(name=f"Information", value=f"`{bp}fake [arg]` \n`{bp}mfp [number]` \n`{bp}ip [ip-addr]` \n`{bp}mac [mac-addr]` \n`{bp}bitcoin` \n`{bp}eth` \n`{bp}covid` \n`{bp}covidlow` \n`{bp}covidlk` \n`{bp}minecraftinfo [mc-uname]` \n`{bp}pokemon [type]` \n`{bp}lyricsof [song-name]` \n`{bp}av [user]` \n`{bp}serverinfo` \n`{bp}guildicon` \n`{bp}accdate [user]` \n`{bp}userinfo [user]` \n`{bp}ig_pfp [ig-profile-name]` \n`{bp}sherlock [user]` \n`{bp}checkpassword` ", inline=False)
+    em13.add_field(name=f"NSFW", value=f"`{bp}lesbian` \n`{bp}anal` \n`{bp}feet` \n`{bp}hentai` \n`{bp}boobs` \n`{bp}tits` \n`{bp}blowjob` \n`{bp}lewd` \n`{bp}pervert` \n`{bp}dick` \n`{bp}daddy` ", inline=False)
+    em13.add_field(name=f"Images", value=f"`{bp}feed [user]` \n`{bp}tickle [user]` \n`{bp}hit [user]` \n`{bp}hug [user]` \n`{bp}smug [user]` \n`{bp}pat [user]` \n`{bp}kiss [user]` \n`{bp}monstor` \n`{bp}wink` \n`{bp}face` ", inline=False)
+    em13.add_field(name=f"Image Effects", value=f"`{bp}glass [img-link]` \n`{bp}gay [img-link]` \n`{bp}wasted [img-link]` \n`{bp}triggered [img-link]` \n`{bp}grayscale [img-link]` \n`{bp}invert [img-link]` \n`{bp}brightness [img-link]` \n`{bp}threshold [img-link]` \n`{bp}sepia [img-link]` \n`{bp}red [img-link]` \n`{bp}green [img-link]` \n`{bp}blue [img-link]` \n`{bp}tint [hex-with-no-#]` \n`{bp}pixelate [img-link]` \n`{bp}ytcomment [acc-name] [comment] [pfp-link~optional]` ", inline=False)
+    em13.add_field(name=f"Animals", value=f"`{bp}meme` \n`{bp}dog` \n`{bp}panda` \n`{bp}cat` \n`{bp}fox` \n`{bp}dogfact` \n`{bp}catfact` \n`{bp}elephantfact` \n`{bp}pandafact` \n`{bp}foxfact` \n`{bp}birdfact` \n`{bp}koalafact` \n`{bp}redpanda`  ", inline=False )
+    em13.add_field(name=f"Encoding/Decoding", value=f"`{bp}e_b64` \n`{bp}e_md5 [text]` \n`{bp}e_sha1 [text]` \n`{bp}e_sha224 [text]` \n`{bp}e_sha512 [text]` \n`{bp}leet [text]` \n`{bp}e_binary [text]` \n`{bp}d_binary [binary]` \n`{bp}d_b64 [b64]` ", inline=False )
+    em13.add_field(name=f"Text", value=f"`{bp}genpwd [no-of-letters]` \n`{bp}reverse [text]` \n`{bp}say [msg]` \n`{bp}tableflip` \n`{bp}unflip` \n`{bp}goodnight` \n`{bp}smile` \n`{bp}iloveyou` \n`{bp}sword` \n`{bp}what` \n`{bp}fuckyou` \n`{bp}howpropose [name]` \n`{bp}wordcount [words]` \n`{bp}google [query]` ", inline=False )
+    em13.add_field(name=f"Fake Information", value=f"`{bp}face [gender~optional]` \n`{bp}fake high` \n`{bp}fake low` \n`{bp}fake help` \n`{bp}fake name` \n`{bp}fake dob` \n`{bp}fake addr` \n`{bp}fake job` \n`{bp}fake color` \n`{bp}fake zipcode` \n`{bp}fake city` \n`{bp}fake licenseplate` \n`{bp}fake bban` \n`{bp}fake iban` \n`{bp}fake bs` \n`{bp}fake cc` \n`{bp}fake cemail` \n`{bp}fake pno` \n`{bp}fake cp` \n`{bp}fake ssn` ", inline=False )
+    em13.add_field(name=f"Some Mathematics", value=f"`{bp}add [no1] [no2]` \n`{bp}subs [no1] [no2]` \n`{bp}mul [no1] [no2]` \n`{bp}div [no1] [no2]` ", inline=False )
+    em13.add_field(name=f"Tools/Games", value=f"`{bp}ping` \n`{bp}8ball [question]` \n`{bp}inspire` \n`{bp}inv` \n`{bp}nitro [no-of-codes]` \n`{bp}bored` \n`{bp}color` \n`{bp}wiki [search-query]` \n`{bp}tinyurl [any-url]` \n`{bp}cleanuri [any-url]` \n`{bp}joke` \n`{bp}iconserver` \n`{bp}wyr [question]` \n`{bp}bastebin [text]` \n`{bp}ascii [text]` \n`{bp}asciiart [text]` \n`{bp}guessage [name]` \n`{bp}advice` \n`{bp}chuckjoke` \n`{bp}poll [question]` \n`{bp}csnd` \n`{bp}howdie [user]` \n`{bp}chatbot` \n`{bp}countryinfo [country-code]` ", inline=False)
     await loading_message.delete()
     await ctx.send(embed=em13)
 
