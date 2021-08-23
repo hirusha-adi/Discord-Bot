@@ -1060,71 +1060,109 @@ async def fake(ctx, *, fake_mode="help"):
 async def ip(ctx, *, ip_from_user):
     loading_message = await ctx.send(embed=please_wait_emb)
 
-    # OLD CODE
-    # ip_information_data_text = ipinfoshit(ip_from_user)
-    # await loading_message.delete()
-    # await ctx.send("```" + ip_information_data_text + "```")
+    try:
+      r = requests.get(f"https://ipapi.co/{ip_from_user}/json").json()
+      rc = requests.get(f"https://api.worldbank.org/v2/country/{r['country_code']}?format=json").json()
 
-    # NEW CODE
-    # Getting the adeqaute data
-    r = requests.get(f"https://ipapi.co/{ip_from_user}/json").json()
-    rc = requests.get(f"https://api.worldbank.org/v2/country/{r['country_code']}?format=json").json()
+      embed=discord.Embed(title="IP Information", color=0xff0000)
+      embed.set_thumbnail(url="https://user-images.githubusercontent.com/36286877/127773181-c98b63be-b18b-4d8b-a8b6-9426bd031b7c.png")
+      embed.set_footer(text=f"Requested by {ctx.author.name}")
+      embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+      embed.add_field(name="IP Info", value="IP Address: " + str(r["ip"]) + "\nCity: " + str(r["city"]) + "\nRegion: " + str(r["region"]) + "\nCountry Name: " + str(r["country_name"]) + "\nLatitude: " + str(r["latitude"]) + "\nLongitude: " + str(r["longitude"]) + "\nTime Zone: " + str(r["timezone"]) + "\nUTC Offset: " + str(r["utc_offset"]) + "\nPostal Code: " + str(r["postal"]) + str("\nISP: " + r["org"]) + "\nASN: " + str(r["asn"]) + "\nCountry Code: " + str(r["country_code"]) + "\nCountry TLD: " + str(r["country_tld"]) + "\nPopulation: " + str(r["country_population"]) + "\nCurrency: " + str(r["currency"]) + "\n Curreny Name: " + str(r["currency_name"]) + "\nCountry Area: " + str(r["country_area"]) + "\nLanguages: " + str(r["languages"]) + "\nCalling Code: " + str(r["country_calling_code"]) + "\nGOOGLE MAPS Link: " + f"https://maps.google.com/?q={r['latitude']},{r['longitude']}", inline=False)
+      embed.add_field(name="Country Info", value="ID: " + str(rc[1][0]["id"]) + "\niso2Code: " + str(rc[1][0]["iso2Code"]) + "\nName" + str(rc[1][0]["name"]) + "\n\nRegion: " + "\n   ID: " + str(rc[1][0]["region"]["id"]) + "\n   iso2Code: " + str(rc[1][0]["region"]["iso2code"]) + "\n   Value: " + str(rc[1][0]["region"]["value"]) + "\n\nAdmin Region: " + "\n   ID: " + str(rc[1][0]["adminregion"]["id"]) + "\n   iso2Code: " + str(rc[1][0]["adminregion"]["iso2code"]) + "\n   Value: " + str(rc[1][0]["adminregion"]["value"]) + "\n\nIncome Level: " + "\n   ID: " + str(rc[1][0]["incomeLevel"]["id"]) + "\n   iso2Code: " + str(rc[1][0]["incomeLevel"]["iso2code"]) + "\n   Value: " + str(rc[1][0]["incomeLevel"]["value"]) + "\n\nLending Type: " + "\n   ID: " + str(rc[1][0]["lendingType"]["id"]) + "\n   iso2Code: " + str(rc[1][0]["lendingType"]["iso2code"]) + "\n   Value: " + str(rc[1][0]["lendingType"]["value"]) + "\n\nCapital City: " + str(rc[1][0]["capitalCity"]) + "\nLongitude: " + str(rc[1][0]["longitude"]) + "\nLatitude: " + str(rc[1][0]["latitude"]), inline=False)
+      await loading_message.delete()
+      await ctx.send(embed=embed)
 
-    # The embed
-    embed=discord.Embed(title="IP Information", color=0xff0000)
-    embed.set_thumbnail(url="https://user-images.githubusercontent.com/36286877/127773181-c98b63be-b18b-4d8b-a8b6-9426bd031b7c.png")
-    embed.add_field(name="IP Info", value="IP Address: " + str(r["ip"]) + "\nCity: " + str(r["city"]) + "\nRegion: " + str(r["region"]) + "\nCountry Name: " + str(r["country_name"]) + "\nLatitude: " + str(r["latitude"]) + "\nLongitude: " + str(r["longitude"]) + "\nTime Zone: " + str(r["timezone"]) + "\nUTC Offset: " + str(r["utc_offset"]) + "\nPostal Code: " + str(r["postal"]) + str("\nISP: " + r["org"]) + "\nASN: " + str(r["asn"]) + "\nCountry Code: " + str(r["country_code"]) + "\nCountry TLD: " + str(r["country_tld"]) + "\nPopulation: " + str(r["country_population"]) + "\nCurrency: " + str(r["currency"]) + "\n Curreny Name: " + str(r["currency_name"]) + "\nCountry Area: " + str(r["country_area"]) + "\nLanguages: " + str(r["languages"]) + "\nCalling Code: " + str(r["country_calling_code"]) + "\nGOOGLE MAPS Link: " + f"https://maps.google.com/?q={r['latitude']},{r['longitude']}", inline=False)
-    embed.add_field(name="Country Info", value="ID: " + str(rc[1][0]["id"]) + "\niso2Code: " + str(rc[1][0]["iso2Code"]) + "\nName" + str(rc[1][0]["name"]) + "\n\nRegion: " + "\n   ID: " + str(rc[1][0]["region"]["id"]) + "\n   iso2Code: " + str(rc[1][0]["region"]["iso2code"]) + "\n   Value: " + str(rc[1][0]["region"]["value"]) + "\n\nAdmin Region: " + "\n   ID: " + str(rc[1][0]["adminregion"]["id"]) + "\n   iso2Code: " + str(rc[1][0]["adminregion"]["iso2code"]) + "\n   Value: " + str(rc[1][0]["adminregion"]["value"]) + "\n\nIncome Level: " + "\n   ID: " + str(rc[1][0]["incomeLevel"]["id"]) + "\n   iso2Code: " + str(rc[1][0]["incomeLevel"]["iso2code"]) + "\n   Value: " + str(rc[1][0]["incomeLevel"]["value"]) + "\n\nLending Type: " + "\n   ID: " + str(rc[1][0]["lendingType"]["id"]) + "\n   iso2Code: " + str(rc[1][0]["lendingType"]["iso2code"]) + "\n   Value: " + str(rc[1][0]["lendingType"]["value"]) + "\n\nCapital City: " + str(rc[1][0]["capitalCity"]) + "\nLongitude: " + str(rc[1][0]["longitude"]) + "\nLatitude: " + str(rc[1][0]["latitude"]), inline=False)
-    await loading_message.delete()
-    await ctx.send(embed=embed)
-
+    except Exception as e:
+      embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+      embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+      embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+      embed3.add_field(name="Error:", value=f"{e}", inline=False)
+      embed3.set_footer(text=f"Requested by {ctx.author.name}")
+      await loading_message.delete()
+      await ctx.send(embed=embed3)
 
 @client.command(alises=["country-info", "country", "infocountry", "country-information"])
 async def countryinfo(ctx, *, countrycodeig):
   # MAKE SURE TO ENTER THE COUNTRY CODE AND NOT THE COUNTRY NAME
   # eg- sg ( for Singapore ), us for ( United States )
-  
   loading_message = await ctx.send(embed=please_wait_emb)
 
-  # Part is extracted from the above code ( the >ipinfo command )
-  # This code uses the original worldbank public API to get information regarding a country
-  rc = requests.get(f"https://api.worldbank.org/v2/country/{countrycodeig}?format=json").json()
-  embed=discord.Embed(title="Country Information", color=0xff0000)
-  embed.set_thumbnail(url="https://user-images.githubusercontent.com/36286877/129850352-33345963-273b-42bf-b2bc-5523c8158229.png")
-  embed.add_field(name="Country Info", value="ID: " + str(rc[1][0]["id"]) + "\niso2Code: " + str(rc[1][0]["iso2Code"]) + "\nName" + str(rc[1][0]["name"]) + "\n\nRegion: " + "\n   ID: " + str(rc[1][0]["region"]["id"]) + "\n   iso2Code: " + str(rc[1][0]["region"]["iso2code"]) + "\n   Value: " + str(rc[1][0]["region"]["value"]) + "\n\nAdmin Region: " + "\n   ID: " + str(rc[1][0]["adminregion"]["id"]) + "\n   iso2Code: " + str(rc[1][0]["adminregion"]["iso2code"]) + "\n   Value: " + str(rc[1][0]["adminregion"]["value"]) + "\n\nIncome Level: " + "\n   ID: " + str(rc[1][0]["incomeLevel"]["id"]) + "\n   iso2Code: " + str(rc[1][0]["incomeLevel"]["iso2code"]) + "\n   Value: " + str(rc[1][0]["incomeLevel"]["value"]) + "\n\nLending Type: " + "\n   ID: " + str(rc[1][0]["lendingType"]["id"]) + "\n   iso2Code: " + str(rc[1][0]["lendingType"]["iso2code"]) + "\n   Value: " + str(rc[1][0]["lendingType"]["value"]) + "\n\nCapital City: " + str(rc[1][0]["capitalCity"]) + "\nLongitude: " + str(rc[1][0]["longitude"]) + "\nLatitude: " + str(rc[1][0]["latitude"]), inline=False)
-  await loading_message.delete()
-  await ctx.send(embed=embed)
+  try:
+    rc = requests.get(f"https://api.worldbank.org/v2/country/{countrycodeig}?format=json").json()
+
+    embed=discord.Embed(title="Country Information", color=0xff0000)
+    embed.set_thumbnail(url="https://user-images.githubusercontent.com/36286877/129850352-33345963-273b-42bf-b2bc-5523c8158229.png")
+    embed.set_footer(text=f"Requested by {ctx.author.name}")
+    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed.add_field(name="Country Info", value="ID: " + str(rc[1][0]["id"]) + "\niso2Code: " + str(rc[1][0]["iso2Code"]) + "\nName" + str(rc[1][0]["name"]) + "\n\nRegion: " + "\n   ID: " + str(rc[1][0]["region"]["id"]) + "\n   iso2Code: " + str(rc[1][0]["region"]["iso2code"]) + "\n   Value: " + str(rc[1][0]["region"]["value"]) + "\n\nAdmin Region: " + "\n   ID: " + str(rc[1][0]["adminregion"]["id"]) + "\n   iso2Code: " + str(rc[1][0]["adminregion"]["iso2code"]) + "\n   Value: " + str(rc[1][0]["adminregion"]["value"]) + "\n\nIncome Level: " + "\n   ID: " + str(rc[1][0]["incomeLevel"]["id"]) + "\n   iso2Code: " + str(rc[1][0]["incomeLevel"]["iso2code"]) + "\n   Value: " + str(rc[1][0]["incomeLevel"]["value"]) + "\n\nLending Type: " + "\n   ID: " + str(rc[1][0]["lendingType"]["id"]) + "\n   iso2Code: " + str(rc[1][0]["lendingType"]["iso2code"]) + "\n   Value: " + str(rc[1][0]["lendingType"]["value"]) + "\n\nCapital City: " + str(rc[1][0]["capitalCity"]) + "\nLongitude: " + str(rc[1][0]["longitude"]) + "\nLatitude: " + str(rc[1][0]["latitude"]), inline=False)
+    await loading_message.delete()
+    await ctx.send(embed=embed)
+  
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
 
 
-@client.command()
+@client.command(aliases=["mass-fake-profile", "massfakeprofile", "mass-fake-profiles", "massfakeprofiles"])
 async def mfp(ctx, *, how_many):
-    fake_how_many = int(how_many)
-    # This is the limit for this command to stop spamming!
-    if fake_how_many <= 40:
-      await ctx.send("```Sending " + str(how_many) + " Fake Profiles```")
-      for i in range(fake_how_many):
-          # Old Code
-          # await ctx.send("```" + CREATE_FAKE_PROFILES_MANY() + "```")
+    loading_message = await ctx.send(embed=please_wait_emb)
 
-          # New Code
-          fake = Faker()
-          simple_dict = fake.profile()
-          emf = discord.Embed(title="Fake Information Generator", color=0xF00000)
-          emf.set_thumbnail(url="https://www.nicepng.com/png/detail/214-2146883_4-fake-stamp-vector-fake-news-logo-png.png")
-          emf.add_field(name="Name", value=f"{str(simple_dict['name'])}")
-          emf.add_field(name="Job", value=f"{str(simple_dict['job'])}")
-          emf.add_field(name="Birthdate", value=f"{str(simple_dict['birthdate'])}")
-          emf.add_field(name="Company", value=f"{str(simple_dict['company'])}")
-          emf.add_field(name="SSN", value=f"{str(simple_dict['ssn'])}")
-          emf.add_field(name="Recidence", value=f"{str(simple_dict['residence'])}")
-          emf.add_field(name="Current Location", value=f"{str(simple_dict['current_location'])}")
-          emf.add_field(name="Blood Group", value=f"{str(simple_dict['blood_group'])}")
-          emf.add_field(name="Username", value=f"{str(simple_dict['username'])}")
-          emf.add_field(name="Address", value=f"{str(simple_dict['address'])}")
-          emf.add_field(name="Mail", value=f"{str(simple_dict['mail'])}")
-          await ctx.send(embed=emf)
-    else:
-      await ctx.send("```Please use a number below 40```")
+    try:
+      fake_how_many = int(how_many)
+      
+      # This is the limit for this command to stop spamming!
+      if fake_how_many <= 30:
+
+        embed=discord.Embed(title="Mass Fake Profiles", color=0xff0000)
+        embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+        embed.set_thumbnail(url="https://www.nicepng.com/png/detail/214-2146883_4-fake-stamp-vector-fake-news-logo-png.png")
+        embed.add_field(name=f"{ctx.author.name} requested {how_many} fake profiles!", value=f"Starting to send {how_many} fake profiles!", inline=True)
+        # embed.set_footer(text=f"Requested by {ctx.author.name}")
+        await loading_message.delete()
+        await ctx.send(embed=embed)
+
+        for i in range(fake_how_many):
+            fake = Faker()
+            simple_dict = fake.profile()
+            emf = discord.Embed(title="Fake Information Generator", color=0xF00000)
+            emf.set_thumbnail(url="https://www.nicepng.com/png/detail/214-2146883_4-fake-stamp-vector-fake-news-logo-png.png")
+            emf.set_footer(text=f"Requested by {ctx.author.name}")
+            emf.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            emf.add_field(name="Name", value=f"{str(simple_dict['name'])}")
+            emf.add_field(name="Job", value=f"{str(simple_dict['job'])}")
+            emf.add_field(name="Birthdate", value=f"{str(simple_dict['birthdate'])}")
+            emf.add_field(name="Company", value=f"{str(simple_dict['company'])}")
+            emf.add_field(name="SSN", value=f"{str(simple_dict['ssn'])}")
+            emf.add_field(name="Recidence", value=f"{str(simple_dict['residence'])}")
+            emf.add_field(name="Current Location", value=f"{str(simple_dict['current_location'])}")
+            emf.add_field(name="Blood Group", value=f"{str(simple_dict['blood_group'])}")
+            emf.add_field(name="Username", value=f"{str(simple_dict['username'])}")
+            emf.add_field(name="Address", value=f"{str(simple_dict['address'])}")
+            emf.add_field(name="Mail", value=f"{str(simple_dict['mail'])}")
+            await ctx.send(embed=emf)
+
+      else:
+        embed=discord.Embed(title="Mass Fake Profiles", color=0xff0000)
+        embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+        embed.set_thumbnail(url="https://www.nicepng.com/png/detail/214-2146883_4-fake-stamp-vector-fake-news-logo-png.png")
+        embed.add_field(name="Error", value="Please enter a value below 30; This is done to prevent spam!", inline=True)
+        embed.set_footer(text=f"Requested by {ctx.author.name}")
+        await ctx.send(embed=embed)
+
+    except Exception as e:
+      embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+      embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+      embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+      embed3.add_field(name="Error:", value=f"{e}", inline=False)
+      embed3.set_footer(text=f"Requested by {ctx.author.name}")
+      await loading_message.delete()
+      await ctx.send(embed=embed3)
 
 
 @client.command()
