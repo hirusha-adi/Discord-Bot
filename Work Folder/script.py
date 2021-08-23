@@ -384,16 +384,16 @@ start_time = None
 
 @client.event
 async def on_ready():
-    # SHOW INFO
     print(f'Logged in as {client.user.name}')
     print(f'Discord.py API version: {discord.__version__}')
     print(f'Python version: {platform.python_version()}')
-    # ASSIGN A VALUE TO THE start_time GLOBAL VARIABLE
+
     global start_time
     start_time = time.time()
+
     await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"{len(client.guilds)} servers!"))
     print('Bot is ready!')
-    # NOW, THE BOT IS READY TO BE USED!
+
 
 # THIS IS THE PLASE WAIT TEMPLATE!
 # Almost all the commands use this, you can change it here!
@@ -402,6 +402,7 @@ please_wait_emb.set_author(name="YourBot")
 please_wait_emb.set_thumbnail(url="https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif")
 please_wait_emb.set_footer(text="Bot created by ZeaCeR#5641")
 please_wait_wt_bfd = 2
+
 
 # MOST COMMANDS USE THIS SIMPLE STRUCTURE
 # ---------------------------------------
@@ -427,12 +428,23 @@ async def changeprefix(ctx):
 async def ping(ctx):
     loading_message = await ctx.send(embed=please_wait_emb)
     try:
+        embed=discord.Embed(title="Response Time", color=0xff0000)
+        embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+        embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879311068097290320/PngItem_1526969.png")
+        embed.add_field(name="Ping", value=f"{round(client.latency * 1000)} ms", inline=False)
+        embed.set_footer(text=f"Requested by {ctx.author.name}")
         await loading_message.delete()
-        # Multiplying it by 1000 to make it Seconds!
-        await ctx.send(f'```[+] Ping: {round(client.latency * 1000)}ms```')
+        await ctx.send(embed=embed)
+
+        
     except Exception as e:
+        embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+        embed2.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+        embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+        embed2.add_field(name="Error:", value=f"{e}", inline=False)
+        embed2.set_footer(text=f"Requested by {ctx.author.name}")
         await loading_message.delete()
-        await ctx.send("```" + e + "```")
+        await ctx.send(embed=embed2)
 
 
 @client.command()
@@ -484,34 +496,22 @@ async def kick(ctx, member : discord.Member, *, reason=None): # call the member 
         # Kick the member from the server with a reason provided
         await member.kick(reason=reason)
 
-        # OLD EMBED
-        # Already kicked! this is to inform the user that the action is done!
-        # ban = discord.Embed(title=f":boom: Kicked {member.name}!", description=f"Reason: {reason}\nBy: {ctx.author.mention}")
-        # await ctx.channel.send(embed=ban)
-        # await loading_message.delete()
-        # await member.send(embed=ban)
-
-        # NEW EMBED
         embed=discord.Embed(title=f":boom: Kicked {member.name}", color=0xff0000)
         embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
         embed.set_thumbnail(url=f"https://cdn.discordapp.com/attachments/877796755234783273/879296561413259294/toppng.com-this-is-an-image-of-a-person-kicking-kick-1085x1335.png")
         embed.add_field(name="Reason", value=f"{reason}", inline=False)
         embed.add_field(name="By", value=f"{ctx.author.mention}", inline=False)
         embed.set_footer(text=f"Requested by {ctx.author.name}")
+        await loading_message.delete()
         await ctx.send(embed=embed)
 
     except Exception as e:
-        await loading_message.delete()
-
-        # OLD CODE
-        # await ctx.send("```" + str(e) + "```")
-
-        # NEW CODE
         embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
         embed2.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
         embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
         embed2.add_field(name="Error:", value=f"{e}", inline=False)
         embed2.set_footer(text=f"Requested by {ctx.author.name}")
+        await loading_message.delete()
         await ctx.send(embed=embed2)
 
 
@@ -1217,25 +1217,31 @@ async def dadjoke(ctx):
 async def joke(ctx):
   loading_message = await ctx.send(embed=please_wait_emb)
 
-  # Getting the joke from a PUBLIC API
   r = requests.get("https://v2.jokeapi.dev/joke/Any")
   c = r.json()
   # print(c)
-  try:
-    joke = c["joke"]
-  except:
-    pass
-  try:
-    joke = c["setup"]
-  except:
-    pass
 
-  # OLD CODE
-  # await ctx.send("```" + joke + "```")
+  try:
+    jokeit = c["joke"]
+  except:
+    try:
+      jokeit = c["setup"]
+    except Exception as e:
+      embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+      embed2.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+      embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+      embed2.add_field(name="Error:", value=f"{e}", inline=False)
+      embed2.set_footer(text=f"Requested by {ctx.author.name}")
+      await loading_message.delete()
+      await ctx.send(embed=embed2)
+      return
 
-  # NEW CODE - added an embed
-  embed=discord.Embed(title="a Joke", color=0xff0000)
-  embed.add_field(name="", value=f"{joke}", inline=True)
+  embed=discord.Embed(title=":grin: a Joke", color=0xff0000)
+  embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+  embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879303282139463680/480px-Happy_smiley_face.png")
+  embed.add_field(name="Joke", value=f"{jokeit}", inline=False)
+  embed.add_field(name="Information", value=f"Category: {c['category']} \nType: {c['type']} \nNSFW: {c['flags']['nsfw']} \nReligious: {c['flags']['religious']} \nPolitical: {c['flags']['political']} \nRacist: {c['flags']['racist']} \nSexist: {c['flags']['sexist']} \nExplicit: {c['flags']['explicit']} \nLanguage: {c['lang']}", inline=True)
+  embed.set_footer(text=f"Requested by {ctx.author.name}")
   await loading_message.delete()
   await ctx.send(embed=embed)
 
