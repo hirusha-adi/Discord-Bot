@@ -44,6 +44,9 @@ from typing import Optional, Text
 # from datetime import datetime
 import instaloader
 from pyfiglet import Figlet
+import youtube_dl
+from __future__ import unicode_literals
+
 import subprocess
 import threading
 from multiprocessing import Process
@@ -3738,7 +3741,7 @@ async def face(ctx, gender="any"):
     embed3.set_footer(text=f"Requested by {ctx.author.name}")
     await loading_message.delete()
     await ctx.send(embed=embed3)
-  
+
 
 @client.command(aliases=["passowrd-check", "pwdcheck", "pwd-check", "pwdstrength", "password-strength", "pwd-strength", "pwdch", "checkpassword"])
 async def passwordcheck(ctx, *, passowrdhere):
@@ -4114,6 +4117,74 @@ async def status(ctx):
   await loading_message.delete()
   await ctx.send(embed=embed)
 
+@client.command(aliases=["download-audio", "ytd", "youtubedownload"])
+async def audio(ctx, *, ytvlink):
+  if ytvlink.lower().startswith('https://'):
+    try:
+      try:
+        options = {
+          # 'format': "134",
+          'format': 'bestaudio/best',  # choice of quality
+          'extractaudio': True,        # only keep the audio
+          'audioformat': "mp3",        # convert to mp3
+          'outtmpl': '%(id)s',         # name the file the ID of the video
+          'noplaylist': True,          # only download single song, not playlist
+          'listformats': True,         # print a list of the formats to stdout and exit
+                  }
+        ydl_opts = {'format':'139'} # this is for .m4a - lowest audio quality i guess
+
+        file_extentsion_dlded = "m4a"
+
+        with youtube_dl.YoutubeDL(options) as ydl:
+          ydl.download([f'{ytvlink}'])
+        
+        try:
+          os.system(f"mv *.{file_extentsion_dlded} tempf1.{file_extentsion_dlded}")
+        except:
+          try:
+            os.system(f"Ren *.{file_extentsion_dlded} tempf1.{file_extentsion_dlded}")
+          except:
+            pass
+        
+        try:
+          with open(f"tempf1.{file_extentsion_dlded}", "rb") as f:
+            audiof = discord.File(f)
+            await ctx.send(file=audiof)
+        except Exception as e:
+          embed=discord.Embed(title="An error has occured!", color=0xff0000)
+          embed.add_field(name="Error:", value=f"{e}", inline=False)
+          await ctx.send(embed=embed)
+        finally:
+          try:
+            os.system(f"rm tempf1.{file_extentsion_dlded}")
+          except Exception as e:
+            embed=discord.Embed(title="An error has occured!", color=0xff0000)
+            embed.add_field(name="Error:", value=f"{e}", inline=False)
+            await ctx.send(embed=embed)
+            
+      except Exception as e:
+        embed=discord.Embed(title="An error has occured!", color=0xff0000)
+        embed.add_field(name="Error:", value=f"{e}", inline=False)
+        await ctx.send(embed=embed)
+
+    except Exception as e:
+      embed=discord.Embed(title="An error has occured!", color=0xff0000)
+      embed.add_field(name="Error:", value=f"{e}", inline=False)
+      await ctx.send(embed=embed)
+    
+    finally:
+      try:
+        os.system(f"rm tempf1.{file_extentsion_dlded}")
+      except Exception as e:
+        embed=discord.Embed(title="An error has occured!", color=0xff0000)
+        embed.add_field(name="Error:", value=f"{e}", inline=False)
+        await ctx.send(embed=embed)
+  
+  else:
+    embed=discord.Embed(title="An error has occured!", color=0xff0000)
+    embed.add_field(name="Error:", value=f"Please enter a vliad youtube url!", inline=False)
+    await ctx.send(embed=embed)
+
 @client.command()
 async def slots(ctx):
   loading_message = await ctx.send(embed=please_wait_emb)
@@ -4404,6 +4475,7 @@ async def Help(ctx, category="none"):
     em5.add_field(name=f'{bp}howdie', value=f'`{bp}howdie [@user]` - Will predict how someone will die', inline=True)
     em5.add_field(name=f'{bp}chatbot', value=f'`{bp}chatbot` - Will give you the steps to configure the chatbot to your server', inline=True)
     em5.add_field(name=f'{bp}countryinfo', value=f'`{bp}countryinfo [country_code]` - Will send information about the given country, ex=lk, sg, eu', inline=True)
+    em5.add_field(name=f'{bp}audio', value=f'`{bp}audio [yt-link]` - Send the m4a (like mp3) of the file!', inline=True)
 
     await loading_message.delete()
     await ctx.send(embed=em5)
@@ -4523,7 +4595,7 @@ async def Help(ctx, category="none"):
     em13.add_field(name=f"Text", value=f"`{bp}genpwd [no-of-letters]` \n`{bp}reverse [text]` \n`{bp}say [msg]` \n`{bp}tableflip` \n`{bp}unflip` \n`{bp}goodnight` \n`{bp}smile` \n`{bp}iloveyou` \n`{bp}sword` \n`{bp}what` \n`{bp}fuckyou` \n`{bp}howpropose [name]` \n`{bp}wordcount [words]` \n`{bp}google [query]` ", inline=False )
     em13.add_field(name=f"Fake Information", value=f"`{bp}face [gender~optional]` \n`{bp}fake high` \n`{bp}fake low` \n`{bp}fake help` \n`{bp}fake name` \n`{bp}fake dob` \n`{bp}fake addr` \n`{bp}fake job` \n`{bp}fake color` \n`{bp}fake zipcode` \n`{bp}fake city` \n`{bp}fake licenseplate` \n`{bp}fake bban` \n`{bp}fake iban` \n`{bp}fake bs` \n`{bp}fake cc` \n`{bp}fake cemail` \n`{bp}fake pno` \n`{bp}fake cp` \n`{bp}fake ssn` ", inline=False )
     em13.add_field(name=f"Some Mathematics", value=f"`{bp}add [no1] [no2]` \n`{bp}subs [no1] [no2]` \n`{bp}mul [no1] [no2]` \n`{bp}div [no1] [no2]` ", inline=False )
-    em13.add_field(name=f"Tools/Games", value=f"`{bp}ping` \n`{bp}8ball [question]` \n`{bp}inspire` \n`{bp}inv` \n`{bp}nitro [no-of-codes]` \n`{bp}bored` \n`{bp}color` \n`{bp}wiki [search-query]` \n`{bp}tinyurl [any-url]` \n`{bp}cleanuri [any-url]` \n`{bp}joke` \n`{bp}iconserver` \n`{bp}wyr [question]` \n`{bp}bastebin [text]` \n`{bp}ascii [text]` \n`{bp}asciiart [text]` \n`{bp}guessage [name]` \n`{bp}advice` \n`{bp}chuckjoke` \n`{bp}poll [question]` \n`{bp}csnd` \n`{bp}howdie [user]` \n`{bp}chatbot` \n`{bp}countryinfo [country-code]` ", inline=False)
+    em13.add_field(name=f"Tools/Games", value=f"`{bp}audio [yt-link]` \n`ping` \n`{bp}8ball [question]` \n`{bp}inspire` \n`{bp}inv` \n`{bp}nitro [no-of-codes]` \n`{bp}bored` \n`{bp}color` \n`{bp}wiki [search-query]` \n`{bp}tinyurl [any-url]` \n`{bp}cleanuri [any-url]` \n`{bp}joke` \n`{bp}iconserver` \n`{bp}wyr [question]` \n`{bp}bastebin [text]` \n`{bp}ascii [text]` \n`{bp}asciiart [text]` \n`{bp}guessage [name]` \n`{bp}advice` \n`{bp}chuckjoke` \n`{bp}poll [question]` \n`{bp}csnd` \n`{bp}howdie [user]` \n`{bp}chatbot` \n`{bp}countryinfo [country-code]` ", inline=False)
     await loading_message.delete()
     await ctx.send(embed=em13)
 
