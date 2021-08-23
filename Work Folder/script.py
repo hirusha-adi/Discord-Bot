@@ -431,12 +431,11 @@ async def ping(ctx):
         embed=discord.Embed(title="Response Time", color=0xff0000)
         embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879311068097290320/PngItem_1526969.png")
-        embed.add_field(name="Ping", value=f"{round(client.latency * 1000)} ms", inline=False)
+        embed.add_field(name=f"Ping :timer:", value=f"{round(client.latency * 1000)} ms", inline=False)
         embed.set_footer(text=f"Requested by {ctx.author.name}")
         await loading_message.delete()
         await ctx.send(embed=embed)
 
-        
     except Exception as e:
         embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
         embed2.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
@@ -449,43 +448,48 @@ async def ping(ctx):
 
 @client.command()
 async def clear(ctx, amount=5):
-    # Delete messages, 1 will do nothing because it will delete the message you sent
-    # So, use amount + 1 when entering
-    await ctx.channel.purge(limit=amount)
+    amttdel = amount + 1
+    await ctx.channel.purge(limit=amttdel)
 
 
 @client.command(aliases=["8ball", "eightball"])
 async def _8ball(ctx, *, question):
     loading_message = await ctx.send(embed=please_wait_emb)
 
-    # reponse list
-    responses = ["It is certain.",
-                "Without a doubt",
-                "You may rely on it",
-                "Yes",
-                "Ask again later",
-                "No",
-                "Very doubtful",
-                'That is a resounding no',
-                'It is not looking likely',
-                'Too hard to tell',
-                'It is quite possible',
-                'That is a definite yes!',
-                'Maybe',
-                'There is a good chance']
+    try:
+      responses = ["It is certain.",
+                  "Without a doubt",
+                  "You may rely on it",
+                  "Yes",
+                  "Ask again later",
+                  "No",
+                  "Very doubtful",
+                  'That is a resounding no',
+                  'It is not looking likely',
+                  'Too hard to tell',
+                  'It is quite possible',
+                  'That is a definite yes!',
+                  'Maybe',
+                  'There is a good chance']
 
-    # This is what i had earlier             
-    # await ctx.send(f'```Question: {question}\nAnswer: {random.choice(responses)}```')
-    
-    # Then, i added it to a embed
-    answer = random.choice(responses)
-    embed = discord.Embed()
-    embed.add_field(name="Question", value=question, inline=False)
-    embed.add_field(name="Answer", value=answer, inline=False)
-    embed.set_thumbnail(url="https://www.horoscope.com/images-US/games/game-magic-8-ball-no-text.png")
-    embed.set_footer(text=datetime.datetime.now())
-    await loading_message.delete()
-    await ctx.send(embed=embed)
+      answer = random.choice(responses, color=0xff0000)
+      embed = discord.Embed()
+      embed.add_field(name="Question", value=question, inline=False)
+      embed.add_field(name="Answer", value=answer, inline=False)
+      embed.set_thumbnail(url="https://www.horoscope.com/images-US/games/game-magic-8-ball-no-text.png")
+      embed.set_footer(text=f"Requested by {ctx.author.mention}")
+      embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+      await loading_message.delete()
+      await ctx.send(embed=embed)
+
+    except Exception as e:
+      embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+      embed2.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+      embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+      embed2.add_field(name="Error:", value=f"{e}", inline=False)
+      embed2.set_footer(text=f"Requested by {ctx.author.name}")
+      await loading_message.delete()
+      await ctx.send(embed=embed2)
 
 
 @commands.has_permissions(kick_members=True)
@@ -523,15 +527,23 @@ async def ban(ctx, user: discord.Member, *, reason="No reason provided"):
         # Ban the user from the server with a reason
         await user.ban(reason=reason)
 
-        # Already banned! this is to inform the user that the action is done!
-        ban = discord.Embed(title=f":boom: Banned {user.name}!", description=f"Reason: {reason}\nBy: {ctx.author.mention}")
-        await ctx.channel.send(embed=ban)
+        embed=discord.Embed(title=f":boom: Banned {user.name}", color=0xff0000)
+        embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+        embed.set_thumbnail(url=f"https://cdn.discordapp.com/attachments/877796755234783273/879296561413259294/toppng.com-this-is-an-image-of-a-person-kicking-kick-1085x1335.png")
+        embed.add_field(name="Reason", value=f"{reason}", inline=False)
+        embed.add_field(name="By", value=f"{ctx.author.mention}", inline=False)
+        embed.set_footer(text=f"Requested by {ctx.author.name}")
         await loading_message.delete()
-        await user.send(embed=ban)
+        await ctx.send(embed=embed)
+
     except Exception as e:
-        # If something bad happens
+        embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+        embed2.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+        embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+        embed2.add_field(name="Error:", value=f"{e}", inline=False)
+        embed2.set_footer(text=f"Requested by {ctx.author.name}")
         await loading_message.delete()
-        await ctx.send("```" + str(e) + "```")
+        await ctx.send(embed=embed2)
 
 
 @client.command()
