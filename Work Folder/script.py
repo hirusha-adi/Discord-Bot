@@ -1,3 +1,7 @@
+from __future__ import unicode_literals
+
+
+
 # my files
 
 from keep_alive import keep_alive
@@ -45,7 +49,6 @@ from typing import Optional, Text
 import instaloader
 from pyfiglet import Figlet
 import youtube_dl
-from __future__ import unicode_literals
 
 import subprocess
 import threading
@@ -4119,6 +4122,7 @@ async def status(ctx):
 
 @client.command(aliases=["download-audio", "ytd", "youtubedownload"])
 async def audio(ctx, *, ytvlink):
+  loading_message = await ctx.send(embed=please_wait_emb)
   if ytvlink.lower().startswith('https://'):
     try:
       try:
@@ -4135,49 +4139,64 @@ async def audio(ctx, *, ytvlink):
 
         file_extentsion_dlded = "m4a"
 
-        with youtube_dl.YoutubeDL(options) as ydl:
+        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
           ydl.download([f'{ytvlink}'])
         
         try:
-          os.system(f"mv *.{file_extentsion_dlded} tempf1.{file_extentsion_dlded}")
+          os.system(f"mv *.{file_extentsion_dlded} audio1.{file_extentsion_dlded}")
         except:
           try:
-            os.system(f"Ren *.{file_extentsion_dlded} tempf1.{file_extentsion_dlded}")
+            os.system(f"Ren *.{file_extentsion_dlded} audio1.{file_extentsion_dlded}")
           except:
             pass
         
         try:
-          with open(f"tempf1.{file_extentsion_dlded}", "rb") as f:
+          with open(f"audio1.{file_extentsion_dlded}", "rb") as f:
             audiof = discord.File(f)
+            await loading_message.delete()
             await ctx.send(file=audiof)
         except Exception as e:
           embed=discord.Embed(title="An error has occured!", color=0xff0000)
           embed.add_field(name="Error:", value=f"{e}", inline=False)
+          await loading_message.delete()
           await ctx.send(embed=embed)
         finally:
           try:
-            os.system(f"rm tempf1.{file_extentsion_dlded}")
+            os.system(f"rm audio1.{file_extentsion_dlded}")
           except Exception as e:
             embed=discord.Embed(title="An error has occured!", color=0xff0000)
             embed.add_field(name="Error:", value=f"{e}", inline=False)
+            try:
+              await loading_message.delete()
+            except:
+              pass
             await ctx.send(embed=embed)
-            
+
       except Exception as e:
         embed=discord.Embed(title="An error has occured!", color=0xff0000)
         embed.add_field(name="Error:", value=f"{e}", inline=False)
+        await loading_message.delete()
         await ctx.send(embed=embed)
 
     except Exception as e:
       embed=discord.Embed(title="An error has occured!", color=0xff0000)
       embed.add_field(name="Error:", value=f"{e}", inline=False)
+      try:
+        await loading_message.delete()
+      except:
+        pass
       await ctx.send(embed=embed)
     
     finally:
       try:
-        os.system(f"rm tempf1.{file_extentsion_dlded}")
+        os.system(f"rm audio1.{file_extentsion_dlded}")
       except Exception as e:
         embed=discord.Embed(title="An error has occured!", color=0xff0000)
         embed.add_field(name="Error:", value=f"{e}", inline=False)
+        try:
+          await loading_message.delete()
+        except:
+          pass
         await ctx.send(embed=embed)
   
   else:
