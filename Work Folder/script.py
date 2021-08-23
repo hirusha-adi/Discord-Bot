@@ -484,15 +484,35 @@ async def kick(ctx, member : discord.Member, *, reason=None): # call the member 
         # Kick the member from the server with a reason provided
         await member.kick(reason=reason)
 
+        # OLD EMBED
         # Already kicked! this is to inform the user that the action is done!
-        ban = discord.Embed(title=f":boom: Kicked {member.name}!", description=f"Reason: {reason}\nBy: {ctx.author.mention}")
-        await ctx.channel.send(embed=ban)
-        await loading_message.delete()
-        await member.send(embed=ban)
+        # ban = discord.Embed(title=f":boom: Kicked {member.name}!", description=f"Reason: {reason}\nBy: {ctx.author.mention}")
+        # await ctx.channel.send(embed=ban)
+        # await loading_message.delete()
+        # await member.send(embed=ban)
+
+        # NEW EMBED
+        embed=discord.Embed(title=f":boom: Kicked {member.name}", color=0xff0000)
+        embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+        embed.set_thumbnail(url=f"https://cdn.discordapp.com/attachments/877796755234783273/879296561413259294/toppng.com-this-is-an-image-of-a-person-kicking-kick-1085x1335.png")
+        embed.add_field(name="Reason", value=f"{reason}", inline=False)
+        embed.add_field(name="By", value=f"{ctx.author.mention}", inline=False)
+        embed.set_footer(text=f"Requested by {ctx.author.name}")
+        await ctx.send(embed=embed)
+
     except Exception as e:
-        # If something bad happens
         await loading_message.delete()
-        await ctx.send("```" + str(e) + "```")
+
+        # OLD CODE
+        # await ctx.send("```" + str(e) + "```")
+
+        # NEW CODE
+        embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+        embed2.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+        embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+        embed2.add_field(name="Error:", value=f"{e}", inline=False)
+        embed2.set_footer(text=f"Requested by {ctx.author.name}")
+        await ctx.send(embed=embed2)
 
 
 @commands.has_permissions(ban_members=True)
