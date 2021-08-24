@@ -1,4 +1,5 @@
 from __future__ import unicode_literals
+import asyncio
 
 
 
@@ -1174,81 +1175,99 @@ async def pervert(ctx):
 @client.command()
 async def nitro(ctx, *, number_of_times):
     loading_message = await ctx.send(embed=please_wait_emb)
-    # The limit is 20 to prevent spamming
-    if int(number_of_times) <= 20:
-        await ctx.send("```Sending " + str(number_of_times) + " Random Nitro Codes!```")
-        await loading_message.delete()
-        
-        # This part of code with send the nitro codes using a non-async function above
-        for iteration, x in enumerate(range(int(number_of_times))):
-            await ctx.send(give_nice_codes())
-            time.sleep(0.5)
-    else:
-        await loading_message.delete()
-        ctx.send("```Please enter a value less than 20```")
 
+    try:
+      # The limit is 20 to prevent spam
+      if int(number_of_times) <= 20:
+          embed=discord.Embed(title="Nitro Code Generator", color=0xff0000)
+          embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+          embed.set_thumbnail(url="https://user-images.githubusercontent.com/36286877/127767330-d3e68d90-67a0-4672-b3e1-6193b323bc21.png")
+          embed.add_field(name="You have Requested:", value=f"{number_of_times} Nitro Codes", inline=False)
+          embed.set_footer(text=f"Requested by {ctx.author.name}")
+          await loading_message.delete()
+          await ctx.send(embed=embed)
+          
+          for iteration, x in enumerate(range(int(number_of_times))):
+              await ctx.send(give_nice_codes())
+              asyncio.sleep(0.4)
 
+      else:
+          embed=discord.Embed(title="Nitro Code Generator", color=0xff0000)
+          embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+          embed.set_thumbnail(url="https://www.nicepng.com/png/detail/214-2146883_4-fake-stamp-vector-fake-news-logo-png.png")
+          embed.add_field(name="Error", value="Please enter a value below 20; This is done to prevent spam!", inline=True)
+          embed.set_footer(text=f"Requested by {ctx.author.name}")
+          await loading_message.delete()
+          await ctx.send(embed=embed)
+
+    except Exception as e:
+      embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+      embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+      embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+      embed3.add_field(name="Error:", value=f"{e}", inline=False)
+      embed3.set_footer(text=f"Requested by {ctx.author.name}")
+      await loading_message.delete()
+      await ctx.send(embed=embed3)
+
+@commands.has_permissions(adminstrator=True)
 @client.command()
 async def spam(ctx, number_of_times_to_spam, *, message):
     loading_message = await ctx.send(embed=please_wait_emb)
 
-    # OLD CODE - PART 1
-    # await ctx.send("```Spaming " + str(number_of_times_to_spam) + " times!```")
+    try:
+      embed=discord.Embed(title="Spam Messages!", color=0xff0000)
+      embed.set_footer(text=f"Requested by {ctx.author.name}")
+      embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+      embed.add_field(name="Requested by: ", value=f"{ctx.author}", inline=False)
+      embed.add_field(name="Number of Messages: ", value=f"{number_of_times_to_spam}", inline=False)
+      embed.add_field(name="Message: ", value=f"{message}", inline=False)
+      await loading_message.delete()
+      await ctx.send(embed=embed)
 
-    # NEW CODE - PART 1
-    embed=discord.Embed(title="Spam Messages!", color=0xff0000)
-    embed.add_field(name="Requested by: ", value=f"{ctx.author}", inline=False)
-    embed.add_field(name="Number of Messages: ", value=f"{number_of_times_to_spam}", inline=False)
-    embed.add_field(name="Message: ", value=f"{message}", inline=False)
-    await ctx.send(embed=embed)
+      # THE SPAM WILL START HERE
+      # ONLY 2 MESSAGES WILL BE SENT FOR A SECOND
+      for iteration, x in enumerate(range(int(number_of_times_to_spam))):
+          await ctx.send(message)
+          asyncio.sleep(0.5)
 
-    # I THOUGHT OF LOGGING IT TO A TEXT FILE,
-    # THEN I COMMENTED IT OUT BECAUSE NOW THE BOT LOGS EVERY COMMAND USED
-    # AND HAS A SPECIAL LOGGING THING ABOUT THE SPAM COMMAND
+    except Exception as e:
+      embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+      embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+      embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+      embed3.add_field(name="Error:", value=f"{e}", inline=False)
+      embed3.set_footer(text=f"Requested by {ctx.author.name}")
+      await loading_message.delete()
+      await ctx.send(embed=embed3)
 
-    # if os.path.exists("spam_log.txt"):
-    #   pass
-    # else:
-    #   fm = open("spam_log.txt", "w", encoding="utf-8")
-    #   fm.write(" ")
-    #   fm.close()
 
-    # ft = open("spam_log.txt", "w+", encoding="utf-8")
-    # ft.write(f' ')
-    # ft.close()
-    
-    # ft = open("spam_log.txt", "a", encoding="utf-8")
-    # ft.write(f'{ctx.author} - Requested to spam {number_of_times_to_spam} in {ctx.guild.name}')
-    # ft.close()
-
-    await loading_message.delete()
-
-    # THE SPAM WILL HAPPEN HERE
-    # ONLY 2 MESSAGES WILL BE SENT FOR A SECOND
-    for iteration, x in enumerate(range(int(number_of_times_to_spam))):
-        await ctx.send(message)
-        time.sleep(0.5)
-
-# Commented the below line because i dont know what it does, lol
-# @commands.is_owner()
 @client.command()
 async def megaspamlol(ctx, *, number_of_times_spam_secret=10):
+  loading_message = await ctx.send(embed=please_wait_emb)
+  try:
+    # ONLY I CAN USE THIS COMMAND, if someone else tries this, They will get a no permission message
+    if ctx.author.id == bot_owner_id_zeacer:
+      embed=discord.Embed(title="MEGA SPAM LOL", description="The very secret feature of this bot has been used!", color=0xff0000)
+      await ctx.send(embed=embed)
 
-  # ONLY I CAN USE THIS COMMAND, if someone else tries this, They will get a no permission message
-  if ctx.author.id == bot_owner_id_zeacer:
-    embed=discord.Embed(title="MEGA SPAM LOL", description="The very secret feature of this bot has been used!", color=0xff0000)
-    await ctx.send(embed=embed)
+      for iteration, x in enumerate(range(int(number_of_times_spam_secret))):
+          await ctx.send("@everyone @here lol")
+          time.sleep(0.5)
 
-    # This is the spam command, just the normal spam command
-    for iteration, x in enumerate(range(int(number_of_times_spam_secret))):
-        await ctx.send("@everyone @here lol")
-        time.sleep(0.5)
-  else:
+    else:
+      embednw=discord.Embed(title="NO PERMISSIONS", color=0xff0000)
+      embednw.set_footer(text=f"Requested by {ctx.author.name}")
+      embednw.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+      embednw.add_field(name="LOL NOPE!", value="You have no permission to use this command!", inline=True)
+      await ctx.send(embed=embednw)
 
-    # This is the no permission message
-    embednw=discord.Embed(title="NO PERMISSIONS", color=0xff0000)
-    embednw.add_field(name="LOL NOPE!", value="You have no permission to use this command!", inline=True)
-    await ctx.send(embed=embednw)
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
 
 
 @client.command()
@@ -1282,99 +1301,129 @@ async def btc(ctx):
 async def covidlow(ctx):
   loading_message = await ctx.send(embed=please_wait_emb)
 
-  # This is not very accurate
-  r = requests.get('https://coronavirus-19-api.herokuapp.com/all') 
-  data = r.json()
-  confirmed_cases = data["cases"]
-  deaths = data["deaths"]
-  recovered = data["recovered"]
-  
-  # This embed spends on the above data acquired from that free public API
-  em = discord.Embed(title="COVID-19 Stats Global - Low Info", color=0xff0000)
-  em.set_thumbnail(url="https://www.apsf.org/wp-content/uploads/newsletters/2020/3502/coronavirus-covid-19.png")
-  em.add_field(name="Confirmed Cases", value=confirmed_cases)
-  em.add_field(name="Deaths", value=deaths)
-  em.add_field(name="Recovered", value=recovered) 
-  await loading_message.delete()
-  await ctx.send(embed=em)
+  try:
+    # This is not very accurate
+    r = requests.get('https://coronavirus-19-api.herokuapp.com/all') 
+    data = r.json()
+    confirmed_cases = data["cases"]
+    deaths = data["deaths"]
+    recovered = data["recovered"]
+    
+    em = discord.Embed(title="COVID-19 Stats Global - Low Info", color=0xff0000)
+    em.set_footer(text=f"Requested by {ctx.author.name}")
+    em.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    em.set_thumbnail(url="https://www.apsf.org/wp-content/uploads/newsletters/2020/3502/coronavirus-covid-19.png")
+    em.add_field(name="Confirmed Cases", value=confirmed_cases)
+    em.add_field(name="Deaths", value=deaths)
+    em.add_field(name="Recovered", value=recovered) 
+    await loading_message.delete()
+    await ctx.send(embed=em)
+
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
 
 
 @client.command(aliases=["covidlk"])
 async def covidsl(ctx):
   loading_message = await ctx.send(embed=please_wait_emb)
-  # This uses the official API provided by the Sri Lankan Government to gather the needed data
-  r = requests.get("https://www.hpb.health.gov.lk/api/get-current-statistical")
-  c = r.json()
-  data = c['data']
 
-  # Getting the data from the above sent request to the API
-  update_date_time = data['update_date_time']
-  local_new_cases = data['local_new_cases']
-  local_total_cases = data['local_total_cases']
-  local_total_number_of_individuals_in_hospitals = data['local_total_number_of_individuals_in_hospitals']
-  local_deaths = data['local_deaths']
-  local_new_deaths = data['local_new_deaths']
-  local_recovered = data['local_recovered']
-  local_active_cases = data['local_active_cases']
-  
-  # Creating the Embed using the above data
-  em = discord.Embed(title="COVID-19 Statistics - Sri Lanka", color=0xff0000)
-  em.set_thumbnail(url="https://www.apsf.org/wp-content/uploads/newsletters/2020/3502/coronavirus-covid-19.png")
-  em.add_field(name="Last Updated", value=update_date_time)
-  em.add_field(name="Total Cases", value=local_total_cases)
-  em.add_field(name="New Cases", value=local_new_cases)
-  em.add_field(name="Total individuals in hospitals", value=local_total_number_of_individuals_in_hospitals)
-  em.add_field(name="Total Deaths", value=local_deaths)
-  em.add_field(name="New Deaths", value=local_new_deaths)
-  em.add_field(name="Total Recovered", value=local_recovered)
-  em.add_field(name="Active Cases", value=local_active_cases)
+  try:
+    # This uses the official API provided by the Sri Lankan Government to gather the needed data
+    r = requests.get("https://www.hpb.health.gov.lk/api/get-current-statistical")
+    c = r.json()
+    data = c['data']
 
-  await loading_message.delete()
-  await ctx.send(embed=em)
+    update_date_time = data['update_date_time']
+    local_new_cases = data['local_new_cases']
+    local_total_cases = data['local_total_cases']
+    local_total_number_of_individuals_in_hospitals = data['local_total_number_of_individuals_in_hospitals']
+    local_deaths = data['local_deaths']
+    local_new_deaths = data['local_new_deaths']
+    local_recovered = data['local_recovered']
+    local_active_cases = data['local_active_cases']
+    
+    em = discord.Embed(title="COVID-19 Statistics - Sri Lanka", color=0xff0000)
+    em.set_footer(text=f"Requested by {ctx.author.name}")
+    em.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    em.set_thumbnail(url="https://www.apsf.org/wp-content/uploads/newsletters/2020/3502/coronavirus-covid-19.png")
+    em.add_field(name="Last Updated", value=update_date_time)
+    em.add_field(name="Total Cases", value=local_total_cases)
+    em.add_field(name="New Cases", value=local_new_cases)
+    em.add_field(name="Total individuals in hospitals", value=local_total_number_of_individuals_in_hospitals)
+    em.add_field(name="Total Deaths", value=local_deaths)
+    em.add_field(name="New Deaths", value=local_new_deaths)
+    em.add_field(name="Total Recovered", value=local_recovered)
+    em.add_field(name="Active Cases", value=local_active_cases)
+    await loading_message.delete()
+    await ctx.send(embed=em)
+
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
 
 
 @client.command(aliases=["covidall"])
 async def covid(ctx):
   loading_message = await ctx.send(embed=please_wait_emb)
+
+  try:
   # This uses the official API provided by the Sri Lankan Government to gather the needed data
-  r = requests.get("https://www.hpb.health.gov.lk/api/get-current-statistical")
-  c = r.json()
-  data = c['data']
+    r = requests.get("https://www.hpb.health.gov.lk/api/get-current-statistical")
+    c = r.json()
+    data = c['data']
 
-  # Getting the data from the above sent request to the API
-  update_date_time = data['update_date_time']
-  global_new_cases = data['global_new_cases']
-  global_total_cases = data['global_total_cases']
-  global_deaths = data['global_deaths']
-  global_new_deaths = data['global_new_deaths']
-  global_recovered = data['global_recovered']
-  total_pcr_testing_count = data['total_pcr_testing_count']
-  total_antigen_testing_count = data['total_antigen_testing_count']
+    update_date_time = data['update_date_time']
+    global_new_cases = data['global_new_cases']
+    global_total_cases = data['global_total_cases']
+    global_deaths = data['global_deaths']
+    global_new_deaths = data['global_new_deaths']
+    global_recovered = data['global_recovered']
+    total_pcr_testing_count = data['total_pcr_testing_count']
+    total_antigen_testing_count = data['total_antigen_testing_count']
+    
+    em = discord.Embed(title="COVID-19 Stats Global - All Info", color=0xff0000)
+    em.set_footer(text=f"Requested by {ctx.author.name}")
+    em.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    em.set_thumbnail(url="https://www.apsf.org/wp-content/uploads/newsletters/2020/3502/coronavirus-covid-19.png")
+    em.add_field(name="Last Updated", value=update_date_time)
+    em.add_field(name="New Cases", value=global_new_cases)
+    em.add_field(name="Total Cases", value=global_total_cases)
+    em.add_field(name="Total Deaths", value=global_deaths)
+    em.add_field(name="New Deaths", value=global_new_deaths)
+    em.add_field(name="Total Recovered", value=global_recovered)
+    em.add_field(name="Total PCR Testing Count", value=total_pcr_testing_count)
+    em.add_field(name="Total Antigen Testing Count", value=total_antigen_testing_count)
+    await loading_message.delete()
+    await ctx.send(embed=em)
   
-  # Creating the embed
-  em = discord.Embed(title="COVID-19 Stats Global - All Info", color=0xff0000)
-  em.set_thumbnail(url="https://www.apsf.org/wp-content/uploads/newsletters/2020/3502/coronavirus-covid-19.png")
-  em.add_field(name="Last Updated", value=update_date_time)
-  em.add_field(name="New Cases", value=global_new_cases)
-  em.add_field(name="Total Cases", value=global_total_cases)
-  em.add_field(name="Total Deaths", value=global_deaths)
-  em.add_field(name="New Deaths", value=global_new_deaths)
-  em.add_field(name="Total Recovered", value=global_recovered)
-  em.add_field(name="Total PCR Testing Count", value=total_pcr_testing_count)
-  em.add_field(name="Total Antigen Testing Count", value=total_antigen_testing_count)
-
-  await loading_message.delete()
-  await ctx.send(embed=em)
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
 
 
 @client.command()
 async def wiki(ctx, *, word_to_search):
     loading_message = await ctx.send(embed=please_wait_emb)
-    # The embed
     embed=discord.Embed(title="Wikipedia Search", description="Search Wikipedia without visiting!", color=0xff0000)
-
-    # Uses the above function ( not async )
-    embed.add_field(name="Content", value=f"{search_wikipedia(word_to_search)}", inline=True)
+    embed.set_footer(text=f"Requested by {ctx.author.name}")
+    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed.add_field(name="Content", value=f"``` {search_wikipedia(word_to_search)} ```", inline=True)
     await loading_message.delete()
     await ctx.send(embed=embed)
 
