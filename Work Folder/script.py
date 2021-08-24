@@ -11,7 +11,7 @@ import installerm
 import platform
 import os
 try:
-  # os.system("pip3 install prsaw")
+  os.system("pip3 install prsaw")
   # installerm.pip_install("prsaw")
   print("TEST")
 except Exception as e:
@@ -401,7 +401,7 @@ async def on_ready():
 
 # THIS IS THE PLASE WAIT TEMPLATE!
 # Almost all the commands use this, you can change it here!
-please_wait_emb = discord.Embed(title="```  Processing your request  ```", color=0xff0000)
+please_wait_emb = discord.Embed(title="Please Wait", description="``` Processing Your Request ```", color=0xff0000)
 please_wait_emb.set_author(name="YourBot")
 please_wait_emb.set_thumbnail(url="https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif")
 please_wait_emb.set_footer(text="Bot created by ZeaCeR#5641")
@@ -1212,7 +1212,7 @@ async def nitro(ctx, *, number_of_times):
       await loading_message.delete()
       await ctx.send(embed=embed3)
 
-@commands.has_permissions(adminstrator=True)
+@commands.has_permissions(administrator=True)
 @client.command()
 async def spam(ctx, number_of_times_to_spam, *, message):
     loading_message = await ctx.send(embed=please_wait_emb)
@@ -4821,6 +4821,8 @@ async def audio(ctx, *, ytvlink):
 @client.command(aliases=["sendmail"])
 async def sendemail(ctx, senderemail, recieveremail, emailsubject="Hey", *, emailcontent="Hello There!"):
 
+  verified_mails = ("gmail.com", "outlook.com", "yahoo.com")
+
   embed=discord.Embed(title="Please Wait", description="``` This may take longer than usual! ```", color=0xff0000)
   embed.set_thumbnail(url="https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif") 
   embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
@@ -4828,49 +4830,86 @@ async def sendemail(ctx, senderemail, recieveremail, emailsubject="Hey", *, emai
   loadingthing = await ctx.send(embed=embed)
 
   try:
-    server = smtplib.SMTP('smtp.gmail.com', 587)
-    server.starttls()
+    if senderemail.split('@')[-1].lower() in verified_mails:
+      try:
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
 
-    try:
-      server.login(bot_email_addr, bot_email_password)
-    except:
-      
-      return
+        try:
+          server.login(bot_email_addr, bot_email_password)
 
-    email = EmailMessage()
+        except Exception as e:
+          embede=discord.Embed(title="Something was wrong!", description="Your request did not complete due to an error!", color=0xff0000)
+          embede.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+          embede.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879668020006502440/SeekPng.com_envelope-icon-png_1336118.png")
+          embede.add_field(name="Error", value=f"{e}", inline=False)
+          embede.set_footer(text=f"Requested by {ctx.author.name}")
+          try:
+            await loadingthing.delete()
+          except:
+            pass
+          await ctx.send(embed=embede)
+          return
 
-    whoasktosend = ctx.author.name
-    whoasktosendid = ctx.author.id
-    emailcontentfinal = f"""This message it being sent from the discord bot named YourBot and was requested by the user {whoasktosend} / {whoasktosendid} / {senderemail}. The message: {emailcontent}   | Thank You. Have a Nice day, Stay safe! - YourBot"""
+        email = EmailMessage()
 
-    email['From'] = bot_email_addr
-    email['To'] = recieveremail
-    email['Subject'] = emailsubject
-    email.set_content(emailcontentfinal)
-    server.send_message(email)
-    server.close()
+        whoasktosend = ctx.author.name
+        whoasktosendid = ctx.author.id
+        emailcontentfinal = f"""This message it being sent from the discord bot named YourBot and was requested by the user {whoasktosend} / {whoasktosendid} / {senderemail}. The message: {emailcontent}   | Thank You. Have a Nice day, Stay safe! - YourBot"""
 
-    try:
-      embed2=discord.Embed(title="Email Sent", description="Your requested email was sent suceessfully! ", color=0xff0000)
-      embed2.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-      embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879668020006502440/SeekPng.com_envelope-icon-png_1336118.png")
-      embed2.add_field(name="Your Email Address", value=f"{senderemail}", inline=False)
-      embed2.add_field(name="Receiver Email Address", value=f"{recieveremail}", inline=False)
-      embed2.add_field(name="Email Subject", value=f"{emailsubject}", inline=False)
-      embed2.add_field(name="Email Content", value=f"{emailcontent}", inline=False)
-      embed2.set_footer(text=f"Requested by {ctx.author.name}")
+        email['From'] = bot_email_addr
+        email['To'] = recieveremail
+        email['Subject'] = emailsubject
+        email.set_content(emailcontentfinal)
+        server.send_message(email)
+        server.close()
+
+        try:
+          embed2=discord.Embed(title="Email Sent", description="Your requested email was sent suceessfully! ", color=0xff0000)
+          embed2.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+          embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879668020006502440/SeekPng.com_envelope-icon-png_1336118.png")
+          embed2.add_field(name="Your Email Address", value=f"{senderemail}", inline=False)
+          embed2.add_field(name="Receiver Email Address", value=f"{recieveremail}", inline=False)
+          embed2.add_field(name="Email Subject", value=f"{emailsubject}", inline=False)
+          embed2.add_field(name="Email Content", value=f"{emailcontentfinal}", inline=False)
+          embed2.set_footer(text=f"Requested by {ctx.author.name}")
+          try:
+            await loadingthing.delete()
+          except:
+            pass
+          await ctx.send(embed=embed2)
+
+        except:
+          try:
+            await loadingthing.delete()
+          except:
+            pass
+          await ctx.send("Email was sent successfully!")
+
+      except Exception as e:
+        embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+        embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+        embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+        embed3.add_field(name="Error:", value=f"{e}", inline=False)
+        embed3.set_footer(text=f"Requested by {ctx.author.name}")
+        try:
+          await loadingthing.delete()
+        except:
+          pass
+        await ctx.send(embed=embed3)
+    
+    else:
+      embed=discord.Embed(title="Something was wrong!", description="Your request did not complete due to an error!", color=0xff0000)
+      embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+      embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879668020006502440/SeekPng.com_envelope-icon-png_1336118.png")
+      embed.add_field(name="Error", value="Invalid Email Address", inline=False)
+      embed.add_field(name="How to fix", value=f"Enter a email address that ends with {verified_mails}", inline=True)
+      embed.set_footer(text=f"Requested by {ctx.author.name}")
       try:
         await loadingthing.delete()
       except:
         pass
-      await ctx.send(embed=embed2)
-    except:
-      try:
-        await loadingthing.delete()
-      except:
-        pass
-      await ctx.send("Email was send successfully!")
-
+      await ctx.send(embed=embed)
   except Exception as e:
     embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
     embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
@@ -4882,7 +4921,6 @@ async def sendemail(ctx, senderemail, recieveremail, emailsubject="Hey", *, emai
     except:
       pass
     await ctx.send(embed=embed3)
-
 
 
 @client.command()
@@ -4998,6 +5036,7 @@ async def Help(ctx, category="none"):
 {bp}slap @user reason -> will slap the user with a resaon
 {bp}daddy -> get some hot pictures!
 {bp}cnick @user lol -> will change the username of @user to "lol"
+{bp}sendmail [your-email] [reciever-email] [subject-with-no-spaces] [email-content]` - Send an email, we ask for your email for the reciever to be clear who this is!
 """
 
   help_4 = f"""{bp}gay https://i.imgur.com/nToSGkI.png -> will add a gay rgb theme to the image in the link ( links should be direct )
@@ -5176,6 +5215,7 @@ async def Help(ctx, category="none"):
     em5.add_field(name=f'{bp}chatbot', value=f'`{bp}chatbot` - Will give you the steps to configure the chatbot to your server', inline=True)
     em5.add_field(name=f'{bp}countryinfo', value=f'`{bp}countryinfo [country_code]` - Will send information about the given country, ex=lk, sg, eu', inline=True)
     em5.add_field(name=f'{bp}audio', value=f'`{bp}audio [yt-link]` - Send the m4a (like mp3) of the file!', inline=True)
+    em5.add_field(name=f'{bp}sendmail', value=f'`{bp}sendmail [your-email] [reciever-email] [subject-with-no-spaces] [email-content]` - Send an email, we ask for your email for the reciever to be clear who this is!', inline=True)
 
     await loading_message.delete()
     await ctx.send(embed=em5)
@@ -5295,9 +5335,10 @@ async def Help(ctx, category="none"):
     em13.add_field(name=f"Text", value=f"`{bp}genpwd [no-of-letters]` \n`{bp}reverse [text]` \n`{bp}say [msg]` \n`{bp}tableflip` \n`{bp}unflip` \n`{bp}goodnight` \n`{bp}smile` \n`{bp}iloveyou` \n`{bp}sword` \n`{bp}what` \n`{bp}fuckyou` \n`{bp}howpropose [name]` \n`{bp}wordcount [words]` \n`{bp}google [query]` ", inline=False )
     em13.add_field(name=f"Fake Information", value=f"`{bp}face [gender~optional]` \n`{bp}fake high` \n`{bp}fake low` \n`{bp}fake help` \n`{bp}fake name` \n`{bp}fake dob` \n`{bp}fake addr` \n`{bp}fake job` \n`{bp}fake color` \n`{bp}fake zipcode` \n`{bp}fake city` \n`{bp}fake licenseplate` \n`{bp}fake bban` \n`{bp}fake iban` \n`{bp}fake bs` \n`{bp}fake cc` \n`{bp}fake cemail` \n`{bp}fake pno` \n`{bp}fake cp` \n`{bp}fake ssn` ", inline=False )
     em13.add_field(name=f"Some Mathematics", value=f"`{bp}add [no1] [no2]` \n`{bp}subs [no1] [no2]` \n`{bp}mul [no1] [no2]` \n`{bp}div [no1] [no2]` ", inline=False )
-    em13.add_field(name=f"Tools/Games", value=f"`{bp}audio [yt-link]` \n`ping` \n`{bp}8ball [question]` \n`{bp}inspire` \n`{bp}inv` \n`{bp}nitro [no-of-codes]` \n`{bp}bored` \n`{bp}color` \n`{bp}wiki [search-query]` \n`{bp}tinyurl [any-url]` \n`{bp}cleanuri [any-url]` \n`{bp}joke` \n`{bp}iconserver` \n`{bp}wyr [question]` \n`{bp}bastebin [text]` \n`{bp}ascii [text]` \n`{bp}asciiart [text]` \n`{bp}guessage [name]` \n`{bp}advice` \n`{bp}chuckjoke` \n`{bp}poll [question]` \n`{bp}csnd` \n`{bp}howdie [user]` \n`{bp}chatbot` \n`{bp}countryinfo [country-code]` ", inline=False)
+    em13.add_field(name=f"Tools/Games", value=f"`{bp}audio [yt-link]` \n `{bp}sendemail [your-email] [reciever-email] [subject-with-no-spaces] [email-content]` \n`ping` \n`{bp}8ball [question]` \n`{bp}inspire` \n`{bp}inv` \n`{bp}nitro [no-of-codes]` \n`{bp}bored` \n`{bp}color` \n`{bp}wiki [search-query]` \n`{bp}tinyurl [any-url]` \n`{bp}cleanuri [any-url]` \n`{bp}joke` \n`{bp}iconserver` \n`{bp}wyr [question]` \n`{bp}bastebin [text]` \n`{bp}ascii [text]` \n`{bp}asciiart [text]` \n`{bp}guessage [name]` \n`{bp}advice` \n`{bp}chuckjoke` \n`{bp}poll [question]` \n`{bp}csnd` \n`{bp}howdie [user]` \n`{bp}chatbot` \n`{bp}countryinfo [country-code]` ", inline=False)
     await loading_message.delete()
     await ctx.send(embed=em13)
+
 
 
 # CHAT BOT //////////////////////////////////////////////////////////////////////////////////////////
