@@ -1,10 +1,10 @@
 from __future__ import unicode_literals
 import asyncio
-
+import smtplib
+from email.message import EmailMessage
 
 
 # my files
-
 from keep_alive import keep_alive
 import installerm
 
@@ -65,6 +65,9 @@ bot_current_version = botconfigdata["bot-version"]
 bot_owner_id_zeacer = botconfigdata["ownerid"]
 bot_logging_commands_status = botconfigdata["log-user-data"]
 bot_logging_channel_id = botconfigdata["log-channel-id"]
+
+bot_email_addr = os.environ['EMAILA']
+bot_email_password = os.environ['EMAILP']
 
 client = commands.Bot(command_prefix = bot_prefix)
 
@@ -4813,6 +4816,74 @@ async def audio(ctx, *, ytvlink):
     embed=discord.Embed(title="An error has occured!", color=0xff0000)
     embed.add_field(name="Error:", value=f"Please enter a vliad youtube url!", inline=False)
     await ctx.send(embed=embed)
+
+
+@client.command(aliases=["sendmail"])
+async def sendemail(ctx, senderemail, recieveremail, emailsubject="Hey", *, emailcontent="Hello There!"):
+
+  embed=discord.Embed(title="Please Wait", description="``` This may take longer than usual! ```", color=0xff0000)
+  embed.set_thumbnail(url="https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif") 
+  embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+  embed.set_footer(text="Bot created by ZeaCeR#5641")
+  loadingthing = await ctx.send(embed=embed)
+
+  try:
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.starttls()
+
+    try:
+      server.login(bot_email_addr, bot_email_password)
+    except:
+      
+      return
+
+    email = EmailMessage()
+
+    whoasktosend = ctx.author.name
+    whoasktosendid = ctx.author.id
+    emailcontentfinal = f"""This message it being sent from the discord bot named YourBot and was requested by the user {whoasktosend} / {whoasktosendid} / {senderemail}. The message: {emailcontent}   | Thank You. Have a Nice day, Stay safe! - YourBot"""
+
+    email['From'] = bot_email_addr
+    email['To'] = recieveremail
+    email['Subject'] = emailsubject
+    email.set_content(emailcontentfinal)
+    server.send_message(email)
+    server.close()
+
+    try:
+      embed2=discord.Embed(title="Email Sent", description="Your requested email was sent suceessfully! ", color=0xff0000)
+      embed2.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+      embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879668020006502440/SeekPng.com_envelope-icon-png_1336118.png")
+      embed2.add_field(name="Your Email Address", value=f"{senderemail}", inline=False)
+      embed2.add_field(name="Receiver Email Address", value=f"{recieveremail}", inline=False)
+      embed2.add_field(name="Email Subject", value=f"{emailsubject}", inline=False)
+      embed2.add_field(name="Email Content", value=f"{emailcontent}", inline=False)
+      embed2.set_footer(text=f"Requested by {ctx.author.name}")
+      try:
+        await loadingthing.delete()
+      except:
+        pass
+      await ctx.send(embed=embed2)
+    except:
+      try:
+        await loadingthing.delete()
+      except:
+        pass
+      await ctx.send("Email was send successfully!")
+
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    try:
+      await loadingthing.delete()
+    except:
+      pass
+    await ctx.send(embed=embed3)
+
+
 
 @client.command()
 async def slots(ctx):

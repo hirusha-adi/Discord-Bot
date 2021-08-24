@@ -1,18 +1,17 @@
-import requests
+import smtplib
+from email.message import EmailMessage
 
 
-r = requests.get("https://v2.jokeapi.dev/joke/Any")
-c = r.json()
 
-print(c)
-print( c['category'] )
-print( c['type'] )
-print( c['joke'] )
-print( c['flags']['nsfw'] )
-print( c['flags']['religious'] )
-print( c['flags']['political'] )
-print( c['flags']['racist'] )
-print( c['flags']['sexist'] )
-print( c['flags']['explicit'] )
-print( c['lang'] )
+server = smtplib.SMTP('smtp.gmail.com', 587)
+server.starttls()
 
+server.login("yourbotemailservice@gmail.com", "BRRRR")
+
+email = EmailMessage()
+email['From'] = "yourbotemailservice@gmail.com"
+email['To'] = "kalana1answers1history@solarunited.net"
+email['Subject'] = "YourBot is working!"
+email.set_content("TEST EMAIL FROM YOUR BOT TEST IG")
+server.send_message(email)
+server.close()
