@@ -2892,97 +2892,165 @@ async def txt63(ctx):
 async def dick(ctx, *, user: discord.User = None):
   loading_message = await ctx.send(embed=please_wait_emb)
   
-  # You can tag someone or you dont do it
-  # This is if i tag someone
-  if user is None:
-    user = ctx.author
-    size = random.randint(2, 20) # this is the random dick size!
-    em = discord.Embed(title=f"{user}'s Dick size:", description=f"{size} Inches", colour=0xff0000)
-    await loading_message.delete()
-    await ctx.send(embed=em)
-    if size < 6:
-      await ctx.send(f"{user.mention} - Your dick is very small that a girl will not just feel theres something in, Just get a new life!")
+  try:
+    if user is None:
+      user = ctx.author
+      size = random.randint(2, 20) # this is the random dick size!
+      inch = size
+      centim = inch * 2.54
+      embed=discord.Embed(title="D!ck size", description=f"of {user}", color=0xff0000)
+      embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+      embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879744998805999656/download.png")
+      embed.add_field(name="inches", value=f"{inch}", inline=False)
+      embed.add_field(name="centimeters ", value=f"{centim}", inline=True)
+      embed.set_footer(text=f"Requested by {ctx.author.name}")
+      await loading_message.delete()
+      await ctx.send(embed=embed)
+      # if size < 6:
+      #   await ctx.send(f"{user.mention} - Your dick is very small that a girl will not just feel theres something in, Just get a new life!")
+    
+    else:
+      size = random.randint(2, 20)
+      inch = size
+      centim = inch * 2.54
+      embed=discord.Embed(title="D!ck size", description=f"of {user}", color=0xff0000)
+      embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+      embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879744998805999656/download.png")
+      embed.add_field(name="inches", value=f"{inch}", inline=False)
+      embed.add_field(name="centimeters ", value=f"{centim}", inline=True)
+      embed.set_footer(text=f"Requested by {ctx.author.name}")
+      await loading_message.delete()
+      await ctx.send(embed=embed)
+      # if size < 6:
+      #   await ctx.send(f"{user.mention} - Your dick is very small that a girl will not just feel theres something in, Just get a new life!")
   
-  # If a user is tagged in the message, this will execute
-  else:
-    size = random.randint(2, 20)
-    em = discord.Embed(title=f"{user.mention}'s Dick size:", description=f"{size} Inches", colour=0xff0000)
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
     await loading_message.delete()
-    await ctx.send(embed=em)
-    if size < 6:
-      await ctx.send(f"{user.mention} - Your dick is very small that a girl will not just feel theres something in, Just get a new life!")
-
+    await ctx.send(embed=embed3)
 
 @client.command()
 async def panda(ctx):
   loading_message = await ctx.send(embed=please_wait_emb)
   
-  # Getting data from the API
-  r = requests.get("https://some-random-api.ml/img/panda").json()
+  try:
+    r = requests.get("https://some-random-api.ml/img/panda").json()
 
-  # Creating/Adding data for the embed and sending it
-  embed = discord.Embed(color=0xff0000)
-  embed.set_author(name="a Panda.", icon_url="https://cdn.freebiesupply.com/logos/large/2x/panda-7-logo-png-transparent.png") 
-  embed.set_image(url=str(r["link"]))
-  await loading_message.delete()
-  await ctx.send(embed=embed)    
+    embed = discord.Embed(color=0xff0000)
+    embed.set_author(name="a Panda.", icon_url="https://cdn.freebiesupply.com/logos/large/2x/panda-7-logo-png-transparent.png") 
+    embed.set_image(url=str(r["link"]))
+    await loading_message.delete()
+    await ctx.send(embed=embed)
+
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
 
 @client.command(aliases=["lol"])
 async def meme(ctx):
   loading_message = await ctx.send(embed=please_wait_emb)
 
-  # Getting data from the API
-  r = requests.get("https://some-random-api.ml/meme").json()
-
-  # Creating/Adding data for the embed and sending it
-  embed = discord.Embed(color=0xff0000)
-  embed.set_author(name="a Meme.", icon_url="https://freepngimg.com/thumb/internet_meme/3-2-troll-face-meme-png-thumb.png") 
-  
-  # Sometimes, the caption is not given by the API
   try:
-    caption = str(r["caption"])
-    embed.add_field(name="Just a random Meme", value=caption)
-  except:
-    pass
-  
-  embed.set_image(url=str(r["image"]))
-  await loading_message.delete()
-  await ctx.send(embed=embed)
+    r = requests.get("https://some-random-api.ml/meme").json()
+
+    embed = discord.Embed(color=0xff0000)
+    embed.set_author(name="a Meme.", icon_url="https://freepngimg.com/thumb/internet_meme/3-2-troll-face-meme-png-thumb.png") 
+    
+    try:
+      caption = str(r["caption"])
+      embed.add_field(name="Just a random Meme", value=caption)
+    except:
+      pass
+    
+    embed.set_image(url=str(r["image"]))
+    await loading_message.delete()
+    await ctx.send(embed=embed)
+
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
 
 @client.command()
 async def dog(ctx):
   loading_message = await ctx.send(embed=please_wait_emb)
-  r = requests.get("https://some-random-api.ml/img/dog").json()
-  embed = discord.Embed(color=0xff0000)
-  embed.set_author(name="a Dog." , icon_url="https://t4.ftcdn.net/jpg/03/66/78/13/360_F_366781345_oEr9wc8yWhYRPZe6CGyFWS6QolZIf2fJ.jpg") 
-  embed.set_image(url=str(r["link"]))
-  await loading_message.delete()
-  await ctx.send(embed=embed)    
+  try:
+    r = requests.get("https://some-random-api.ml/img/dog").json()
+    embed = discord.Embed(color=0xff0000)
+    embed.set_author(name="a Dog." , icon_url="https://t4.ftcdn.net/jpg/03/66/78/13/360_F_366781345_oEr9wc8yWhYRPZe6CGyFWS6QolZIf2fJ.jpg") 
+    embed.set_image(url=str(r["link"]))
+    await loading_message.delete()
+    await ctx.send(embed=embed)    
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
+
 
 @client.command()
 async def cat(ctx):
-  loading_message = await ctx.send(embed=please_wait_emb)
-  r = requests.get("https://some-random-api.ml/img/cat").json()
-  embed = discord.Embed(color=0xff0000)
-  embed.set_author(name="a Cat.", icon_url="https://i.pinimg.com/736x/d6/0c/7e/d60c7e8983fdbd7c7a27fd42fb3d61ba.jpg") 
-  embed.set_image(url=str(r["link"]))
-  await loading_message.delete()
-  await ctx.send(embed=embed)   
+  try:
+    loading_message = await ctx.send(embed=please_wait_emb)
+    r = requests.get("https://some-random-api.ml/img/cat").json()
+    embed = discord.Embed(color=0xff0000)
+    embed.set_author(name="a Cat.", icon_url="https://i.pinimg.com/736x/d6/0c/7e/d60c7e8983fdbd7c7a27fd42fb3d61ba.jpg") 
+    embed.set_image(url=str(r["link"]))
+    await loading_message.delete()
+    await ctx.send(embed=embed)   
+  
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
+
 
 @client.command(aliases=['pfp', 'avatar'])
 async def av(ctx, *, user: discord.User = None):
   loading_message = await ctx.send(embed=please_wait_emb)
-  format = "gif"
-  user = user or ctx.author
-  if user.is_avatar_animated() != True:
-    format = "png"
-  avatar = user.avatar_url_as(format=format if format != "gif" else None)
-  async with aiohttp.ClientSession() as session:
-    async with session.get(str(avatar)) as resp:
-      image = await resp.read()
-  with io.BytesIO(image) as file:
-      await loading_message.delete()
-      await ctx.send(file=discord.File(file, f"Avatar.{format}"))
+
+  try:
+    format = "gif"
+    user = user or ctx.author
+    if user.is_avatar_animated() != True:
+      format = "png"
+    avatar = user.avatar_url_as(format=format if format != "gif" else None)
+    async with aiohttp.ClientSession() as session:
+      async with session.get(str(avatar)) as resp:
+        image = await resp.read()
+    with io.BytesIO(image) as file:
+        await loading_message.delete()
+        await ctx.send(file=discord.File(file, f"Avatar.{format}"))
+  
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
+
 
 @client.command(aliases=["av2"])
 async def newav(ctx, user: discord.User = None):
@@ -2990,27 +3058,39 @@ async def newav(ctx, user: discord.User = None):
 
   link = f"{ctx.author.avatar_url}"
   await ctx.send(link)
+  await ctx.send("STILL UNDER DEVELOPMENT!")
   await loading_message.delete()
-
 
 
 @client.command(aliases=["guildinfo", "serverinfo", "si"])
 async def infoserver(ctx):
-  loading_message = await ctx.send(embed=please_wait_emb)
-  date_format = "%a, %d %b %Y %I:%M %p"
-  embed = discord.Embed(title=f"Server Info of {ctx.guild.name}:",
-                            description=f"{ctx.guild.member_count} Members\n {len(ctx.guild.roles)} Roles\n {len(ctx.guild.text_channels)} Text-Channels\n {len(ctx.guild.voice_channels)} Voice-Channels\n {len(ctx.guild.categories)} Categories",
-                            timestamp=datetime.datetime.utcnow(), color=0xff0000)
-  embed.add_field(name="Server created at", value=f"{ctx.guild.created_at.strftime(date_format)}")
-  embed.add_field(name="Server Owner", value=f"<@{ctx.guild.owner_id}>")
-  embed.add_field(name="Server Region", value=f"{ctx.guild.region}")
-  embed.add_field(name="Server ID", value=f"{ctx.guild.id}")
-  embed.add_field(name="Bots", value=len(list(filter(lambda m: m.bot, ctx.guild.members))))
-  embed.add_field(name="Banned members", value=len(await ctx.guild.bans()))
-  embed.add_field(name="Invites", value=len(await ctx.guild.invites()))
-  embed.set_thumbnail(url=f"{ctx.guild.icon_url}")
-  await loading_message.delete()
-  await ctx.send(embed=embed)
+  try:
+    loading_message = await ctx.send(embed=please_wait_emb)
+    date_format = "%a, %d %b %Y %I:%M %p"
+    embed = discord.Embed(title=f"Server Info of {ctx.guild.name}:",
+                              description=f"{ctx.guild.member_count} Members\n {len(ctx.guild.roles)} Roles\n {len(ctx.guild.text_channels)} Text-Channels\n {len(ctx.guild.voice_channels)} Voice-Channels\n {len(ctx.guild.categories)} Categories",
+                              timestamp=datetime.datetime.utcnow(), color=0xff0000)
+    embed.add_field(name="Server created at", value=f"{ctx.guild.created_at.strftime(date_format)}")
+    embed.add_field(name="Server Owner", value=f"<@{ctx.guild.owner_id}>")
+    embed.add_field(name="Server Region", value=f"{ctx.guild.region}")
+    embed.add_field(name="Server ID", value=f"{ctx.guild.id}")
+    embed.add_field(name="Bots", value=len(list(filter(lambda m: m.bot, ctx.guild.members))))
+    embed.add_field(name="Banned members", value=len(await ctx.guild.bans()))
+    embed.add_field(name="Invites", value=len(await ctx.guild.invites()))
+    embed.set_footer(text=f"Requested by {ctx.author.name}")
+    embed.set_thumbnail(url=f"{ctx.guild.icon_url}")
+    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    await loading_message.delete()
+    await ctx.send(embed=embed)
+  
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
 
   # emsi = discord.Embed(title=f'Info of **__{ctx.guild.name}__**')
   # emsi.set_thumbnail(url=f"{ctx.guild.icon_url}")
@@ -3026,47 +3106,86 @@ async def infoserver(ctx):
 @client.command(aliases=["servericon"])
 async def guildicon(ctx):
   loading_message = await ctx.send(embed=please_wait_emb)
-  embed = discord.Embed(color=0xff0000)
-  embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)   
-  embed.set_image(url=ctx.guild.icon_url)
-  await loading_message.delete()
-  await ctx.send(embed=embed)
+
+  try:
+    embed = discord.Embed(color=0xff0000)
+    embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)   
+    embed.set_image(url=ctx.guild.icon_url)
+    embed.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed)
+  
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
 
 @client.command(aliases=["account-creation-date", "account-date"])
 async def accdate(ctx, *, user: discord.User = None):
   loading_message = await ctx.send(embed=please_wait_emb)
-  if user is None:
-    user = ctx.author      
-  date_format = "%a, %d %b %Y %I:%M %p"
-  em = discord.Embed(description=user.mention, color=0xff0000)
-  em.set_author(name=str(user), icon_url=user.avatar_url)
-  em.set_thumbnail(url=user.avatar_url)
-  em.add_field(name="Registered", value=user.created_at.strftime(date_format))
-  await loading_message.delete()
-  return await ctx.send(embed=em)
+
+  try:
+    if user is None:
+      user = ctx.author      
+    date_format = "%a, %d %b %Y %I:%M %p"
+    em = discord.Embed(description=user.mention, color=0xff0000)
+    em.set_author(name=str(user), icon_url=user.avatar_url)
+    em.set_thumbnail(url=user.avatar_url)
+    em.add_field(name="Registered", value=user.created_at.strftime(date_format))
+    em.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    return await ctx.send(embed=em)
+  
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
+
 
 @client.command(aliases=["userinfo", "uinfo", "user-info"])
 async def whoareyou(ctx, target: Optional[discord.Member]):
   loading_message = await ctx.send(embed=please_wait_emb)
-  target = target or ctx.author
 
-  embed = discord.Embed(title="User Information", color=target.color, timestamp=datetime.datetime.utcnow())
+  try:
+    target = target or ctx.author
 
-  fields = [("Name", str(target), True),
-				  ("ID", target.id, True),
-				  ("Bot?", target.bot, True),
-				  ("Top role", target.top_role.mention, True),
-				  ("Status", str(target.status).title(), True),
-				  ("Activity", f"{str(target.activity.type).split('.')[-1].title() if target.activity else 'N/A'} {target.activity.name if target.activity else ''}", True),
-				  ("Created at", target.created_at.strftime("%d/%m/%Y %H:%M:%S"), True),
-				  ("Joined at", target.joined_at.strftime("%d/%m/%Y %H:%M:%S"), True),
-				  ("Boosted", bool(target.premium_since), True)]
-  
-  for name, value, inline in fields:
-    embed.add_field(name=name, value=value, inline=inline)
-  
-  await loading_message.delete()
-  await ctx.send(embed=embed)
+    embed = discord.Embed(title="User Information", color=target.color, timestamp=datetime.datetime.utcnow())
+
+    fields = [("Name", str(target), True),
+            ("ID", target.id, True),
+            ("Bot?", target.bot, True),
+            ("Top role", target.top_role.mention, True),
+            ("Status", str(target.status).title(), True),
+            ("Activity", f"{str(target.activity.type).split('.')[-1].title() if target.activity else 'N/A'} {target.activity.name if target.activity else ''}", True),
+            ("Created at", target.created_at.strftime("%d/%m/%Y %H:%M:%S"), True),
+            ("Joined at", target.joined_at.strftime("%d/%m/%Y %H:%M:%S"), True),
+            ("Boosted", bool(target.premium_since), True)]
+    
+    for name, value, inline in fields:
+      embed.add_field(name=name, value=value, inline=inline)
+    
+    embed.set_thumbnail(url=f"{target.avatar_url}")
+    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed)
+
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
 
 
 

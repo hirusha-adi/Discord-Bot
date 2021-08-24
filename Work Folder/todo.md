@@ -1,3 +1,3 @@
 # To do list
-+  Add an embed to the dadjoke command
-+ 
++ newav, av2 command is incomplete, do it!, use some string formating!
+
