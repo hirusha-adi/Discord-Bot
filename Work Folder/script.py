@@ -4206,231 +4206,448 @@ async def pokemon(ctx, pokemonName="pikachu", mode="new"):
 @client.command(aliases=["mincraft-info", "mincraft-user-info", "minecraftinfo"])
 async def mcinfo(ctx, *, MinecraftUserName):
   loading_message = await ctx.send(embed=please_wait_emb)
-  weblink = "https://some-random-api.ml/mc?username=" + MinecraftUserName
-  r = requests.get(weblink)
-  c = r.json()
-  mcinfo_test = f"""Username: {c["username"]}
-UUID: {c["uuid"]}
-Name History: {c["name_history"]}
-"""
-  await loading_message.delete()
-  await ctx.send("```" + mcinfo_test + "```")
+
+  try:
+    weblink = "https://some-random-api.ml/mc?username=" + MinecraftUserName
+    r = requests.get(weblink)
+    c = r.json()
+
+    embed=discord.Embed(title="Minecraft Account Info", color=0xff0000)
+    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/880022933706260530/418cEZfh8-L.jpg")
+    embed.add_field(name="Username", value=f"{c['username']}", inline=False)
+    embed.add_field(name="UUID", value=f"{c['uuid']}", inline=False)
+    try:
+      embed.add_field(name=" Name History", value=f"{c['name_history']}", inline=False)
+    except:
+      pass
+    embed.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed)
+  
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
+
 
 @client.command(aliases=["lyrics-of", "find-lyrics"])
 async def lyricsof(ctx, *, song_name):
   loading_message = await ctx.send(embed=please_wait_emb)
-  weblink = "https://some-random-api.ml/lyrics?title=" + song_name
-  r = requests.get(weblink)
-  c = r.json()
-  author = c["author"]
-  title = c["title"]
-  lyrics = c["lyrics"]
-  msg_to_send_song_info = f"""Title: {title}
-Author: {author}
-
-Lyrics:
-{lyrics}
-""" 
-  await loading_message.delete()
-  try:  
-    part1 = msg_to_send_song_info[:1999]
-    await ctx.send(part1)
-  except:
-    pass
-  try:
-    part2 = msg_to_send_song_info[1999:3998]
-    await ctx.send(part2)
-  except:
-    pass
-  try:
-    part3 = msg_to_send_song_info[3998:5997]
-    await ctx.send(part3)
-  except:
-    pass
-  try:
-    part4 = msg_to_send_song_info[5997:7996]
-    await ctx.send(part4)
-  except:
-    pass
-  try:
-    part5 = msg_to_send_song_info[7996:9995]
-    await ctx.send(part5)
-  except:
-    pass
-  try:
-    part6 = msg_to_send_song_info[9995:11994]
-    await ctx.send(part6)
-  except:
-    pass
-  try:
-    part7 = msg_to_send_song_info[11994:13993]
-    await ctx.send(part7)
-  except:
-    pass
-  try:
-    part8 = msg_to_send_song_info[13993:15992]
-    await ctx.send(part8)
-  except:
-    pass
-  try:
-    part9 = msg_to_send_song_info[15992:17991]
-    await ctx.send(part9)
-  except:
-    pass
-  try:
-    part10 = msg_to_send_song_info[17991:19990]
-    await ctx.send(part10)
-  except:
-    pass
 
   try:
-    links = c["links"]
-    await ctx.send(links["genius"])
-  except:
-    pass
+    weblink = "https://some-random-api.ml/lyrics?title=" + song_name
+    r = requests.get(weblink)
+    c = r.json()
+    author = c["author"]
+    title = c["title"]
+    lyrics = c["lyrics"]
+    msg_to_send_song_info = f"""Title: {title}
+  Author: {author}
+
+  Lyrics:
+  {lyrics}
+  """ 
+    await loading_message.delete()
+    try:  
+      part1 = msg_to_send_song_info[:1999]
+      await ctx.send(part1)
+    except:
+      pass
+    try:
+      part2 = msg_to_send_song_info[1999:3998]
+      await ctx.send(part2)
+    except:
+      pass
+    try:
+      part3 = msg_to_send_song_info[3998:5997]
+      await ctx.send(part3)
+    except:
+      pass
+    try:
+      part4 = msg_to_send_song_info[5997:7996]
+      await ctx.send(part4)
+    except:
+      pass
+    try:
+      part5 = msg_to_send_song_info[7996:9995]
+      await ctx.send(part5)
+    except:
+      pass
+    try:
+      part6 = msg_to_send_song_info[9995:11994]
+      await ctx.send(part6)
+    except:
+      pass
+    try:
+      part7 = msg_to_send_song_info[11994:13993]
+      await ctx.send(part7)
+    except:
+      pass
+    try:
+      part8 = msg_to_send_song_info[13993:15992]
+      await ctx.send(part8)
+    except:
+      pass
+    try:
+      part9 = msg_to_send_song_info[15992:17991]
+      await ctx.send(part9)
+    except:
+      pass
+    try:
+      part10 = msg_to_send_song_info[17991:19990]
+      await ctx.send(part10)
+    except:
+      pass
+
+    try:
+      links = c["links"]
+      await ctx.send(links["genius"])
+    except:
+      pass
+  
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
 
 @client.command(aliases=["to-binary", "e_binary"])
 async def binary(ctx, *, ToBinaryText):
   loading_message = await ctx.send(embed=please_wait_emb)
-  r = requests.get('https://some-random-api.ml/binary?text=' + ToBinaryText)
-  c = r.json()
-  fact = c["binary"]
-  shit = 'Text to binary'
-  em = discord.Embed(color=0xff0000)
-  AandQ = f'The message entered converted to binary is: \n\n{str(fact)}'
-  em.add_field(name=shit, value=AandQ)
-  await loading_message.delete()
-  await ctx.send(embed=em)
+  try:
+    r = requests.get('https://some-random-api.ml/binary?text=' + ToBinaryText)
+    c = r.json()
+    fact = c["binary"]
+
+    embed=discord.Embed(title="to Binary", color=0xff0000)
+    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/880025172055314462/85-855085_binary-codes-on-data-sheet-with-magnifying-lens.png")
+    embed.add_field(name="Query", value=f"{ToBinaryText}", inline=False)
+    embed.add_field(name="Result", value=f"{fact}", inline=True)
+    embed.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed)
+  
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
+  
 
 @client.command(aliases=["b2t", "d_binary", "decode_binary"])
 async def b_2txt(ctx, *, ToTextBinary):
   loading_message = await ctx.send(embed=please_wait_emb)
-  r = requests.get('https://some-random-api.ml/binary?decode=' + ToTextBinary)
-  c = r.json()
-  fact = c["text"]
-  shit = 'Binary to Text'
-  em = discord.Embed(color=0xff0000)
-  AandQ = f'The binary entered converted to Text is: \n\n{str(fact)}'
-  em.add_field(name=shit, value=AandQ)
-  await loading_message.delete()
-  await ctx.send(embed=em)
+
+  try:
+    r = requests.get('https://some-random-api.ml/binary?decode=' + ToTextBinary)
+    c = r.json()
+    fact = c["text"]
+
+    embed=discord.Embed(title="From Binary", color=0xff0000)
+    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/880025172055314462/85-855085_binary-codes-on-data-sheet-with-magnifying-lens.png")
+    embed.add_field(name="Query", value=f"{ToTextBinary}", inline=False)
+    embed.add_field(name="Result", value=f"{fact}", inline=True)
+    embed.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed)
+  
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
+
 
 @client.command(aliases=["b642t", "d_b64", "d_base64"])
 async def b64_2txt(ctx, *, ToTextBase64):
   loading_message = await ctx.send(embed=please_wait_emb)
-  r = requests.get('https://some-random-api.ml/base64?decode=' + ToTextBase64)
-  c = r.json()
-  fact = c["text"]
-  shit = 'Base64 to Text'
-  em = discord.Embed(color=0xff0000)
-  AandQ = f'Base64 entered converted to Text is: \n\n{str(fact)}'
-  em.add_field(name=shit, value=AandQ)
-  await loading_message.delete()
-  await ctx.send(embed=em)
+
+  try:
+    r = requests.get('https://some-random-api.ml/base64?decode=' + ToTextBase64)
+    c = r.json()
+    fact = c["text"]
+
+    embed=discord.Embed(title="From Base64", color=0xff0000)
+    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879955815602200586/base64-logo-352x200.jpg")
+    embed.add_field(name="Query", value=f"{ToTextBase64}", inline=False)
+    embed.add_field(name="Result", value=f"{fact}", inline=True)
+    embed.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed)
+  
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
 
 @client.command(alieases=["guess-age"])
 async def guessage(ctx, *, nameToSearch):
   loading_message = await ctx.send(embed=please_wait_emb)
-  r = requests.get("https://api.agify.io/?name=" + nameToSearch)
-  c = r.json()
-  try:
-    name = c["name"]
-  except:
-    name = "Unable to get the Name"
-  try:
-    age = c["age"]
-  except:
-    age = "Unable to get the Age"
-  try:
-    count = c["count"]
-  except:
-    count = "Unable to get the Count"
-  
-  guessed_age_info = f"""[+] Name: {name}
-[+] Age: {age}
-[+] Count: {count}"""
 
-  await loading_message.delete()
-  await ctx.send("```" + guessed_age_info + "```")
+  try:
+    r = requests.get("https://api.agify.io/?name=" + nameToSearch)
+    c = r.json()
+    try:
+      name = c["name"]
+    except:
+      name = "Unable to get the Name"
+    try:
+      age = c["age"]
+    except:
+      age = "Unable to get the Age"
+    try:
+      count = c["count"]
+    except:
+      count = "Unable to get the Count"
+
+    embed=discord.Embed(title="Guess Age", color=0xff0000)
+    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/880027346478968872/image.jfif")
+    embed.add_field(name="Name", value=f"{name}", inline=False)
+    embed.add_field(name="Age", value=f"{age}", inline=False)
+    embed.add_field(name="Count", value=f"{count}", inline=False)
+    embed.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed)
+
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
+
 
 @client.command()
 async def monstor(ctx):
   loading_message = await ctx.send(embed=please_wait_emb)
-  websitelink = r'https://app.pixelencounter.com/api/basic/svgmonsters/image/png?primaryColor=%23FC6400&size=100'
-  r = requests.get(websitelink)
-  c = r.content
-  file = open("monstorimg.png", 'wb')
-  file.write(c)
-  file.close()
-  with open("monstorimg.png", 'rb') as f:
-    picture = discord.File(f)
+
+  try:
+    websitelink = r'https://app.pixelencounter.com/api/basic/svgmonsters/image/png?primaryColor=%23FC6400&size=100'
+    r = requests.get(websitelink)
+    c = r.content
+    file = open("monstorimg.png", 'wb')
+    file.write(c)
+    file.close()
+    with open("monstorimg.png", 'rb') as f:
+      picture = discord.File(f)
+      await loading_message.delete()
+      await ctx.send(file=picture)
+    os.remove("monstorimg.png")
+  
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
     await loading_message.delete()
-    await ctx.send(file=picture)
-  os.remove("monstorimg.png")
+    await ctx.send(embed=embed3)
+
 
 @client.command()
 async def cleanuri(ctx, *, websiteurl):
   loading_message = await ctx.send(embed=please_wait_emb)
-  url = 'https://cleanuri.com/api/v1/shorten'
-  myobj = {'url': f'{websiteurl}'}  
-  r = requests.post(url, data = myobj).json()
-  shorten_url = r['result_url']
-  em = discord.Embed(color=0xff0000)
-  em.add_field(name="Shortened Link", value=shorten_url, inline=False)
-  await loading_message.delete()
-  await ctx.send(embed=em)
+
+  try:
+    url = 'https://cleanuri.com/api/v1/shorten'
+    myobj = {'url': f'{websiteurl}'}  
+    r = requests.post(url, data = myobj).json()
+    shorten_url = r['result_url']
+    
+    embed=discord.Embed(title="URL Shortener", color=0xff0000)
+    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/880028609924976690/828161_url_512x512.png")
+    embed.add_field(name="Original Link", value=f"{websiteurl}", inline=False)
+    embed.add_field(name="Shortened Link", value=f"{shorten_url}", inline=False)
+    embed.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed)
+  
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
+
 
 @client.command(aliases=["generate-pwd", "gen-pwd", "generate-password", "gen-password", "newpassword", "password", "newpass", "passwordnew"])
 async def genpwd(ctx, *, numberofcharacters=16):
   loading_message = await ctx.send(embed=please_wait_emb)
-  pwd_lenlis = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40)
+
   try:
-    numberofcharsinint = int(numberofcharacters)
+    pwd_lenlis = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40)
+    try:
+      numberofcharsinint = int(numberofcharacters)
+
+    except Exception as e:
+      embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+      embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+      embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+      embed3.add_field(name="Error:", value=f"{e}", inline=False)
+      embed3.set_footer(text=f"Requested by {ctx.author.name}")
+      await loading_message.delete()
+      await ctx.send(embed=embed3)
+      return
+      
+    if numberofcharsinint in pwd_lenlis:
+      url = f"https://passwordinator.herokuapp.com/generate?num=true&char=true&caps=true&len={numberofcharacters}"
+      r = requests.get(url)
+      c = r.json()
+
+      embed=discord.Embed(title="Password Generator", color=0xff0000)
+      embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+      embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/880031728369016832/704187.png")
+      embed.add_field(name="Password Length", value=f"{numberofcharacters}", inline=False)
+      embed.add_field(name="Password", value=f"{c['data']}", inline=False)
+      embed.set_footer(text=f"Requested by {ctx.author.name}")
+      await loading_message.delete()
+      await ctx.send(embed=embed)
+
+    else:
+      embed=discord.Embed(title="Password Generator", description="An Error has occured!", color=0xff0000)
+      embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+      embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/880031728369016832/704187.png")
+      embed.add_field(name="Error", value="The value of the number is high", inline=False)
+      embed.add_field(name="Possible Fix", value="Enter a value below 40", inline=False)
+      embed.set_footer(text=f"Requested by {ctx.author.name}")
+      await loading_message.delete()
+      await ctx.send(embed=embed)
+
+      
+  
   except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
     await loading_message.delete()
-    await ctx.send(f"Error: {e}")
-    return
-  if numberofcharsinint in pwd_lenlis:
-    url = f"https://passwordinator.herokuapp.com/generate?num=true&char=true&caps=true&len={numberofcharacters}"
-    r = requests.get(url)
-    c = r.json()
-    em = discord.Embed(color=0xff0000)
-    em.add_field(name="a Secure Password", value=c['data'], inline=False)
-    await loading_message.delete()
-    await ctx.send(embed=em)
-  else:
-    await loading_message.delete()
-    await ctx.send("Please enter a value below 40")
+    await ctx.send(embed=embed3)
+
 
 @client.command()
 async def advice(ctx):
   loading_message = await ctx.send(embed=please_wait_emb)
-  r = requests.get("https://api.adviceslip.com/advice").json()
-  c = r['slip']['advice']
-  await loading_message.delete()
-  await ctx.send(f"```{c}```")
+
+  try:
+    r = requests.get("https://api.adviceslip.com/advice").json()
+    c = r['slip']['advice']
+
+    embed=discord.Embed(title="an Adive", color=0xff0000)
+    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/880034306720956456/download_1.jfif")
+    embed.add_field(name="Advice", value=f"{c}", inline=False)
+    embed.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed)
+
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
+
 
 @client.command(aliases=["chuck-norris-joke", "chuck-joke"])
 async def chuckjoke(ctx):
   loading_message = await ctx.send(embed=please_wait_emb)
-  url = f"https://api.chucknorris.io/jokes/random"
-  r = requests.get(url).json()
-  joke = r['value']
-  thumb = r['icon_url']
 
-  embed = discord.Embed(color=0xff0000)
-  embed.add_field(name="a Chuck Norris Joke", value=joke, inline=False)
-  embed.set_thumbnail(url=thumb)
-  await loading_message.delete()
-  await ctx.send(embed=embed)
+  try:
+    url = f"https://api.chucknorris.io/jokes/random"
+    r = requests.get(url).json()
+    joke = r['value']
+    created_at = r['created_at']
+    urlfj = r['url']
 
-@commands.has_permissions(kick_members=True)
+    embed=discord.Embed(title="Chuck Joke", color=0xff0000)
+    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/880035248820342824/chuck-norris.png")
+    embed.add_field(name="Joke", value=f"{joke}", inline=False)
+    embed.add_field(name="Created At", value=f"{created_at}", inline=False)
+    embed.add_field(name="URL", value=f"{urlfj}", inline=True)
+    embed.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed)
+  
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
+
+
+@commands.has_permissions(manage_nicknames=True)
 @client.command(aliases=["changenickname", "change-nickname", "change-nick"])
 async def cnick(ctx, member: discord.Member, *, nick):
   loading_message = await ctx.send(embed=please_wait_emb)
-  await member.edit(nick=nick)
-  await loading_message.delete()
-  await ctx.send(f'Nickname of {member.mention} has been changed - requested by {ctx.author.mention}')
+
+  try:
+    embed=discord.Embed(title="Change Nickname", description="Completed successfully!", color=0xff0000)
+    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/880035248820342824/chuck-norris.png")
+    embed.add_field(name="Original Name", value=member , inline=False)
+    embed.add_field(name="New Name", value=f"{nick}", inline=False)
+
+    try:
+      await member.edit(nick=nick)
+    except:
+      embed=discord.Embed(title="Change Nickname", description="an Error has occured!", color=0xff0000)
+      embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+      embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/880035248820342824/chuck-norris.png")
+      embed.add_field(name="Error", value="Unable to change the nickname!", inline=False)
+      embed.set_footer(text=f"Requested by {ctx.author.name}")
+      await ctx.send(embed=embed)
+      return
+
+    embed.add_field(name="Changed", value=member.mention, inline=True)
+    embed.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed)
+  
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
+
+
+
 
 @client.command()
 async def poll(ctx, *, message):
