@@ -2238,6 +2238,7 @@ async def kiss(ctx, user: discord.Member = None):
 
 @client.command()
 async def reverse(ctx, *, message):
+  loading_message = await ctx.send(embed=please_wait_emb)
   try:
     message = message[::-1]
 
@@ -3188,96 +3189,263 @@ async def whoareyou(ctx, target: Optional[discord.Member]):
     await ctx.send(embed=embed3)
 
 
-
 @client.command(aliases=["e_base64"])
 async def e_b64(ctx, *, args):
   loading_message = await ctx.send(embed=please_wait_emb)
-  msg = base64.b64encode('{}'.format(args).encode('ascii'))
-  enc = str(msg)
-  enc = enc[2:len(enc)-1]
-  embed=discord.Embed(title="to Base64", description=f"{enc}", color=0xff0000)
-  await loading_message.delete()
-  await ctx.send(embed=embed)
+
+  try:
+    msg = base64.b64encode('{}'.format(args).encode('ascii'))
+    enc = str(msg)
+    enc = enc[2:len(enc)-1]
+
+    embed=discord.Embed(title="to Base64", color=0xff0000)
+    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879955815602200586/base64-logo-352x200.jpg")
+    embed.add_field(name="Query", value=f"{args}", inline=False)
+    embed.add_field(name="Result", value=f"{enc}", inline=True)
+    embed.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed)
+
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
 
 @client.command()
 async def e_md5(ctx, *, args):
   loading_message = await ctx.send(embed=please_wait_emb)
-  msg = hashlib.md5(args.encode())
-  slpake =  msg.hexdigest()
-  embed=discord.Embed(title="to MD5", description=f"{slpake}", color=0xff0000)
-  await loading_message.delete()
-  await ctx.send(embed=embed)
+
+  try:
+    msg = hashlib.md5(args.encode())
+    slpake =  msg.hexdigest()
+
+    embed=discord.Embed(title="to MD5", color=0xff0000)
+    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879956672771137546/MD5.png")
+    embed.add_field(name="Query", value=f"{args}", inline=False)
+    embed.add_field(name="Result", value=f"{slpake}", inline=True)
+    embed.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed)
+
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
 
 @client.command()
 async def e_sha1(ctx, *, args):
   loading_message = await ctx.send(embed=please_wait_emb)
-  msg = hashlib.sha1(args.encode())
-  slpuka =  msg.hexdigest()
-  embed=discord.Embed(title="to MD5", description=f"{slpuka}", color=0xff0000)
-  await loading_message.delete()
-  await ctx.send(embed=embed)
+
+  try:
+    msg = hashlib.sha1(args.encode())
+    slpuka =  msg.hexdigest()
+
+    embed=discord.Embed(title="to SHA1", color=0xff0000)
+    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879957622546108436/SHA1.png")
+    embed.add_field(name="Query", value=f"{args}", inline=False)
+    embed.add_field(name="Result", value=f"{slpuka}", inline=True)
+    embed.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed)
+  
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
 
 @client.command()
 async def e_sha224(ctx, *, args):
   loading_message = await ctx.send(embed=please_wait_emb)
-  msg = hashlib.sha3_224(args.encode())
-  crnja =  msg.hexdigest()
-  embed=discord.Embed(title="to MD5", description=f"{crnja}", color=0xff0000)
-  await loading_message.delete()
-  await ctx.send(embed=embed)
+
+  try:
+    msg = hashlib.sha3_224(args.encode())
+    crnja =  msg.hexdigest()
+
+    embed=discord.Embed(title="to SHA224", color=0xff0000)
+    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879958751640191046/download.png")
+    embed.add_field(name="Query", value=f"{args}", inline=False)
+    embed.add_field(name="Result", value=f"{crnja}", inline=True)
+    embed.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed)
+  
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
 
 @client.command()
 async def e_sha512(ctx, *, args):
   loading_message = await ctx.send(embed=please_wait_emb)
-  msg = hashlib.sha3_512(args.encode())
-  crnja =  msg.hexdigest()
-  embed=discord.Embed(title="to MD5", description=f"{crnja}", color=0xff0000)
-  await loading_message.delete()
-  await ctx.send(embed=embed)
+
+  try:
+    msg = hashlib.sha3_512(args.encode())
+    crnja =  msg.hexdigest()
+
+    embed=discord.Embed(title="to SHA512", color=0xff0000)
+    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879960296863698944/download_1.png")
+    embed.add_field(name="Query", value=f"{args}", inline=False)
+    embed.add_field(name="Result", value=f"{crnja}", inline=True)
+    embed.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed)
+
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
 
 @client.command(aliases=["leet"])
 async def e_leet(ctx, *, args):
   loading_message = await ctx.send(embed=please_wait_emb)
-  encoded = args.replace('e', '3').replace('a', '4').replace('i', '!').replace('u', '|_|').replace('U', '|_|').replace('E', '3').replace('I', '!').replace('A', '4').replace('o','0').replace('O','0').replace('t','7').replace('T','7').replace('l','1').replace('L','1').replace('k','|<').replace('K','|<').replace('CK','X').replace('ck','x').replace('Ck','X').replace('cK','x')
-  embed=discord.Embed(title="to MD5", description=f"{encoded}", color=0xff0000)
-  await loading_message.delete()
-  await ctx.send(embed=embed)
+
+  try:
+    encoded = args.replace('e', '3').replace('a', '4').replace('i', '!').replace('u', '|_|').replace('U', '|_|').replace('E', '3').replace('I', '!').replace('A', '4').replace('o','0').replace('O','0').replace('t','7').replace('T','7').replace('l','1').replace('L','1').replace('k','|<').replace('K','|<').replace('CK','X').replace('ck','x').replace('Ck','X').replace('cK','x')
+
+    embed=discord.Embed(title="to LEET", color=0xff0000)
+    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879961162895212574/download_2.png")
+    embed.add_field(name="Query", value=f"{args}", inline=False)
+    embed.add_field(name="Result", value=f"{encoded}", inline=True)
+    embed.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed)
+  
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
+
 
 @client.command(aliases=["addition"])
 async def add(ctx, number_1, number_2):
   loading_message = await ctx.send(embed=please_wait_emb)
-  ans = float(number_1) + float(number_2)
-  em = discord.Embed(description=f"Question: {number_1} + {number_2}\n\nAnswer: {ans}", color=0xff0000)
-  em.set_author(name="Addition")
-  await loading_message.delete()
-  await ctx.send(embed=em)
+  try:
+    ans = float(number_1) + float(number_2)
+
+    embed=discord.Embed(title="Addition", color=0xff0000)
+    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879962889509806080/addition-icon-3.jpg")
+    embed.add_field(name="Query", value=f"{number_1} + {number_2}", inline=False)
+    embed.add_field(name="Result", value=f"{ans}", inline=True)
+    embed.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed)
+  
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
+
 
 @client.command(aliases=["substraction", "substract"])
 async def subs(ctx, number_1, number_2):
   loading_message = await ctx.send(embed=please_wait_emb)
-  ans = float(number_1) - float(number_2)
-  em = discord.Embed(description=f"Question: {number_1} - {number_2}\n\nAnswer: {ans}", color=0xff0000)
-  em.set_author(name="Substraction")
-  await loading_message.delete()
-  await ctx.send(embed=em)
+
+  try:
+    ans = float(number_1) - float(number_2)
+
+    embed=discord.Embed(title="Substraction", color=0xff0000)
+    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879964954806083604/1043.png")
+    embed.add_field(name="Query", value=f"{number_1} - {number_2}", inline=False)
+    embed.add_field(name="Result", value=f"{ans}", inline=True)
+    embed.set_footer(text=f"Requested by {ctx.author.name}")
+    await ctx.send(embed=embed)
+  
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
+
 
 @client.command(aliases=["multiplication", "multiply"])
 async def mul(ctx, number_1, number_2):
   loading_message = await ctx.send(embed=please_wait_emb)
-  ans = float(number_1) * float(number_2)
-  em = discord.Embed(description=f"Question: {number_1} x {number_2}\n\nAnswer: {ans}", color=0xff0000)
-  em.set_author(name="Multiplication")
-  await loading_message.delete()
-  await ctx.send(embed=em)
+
+  try:
+    ans = float(number_1) * float(number_2)
+
+    embed=discord.Embed(title="Multiplication", color=0xff0000)
+    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879965848603869214/43165.png")
+    embed.add_field(name="Query", value=f"{number_1} x {number_2}", inline=False)
+    embed.add_field(name="Result", value=f"{ans}", inline=True)
+    embed.set_footer(text="Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed)
+  
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
+
 
 @client.command(aliases=["division", "divide"])
 async def div(ctx, number_1, number_2):
   loading_message = await ctx.send(embed=please_wait_emb)
-  ans = float(number_1) / float(number_2)
-  em = discord.Embed(description=f"Question: {number_1} / {number_2}\n\nAnswer: {ans}", color=0xff0000)
-  em.set_author(name="Division")
-  await loading_message.delete()
-  await ctx.send(embed=em)
+
+  try:
+    ans = float(number_1) / float(number_2)
+
+    embed=discord.Embed(title="Division", color=0xff0000)
+    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879966441502294026/674233_mathematics_512x512.png")
+    embed.add_field(name="Query", value=f"{number_1} / {number_2}", inline=False)
+    embed.add_field(name="Result", value=f"{ans}", inline=True)
+    embed.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed)
+  
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
 
 @client.command(aliases=["echo"])
 async def say(ctx, *, word_to_say):
