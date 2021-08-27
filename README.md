@@ -4,7 +4,7 @@ The only discord bot you will ever need!
   + OFFICIAL WEBSITE: https://hirusha-adi.github.io/yourbot/
   + OFFICAL DISCORD SERVER: https://discord.gg/dEPJ2t6mqQ
 
-## `CURRENT VERSION: 2.4`
+## `CURRENT VERSION: 2.5`
 
 # How to start the bot?
 1. Make sure to have a ".env" file with the following inside it `{"TOKEN":"yourBotsTokenHere"}`
