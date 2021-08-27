@@ -449,7 +449,7 @@ async def ping(ctx):
         await loading_message.delete()
         await ctx.send(embed=embed2)
 
-
+@commands.has_permissions(manage_messages=True)
 @client.command()
 async def clear(ctx, amount=5):
     amttdel = amount + 1
@@ -550,6 +550,7 @@ async def ban(ctx, user: discord.Member, *, reason="No reason provided"):
         await ctx.send(embed=embed2)
 
 
+@commands.has_permissions(ban_members=True)
 @client.command()
 async def unban(ctx, *, member):
     loading_message = await ctx.send(embed=please_wait_emb)
@@ -5505,6 +5506,7 @@ async def count(ctx, *, words):
     await ctx.send(embed=embed3)
 
 
+@commands.has_permissions(manage_roles=True)
 @client.command()
 async def addrole(ctx, member: discord.Member, *, role):
   loading_message = await ctx.send(embed=please_wait_emb)
@@ -5536,6 +5538,7 @@ async def addrole(ctx, member: discord.Member, *, role):
     await ctx.send(embed=embed3)
 
 
+@commands.has_permissions(manage_roles=True)
 @client.command()
 async def removerole(ctx, member: discord.Member, *, role):
   loading_message = await ctx.send(embed=please_wait_emb)
@@ -6273,7 +6276,7 @@ async def slots(ctx):
     embed3.set_footer(text=f"Requested by {ctx.author.name}")
     await loading_message.delete()
     await ctx.send(embed=embed3)
-    
+
 
 @client.command(aliases=["show-help", "showhelp", "needhelp", "need-help", "pls-help", "plshelp", "help"])
 async def Help(ctx, category="none"):
@@ -6681,6 +6684,30 @@ async def Help(ctx, category="none"):
     em13.add_field(name=f"Tools/Games", value=f"`{bp}audio [yt-link]` \n `{bp}sendemail [your-email] [reciever-email] [subject-with-no-spaces] [email-content]` \n`ping` \n`{bp}8ball [question]` \n`{bp}inspire` \n`{bp}inv` \n`{bp}nitro [no-of-codes]` \n`{bp}bored` \n`{bp}color` \n`{bp}wiki [search-query]` \n`{bp}tinyurl [any-url]` \n`{bp}cleanuri [any-url]` \n`{bp}joke` \n`{bp}iconserver` \n`{bp}wyr [question]` \n`{bp}bastebin [text]` \n`{bp}ascii [text]` \n`{bp}asciiart [text]` \n`{bp}guessage [name]` \n`{bp}advice` \n`{bp}chuckjoke` \n`{bp}poll [question]` \n`{bp}csnd` \n`{bp}howdie [user]` \n`{bp}chatbot` \n`{bp}countryinfo [country-code]` ", inline=False)
     await loading_message.delete()
     await ctx.send(embed=em13)
+
+
+
+
+# ERROR HANDLING //////////////////////////////////////////////////////////////////////////////////////////
+# https://stackoverflow.com/questions/62234166/cant-get-discord-py-to-raise-an-error-if-user-doesnt-have-permissions-to-kick
+@client.event
+async def on_command_error(ctx, error):
+  if isinstance(error, commands.MissingPermissions):
+    embed=discord.Embed(title="ERROR", description="An error has been occured!", color=0xff0000)
+    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed.add_field(name="Error", value="You don't have the permissions required to use this command!", inline=True)
+    await ctx.send(embed=embed)
+    return
+
+  if isinstance(error, commands.MissingRequiredArgument):
+    embed=discord.Embed(title="ERROR", description="An error has been occured!", color=0xff0000)
+    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed.add_field(name="Error", value="You haven't passed the needed arguments for this command to run properly", inline=True)
+    embed.add_field(name="Possible Fix", value=f"use `{bot_prefix}help all` to list out all the command and check the proper usage of the command you used", inline=True)
+    await ctx.send(embed=embed)
+    return
 
 
 
