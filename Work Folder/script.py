@@ -50,7 +50,7 @@ from typing import Optional, Text
 import instaloader
 from pyfiglet import Figlet
 import youtube_dl
-
+import textwrap
 import subprocess
 import threading
 from multiprocessing import Process
@@ -4239,81 +4239,65 @@ async def mcinfo(ctx, *, MinecraftUserName):
     await ctx.send(embed=embed3)
 
 
-@client.command(aliases=["lyrics-of", "find-lyrics"])
-async def lyricsof(ctx, *, song_name):
+async def lyrics(ctx, *, search = None):
   loading_message = await ctx.send(embed=please_wait_emb)
 
   try:
-    weblink = "https://some-random-api.ml/lyrics?title=" + song_name
-    r = requests.get(weblink)
-    c = r.json()
-    author = c["author"]
-    title = c["title"]
-    lyrics = c["lyrics"]
-    msg_to_send_song_info = f"""Title: {title}
-  Author: {author}
+    if not search:
+          embed = discord.Embed(
+              title = "No search argument!",
+              description = "You havent entered anything, so i couldnt find lyrics!",
+              color=0xff0000
+          )
+          embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+          embed.set_footer(text=f"Requested by {ctx.author.name}")
+          try:
+            await loading_message.delete()
+          except:
+            pass
+          return await ctx.send(embed = embed)
+      
+    song = urllib.parse.quote(search)
+    
+    async with aiohttp.ClientSession() as lyricsSession:
+        async with lyricsSession.get(f'https://some-random-api.ml/lyrics?title={song}') as jsondata: 
+            if not 300 > jsondata.status >= 200: 
+              try:
+                await loading_message.delete()
+              except:
+                pass
+                return await ctx.send(f'Recieved poor status code of {jsondata.status}')
+            lyricsData = await jsondata.json() 
 
-  Lyrics:
-  {lyrics}
-  """ 
-    await loading_message.delete()
-    try:  
-      part1 = msg_to_send_song_info[:1999]
-      await ctx.send(part1)
-    except:
-      pass
-    try:
-      part2 = msg_to_send_song_info[1999:3998]
-      await ctx.send(part2)
-    except:
-      pass
-    try:
-      part3 = msg_to_send_song_info[3998:5997]
-      await ctx.send(part3)
-    except:
-      pass
-    try:
-      part4 = msg_to_send_song_info[5997:7996]
-      await ctx.send(part4)
-    except:
-      pass
-    try:
-      part5 = msg_to_send_song_info[7996:9995]
-      await ctx.send(part5)
-    except:
-      pass
-    try:
-      part6 = msg_to_send_song_info[9995:11994]
-      await ctx.send(part6)
-    except:
-      pass
-    try:
-      part7 = msg_to_send_song_info[11994:13993]
-      await ctx.send(part7)
-    except:
-      pass
-    try:
-      part8 = msg_to_send_song_info[13993:15992]
-      await ctx.send(part8)
-    except:
-      pass
-    try:
-      part9 = msg_to_send_song_info[15992:17991]
-      await ctx.send(part9)
-    except:
-      pass
-    try:
-      part10 = msg_to_send_song_info[17991:19990]
-      await ctx.send(part10)
-    except:
-      pass
+    error = lyricsData.get('error')
+    if error: 
+        try:
+          await loading_message.delete()
+        except:
+          pass
+        return await ctx.send(f'Recieved unexpected error: {error}')
 
-    try:
-      links = c["links"]
-      await ctx.send(links["genius"])
-    except:
-      pass
-  
+    songLyrics = lyricsData['lyrics'] 
+    songArtist = lyricsData['author'] 
+    songTitle = lyricsData['title'] 
+    songThumbnail = lyricsData['thumbnail']['genius']
+    
+    for chunk in textwrap.wrap(songLyrics, 4096, replace_whitespace = False):
+        embed = discord.Embed(
+            title = f'{songTitle} - {songArtist}',
+            description = chunk,
+            color = 0xff0000
+            # timestamp = datetime.datetime.utcnow()
+        )
+        embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+        embed.set_thumbnail(url = songThumbnail)
+        embed.set_footer(text=f"Requested by {ctx.author.name}")
+        try:
+          await loading_message.delete()
+        except:
+          pass
+        await ctx.send(embed = embed)
+
   except Exception as e:
     embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
     embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
@@ -4322,6 +4306,7 @@ async def lyricsof(ctx, *, song_name):
     embed3.set_footer(text=f"Requested by {ctx.author.name}")
     await loading_message.delete()
     await ctx.send(embed=embed3)
+
 
 @client.command(aliases=["to-binary", "e_binary"])
 async def binary(ctx, *, ToBinaryText):
@@ -6910,7 +6895,6 @@ async def Help(ctx, category="none"):
     await loading_message.delete()
     await ctx.send(embed=em12)
   
-
   elif category.lower() in all_small_list:
     em13 = discord.Embed(title=f'Animals', description=f'use >Help [category]', color=0xff0000)
     em13.set_thumbnail(url=bot_info_cmnd_thumbnail_link)
