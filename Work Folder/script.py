@@ -4239,6 +4239,7 @@ async def mcinfo(ctx, *, MinecraftUserName):
     await ctx.send(embed=embed3)
 
 
+@client.command(aliases=["lyricsof"])
 async def lyrics(ctx, *, search = None):
   loading_message = await ctx.send(embed=please_wait_emb)
 
@@ -6975,9 +6976,12 @@ channel_lis = (
   874964067322822696
 )
 
+bp = bot_prefix
+
+
 @client.event
 async def on_message(message):
-  bp = bot_prefix
+  
   if message.channel.id in channel_lis:
     if client.user == message.author:
       return
