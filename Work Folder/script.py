@@ -5343,77 +5343,146 @@ async def ig_pfp(ctx, *, ig_uname):
 @client.command()
 async def ascii(ctx, *, text):
   loading_message = await ctx.send(embed=please_wait_emb)
-  ascii_art_creating_function_get = ascii_art_func(text)
-  await loading_message.delete()
-  await ctx.send(f'``` {ascii_art_creating_function_get} ```')
+  try:
+    ascii_art_creating_function_get = ascii_art_func(text)
+    await loading_message.delete()
+    await ctx.send(f'``` {ascii_art_creating_function_get} ```')
+  
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
 
 @client.command(aliases=["propose"])
 async def howpropose(ctx, *, name="your crush/gf"):
   loading_message = await ctx.send(embed=please_wait_emb)
-  choicestosel = (
-    f'You may directly propose {name} as she will accept you',
-    f'You will need to have a lot of foreplay before sex {name} to make her like you',
-    f'Buy {name} a pizza and kiss her',
-    f'Buy a vibrator for {name}',
-    f'say {name} a thot',
-    f'touch {name}s vagina',
-    f'ask "PLEASE SEND BOOB AND PUSSY PICS" from {name}'
-  )
-  await loading_message.delete()
-  await ctx.send(f'{random.choice(choicestosel)}')
+
+  try:
+    choicestosel = (
+      f'You may directly propose {name} as she will accept you',
+      f'You will need to have a lot of foreplay before sex {name} to make her like you',
+      f'Buy {name} a pizza and kiss her',
+      f'Buy a vibrator for {name}',
+      f'say {name} a thot',
+      f'touch {name}s vagina',
+      f'ask "PLEASE SEND BOOB AND PUSSY PICS" from {name}'
+    )
+    await loading_message.delete()
+    await ctx.send(f'{random.choice(choicestosel)}')
+  
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
 
 
 @client.command()
 async def chatbot(ctx, command="main"):
   loading_message = await ctx.send(embed=please_wait_emb)
-  old_wl = ("1", "1.0", "one", "first", "olddays")
-  bp = bot_prefix
-  if command in old_wl:
-    emh1 = discord.Embed(title=f'Chat Bot', description=f'Lonely Bot v2.0', color=0xFF0000)
-    emh1.set_thumbnail(url=r"https://cdn.discordapp.com/attachments/863706778743341076/874579616210239488/Avatar.png")
-    emh1.add_field(name=f'NOTICE', value=f'This project is now seperate from this!', inline=True)
-    emh1.add_field(name=f'Invite Link', value=f'https://discord.com/api/oauth2/authorize?client_id=863712001724776488&permissions=139653925952&scope=bot', inline=True)
-    await loading_message.delete()
-    await ctx.send(embed=emh1)
 
-  elif command == "main":
-    emh2 = discord.Embed(title=f'Chat Bot', description=f'Setup', color=0xFF0000)
-    emh2.set_thumbnail(url=r"https://cdn.discordapp.com/attachments/863706778743341076/874579616210239488/Avatar.png")
-    emh2.add_field(name=f'How to start?', value=f'DM the Channel ID to `ZeaCeR#5641`', inline=True)
-    emh2.add_field(name=f'Help', value=f'use `{bp}chatbot help` to Help', inline=True)
-    await loading_message.delete()
-    await ctx.send(embed=emh2)
+  try:
+    old_wl = ("1", "1.0", "one", "first", "olddays")
+    bp = bot_prefix
+    if command in old_wl:
+      emh1 = discord.Embed(title=f'Chat Bot', description=f'Lonely Bot v2.0', color=0xFF0000)
+      emh1.set_thumbnail(url=r"https://cdn.discordapp.com/attachments/863706778743341076/874579616210239488/Avatar.png")
+      emh1.add_field(name=f'NOTICE', value=f'This project is now seperate from this!', inline=True)
+      emh1.add_field(name=f'Invite Link', value=f'https://discord.com/api/oauth2/authorize?client_id=863712001724776488&permissions=139653925952&scope=bot', inline=True)
+      emh1.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+      emh1.set_footer(text=f"Requested by {ctx.author.name}")
+      await loading_message.delete()
+      await ctx.send(embed=emh1)
 
-  elif command == "history":
-    emh3 = discord.Embed(title=f'Chat Bot', description=f'Chatbot History', color=0xFF0000)
-    emh3.set_thumbnail(url=r"https://cdn.discordapp.com/attachments/863706778743341076/874579616210239488/Avatar.png")
-    emh3.add_field(name=f'History', value=f'First Started as `Lonely Bot#7613`', inline=True)
-    await loading_message.delete()
-    await ctx.send(embed=emh3)
+    elif command == "main":
+      emh2 = discord.Embed(title=f'Chat Bot', description=f'Setup', color=0xFF0000)
+      emh2.set_thumbnail(url=r"https://cdn.discordapp.com/attachments/863706778743341076/874579616210239488/Avatar.png")
+      emh2.add_field(name=f'How to start?', value=f'DM the Channel ID to `ZeaCeR#5641`', inline=True)
+      emh2.add_field(name=f'Help', value=f'use `{bp}chatbot help` to Help', inline=True)
+      emh2.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+      emh2.set_footer(text=f"Requested by {ctx.author.name}")
+      await loading_message.delete()
+      await ctx.send(embed=emh2)
+
+    elif command == "history":
+      emh3 = discord.Embed(title=f'Chat Bot', description=f'Chatbot History', color=0xFF0000)
+      emh3.set_thumbnail(url=r"https://cdn.discordapp.com/attachments/863706778743341076/874579616210239488/Avatar.png")
+      emh3.add_field(name=f'History', value=f'First Started as `Lonely Bot#7613`', inline=True)
+      emh3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+      emh3.set_footer(text=f"Requested by {ctx.author.name}")
+      await loading_message.delete()
+      await ctx.send(embed=emh3)
+    
+    elif command == "list":
+      emh4 = discord.Embed(title=f'Chat Bot - Channel List', description=f'all activated channels', color=0xFF0000)
+      emh4.set_thumbnail(url=r"https://cdn.discordapp.com/attachments/863706778743341076/874579616210239488/Avatar.png")
+      emh4.add_field(name=f'List', value='863706778743341076 \n874577378746175508\n', inline=True)
+      emh4.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+      emh4.set_footer(text=f"Requested by {ctx.author.name}")
+      await loading_message.delete()
+      await ctx.send(embed=emh4)
+
+    elif command == "help":
+      emh2 = discord.Embed(title=f'Chat Bot - Help', description=f'Setup', color=0xFF0000)
+      emh2.set_thumbnail(url=r"https://cdn.discordapp.com/attachments/863706778743341076/874579616210239488/Avatar.png")
+      emh2.add_field(name=f'History', value=f'`{bp}chatbot history` to see the beginning of the chatbot project', inline=True)
+      emh2.add_field(name=f'List Active Channels', value=f'`{bp}chatbot list` to see the list of active channels of chatbot', inline=True)
+      emh2.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+      emh2.set_footer(text=f"Requested by {ctx.author.name}")
+      emh2.add_field(name=f'Old Days', value=f'`{bp}chatbot olddays`', inline=True)
+      await loading_message.delete()
+      await ctx.send(embed=emh2)
+    
+    else:
+      emh2 = discord.Embed(title=f'Chat Bot - Help', description=f'Setup', color=0xFF0000)
+      emh2.set_thumbnail(url=r"https://cdn.discordapp.com/attachments/863706778743341076/874579616210239488/Avatar.png")
+      emh2.add_field(name=f'History', value=f'`{bp}chatbot history` to see the beginning of the chatbot project', inline=True)
+      emh2.add_field(name=f'List Active Channels', value=f'`{bp}chatbot list` to see the list of active channels of chatbot', inline=True)
+      emh2.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+      emh2.set_footer(text=f"Requested by {ctx.author.name}")
+      emh2.add_field(name=f'Old Days', value=f'`{bp}chatbot olddays`', inline=True)
+      await loading_message.delete()
+      await ctx.send(embed=emh2)
   
-  elif command == "list":
-    emh4 = discord.Embed(title=f'Chat Bot - Channel List', description=f'all activated channels', color=0xFF0000)
-    emh4.set_thumbnail(url=r"https://cdn.discordapp.com/attachments/863706778743341076/874579616210239488/Avatar.png")
-    emh4.add_field(name=f'List', value='863706778743341076 \n874577378746175508\n', inline=True)
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
     await loading_message.delete()
-    await ctx.send(embed=emh4)
+    await ctx.send(embed=embed3)
 
-  elif command == "help":
-    emh2 = discord.Embed(title=f'Chat Bot - Help', description=f'Setup', color=0xFF0000)
-    emh2.set_thumbnail(url=r"https://cdn.discordapp.com/attachments/863706778743341076/874579616210239488/Avatar.png")
-    emh2.add_field(name=f'History', value=f'`{bp}chatbot history` to see the beginning of the chatbot project', inline=True)
-    emh2.add_field(name=f'List Active Channels', value=f'`{bp}chatbot help` to see the list of active channels of chatbot', inline=True)
-    emh2.add_field(name=f'Old Days', value=f'`{bp}chatbot olddays`', inline=True)
-    await loading_message.delete()
-    await ctx.send(embed=emh2)
 
 @client.command()
 async def google(ctx, *, whatToSearch):
   loading_message = await ctx.send(embed=please_wait_emb)
-  embed=discord.Embed(title="Google Search", description="Link to query", color=0xFF0000)
-  embed.add_field(name="Name", value=f"https://www.google.com/search?q={whatToSearch}", inline=True)
-  await loading_message.delete()
-  await ctx.send(embed=embed)
+
+  try:
+    embed=discord.Embed(title="Google Search", description="Link to query", color=0xFF0000)
+    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/880664487965900821/Google__G__Logo.svg.png")
+    embed.add_field(name="Link", value=f"https://www.google.com/search?q={whatToSearch}", inline=True)
+    embed.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed)
+  
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
+
 
 @client.command(aliases=["count-words", "countwords", "wordcount", "wc"])
 async def count(ctx, *, words):
@@ -5425,32 +5494,53 @@ async def count(ctx, *, words):
     embed.add_field(name="Number of Words:", value=f"{no}")
     await loading_message.delete()
     await ctx.send(embed=embed)
+
   except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
     await loading_message.delete()
-    await ctx.send(f"Error: {e}")
+    await ctx.send(embed=embed3)
+
 
 @client.command()
 async def addrole(ctx, member: discord.Member, *, role):
   loading_message = await ctx.send(embed=please_wait_emb)
   """Add a role to a user (case sensitive)"""
-  if ctx.author.server_permissions.administrator or ctx.author.server_permissions.manage_roles:
-    role = discord.utils.get(member.server.roles, name=role)
-    # await member.add_roles(role)
-    # await client.add_roles(member, role)
-    embed = discord.Embed(title="Role added", description="Role was added!".format(ctx.author, role, member), color=0xFF0000)
-    embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
-    embed.set_footer(text="Responsible moderator - " + ctx.author)
+
+  try:
+    if ctx.author.server_permissions.administrator or ctx.author.server_permissions.manage_roles:
+      role = discord.utils.get(member.server.roles, name=role)
+      # await member.add_roles(role)
+      # await client.add_roles(member, role)
+      embed = discord.Embed(title="Role added", description="Role was added!".format(ctx.author, role, member), color=0xFF0000)
+      embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
+      embed.set_footer(text="Responsible moderator - " + ctx.author)
+      await loading_message.delete()
+      await ctx.send(embed=embed)
+
+    else:
+      embed = discord.Embed(title="Permission Denied.", description="You don't have permission to use this command.", color=0xFF0000)
+      await loading_message.delete()
+      await ctx.send(embed=embed)
+  
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
     await loading_message.delete()
-    await ctx.send(embed=embed)
-  else:
-    embed = discord.Embed(title="Permission Denied.", description="You don't have permission to use this command.", color=0xFF0000)
-    await loading_message.delete()
-    await ctx.send(embed=embed)
+    await ctx.send(embed=embed3)
+
 
 @client.command()
 async def removerole(ctx, member: discord.Member, *, role):
-    loading_message = await ctx.send(embed=please_wait_emb)
-    """Remove a role (case sensitive)"""
+  loading_message = await ctx.send(embed=please_wait_emb)
+  """Remove a role (case sensitive)"""
+  try:
     if ctx.author.server_permissions.administrator or ctx.author.server_permissions.manage_roles:
       role = discord.utils.get(member.server.roles, name=role)
       # await member.remove_roles(member, role)
@@ -5465,45 +5555,66 @@ async def removerole(ctx, member: discord.Member, *, role):
       await loading_message.delete()
       await ctx.send(embed=embed)
 
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
+
+
 @client.command()
 async def face(ctx, gender="any"):
-  # any_wl = ("any", "everything", "both", "all", "whole")
-  male_wl = ("male", "man", "dick","testes", "boy", "m")
-  female_wl = ("female", "girl", "egirl", "vagina", "puss", "pussy", "gurl", "g", "f", "lady", "woman", "wife")
-  fake = Faker()
-  loading_message = await ctx.send(embed=please_wait_emb)
-  if gender.lower() in male_wl:
-    r = requests.get("https://fakeface.rest/face/json?gender=male").json()
-    embed=discord.Embed(title="Here is your generated face", color=0xff0000)
-    embed.add_field(name="Name", value=f"{fake.first_name_male()} {fake.last_name_male()}", inline=False)
-    embed.add_field(name="Gender", value="Male", inline=False)
-    embed.add_field(name="Age", value=f"{r['age']}", inline=True)
-    embed.set_image(url=f'{r["image_url"]}')
-    embed.set_footer(text=f"Requested by {ctx.author.name}")
-    await loading_message.delete()
-    await ctx.send(embed=embed)
-  elif gender.lower() in female_wl:
-    r = requests.get("https://fakeface.rest/face/json?gender=female").json()
-    embed2=discord.Embed(title="Here is your generated face", color=0xff0000)
-    embed2.add_field(name="Name", value=f"{fake.first_name_female()} {fake.last_name_female()}", inline=False)
-    embed2.add_field(name="Gender", value="Female", inline=False)
-    embed2.add_field(name="Age", value=f"{r['age']}", inline=True)
-    embed2.set_image(url=f'{r["image_url"]}')
-    embed2.set_footer(text=f"Requested by {ctx.author.name}")
-    await loading_message.delete()
-    await ctx.send(embed=embed2)
-  else:
-    r = requests.get("https://fakeface.rest/face/json").json()
-    embed3=discord.Embed(title="Here is your generated face", color=0xff0000)
-    if r['gender'] == "male":
-      embed3.add_field(name="Name", value=f"{fake.first_name_male()} {fake.last_name_male()}", inline=False)
-    elif r['gender'] == "female":
-      embed3.add_field(name="Name", value=f"{fake.first_name_female()} {fake.last_name_female()}", inline=False)
+
+  try:
+    # any_wl = ("any", "everything", "both", "all", "whole")
+    male_wl = ("male", "man", "dick","testes", "boy", "m")
+    female_wl = ("female", "girl", "egirl", "vagina", "puss", "pussy", "gurl", "g", "f", "lady", "woman", "wife")
+    fake = Faker()
+    loading_message = await ctx.send(embed=please_wait_emb)
+    if gender.lower() in male_wl:
+      r = requests.get("https://fakeface.rest/face/json?gender=male").json()
+      embed=discord.Embed(title="Here is your generated face", color=0xff0000)
+      embed.add_field(name="Name", value=f"{fake.first_name_male()} {fake.last_name_male()}", inline=False)
+      embed.add_field(name="Gender", value="Male", inline=False)
+      embed.add_field(name="Age", value=f"{r['age']}", inline=True)
+      embed.set_image(url=f'{r["image_url"]}')
+      embed.set_footer(text=f"Requested by {ctx.author.name}")
+      await loading_message.delete()
+      await ctx.send(embed=embed)
+    elif gender.lower() in female_wl:
+      r = requests.get("https://fakeface.rest/face/json?gender=female").json()
+      embed2=discord.Embed(title="Here is your generated face", color=0xff0000)
+      embed2.add_field(name="Name", value=f"{fake.first_name_female()} {fake.last_name_female()}", inline=False)
+      embed2.add_field(name="Gender", value="Female", inline=False)
+      embed2.add_field(name="Age", value=f"{r['age']}", inline=True)
+      embed2.set_image(url=f'{r["image_url"]}')
+      embed2.set_footer(text=f"Requested by {ctx.author.name}")
+      await loading_message.delete()
+      await ctx.send(embed=embed2)
     else:
-      pass
-    embed3.add_field(name="Gender", value=f"{r['gender']}", inline=False)
-    embed3.add_field(name="Age", value=f"{r['age']}", inline=True)
-    embed3.set_image(url=f'{r["image_url"]}')
+      r = requests.get("https://fakeface.rest/face/json").json()
+      embed3=discord.Embed(title="Here is your generated face", color=0xff0000)
+      if r['gender'] == "male":
+        embed3.add_field(name="Name", value=f"{fake.first_name_male()} {fake.last_name_male()}", inline=False)
+      elif r['gender'] == "female":
+        embed3.add_field(name="Name", value=f"{fake.first_name_female()} {fake.last_name_female()}", inline=False)
+      else:
+        pass
+      embed3.add_field(name="Gender", value=f"{r['gender']}", inline=False)
+      embed3.add_field(name="Age", value=f"{r['age']}", inline=True)
+      embed3.set_image(url=f'{r["image_url"]}')
+      embed3.set_footer(text=f"Requested by {ctx.author.name}")
+      await loading_message.delete()
+      await ctx.send(embed=embed3)
+
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
     embed3.set_footer(text=f"Requested by {ctx.author.name}")
     await loading_message.delete()
     await ctx.send(embed=embed3)
@@ -5512,12 +5623,23 @@ async def face(ctx, gender="any"):
 @client.command(aliases=["passowrd-check", "pwdcheck", "pwd-check", "pwdstrength", "password-strength", "pwd-strength", "pwdch", "checkpassword"])
 async def passwordcheck(ctx, *, passowrdhere):
   loading_message = await ctx.send(embed=please_wait_emb)
-  stats = PasswordStats(f'{passowrdhere}')
-  embed=discord.Embed(title="Password Strength Checker", color=0xff0000)
-  embed.add_field(name="Strenth:", value=f"{stats.strength()}", inline=False)
-  embed.set_footer(text=f"Requested by {ctx.author.name}")
-  await loading_message.delete()
-  await ctx.send(embed=embed)
+
+  try:
+    stats = PasswordStats(f'{passowrdhere}')
+    embed=discord.Embed(title="Password Strength Checker", color=0xff0000)
+    embed.add_field(name="Strenth:", value=f"{stats.strength()}", inline=False)
+    embed.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed)
+  
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
 
 # def SHERLOCK_THING(usernametofind):
 #   change_directory("dsherlock")
@@ -5593,379 +5715,437 @@ async def sherlock(ctx, *, usernametofind):
 
   # NEW CODE, FAST, NOT WORKING AS INTENDED, RETURNS ALL UNWATED STUFF
   loading_message = await ctx.send(embed=please_wait_emb)
-  all_possible_accounts_1 = f"""+ 7Cups: https://www.7cups.com/@{usernametofind}
-+ 9GAG: https://www.9gag.com/u/{usernametofind}
-+ About.me: https://about.me/{usernametofind}
-+ Archive.org: https://archive.org/details/@{usernametofind}
-+ AskFM: https://ask.fm/{usernametofind}
-+ Audiojungle: https://audiojungle.net/user/{usernametofind}
-+ BLIP.fm: https://blip.fm/{usernametofind}
-+ Bandcamp: https://www.bandcamp.com/{usernametofind}
-+ Behance: https://www.behance.net/{usernametofind}
-+ BinarySearch: https://binarysearch.io/@/{usernametofind}
-+ BitBucket: https://bitbucket.org/{usernametofind}/
-+ BitCoinForum: https://bitcoinforum.com/profile/{usernametofind}
-+ Blogger: https://{usernametofind}.blogspot.com
-+ Bookcrossing: https://www.bookcrossing.com/mybookshelf/{usernametofind}/
-+ BuzzFeed: https://buzzfeed.com/{usernametofind}
-+ CNET: https://www.cnet.com/profiles/{usernametofind}/
-+ Carbonmade: https://{usernametofind}.carbonmade.com"""
 
-  all_possible_accounts_2 = f"""
-+ Career.habr: https://career.habr.com/{usernametofind}
-+ Championat: https://www.championat.com/user/{usernametofind}
-+ CloudflareCommunity: https://community.cloudflare.com/u/{usernametofind}
-+ Codecademy: https://www.codecademy.com/profiles/{usernametofind}
-+ Codewars: https://www.codewars.com/users/{usernametofind}
-+ DailyMotion: https://www.dailymotion.com/{usernametofind}
-+ Designspiration: https://www.designspiration.net/{usernametofind}/
-+ DeviantART: https://{usernametofind}.deviantart.com
-+ Discogs: https://www.discogs.com/user/{usernametofind}
-+ Discuss.Elastic.co: https://discuss.elastic.co/u/{usernametofind}
-+ Disqus: https://disqus.com/{usernametofind}"""
+  try:
+    all_possible_accounts_1 = f"""+ 7Cups: https://www.7cups.com/@{usernametofind}
+  + 9GAG: https://www.9gag.com/u/{usernametofind}
+  + About.me: https://about.me/{usernametofind}
+  + Archive.org: https://archive.org/details/@{usernametofind}
+  + AskFM: https://ask.fm/{usernametofind}
+  + Audiojungle: https://audiojungle.net/user/{usernametofind}
+  + BLIP.fm: https://blip.fm/{usernametofind}
+  + Bandcamp: https://www.bandcamp.com/{usernametofind}
+  + Behance: https://www.behance.net/{usernametofind}
+  + BinarySearch: https://binarysearch.io/@/{usernametofind}
+  + BitBucket: https://bitbucket.org/{usernametofind}/
+  + BitCoinForum: https://bitcoinforum.com/profile/{usernametofind}
+  + Blogger: https://{usernametofind}.blogspot.com
+  + Bookcrossing: https://www.bookcrossing.com/mybookshelf/{usernametofind}/
+  + BuzzFeed: https://buzzfeed.com/{usernametofind}
+  + CNET: https://www.cnet.com/profiles/{usernametofind}/
+  + Carbonmade: https://{usernametofind}.carbonmade.com"""
 
-  all_possible_accounts_3 = f"""+ Dribbble: https://dribbble.com/{usernametofind}
-+ Duolingo: https://www.duolingo.com/profile/{usernametofind}
-+ Ello: https://ello.co/{usernametofind}
-+ Euw: https://euw.op.gg/summoner/userName={usernametofind}
-+ EyeEm: https://www.eyeem.com/u/{usernametofind}
-+ F3.cool: https://f3.cool/{usernametofind}/
-+ Facebook: https://www.facebook.com/{usernametofind}
-+ Flickr: https://www.flickr.com/people/{usernametofind}
-+ Flipboard: https://flipboard.com/@{usernametofind}
-+ FortniteTracker: https://fortnitetracker.com/profile/all/{usernametofind}
-+ Freelance.habr: https://freelance.habr.com/freelancers/{usernametofind}
-+ Freelancer: https://www.freelancer.com/u/{usernametofind}
-+ Freesound: https://freesound.org/people/{usernametofind}/
-+ Giphy: https://giphy.com/{usernametofind}"""
+    all_possible_accounts_2 = f"""
+  + Career.habr: https://career.habr.com/{usernametofind}
+  + Championat: https://www.championat.com/user/{usernametofind}
+  + CloudflareCommunity: https://community.cloudflare.com/u/{usernametofind}
+  + Codecademy: https://www.codecademy.com/profiles/{usernametofind}
+  + Codewars: https://www.codewars.com/users/{usernametofind}
+  + DailyMotion: https://www.dailymotion.com/{usernametofind}
+  + Designspiration: https://www.designspiration.net/{usernametofind}/
+  + DeviantART: https://{usernametofind}.deviantart.com
+  + Discogs: https://www.discogs.com/user/{usernametofind}
+  + Discuss.Elastic.co: https://discuss.elastic.co/u/{usernametofind}
+  + Disqus: https://disqus.com/{usernametofind}"""
 
-  all_possible_accounts_4 = f"""
-+ GitHub: https://www.github.com/{usernametofind}
-+ GitHub Support Community: https://github.community/u/{usernametofind}/summary
-+ GitLab: https://gitlab.com/{usernametofind}
-+ Gitee: https://gitee.com/{usernametofind}
-+ Gumroad: https://www.gumroad.com/{usernametofind}
-+ GuruShots: https://gurushots.com/{usernametofind}/photos
-+ Hackaday: https://hackaday.io/{usernametofind}
-+ HackerNews: https://news.ycombinator.com/user?id={usernametofind}
-+ HackerOne: https://hackerone.com/{usernametofind}
-+ HackerRank: https://hackerrank.com/{usernametofind}
-+ House-Mixes.com: https://www.house-mixes.com/profile/{usernametofind}
-+ IFTTT: https://www.ifttt.com/p/{usernametofind}"""
+    all_possible_accounts_3 = f"""+ Dribbble: https://dribbble.com/{usernametofind}
+  + Duolingo: https://www.duolingo.com/profile/{usernametofind}
+  + Ello: https://ello.co/{usernametofind}
+  + Euw: https://euw.op.gg/summoner/userName={usernametofind}
+  + EyeEm: https://www.eyeem.com/u/{usernametofind}
+  + F3.cool: https://f3.cool/{usernametofind}/
+  + Facebook: https://www.facebook.com/{usernametofind}
+  + Flickr: https://www.flickr.com/people/{usernametofind}
+  + Flipboard: https://flipboard.com/@{usernametofind}
+  + FortniteTracker: https://fortnitetracker.com/profile/all/{usernametofind}
+  + Freelance.habr: https://freelance.habr.com/freelancers/{usernametofind}
+  + Freelancer: https://www.freelancer.com/u/{usernametofind}
+  + Freesound: https://freesound.org/people/{usernametofind}/
+  + Giphy: https://giphy.com/{usernametofind}"""
 
-  all_possible_accounts_5 = f"""+ Itch.io: https://{usernametofind}.itch.io/
-+ Keybase: https://{usernametofind}base.io/{usernametofind}
-+ Kik: https://kik.me/{usernametofind}
-+ Launchpad: https://launchpad.net/~{usernametofind}
-+ LeetCode: https://leetcode.com/{usernametofind}
-+ Letterboxd: https://letterboxd.com/{usernametofind}
-+ Lichess: https://lichess.org/@/{usernametofind}
-+ LiveJournal: https://{usernametofind}.livejournal.com
-+ Lolchess: https://lolchess.gg/profile/na/{usernametofind}
-+ Medium: https://medium.com/@{usernametofind}
-+ Memrise: https://www.memrise.com/user/{usernametofind}/
-+ MixCloud: https://www.mixcloud.com/{usernametofind}/
-+ Munzee: https://www.munzee.com/m/{usernametofind}
-+ MyAnimeList: https://myanimelist.net/profile/{usernametofind}
-+ MyMiniFactory: https://www.myminifactory.com/users/{usernametofind}"""
+    all_possible_accounts_4 = f"""
+  + GitHub: https://www.github.com/{usernametofind}
+  + GitHub Support Community: https://github.community/u/{usernametofind}/summary
+  + GitLab: https://gitlab.com/{usernametofind}
+  + Gitee: https://gitee.com/{usernametofind}
+  + Gumroad: https://www.gumroad.com/{usernametofind}
+  + GuruShots: https://gurushots.com/{usernametofind}/photos
+  + Hackaday: https://hackaday.io/{usernametofind}
+  + HackerNews: https://news.ycombinator.com/user?id={usernametofind}
+  + HackerOne: https://hackerone.com/{usernametofind}
+  + HackerRank: https://hackerrank.com/{usernametofind}
+  + House-Mixes.com: https://www.house-mixes.com/profile/{usernametofind}
+  + IFTTT: https://www.ifttt.com/p/{usernametofind}"""
 
-  all_possible_accounts_6 = f"""+ Myspace: https://myspace.com/{usernametofind}
-+ NICommunityForum: https://www.native-instruments.com/forum/members?username={usernametofind}
-+ Naver: https://blog.naver.com/{usernametofind}
-+ Newgrounds: https://{usernametofind}.newgrounds.com
-+ Otzovik: https://otzovik.com/profile/{usernametofind}
-+ PCGamer: https://forums.pcgamer.com/members/?username={usernametofind}
-+ Pastebin: https://pastebin.com/u/{usernametofind}
-+ Patreon: https://www.patreon.com/{usernametofind}
-+ Periscope: https://www.periscope.tv/{usernametofind}/
-+ Pinkbike: https://www.pinkbike.com/u/{usernametofind}/
-+ Pinterest: https://www.pinterest.com/{usernametofind}/
-+ Pokemon Showdown: https://pokemonshowdown.com/users/{usernametofind}
-+ Polarsteps: https://polarsteps.com/{usernametofind}
-+ ProductHunt: https://www.producthunt.com/@{usernametofind}"""
+    all_possible_accounts_5 = f"""+ Itch.io: https://{usernametofind}.itch.io/
+  + Keybase: https://{usernametofind}base.io/{usernametofind}
+  + Kik: https://kik.me/{usernametofind}
+  + Launchpad: https://launchpad.net/~{usernametofind}
+  + LeetCode: https://leetcode.com/{usernametofind}
+  + Letterboxd: https://letterboxd.com/{usernametofind}
+  + Lichess: https://lichess.org/@/{usernametofind}
+  + LiveJournal: https://{usernametofind}.livejournal.com
+  + Lolchess: https://lolchess.gg/profile/na/{usernametofind}
+  + Medium: https://medium.com/@{usernametofind}
+  + Memrise: https://www.memrise.com/user/{usernametofind}/
+  + MixCloud: https://www.mixcloud.com/{usernametofind}/
+  + Munzee: https://www.munzee.com/m/{usernametofind}
+  + MyAnimeList: https://myanimelist.net/profile/{usernametofind}
+  + MyMiniFactory: https://www.myminifactory.com/users/{usernametofind}"""
 
-  all_possible_accounts_7 = f"""+ PromoDJ: http://promodj.com/{usernametofind}
-+ PyPi: https://pypi.org/user/{usernametofind}
-+ Quizlet: https://quizlet.com/{usernametofind}
-+ Quora: https://www.quora.com/profile/{usernametofind}
-+ Raidforums: https://raidforums.com/User-{usernametofind}
-+ Rajce.net: https://{usernametofind}.rajce.idnes.cz/
-+ Rate Your Music: https://rateyourmusic.com/~{usernametofind}
-+ Reddit: https://www.reddit.com/user/{usernametofind}
-+ ReverbNation: https://www.reverbnation.com/{usernametofind}
-+ Roblox: https://www.roblox.com/user.aspx?username={usernametofind}
-+ RubyGems: https://rubygems.org/profiles/{usernametofind}
-+ Sbazar.cz: https://www.sbazar.cz/{usernametofind}
-+ Scratch: https://scratch.mit.edu/users/{usernametofind}
-+ Scribd: https://www.scribd.com/{usernametofind}
-+ Slack: https://{usernametofind}.slack.com"""
+    all_possible_accounts_6 = f"""+ Myspace: https://myspace.com/{usernametofind}
+  + NICommunityForum: https://www.native-instruments.com/forum/members?username={usernametofind}
+  + Naver: https://blog.naver.com/{usernametofind}
+  + Newgrounds: https://{usernametofind}.newgrounds.com
+  + Otzovik: https://otzovik.com/profile/{usernametofind}
+  + PCGamer: https://forums.pcgamer.com/members/?username={usernametofind}
+  + Pastebin: https://pastebin.com/u/{usernametofind}
+  + Patreon: https://www.patreon.com/{usernametofind}
+  + Periscope: https://www.periscope.tv/{usernametofind}/
+  + Pinkbike: https://www.pinkbike.com/u/{usernametofind}/
+  + Pinterest: https://www.pinterest.com/{usernametofind}/
+  + Pokemon Showdown: https://pokemonshowdown.com/users/{usernametofind}
+  + Polarsteps: https://polarsteps.com/{usernametofind}
+  + ProductHunt: https://www.producthunt.com/@{usernametofind}"""
 
-  all_possible_accounts_8 = f"""
-+ Slashdot: https://slashdot.org/~{usernametofind}
-+ SlideShare: https://slideshare.net/{usernametofind}
-+ Smule: https://www.smule.com/{usernametofind}
-+ SoundCloud: https://soundcloud.com/{usernametofind}
-+ SourceForge: https://sourceforge.net/u/{usernametofind}
-+ SparkPeople: https://www.sparkpeople.com/mypage.asp?id={usernametofind}
-+ Speedrun.com: https://speedrun.com/user/{usernametofind}
-+ SportsRU: https://www.sports.ru/profile/{usernametofind}/
-+ Spotify: https://open.spotify.com/user/{usernametofind}
-+ Star Citizen: https://robertsspaceindustries.com/citizens/{usernametofind}
-+ Steam: https://steamcommunity.com/id/{usernametofind}
-+ SteamGroup: https://steamcommunity.com/groups/{usernametofind}
-+ Strava: https://www.strava.com/athletes/{usernametofind}
-+ TETR.IO: https://ch.tetr.io/u/{usernametofind}
-+ Tellonym.me: https://tellonym.me/{usernametofind}
-+ Tinder: https://www.gotinder.com/@{usernametofind}"""
+    all_possible_accounts_7 = f"""+ PromoDJ: http://promodj.com/{usernametofind}
+  + PyPi: https://pypi.org/user/{usernametofind}
+  + Quizlet: https://quizlet.com/{usernametofind}
+  + Quora: https://www.quora.com/profile/{usernametofind}
+  + Raidforums: https://raidforums.com/User-{usernametofind}
+  + Rajce.net: https://{usernametofind}.rajce.idnes.cz/
+  + Rate Your Music: https://rateyourmusic.com/~{usernametofind}
+  + Reddit: https://www.reddit.com/user/{usernametofind}
+  + ReverbNation: https://www.reverbnation.com/{usernametofind}
+  + Roblox: https://www.roblox.com/user.aspx?username={usernametofind}
+  + RubyGems: https://rubygems.org/profiles/{usernametofind}
+  + Sbazar.cz: https://www.sbazar.cz/{usernametofind}
+  + Scratch: https://scratch.mit.edu/users/{usernametofind}
+  + Scribd: https://www.scribd.com/{usernametofind}
+  + Slack: https://{usernametofind}.slack.com"""
 
-  all_possible_accounts_9 = f"""+ TrackmaniaLadder: http://en.tm-ladder.com/{usernametofind}_rech.php
-+ TradingView: https://www.tradingview.com/u/{usernametofind}/
-+ Trakt: https://www.trakt.tv/users/{usernametofind}
-+ TrashboxRU: https://trashbox.ru/users/{usernametofind}
-+ Trello: https://trello.com/{usernametofind}
-+ TryHackMe: https://tryhackme.com/p/{usernametofind}
-+ Ultimate-Guitar: https://ultimate-guitar.com/u/{usernametofind}
-+ Unsplash: https://unsplash.com/@{usernametofind}
-+ VK: https://vk.com/{usernametofind}
-+ VSCO: https://vsco.co/{usernametofind}
-+ Vero: https://vero.co/{usernametofind}
-+ Vimeo: https://vimeo.com/{usernametofind}
-+ Virgool: https://virgool.io/@{usernametofind}
-+ VirusTotal: https://www.virustotal.com/ui/users/{usernametofind}/trusted_users
-+ Warrior Forum: https://www.warriorforum.com/members/{usernametofind}.html"""
+    all_possible_accounts_8 = f"""
+  + Slashdot: https://slashdot.org/~{usernametofind}
+  + SlideShare: https://slideshare.net/{usernametofind}
+  + Smule: https://www.smule.com/{usernametofind}
+  + SoundCloud: https://soundcloud.com/{usernametofind}
+  + SourceForge: https://sourceforge.net/u/{usernametofind}
+  + SparkPeople: https://www.sparkpeople.com/mypage.asp?id={usernametofind}
+  + Speedrun.com: https://speedrun.com/user/{usernametofind}
+  + SportsRU: https://www.sports.ru/profile/{usernametofind}/
+  + Spotify: https://open.spotify.com/user/{usernametofind}
+  + Star Citizen: https://robertsspaceindustries.com/citizens/{usernametofind}
+  + Steam: https://steamcommunity.com/id/{usernametofind}
+  + SteamGroup: https://steamcommunity.com/groups/{usernametofind}
+  + Strava: https://www.strava.com/athletes/{usernametofind}
+  + TETR.IO: https://ch.tetr.io/u/{usernametofind}
+  + Tellonym.me: https://tellonym.me/{usernametofind}
+  + Tinder: https://www.gotinder.com/@{usernametofind}"""
 
-  all_possible_accounts_10 = f"""
-+ We Heart It: https://weheartit.com/{usernametofind}
-+ Whonix Forum: https://forums.whonix.org/u/{usernametofind}
-+ Wikidot: http://www.wikidot.com/user:info/{usernametofind}
-+ Windy: https://community.windy.com/user/{usernametofind}
-+ WordPressOrg: https://profiles.wordpress.org/{usernametofind}/
-+ YouNow: https://www.younow.com/{usernametofind}/
-+ akniga: https://akniga.org/profile/{usernametofind}
-+ authorSTREAM: http://www.authorstream.com/{usernametofind}/
-+ couchsurfing: https://www.couchsurfing.com/people/{usernametofind}
-+ d3RU: https://d3.ru/user/{usernametofind}/posts
-+ dailykos: https://www.dailykos.com/user/{usernametofind}
-+ drive2: https://www.drive2.ru/users/{usernametofind}
-+ fl: https://www.fl.ru/users/{usernametofind}
-+ geocaching: https://www.geocaching.com/p/default.aspx?u={usernametofind}
-+ habr: https://habr.com/ru/users/{usernametofind}"""
+    all_possible_accounts_9 = f"""+ TrackmaniaLadder: http://en.tm-ladder.com/{usernametofind}_rech.php
+  + TradingView: https://www.tradingview.com/u/{usernametofind}/
+  + Trakt: https://www.trakt.tv/users/{usernametofind}
+  + TrashboxRU: https://trashbox.ru/users/{usernametofind}
+  + Trello: https://trello.com/{usernametofind}
+  + TryHackMe: https://tryhackme.com/p/{usernametofind}
+  + Ultimate-Guitar: https://ultimate-guitar.com/u/{usernametofind}
+  + Unsplash: https://unsplash.com/@{usernametofind}
+  + VK: https://vk.com/{usernametofind}
+  + VSCO: https://vsco.co/{usernametofind}
+  + Vero: https://vero.co/{usernametofind}
+  + Vimeo: https://vimeo.com/{usernametofind}
+  + Virgool: https://virgool.io/@{usernametofind}
+  + VirusTotal: https://www.virustotal.com/ui/users/{usernametofind}/trusted_users
+  + Warrior Forum: https://www.warriorforum.com/members/{usernametofind}.html"""
 
-  all_possible_accounts_11 = f"""+ igromania: http://forum.igromania.ru/member.php?username={usernametofind}
-+ interpals: https://www.interpals.net/{usernametofind}
-+ irecommend: https://irecommend.ru/users/{usernametofind}
-+ jbzd.com.pl: https://jbzd.com.pl/uzytkownik/{usernametofind}
-+ jeuxvideo: http://www.jeuxvideo.com/profil/{usernametofind}?mode=infos
-+ last.fm: https://last.fm/user/{usernametofind}
-+ livelib: https://www.livelib.ru/reader/{usernametofind}
-+ mastodon.social: https://mastodon.social/@{usernametofind}
-+ metacritic: https://www.metacritic.com/user/{usernametofind}
-+ moikrug: https://moikrug.ru/{usernametofind}
-+ nairaland.com: https://www.nairaland.com/{usernametofind}"""
+    all_possible_accounts_10 = f"""
+  + We Heart It: https://weheartit.com/{usernametofind}
+  + Whonix Forum: https://forums.whonix.org/u/{usernametofind}
+  + Wikidot: http://www.wikidot.com/user:info/{usernametofind}
+  + Windy: https://community.windy.com/user/{usernametofind}
+  + WordPressOrg: https://profiles.wordpress.org/{usernametofind}/
+  + YouNow: https://www.younow.com/{usernametofind}/
+  + akniga: https://akniga.org/profile/{usernametofind}
+  + authorSTREAM: http://www.authorstream.com/{usernametofind}/
+  + couchsurfing: https://www.couchsurfing.com/people/{usernametofind}
+  + d3RU: https://d3.ru/user/{usernametofind}/posts
+  + dailykos: https://www.dailykos.com/user/{usernametofind}
+  + drive2: https://www.drive2.ru/users/{usernametofind}
+  + fl: https://www.fl.ru/users/{usernametofind}
+  + geocaching: https://www.geocaching.com/p/default.aspx?u={usernametofind}
+  + habr: https://habr.com/ru/users/{usernametofind}"""
 
-  all_possible_accounts_12 = f"""
-+ nnRU: https://{usernametofind}.www.nn.ru/
-+ note: https://note.com/{usernametofind}
-+ npm: https://www.npmjs.com/~{usernametofind}
-+ opennet: https://www.opennet.ru/~{usernametofind}
-+ osu!: https://osu.ppy.sh/users/{usernametofind}
-+ phpRU: https://php.ru/forum/members/?username={usernametofind}
-+ pr0gramm: https://pr0gramm.com/user/{usernametofind}
-+ radio_echo_msk: https://echo.msk.ru/users/{usernametofind}
-+ spletnik: https://spletnik.ru/user/{usernametofind}
-+ toster: https://www.toster.ru/user/{usernametofind}/answers
-+ Instagram: https://www.instagram.com/{usernametofind}
-+ Tiktok: https://www.tiktok.com/@{usernametofind}
-"""
-  embed1=discord.Embed(title="Sherlock!", color=0xff0000)
-  embed1.set_thumbnail(url="https://user-images.githubusercontent.com/27065646/53551960-ae4dff80-3b3a-11e9-9075-cef786c69364.png")
-  embed1.add_field(name="All Possible Profiles!", value=all_possible_accounts_1, inline=False)
-  embed1.set_footer(text="All links won't work! We will add a check real soon!")
+    all_possible_accounts_11 = f"""+ igromania: http://forum.igromania.ru/member.php?username={usernametofind}
+  + interpals: https://www.interpals.net/{usernametofind}
+  + irecommend: https://irecommend.ru/users/{usernametofind}
+  + jbzd.com.pl: https://jbzd.com.pl/uzytkownik/{usernametofind}
+  + jeuxvideo: http://www.jeuxvideo.com/profil/{usernametofind}?mode=infos
+  + last.fm: https://last.fm/user/{usernametofind}
+  + livelib: https://www.livelib.ru/reader/{usernametofind}
+  + mastodon.social: https://mastodon.social/@{usernametofind}
+  + metacritic: https://www.metacritic.com/user/{usernametofind}
+  + moikrug: https://moikrug.ru/{usernametofind}
+  + nairaland.com: https://www.nairaland.com/{usernametofind}"""
 
-  embed2=discord.Embed(title="Sherlock! - 2", color=0xff0000)
-  embed2.set_thumbnail(url="https://user-images.githubusercontent.com/27065646/53551960-ae4dff80-3b3a-11e9-9075-cef786c69364.png")
-  embed2.add_field(name="All Possible Profiles!", value=all_possible_accounts_2, inline=False)
-  embed2.set_footer(text="All links won't work! Part 2")
+    all_possible_accounts_12 = f"""
+  + nnRU: https://{usernametofind}.www.nn.ru/
+  + note: https://note.com/{usernametofind}
+  + npm: https://www.npmjs.com/~{usernametofind}
+  + opennet: https://www.opennet.ru/~{usernametofind}
+  + osu!: https://osu.ppy.sh/users/{usernametofind}
+  + phpRU: https://php.ru/forum/members/?username={usernametofind}
+  + pr0gramm: https://pr0gramm.com/user/{usernametofind}
+  + radio_echo_msk: https://echo.msk.ru/users/{usernametofind}
+  + spletnik: https://spletnik.ru/user/{usernametofind}
+  + toster: https://www.toster.ru/user/{usernametofind}/answers
+  + Instagram: https://www.instagram.com/{usernametofind}
+  + Tiktok: https://www.tiktok.com/@{usernametofind}
+  """
+    embed1=discord.Embed(title="Sherlock!", color=0xff0000)
+    embed1.set_thumbnail(url="https://user-images.githubusercontent.com/27065646/53551960-ae4dff80-3b3a-11e9-9075-cef786c69364.png")
+    embed1.add_field(name="All Possible Profiles!", value=all_possible_accounts_1, inline=False)
+    embed1.set_footer(text="All links won't work! We will add a check real soon!")
 
-  embed3=discord.Embed(title="Sherlock! - 3", color=0xff0000)
-  embed3.set_thumbnail(url="https://user-images.githubusercontent.com/27065646/53551960-ae4dff80-3b3a-11e9-9075-cef786c69364.png")
-  embed3.add_field(name="All Possible Profiles!", value=all_possible_accounts_3, inline=False)
-  embed3.set_footer(text="All links won't work! Part 3")
+    embed2=discord.Embed(title="Sherlock! - 2", color=0xff0000)
+    embed2.set_thumbnail(url="https://user-images.githubusercontent.com/27065646/53551960-ae4dff80-3b3a-11e9-9075-cef786c69364.png")
+    embed2.add_field(name="All Possible Profiles!", value=all_possible_accounts_2, inline=False)
+    embed2.set_footer(text="All links won't work! Part 2")
 
-  embed4=discord.Embed(title="Sherlock! - 4", color=0xff0000)
-  embed4.set_thumbnail(url="https://user-images.githubusercontent.com/27065646/53551960-ae4dff80-3b3a-11e9-9075-cef786c69364.png")
-  embed4.add_field(name="All Possible Profiles!", value=all_possible_accounts_4, inline=False)
-  embed4.set_footer(text="All links won't work! Part 4")
+    embed3=discord.Embed(title="Sherlock! - 3", color=0xff0000)
+    embed3.set_thumbnail(url="https://user-images.githubusercontent.com/27065646/53551960-ae4dff80-3b3a-11e9-9075-cef786c69364.png")
+    embed3.add_field(name="All Possible Profiles!", value=all_possible_accounts_3, inline=False)
+    embed3.set_footer(text="All links won't work! Part 3")
 
-  embed5=discord.Embed(title="Sherlock! - 5", color=0xff0000)
-  embed5.set_thumbnail(url="https://user-images.githubusercontent.com/27065646/53551960-ae4dff80-3b3a-11e9-9075-cef786c69364.png")
-  embed5.add_field(name="All Possible Profiles!", value=all_possible_accounts_5, inline=False)
-  embed5.set_footer(text="All links won't work! Part 5")
+    embed4=discord.Embed(title="Sherlock! - 4", color=0xff0000)
+    embed4.set_thumbnail(url="https://user-images.githubusercontent.com/27065646/53551960-ae4dff80-3b3a-11e9-9075-cef786c69364.png")
+    embed4.add_field(name="All Possible Profiles!", value=all_possible_accounts_4, inline=False)
+    embed4.set_footer(text="All links won't work! Part 4")
 
-  embed6=discord.Embed(title="Sherlock! - 6", color=0xff0000)
-  embed6.set_thumbnail(url="https://user-images.githubusercontent.com/27065646/53551960-ae4dff80-3b3a-11e9-9075-cef786c69364.png")
-  embed6.add_field(name="All Possible Profiles!", value=all_possible_accounts_6, inline=False)
-  embed6.set_footer(text="All links won't work! Part 6")
+    embed5=discord.Embed(title="Sherlock! - 5", color=0xff0000)
+    embed5.set_thumbnail(url="https://user-images.githubusercontent.com/27065646/53551960-ae4dff80-3b3a-11e9-9075-cef786c69364.png")
+    embed5.add_field(name="All Possible Profiles!", value=all_possible_accounts_5, inline=False)
+    embed5.set_footer(text="All links won't work! Part 5")
 
-  embed7=discord.Embed(title="Sherlock! - 7", color=0xff0000)
-  embed7.set_thumbnail(url="https://user-images.githubusercontent.com/27065646/53551960-ae4dff80-3b3a-11e9-9075-cef786c69364.png")
-  embed7.add_field(name="All Possible Profiles!", value=all_possible_accounts_7, inline=False)
-  embed7.set_footer(text="All links won't work! Part 7")
+    embed6=discord.Embed(title="Sherlock! - 6", color=0xff0000)
+    embed6.set_thumbnail(url="https://user-images.githubusercontent.com/27065646/53551960-ae4dff80-3b3a-11e9-9075-cef786c69364.png")
+    embed6.add_field(name="All Possible Profiles!", value=all_possible_accounts_6, inline=False)
+    embed6.set_footer(text="All links won't work! Part 6")
 
-  embed8=discord.Embed(title="Sherlock! - 8", color=0xff0000)
-  embed8.set_thumbnail(url="https://user-images.githubusercontent.com/27065646/53551960-ae4dff80-3b3a-11e9-9075-cef786c69364.png")
-  embed8.add_field(name="All Possible Profiles!", value=all_possible_accounts_8, inline=False)
-  embed8.set_footer(text="All links won't work! Part 8")
+    embed7=discord.Embed(title="Sherlock! - 7", color=0xff0000)
+    embed7.set_thumbnail(url="https://user-images.githubusercontent.com/27065646/53551960-ae4dff80-3b3a-11e9-9075-cef786c69364.png")
+    embed7.add_field(name="All Possible Profiles!", value=all_possible_accounts_7, inline=False)
+    embed7.set_footer(text="All links won't work! Part 7")
 
-  embed9=discord.Embed(title="Sherlock! - 9", color=0xff0000)
-  embed9.set_thumbnail(url="https://user-images.githubusercontent.com/27065646/53551960-ae4dff80-3b3a-11e9-9075-cef786c69364.png")
-  embed9.add_field(name="All Possible Profiles!", value=all_possible_accounts_9, inline=False)
-  embed9.set_footer(text="All links won't work! Part 9")
+    embed8=discord.Embed(title="Sherlock! - 8", color=0xff0000)
+    embed8.set_thumbnail(url="https://user-images.githubusercontent.com/27065646/53551960-ae4dff80-3b3a-11e9-9075-cef786c69364.png")
+    embed8.add_field(name="All Possible Profiles!", value=all_possible_accounts_8, inline=False)
+    embed8.set_footer(text="All links won't work! Part 8")
 
-  embed10=discord.Embed(title="Sherlock! - 10", color=0xff0000)
-  embed10.set_thumbnail(url="https://user-images.githubusercontent.com/27065646/53551960-ae4dff80-3b3a-11e9-9075-cef786c69364.png")
-  embed10.add_field(name="All Possible Profiles!", value=all_possible_accounts_10, inline=False)
-  embed10.set_footer(text="All links won't work! Part 10")
+    embed9=discord.Embed(title="Sherlock! - 9", color=0xff0000)
+    embed9.set_thumbnail(url="https://user-images.githubusercontent.com/27065646/53551960-ae4dff80-3b3a-11e9-9075-cef786c69364.png")
+    embed9.add_field(name="All Possible Profiles!", value=all_possible_accounts_9, inline=False)
+    embed9.set_footer(text="All links won't work! Part 9")
 
-  embed11=discord.Embed(title="Sherlock! - 11", color=0xff0000)
-  embed11.set_thumbnail(url="https://user-images.githubusercontent.com/27065646/53551960-ae4dff80-3b3a-11e9-9075-cef786c69364.png")
-  embed11.add_field(name="All Possible Profiles!", value=all_possible_accounts_11, inline=False)
-  embed11.set_footer(text="All links won't work! Part 11")
+    embed10=discord.Embed(title="Sherlock! - 10", color=0xff0000)
+    embed10.set_thumbnail(url="https://user-images.githubusercontent.com/27065646/53551960-ae4dff80-3b3a-11e9-9075-cef786c69364.png")
+    embed10.add_field(name="All Possible Profiles!", value=all_possible_accounts_10, inline=False)
+    embed10.set_footer(text="All links won't work! Part 10")
 
-  embed12=discord.Embed(title="Sherlock! - 12", color=0xff0000)
-  embed12.set_thumbnail(url="https://user-images.githubusercontent.com/27065646/53551960-ae4dff80-3b3a-11e9-9075-cef786c69364.png")
-  embed12.add_field(name="All Possible Profiles!", value=all_possible_accounts_12, inline=False)
-  embed12.set_footer(text="All links won't work! Part 12")
+    embed11=discord.Embed(title="Sherlock! - 11", color=0xff0000)
+    embed11.set_thumbnail(url="https://user-images.githubusercontent.com/27065646/53551960-ae4dff80-3b3a-11e9-9075-cef786c69364.png")
+    embed11.add_field(name="All Possible Profiles!", value=all_possible_accounts_11, inline=False)
+    embed11.set_footer(text="All links won't work! Part 11")
 
-  await loading_message.delete()
-  await ctx.send(embed=embed1)
-  await ctx.send(embed=embed2)
-  await ctx.send(embed=embed3)
-  await ctx.send(embed=embed4)
-  await ctx.send(embed=embed5)
-  await ctx.send(embed=embed6)
-  await ctx.send(embed=embed7)
-  await ctx.send(embed=embed8)
-  await ctx.send(embed=embed9)
-  await ctx.send(embed=embed10)
-  await ctx.send(embed=embed11)
-  await ctx.send(embed=embed12)
+    embed12=discord.Embed(title="Sherlock! - 12", color=0xff0000)
+    embed12.set_thumbnail(url="https://user-images.githubusercontent.com/27065646/53551960-ae4dff80-3b3a-11e9-9075-cef786c69364.png")
+    embed12.add_field(name="All Possible Profiles!", value=all_possible_accounts_12, inline=False)
+    embed12.set_footer(text="All links won't work! Part 12")
+
+    await loading_message.delete()
+    await ctx.send(embed=embed1)
+    await ctx.send(embed=embed2)
+    await ctx.send(embed=embed3)
+    await ctx.send(embed=embed4)
+    await ctx.send(embed=embed5)
+    await ctx.send(embed=embed6)
+    await ctx.send(embed=embed7)
+    await ctx.send(embed=embed8)
+    await ctx.send(embed=embed9)
+    await ctx.send(embed=embed10)
+    await ctx.send(embed=embed11)
+    await ctx.send(embed=embed12)
+  
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
 
 
 @client.command()
 async def uptime(ctx):
   loading_message = await ctx.send(embed=please_wait_emb)
-  current_time = time.time()
-  difference = int(round(current_time - start_time))
-  text = str(datetime.timedelta(seconds=difference))
-  embed=discord.Embed(color=0xff0000)
-  embed.add_field(name="The bot was online for: ", value=f":alarm_clock: {text}", inline=False)
-  embed.set_footer(text=f"Requested by {ctx.author.name}")
-  await loading_message.delete()
-  await ctx.send(embed=embed)
+
+  try:
+    current_time = time.time()
+    difference = int(round(current_time - start_time))
+    text = str(datetime.timedelta(seconds=difference))
+    embed=discord.Embed(color=0xff0000)
+    embed.add_field(name="The bot was online for: ", value=f":alarm_clock: {text}", inline=False)
+    embed.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed)
+  
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
+
 
 @client.command()
 async def status(ctx):
   loading_message = await ctx.send(embed=please_wait_emb)
-  current_time = time.time()
-  difference = int(round(current_time - start_time))
-  text = str(datetime.timedelta(seconds=difference))
 
-  embed=discord.Embed(color=0xff0000)
-  embed.add_field(name="Announcements", value=f"``` -YourBot {bot_current_version}- Hello! Its been nearly two months after the first release of this discord bot. Most of the commands are very stable now, but not all of them. Help me make this bot have 500+ commands. use {bot_prefix}help to check all the commands available! ```", inline=False)
-  embed.add_field(name="Servers", value=f"{len(client.guilds)}", inline=True)
-  embed.add_field(name="Uptime", value=f"{text}", inline=True)
-  embed.add_field(name="Version", value=f"{bot_current_version}", inline=True)
-  embed.add_field(name="Source Code", value="https://github.com/hirusha-adi/Discord-Bot", inline=True)
-  embed.add_field(name="Creator", value=f"{bot_creator_name}", inline=True)
-  embed.add_field(name="Errors", value="``` There is bug when the chatbot feature is being used simultaneously in many channels, This issue will be fixed soon!  ```", inline=False)
-  embed.set_footer(text=f"Requested by {ctx.author.name}")
-  await loading_message.delete()
-  await ctx.send(embed=embed)
+  try:
+    current_time = time.time()
+    difference = int(round(current_time - start_time))
+    text = str(datetime.timedelta(seconds=difference))
+
+    embed=discord.Embed(color=0xff0000)
+    embed.add_field(name="Announcements", value=f"``` -YourBot {bot_current_version}- Hello! Its been nearly two months after the first release of this discord bot. Most of the commands are very stable now, but not all of them. Help me make this bot have 500+ commands. use {bot_prefix}help to check all the commands available! ```", inline=False)
+    embed.add_field(name="Servers", value=f"{len(client.guilds)}", inline=True)
+    embed.add_field(name="Uptime", value=f"{text}", inline=True)
+    embed.add_field(name="Version", value=f"{bot_current_version}", inline=True)
+    embed.add_field(name="Source Code", value="https://github.com/hirusha-adi/Discord-Bot", inline=True)
+    embed.add_field(name="Creator", value=f"{bot_creator_name}", inline=True)
+    embed.add_field(name="Errors", value="``` There is bug when the chatbot feature is being used simultaneously in many channels, This issue will be fixed soon!  ```", inline=False)
+    embed.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed)
+  
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
+
 
 @client.command(aliases=["download-audio", "ytd", "youtubedownload"])
 async def audio(ctx, *, ytvlink):
   loading_message = await ctx.send(embed=please_wait_emb)
-  if ytvlink.lower().startswith('https://'):
-    try:
+
+  try:
+    if ytvlink.lower().startswith('https://'):
       try:
-        options = {
-          # 'format': "134",
-          'format': 'bestaudio/best',  # choice of quality
-          'extractaudio': True,        # only keep the audio
-          'audioformat': "mp3",        # convert to mp3
-          'outtmpl': '%(id)s',         # name the file the ID of the video
-          'noplaylist': True,          # only download single song, not playlist
-          'listformats': True,         # print a list of the formats to stdout and exit
-                  }
-        ydl_opts = {'format':'139'} # this is for .m4a - lowest audio quality i guess
-
-        file_extentsion_dlded = "m4a"
-
-        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-          ydl.download([f'{ytvlink}'])
-        
         try:
-          os.system(f"mv *.{file_extentsion_dlded} audio1.{file_extentsion_dlded}")
-        except:
+          options = {
+            # 'format': "134",
+            'format': 'bestaudio/best',  # choice of quality
+            'extractaudio': True,        # only keep the audio
+            'audioformat': "mp3",        # convert to mp3
+            'outtmpl': '%(id)s',         # name the file the ID of the video
+            'noplaylist': True,          # only download single song, not playlist
+            'listformats': True,         # print a list of the formats to stdout and exit
+                    }
+          ydl_opts = {'format':'139'} # this is for .m4a - lowest audio quality i guess
+
+          file_extentsion_dlded = "m4a"
+
+          with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+            ydl.download([f'{ytvlink}'])
+          
           try:
-            os.system(f"Ren *.{file_extentsion_dlded} audio1.{file_extentsion_dlded}")
+            os.system(f"mv *.{file_extentsion_dlded} audio1.{file_extentsion_dlded}")
           except:
-            pass
-        
-        try:
-          with open(f"audio1.{file_extentsion_dlded}", "rb") as f:
-            audiof = discord.File(f)
-            await loading_message.delete()
-            await ctx.send(file=audiof)
-        except Exception as e:
-          embed=discord.Embed(title="An error has occured!", color=0xff0000)
-          embed.add_field(name="Error:", value=f"{e}", inline=False)
-          await loading_message.delete()
-          await ctx.send(embed=embed)
-        finally:
+            try:
+              os.system(f"Ren *.{file_extentsion_dlded} audio1.{file_extentsion_dlded}")
+            except:
+              pass
+          
           try:
-            os.system(f"rm audio1.{file_extentsion_dlded}")
+            with open(f"audio1.{file_extentsion_dlded}", "rb") as f:
+              audiof = discord.File(f)
+              await loading_message.delete()
+              await ctx.send(file=audiof)
           except Exception as e:
             embed=discord.Embed(title="An error has occured!", color=0xff0000)
             embed.add_field(name="Error:", value=f"{e}", inline=False)
-            try:
-              await loading_message.delete()
-            except:
-              pass
+            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
             await ctx.send(embed=embed)
+          finally:
+            try:
+              os.system(f"rm audio1.{file_extentsion_dlded}")
+            except Exception as e:
+              embed=discord.Embed(title="An error has occured!", color=0xff0000)
+              embed.add_field(name="Error:", value=f"{e}", inline=False)
+              embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+              embed.set_footer(text=f"Requested by {ctx.author.name}")
+              try:
+                await loading_message.delete()
+              except:
+                pass
+              await ctx.send(embed=embed)
+
+        except Exception as e:
+          embed=discord.Embed(title="An error has occured!", color=0xff0000)
+          embed.add_field(name="Error:", value=f"{e}", inline=False)
+          embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+          embed.set_footer(text=f"Requested by {ctx.author.name}")
+          await loading_message.delete()
+          await ctx.send(embed=embed)
 
       except Exception as e:
         embed=discord.Embed(title="An error has occured!", color=0xff0000)
         embed.add_field(name="Error:", value=f"{e}", inline=False)
-        await loading_message.delete()
-        await ctx.send(embed=embed)
-
-    except Exception as e:
-      embed=discord.Embed(title="An error has occured!", color=0xff0000)
-      embed.add_field(name="Error:", value=f"{e}", inline=False)
-      try:
-        await loading_message.delete()
-      except:
-        pass
-      await ctx.send(embed=embed)
-    
-    finally:
-      try:
-        os.system(f"rm audio1.{file_extentsion_dlded}")
-      except Exception as e:
-        embed=discord.Embed(title="An error has occured!", color=0xff0000)
-        embed.add_field(name="Error:", value=f"{e}", inline=False)
+        embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+        embed.set_footer(text=f"Requested by {ctx.author.name}")
         try:
           await loading_message.delete()
         except:
           pass
         await ctx.send(embed=embed)
+      
+      finally:
+        try:
+          os.system(f"rm audio1.{file_extentsion_dlded}")
+        except Exception as e:
+          embed=discord.Embed(title="An error has occured!", color=0xff0000)
+          embed.add_field(name="Error:", value=f"{e}", inline=False)
+          embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+          embed.set_footer(text=f"Requested by {ctx.author.name}")
+          try:
+            await loading_message.delete()
+          except:
+            pass
+          await ctx.send(embed=embed)
+    
+    else:
+      embed=discord.Embed(title="An error has occured!", color=0xff0000)
+      embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+      embed.set_footer(text=f"Requested by {ctx.author.name}")
+      embed.add_field(name="Error:", value=f"Please enter a vliad youtube url!", inline=False)
+      await ctx.send(embed=embed)
   
-  else:
-    embed=discord.Embed(title="An error has occured!", color=0xff0000)
-    embed.add_field(name="Error:", value=f"Please enter a vliad youtube url!", inline=False)
-    await ctx.send(embed=embed)
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
 
 
 @client.command(aliases=["sendmail"])
@@ -6076,12 +6256,24 @@ async def sendemail(ctx, senderemail, recieveremail, emailsubject="Hey", *, emai
 @client.command()
 async def slots(ctx):
   loading_message = await ctx.send(embed=please_wait_emb)
-  responses = ["🍋" , "🍊", "🍉", ":seven:", ]
-  embed=discord.Embed(title="🎰 Slot Machine 🎰", description=random.choice(responses) + random.choice(responses) + random.choice(responses), color=0xFF0000)
-  embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-  embed.set_footer(text="You need triple 7's to win.")
-  await loading_message.delete()
-  await ctx.send(embed=embed)
+
+  try:
+    responses = ["🍋" , "🍊", "🍉", ":seven:", ]
+    embed=discord.Embed(title="🎰 Slot Machine 🎰", description=random.choice(responses) + random.choice(responses) + random.choice(responses), color=0xFF0000)
+    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed.set_footer(text="You need triple 7's to win.")
+    await loading_message.delete()
+    await ctx.send(embed=embed)
+  
+  except Exception as e:
+    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed3)
+    
 
 @client.command(aliases=["show-help", "showhelp", "needhelp", "need-help", "pls-help", "plshelp", "help"])
 async def Help(ctx, category="none"):
