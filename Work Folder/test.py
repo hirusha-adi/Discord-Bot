@@ -1,29 +1,19 @@
+message = "hirusha idek || adikari is the best"
+message1, message2 = message.split('||')
+print(message1)
 
-import discord, os, time
-from discord.ext import commands
-
-
-bot = commands.Bot(command_prefix = "--")
-token = "ODU4Mjk4NjgzMjIwMTY0NjE2.YNcG8A._RcHIYTHk48OL9kKgS1X2oV3Wqw"
-
-@bot.event
-async def on_ready():
-    print("Auto Bumper Is Online!")
+import requests as r
+import urllib
 
 
-
-@bot.command()
-async def bla(ctx):
-    while True:
-        await ctx.send("!d bump")
-        time.sleep(8125)
-
-@bot.event
-async def on_message(message):
-  print(message.content)
-
-  await bot.process_commands(message)
+v = "https://media.discordapp.net/attachments/877796755234783273/880035248820342824/chuck-norris.png"
+x = "youbot"
+y = "YourBotTwitter"
+z = "This is a comment. ?JO!:?&*%!"
+urrl = f"https://some-random-api.ml/canvas/tweet?avatar={v}&username={x}&displayname={y}&comment={z}"
+# c = r.get()
+print(urrl)
 
 
-bot.run(token)
+
 

@@ -2935,7 +2935,6 @@ async def dick(ctx, *, user: discord.User = None):
     await loading_message.delete()
     await ctx.send(embed=embed3)
 
-
 @client.command()
 async def panda(ctx):
   loading_message = await ctx.send(embed=please_wait_emb)
@@ -2946,7 +2945,6 @@ async def panda(ctx):
     embed = discord.Embed(color=0xff0000)
     embed.set_author(name="a Panda.", icon_url="https://cdn.freebiesupply.com/logos/large/2x/panda-7-logo-png-transparent.png") 
     embed.set_image(url=str(r["link"]))
-    embed.set_footer(text=f"Requested by {ctx.author.name}")
     await loading_message.delete()
     await ctx.send(embed=embed)
 
@@ -2958,7 +2956,6 @@ async def panda(ctx):
     embed3.set_footer(text=f"Requested by {ctx.author.name}")
     await loading_message.delete()
     await ctx.send(embed=embed3)
-
 
 @client.command(aliases=["lol"])
 async def meme(ctx):
@@ -6280,232 +6277,6 @@ async def slots(ctx):
     await loading_message.delete()
     await ctx.send(embed=embed3)
 
-@client.command()
-async def raccoon(ctx):
-  loading_message = await ctx.send(embed=please_wait_emb)
-
-  try:
-    r = requests.get("https://some-random-api.ml/animal/raccoon").json()
-
-    embed=discord.Embed(title="a Raccoon", color=0xff0000)
-    embed.set_author(name="YourBot", icon_url="https://media.discordapp.net/attachments/877796755234783273/879295069834850324/Avatar.png?width=300&height=300")
-    embed.set_image(url=str(r["image"]))
-    embed.set_footer(text=f"Requested by {ctx.author.name}")
-    await loading_message.delete()
-    await ctx.send(embed=embed)
-
-  except Exception as e:
-    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
-    embed3.add_field(name="Error:", value=f"{e}", inline=False)
-    embed3.set_footer(text=f"Requested by {ctx.author.name}")
-    await loading_message.delete()
-    await ctx.send(embed=embed3)
-  
-
-@client.command()
-async def raccoonfact(ctx):
-  loading_message = await ctx.send(embed=please_wait_emb)
-
-  try:
-    r = requests.get("https://some-random-api.ml/animal/raccoon").json()
-
-    embed=discord.Embed(title="a Raccoon Fact", color=0xff0000)
-    embed.set_author(name="YourBot", icon_url="https://media.discordapp.net/attachments/877796755234783273/879295069834850324/Avatar.png?width=300&height=300")
-    embed.set_thumbnail(url=str(r["image"]))
-    embed.add_field(name="Fact", value=str(r["fact"]), inline=False)
-    embed.set_footer(text=f"Requested by {ctx.author.name}")
-    await loading_message.delete()
-    await ctx.send(embed=embed)
-
-  except Exception as e:
-    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
-    embed3.add_field(name="Error:", value=f"{e}", inline=False)
-    embed3.set_footer(text=f"Requested by {ctx.author.name}")
-    await loading_message.delete()
-    await ctx.send(embed=embed3)
-
-
-@client.command()
-async def kangaroo(ctx):
-  loading_message = await ctx.send(embed=please_wait_emb)
-
-  try:
-    r = requests.get("https://some-random-api.ml/animal/kangaroo").json()
-
-    embed=discord.Embed(title="a Kangaroo", color=0xff0000)
-    embed.set_author(name="YourBot", icon_url="https://media.discordapp.net/attachments/877796755234783273/879295069834850324/Avatar.png?width=300&height=300")
-    embed.set_image(url=str(r["image"]))
-    embed.set_footer(text=f"Requested by {ctx.author.name}")
-    await loading_message.delete()
-    await ctx.send(embed=embed)
-
-  except Exception as e:
-    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
-    embed3.add_field(name="Error:", value=f"{e}", inline=False)
-    embed3.set_footer(text=f"Requested by {ctx.author.name}")
-    await loading_message.delete()
-    await ctx.send(embed=embed3)
-
-
-@client.command()
-async def kangaroofact(ctx):
-  loading_message = await ctx.send(embed=please_wait_emb)
-
-  try:
-    r = requests.get("https://some-random-api.ml/animal/kangaroo").json()
-
-    embed=discord.Embed(title="a Kangaroo Fact", color=0xff0000)
-    embed.set_author(name="YourBot", icon_url="https://media.discordapp.net/attachments/877796755234783273/879295069834850324/Avatar.png?width=300&height=300")
-    embed.set_thumbnail(url=str(r["image"]))
-    embed.add_field(name="Fact", value=str(r["fact"]), inline=False)
-    embed.set_footer(text=f"Requested by {ctx.author.name}")
-    await loading_message.delete()
-    await ctx.send(embed=embed)
-
-  except Exception as e:
-    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
-    embed3.add_field(name="Error:", value=f"{e}", inline=False)
-    embed3.set_footer(text=f"Requested by {ctx.author.name}")
-    await loading_message.delete()
-    await ctx.send(embed=embed3)
-
-@client.command(aliases=["jokenew"])
-async def joke2(ctx):
-
-  loading_message = await ctx.send(embed=please_wait_emb)
-  try:
-    r = requests.get("https://some-random-api.ml/joke").json()
-
-    embed=discord.Embed(title="a Joke", color=0xff0000)
-    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-    embed.set_thumbnail(url="https://media.discordapp.net/attachments/877796755234783273/880742956552822794/mr-bean-avatar-character-cartoon-rowan-atkinson-png-image-33.png?width=454&height=584")
-    embed.add_field(name="Joke", value=f"{r['joke']}", inline=False)
-    embed.set_footer(text=f"Requested by {ctx.author.name}")
-    await loading_message.delete()
-    await ctx.send(embed=embed)
-  
-  except Exception as e:
-    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
-    embed3.add_field(name="Error:", value=f"{e}", inline=False)
-    embed3.set_footer(text=f"Requested by {ctx.author.name}")
-    await loading_message.delete()
-    await ctx.send(embed=embed3)
-
-@client.command(aliases=["similarity", "closematch", "closematches"])
-async def similiar(ctx, *, message):
-  """
-  The two messages ( strings ) will be divided by the 
-  """
-  loading_message = await ctx.send(embed=please_wait_emb)
-
-  try:
-    message1, message2 = message.split('||')
-    r = requests.get(f"https://some-random-api.ml/stringsimilarity?string1={message1}&string2={message2}").json()
-
-    embed=discord.Embed(title="Find Similarity", description="between two strings", color=0xff0000)
-    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-    embed.set_thumbnail(url="https://media.discordapp.net/attachments/877796755234783273/880742956552822794/mr-bean-avatar-character-cartoon-rowan-atkinson-png-image-33.png?width=454&height=584")
-    embed.add_field(name="First", value=f"{message1}", inline=False)
-    embed.add_field(name="Second", value=f"{message2}", inline=False)
-    embed.add_field(name="Similarity", value=f"{r['similarity']}", inline=False)
-    embed.set_footer(text=f"Requested by {ctx.author.name}")
-    await ctx.send(embed=embed)
-  
-  except Exception as e:
-    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-    embed3.set_thumbnail(url="https://media.discordapp.net/attachments/877796755234783273/880745781966037032/new-scrabble-words-2018-beatdown-5657-57124c9f228c0258d65053fe7d3891491x.jpg")
-    embed3.add_field(name="Error:", value=f"{e}", inline=False)
-    embed3.add_field(name="Possible Fix:", value=f"You must have only one '||' part for the whole message for the bot to divide the string", inline=False)
-    embed3.set_footer(text=f"Requested by {ctx.author.name}")
-    await loading_message.delete()
-    await ctx.send(embed=embed3)
-
-
-@client.command(aliases=["twc"])
-async def twittercomment(ctx, usernametw, displaynametw, linkpfp, *, commenttw ):
-  loading_message = await ctx.send(embed=please_wait_emb)
-
-  try:
-    if linkpfp.lower() == "no":
-      linkpfp = "https://media.discordapp.net/attachments/877796755234783273/879295069834850324/Avatar.png?width=300&height=300"
-      urrl = f"https://some-random-api.ml/canvas/tweet?avatar={linkpfp}&username={usernametw}&displayname={displaynametw}&comment={urllib.parse.quote_plus(commenttw)}"
-      ctx.send(urrl)
-    
-    else:
-      urrl = f"https://some-random-api.ml/canvas/tweet?avatar={linkpfp}&username={usernametw}&displayname={displaynametw}&comment={urllib.parse.quote_plus(commenttw)}"
-      ctx.send(urrl)
-
-  except Exception as e:
-    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-    embed3.set_thumbnail(url="https://media.discordapp.net/attachments/877796755234783273/880745781966037032/new-scrabble-words-2018-beatdown-5657-57124c9f228c0258d65053fe7d3891491x.jpg")
-    embed3.add_field(name="Error:", value=f"{e}", inline=False)
-    embed3.add_field(name="Possible Fix:", value=f"You must have only one '||' part for the whole message for the bot to divide the string", inline=False)
-    embed3.set_footer(text=f"Requested by {ctx.author.name}")
-    await loading_message.delete()
-    await ctx.send(embed=embed3)
-
-@client.command()
-async def whalefact(ctx):
-  loading_message = await ctx.send(embed=please_wait_emb)
-
-  try:
-    r = requests.get("https://some-random-api.ml/facts/whale").json()
-
-    embed=discord.Embed(title="a Whale Fact", color=0xff0000)
-    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-    embed.add_field(name="Fact", value="{r['fact']}", inline=True)
-    embed.set_thumbnail(url="https://media.discordapp.net/attachments/877796755234783273/880809109052588052/167291_web.jpg?width=759&height=504")
-    embed.set_footer(text=f"Requested by {ctx.author.name}")
-    await loading_message.delete()
-    await ctx.send(embed=embed)
-
-  except Exception as e:
-    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-    embed3.set_thumbnail(url="https://media.discordapp.net/attachments/877796755234783273/880745781966037032/new-scrabble-words-2018-beatdown-5657-57124c9f228c0258d65053fe7d3891491x.jpg")
-    embed3.add_field(name="Error:", value=f"{e}", inline=False)
-    embed3.add_field(name="Possible Fix:", value=f"You must have only one '||' part for the whole message for the bot to divide the string", inline=False)
-    embed3.set_footer(text=f"Requested by {ctx.author.name}")
-    await loading_message.delete()
-    await ctx.send(embed=embed3)
-
-
-@client.command()
-async def bottoken(ctx):
-  loading_message = await ctx.send(embed=please_wait_emb)
-
-  try:
-    r = requests.get("https://some-random-api.ml/bottoken").json()
-
-    embed=discord.Embed(title="Discord Bot Token Generator", description="`{r['token']}`", color=0xff0000)
-    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-    embed.set_thumbnail(url="https://user-images.githubusercontent.com/36286877/127767330-d3e68d90-67a0-4672-b3e1-6193b323bc21.png")
-    embed.set_footer(text="Requested by {ctx.author.name}")
-    await loading_message.delete()
-    await ctx.send(embed=embed)
-
-  except Exception as e:
-    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-    embed3.set_thumbnail(url="https://media.discordapp.net/attachments/877796755234783273/880745781966037032/new-scrabble-words-2018-beatdown-5657-57124c9f228c0258d65053fe7d3891491x.jpg")
-    embed3.add_field(name="Error:", value=f"{e}", inline=False)
-    embed3.add_field(name="Possible Fix:", value=f"You must have only one '||' part for the whole message for the bot to divide the string", inline=False)
-    embed3.set_footer(text=f"Requested by {ctx.author.name}")
-    await loading_message.delete()
-    await ctx.send(embed=embed3)
-
 
 @client.command(aliases=["show-help", "showhelp", "needhelp", "need-help", "pls-help", "plshelp", "help"])
 async def Help(ctx, category="none"):
@@ -6831,7 +6602,6 @@ async def Help(ctx, category="none"):
     em8.add_field(name=f'{bp}wordcount', value=f'`{bp}wordcount [words in here]` - Will count the number of words, seperated by spaces!', inline=True)
     em8.add_field(name=f'{bp}google', value=f'`{bp}google [query]` - Will send a direct link to Google Search query', inline=True)
     em8.add_field(name=f'{bp}txt1 - txt63', value=f'`{bp}txt1 - txt63` - Make the bot say some Kaomoji', inline=True)
-    em8.add_field(name=f'{bp}bottoken', value=f'`{bp}bottoken` - Generate a dummy discord bot token', inline=True)
     await loading_message.delete()
     await ctx.send(embed=em8)
   
@@ -6878,7 +6648,6 @@ async def Help(ctx, category="none"):
     em11.add_field(name=f'{bp}tint', value=f'`{bp}blue [hex_color_no#] [image_link]` - Apply the tint with any color. Dont mention "#" when giving the hash', inline=True)
     em11.add_field(name=f'{bp}pixelate', value=f'`{bp}pixelate [image_link]` - Pixelate', inline=True)
     em11.add_field(name=f'{bp}ytcomment', value=f'`{bp}ytcomment [acc_name] [comment] [profile_picture_link]` - Create a fake image of a youtube comment, pfp link is not required', inline=True)
-    em11.add_field(name=f'{bp}twittercomment', value=f'`{bp}twittercomment [username] [display_name] [profile_picture_link] [comment]` - Create a fake image of a youtube comment, pfp link is not required', inline=True)
     await loading_message.delete()
     await ctx.send(embed=em11)
   
@@ -6898,15 +6667,9 @@ async def Help(ctx, category="none"):
     em12.add_field(name=f'{bp}birdfact', value=f'`{bp}birdfact` - Get a Fact', inline=True)
     em12.add_field(name=f'{bp}koalafact', value=f'`{bp}koalafact` - Get a Fact', inline=True)
     em12.add_field(name=f'{bp}redpanda', value=f'`{bp}redpanda` - Get a Image', inline=True)
-    em12.add_field(name=f'{bp}raccoon', value=f'`{bp}raccoon` - Get a Image', inline=True)
-    em12.add_field(name=f'{bp}raccoonfact', value=f'`{bp}raccoonfact` - Get a Fact', inline=True)
-    em12.add_field(name=f'{bp}kangaroo', value=f'`{bp}kangaroo` - Get a Image', inline=True)
-    em12.add_field(name=f'{bp}kangaroofact', value=f'`{bp}kangaroofact` - Get a Fact', inline=True)
-    em12.add_field(name=f'{bp}whalefact', value=f'`{bp}whalefact` - Get a Fact', inline=True)
     await loading_message.delete()
     await ctx.send(embed=em12)
   
-
   elif category.lower() in all_small_list:
     em13 = discord.Embed(title=f'Animals', description=f'use >Help [category]', color=0xff0000)
     em13.set_thumbnail(url=bot_info_cmnd_thumbnail_link)
@@ -6932,9 +6695,10 @@ async def Help(ctx, category="none"):
 @client.event
 async def on_command_error(ctx, error):
   if isinstance(error, commands.MissingPermissions):
-    embed=discord.Embed(title="ERROR", description="You don't have the permissions required to use this command!", color=0xff0000)
+    embed=discord.Embed(title="ERROR", description="An error has been occured!", color=0xff0000)
     embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
     embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed.add_field(name="Error", value="You don't have the permissions required to use this command!", inline=True)
     await ctx.send(embed=embed)
     return
 
