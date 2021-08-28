@@ -5612,10 +5612,60 @@ async def face(ctx, gender="any"):
     await ctx.send(embed=embed3)
 
 
-@client.command(aliases=["passowrd-check", "pwdcheck", "pwd-check", "pwdstrength", "password-strength", "pwd-strength", "pwdch", "checkpassword"])
-async def passwordcheck(ctx, *, passowrdhere):
+
+filepwdlist1 = open("pwds2.txt", "r")
+lines = filepwdlist1.readlines()
+
+@client.command(aliases=["pwdc", "passwordcheck"])
+async def pwdcheck(ctx, *, password):
+  """
+  Idea by discord user NoPe / The founder of TeamSDS | https://teamsds.net/
+
+  Password List: https://github.com/danielmiessler/SecLists/blob/master/Passwords/Common-Credentials/10-million-password-list-top-1000000.txt
+
+  """
   loading_message = await ctx.send(embed=please_wait_emb)
 
+  try:
+    if password + "\n" in lines:
+      embed=discord.Embed(title="Password Checker!", color=0xff0000)
+      embed.set_author(name="NearBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+      embed.set_thumbnail(url="https://media.discordapp.net/attachments/877796755234783273/881072664658214912/change-password.png?width=479&height=464")
+      embed.add_field(name=f"Your Passoword", value=f"{password}", inline=False)
+      embed.add_field(name=f"Safety", value=f"Not Safe. This password is in the list of most common 10 million passwords!", inline=False)
+      embed.set_footer(text=f"Requested by {ctx.author.name}")
+      await loading_message.delete()
+      await ctx.send(embed=embed)
+
+    else:
+      embed=discord.Embed(title="Password Checker!", color=0xff0000)
+      embed.set_author(name="NearBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+      embed.set_thumbnail(url="https://media.discordapp.net/attachments/877796755234783273/881072664658214912/change-password.png?width=479&height=464")
+      embed.add_field(name=f"Your Passoword", value=f"{password}", inline=False)
+      embed.add_field(name=f"Safety", value=f"Safe. This password is not in the list of most common 10 million passwords!", inline=False)
+      embed.set_footer(text=f"Requested by {ctx.author.name}")
+      await loading_message.delete()
+      await ctx.send(embed=embed)
+
+  except Exception as e:
+    embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    embed2.set_author(name="NearBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed2.add_field(name="Error:", value=f"{e}", inline=False)
+    embed2.set_footer(text=f"Requested by {ctx.author.name}")
+    await loading_message.delete()
+    await ctx.send(embed=embed2)
+
+
+
+@client.command(aliases=["passowrd-strength-check", "pwdstrengthcheck", "pwdsc"])
+async def passwordstrentghcheck(ctx, *, passowrdhere):
+  loading_message = await ctx.send(embed=please_wait_emb)
+  """
+  I tried to create something like the discord bot named 'Pencord' by Markiemm had created
+  Later, he gave me the code + stuff used to get it done
+  But i sticked to my own
+  """
   try:
     stats = PasswordStats(f'{passowrdhere}')
     embed=discord.Embed(title="Password Strength Checker", color=0xff0000)
@@ -6266,6 +6316,7 @@ async def slots(ctx):
     await loading_message.delete()
     await ctx.send(embed=embed3)
 
+
 @client.command()
 async def raccoon(ctx):
   loading_message = await ctx.send(embed=please_wait_emb)
@@ -6421,17 +6472,19 @@ async def similiar(ctx, *, message):
 
 
 @client.command(aliases=["twc"])
-async def twittercomment(ctx, usernametw, displaynametw, linkpfp, *, commenttw ):
+async def twittercomment(ctx, usernametw="User1", displaynametw="user", linkpfp="https://media.discordapp.net/attachments/877796755234783273/879295069834850324/Avatar.png?width=300&height=300", *, commenttw="The comment comes here" ):
   loading_message = await ctx.send(embed=please_wait_emb)
 
   try:
     if linkpfp.lower() == "no":
       linkpfp = "https://media.discordapp.net/attachments/877796755234783273/879295069834850324/Avatar.png?width=300&height=300"
       urrl = f"https://some-random-api.ml/canvas/tweet?avatar={linkpfp}&username={usernametw}&displayname={displaynametw}&comment={urllib.parse.quote_plus(commenttw)}"
+      await loading_message.delete()
       ctx.send(urrl)
     
     else:
       urrl = f"https://some-random-api.ml/canvas/tweet?avatar={linkpfp}&username={usernametw}&displayname={displaynametw}&comment={urllib.parse.quote_plus(commenttw)}"
+      await loading_message.delete()
       ctx.send(urrl)
 
   except Exception as e:
@@ -6453,7 +6506,7 @@ async def whalefact(ctx):
 
     embed=discord.Embed(title="a Whale Fact", color=0xff0000)
     embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-    embed.add_field(name="Fact", value="{r['fact']}", inline=True)
+    embed.add_field(name="Fact", value=f"{r['fact']}", inline=True)
     embed.set_thumbnail(url="https://media.discordapp.net/attachments/877796755234783273/880809109052588052/167291_web.jpg?width=759&height=504")
     embed.set_footer(text=f"Requested by {ctx.author.name}")
     await loading_message.delete()
@@ -6493,6 +6546,7 @@ async def bottoken(ctx):
     embed3.set_footer(text=f"Requested by {ctx.author.name}")
     await loading_message.delete()
     await ctx.send(embed=embed3)
+
 
 
 @client.command(aliases=["show-help", "showhelp", "needhelp", "need-help", "pls-help", "plshelp", "help"])
@@ -6540,6 +6594,8 @@ async def Help(ctx, category="none"):
 {bp}lewd -> will send lewds (NSFW)
 {bp}cleanuri https://google.com -> will send the shortened link made with cleanuri
 {bp}genpwd 16 -> will generate you a very random secure password
+{bp}pwdc [passwordhere] -> will check your password in a 10 million password database - Thanks to NoPe
+{bp}pwdsc [passwordhere] -> will check the strength of your password
 {bp}advice -> will give you a random advice!
 {bp}chuckjoke -> will tell a Chuck Norris Joke
 {bp}poll are you ok? -> will create poll with the given text so the users can vote
@@ -6727,7 +6783,8 @@ async def Help(ctx, category="none"):
     em3.add_field(name=f'{bp}userinfo', value=f'`{bp}userinfo [@user]` - See the public account information', inline=True)
     em3.add_field(name=f'{bp}ig_pfp', value=f'`{bp}ig_pfp [@ig_username]` - Get the Instagram profile picture of anyone!', inline=True)
     em3.add_field(name=f'{bp}sherlock', value=f'`{bp}sherlock [any_username]` - Search for social media profiles of the username', inline=True)
-    em3.add_field(name=f'{bp}checkpassword', value=f'`{bp}checkpassword [password]` - Check the strength of your password', inline=True)
+    em3.add_field(name=f'{bp}pwdc', value=f'`{bp}pwdc [password]` - Check your password in a 10 million password database | Thanks to NoPe', inline=True)
+    em3.add_field(name=f'{bp}pwdsc', value=f'`{bp}pwdsc [password]` - Check the strength of your password', inline=True)
     await loading_message.delete()
     await ctx.send(embed=em3)
 
@@ -6801,7 +6858,6 @@ async def Help(ctx, category="none"):
     em6.add_field(name=f'{bp}face', value=f'`{bp}face [gender-optional]` - Send an Image of a Face with Age, Name, Gender!', inline=True)
     await loading_message.delete()
     await ctx.send(embed=em6)
-
 
   elif category.lower() in text_wl:
     em8 = discord.Embed(title=f'Text', description=f'use >Help [category]', color=0xff0000)
@@ -6906,10 +6962,10 @@ async def Help(ctx, category="none"):
     em13.add_field(name=f"Image Effects", value=f"`{bp}glass [img-link]` \n`{bp}gay [img-link]` \n`{bp}wasted [img-link]` \n`{bp}triggered [img-link]` \n`{bp}grayscale [img-link]` \n`{bp}invert [img-link]` \n`{bp}brightness [img-link]` \n`{bp}threshold [img-link]` \n`{bp}sepia [img-link]` \n`{bp}red [img-link]` \n`{bp}green [img-link]` \n`{bp}blue [img-link]` \n`{bp}tint [hex-with-no-#]` \n`{bp}pixelate [img-link]` \n`{bp}ytcomment [acc-name] [comment] [pfp-link~optional]` \n`{bp}twittercomment [username] [display_name] [profile_picture_link] [comment]` ", inline=False)
     em13.add_field(name=f"Animals", value=f"`{bp}whalefact` \n`{bp}kangaroofact` \n`kangaroo` \n`raccoonfact` \n`raccoon` \n`{bp}dog` \n`{bp}panda` \n`{bp}cat` \n`{bp}fox` \n`{bp}dogfact` \n`{bp}catfact` \n`{bp}elephantfact` \n`{bp}pandafact` \n`{bp}foxfact` \n`{bp}birdfact` \n`{bp}koalafact` \n`{bp}redpanda`  ", inline=False )
     em13.add_field(name=f"Encoding/Decoding", value=f"`{bp}e_b64` \n`{bp}e_md5 [text]` \n`{bp}e_sha1 [text]` \n`{bp}e_sha224 [text]` \n`{bp}e_sha512 [text]` \n`{bp}leet [text]` \n`{bp}e_binary [text]` \n`{bp}d_binary [binary]` \n`{bp}d_b64 [b64]` ", inline=False )
-    em13.add_field(name=f"Text", value=f"`{bp}genpwd [no-of-letters]` \n`{bp}joke2` \n`{bp}reverse [text]` \n`{bp}say [msg]` \n `{bp}txt1 - txt63` \n`{bp}tableflip` \n`{bp}unflip` \n`{bp}goodnight` \n`{bp}smile` \n`{bp}iloveyou` \n`{bp}sword` \n`{bp}what` \n`{bp}fuckyou` \n`{bp}howpropose [name]` \n`{bp}wordcount [words]` \n`{bp}google [query]` ", inline=False )
+    em13.add_field(name=f"Text", value=f"`{bp}joke2` \n`{bp}reverse [text]` \n`{bp}say [msg]` \n `{bp}txt1 - txt63` \n`{bp}tableflip` \n`{bp}unflip` \n`{bp}goodnight` \n`{bp}smile` \n`{bp}iloveyou` \n`{bp}sword` \n`{bp}what` \n`{bp}fuckyou` \n`{bp}howpropose [name]` \n`{bp}wordcount [words]` \n`{bp}google [query]` ", inline=False )
     em13.add_field(name=f"Fake Information", value=f"`{bp}face [gender~optional]` \n`{bp}fake high` \n`{bp}fake low` \n`{bp}fake help` \n`{bp}fake name` \n`{bp}fake dob` \n`{bp}fake addr` \n`{bp}fake job` \n`{bp}fake color` \n`{bp}fake zipcode` \n`{bp}fake city` \n`{bp}fake licenseplate` \n`{bp}fake bban` \n`{bp}fake iban` \n`{bp}fake bs` \n`{bp}fake cc` \n`{bp}fake cemail` \n`{bp}fake pno` \n`{bp}fake cp` \n`{bp}fake ssn` ", inline=False )
     em13.add_field(name=f"Some Mathematics", value=f"`{bp}add [no1] [no2]` \n`{bp}subs [no1] [no2]` \n`{bp}mul [no1] [no2]` \n`{bp}div [no1] [no2]` ", inline=False )
-    em13.add_field(name=f"Tools/Games", value=f"`{bp}audio [yt-link]` \n`{bp}similiar [first] || [second]` \n`{bp}bottoken` \n `{bp}sendemail [your-email] [reciever-email] [subject-with-no-spaces] [email-content]` \n`ping` \n`{bp}8ball [question]` \n`{bp}inspire` \n`{bp}inv` \n`{bp}nitro [no-of-codes]` \n`{bp}bored` \n`{bp}color` \n`{bp}wiki [search-query]` \n`{bp}tinyurl [any-url]` \n`{bp}cleanuri [any-url]` \n`{bp}joke` \n`{bp}iconserver` \n`{bp}wyr [question]` \n`{bp}bastebin [text]` \n`{bp}ascii [text]` \n`{bp}asciiart [text]` \n`{bp}guessage [name]` \n`{bp}advice` \n`{bp}chuckjoke` \n`{bp}poll [question]` \n`{bp}csnd` \n`{bp}howdie [user]` \n`{bp}chatbot` \n`{bp}countryinfo [country-code]` ", inline=False)
+    em13.add_field(name=f"Tools/Games", value=f"`{bp}genpwd [no-of-letters]` \n`{bp}pwdcheck [password_here]` - Thank you NoPe \n`{bp}pwdstrengthcheck [password_here]` \n`{bp}audio [yt-link]` \n`{bp}similiar [first] || [second]` \n`{bp}bottoken` \n `{bp}sendemail [your-email] [reciever-email] [subject-with-no-spaces] [email-content]` \n`ping` \n`{bp}8ball [question]` \n`{bp}inspire` \n`{bp}inv` \n`{bp}nitro [no-of-codes]` \n`{bp}bored` \n`{bp}color` \n`{bp}wiki [search-query]` \n`{bp}tinyurl [any-url]` \n`{bp}cleanuri [any-url]` \n`{bp}joke` \n`{bp}iconserver` \n`{bp}wyr [question]` \n`{bp}bastebin [text]` \n`{bp}ascii [text]` \n`{bp}asciiart [text]` \n`{bp}guessage [name]` \n`{bp}advice` \n`{bp}chuckjoke` \n`{bp}poll [question]` \n`{bp}csnd` \n`{bp}howdie [user]` \n`{bp}chatbot` \n`{bp}countryinfo [country-code]` ", inline=False)
     await loading_message.delete()
     await ctx.send(embed=em13)
 
