@@ -6974,7 +6974,7 @@ async def Help(ctx, category="none"):
     em13.add_field(name=f"Text", value=f"`{bp}joke2` \n`{bp}reverse [text]` \n`{bp}say [msg]` \n `{bp}txt1 - txt63` \n`{bp}tableflip` \n`{bp}unflip` \n`{bp}goodnight` \n`{bp}smile` \n`{bp}iloveyou` \n`{bp}sword` \n`{bp}what` \n`{bp}fuckyou` \n`{bp}howpropose [name]` \n`{bp}wordcount [words]` \n`{bp}google [query]` ", inline=False )
     em13.add_field(name=f"Fake Information", value=f"`{bp}face [gender~optional]` \n`{bp}fake high` \n`{bp}fake low` \n`{bp}fake help` \n`{bp}fake name` \n`{bp}fake dob` \n`{bp}fake addr` \n`{bp}fake job` \n`{bp}fake color` \n`{bp}fake zipcode` \n`{bp}fake city` \n`{bp}fake licenseplate` \n`{bp}fake bban` \n`{bp}fake iban` \n`{bp}fake bs` \n`{bp}fake cc` \n`{bp}fake cemail` \n`{bp}fake pno` \n`{bp}fake cp` \n`{bp}fake ssn` ", inline=False )
     em13.add_field(name=f"Some Mathematics", value=f"`{bp}add [no1] [no2]` \n`{bp}subs [no1] [no2]` \n`{bp}mul [no1] [no2]` \n`{bp}div [no1] [no2]` ", inline=False )
-    em13.add_field(name="Music (Not all commands work perfectly)", value=f"`{bp}play [song-name]` \n`{bp}join` \n`{bp}leave` \n`{bp}pause` \n`{bp}resume` \n`{bp}stop` \n`{bp}skip` \n`{bp}summon [vc-name]` \n`{bp}now` \n`{bp}queue` \n`{bp}shuffle` \n`{bp}remove [index-from-queue]` \n`{bp}loop` ", inline=False)
+    em13.add_field(name="Music", value=f"`{bp}play [song-name]` \n`{bp}join` \n`{bp}leave` \n`{bp}skip` \n`{bp}summon [vc-name]` \n`{bp}now` \n`{bp}queue` \n`{bp}shuffle` \n`{bp}remove [index-from-queue]` \n`{bp}loop` ", inline=False)
     em13.add_field(name=f"Tools/Games", value=f"`{bp}genpwd [no-of-letters]` \n`{bp}pwdcheck [password_here]` - Thank you NoPe \n`{bp}pwdstrengthcheck [password_here]` \n`{bp}audio [yt-link]` \n`{bp}similiar [first] || [second]` \n`{bp}bottoken` \n `{bp}sendemail [your-email] [reciever-email] [subject-with-no-spaces] [email-content]` \n`ping` \n`{bp}8ball [question]` \n`{bp}inspire` \n`{bp}inv` \n`{bp}nitro [no-of-codes]` \n`{bp}bored` \n`{bp}color` \n`{bp}wiki [search-query]` \n`{bp}tinyurl [any-url]` \n`{bp}cleanuri [any-url]` \n`{bp}joke` \n`{bp}iconserver` \n`{bp}wyr [question]` \n`{bp}bastebin [text]` \n`{bp}ascii [text]` \n`{bp}asciiart [text]` \n`{bp}guessage [name]` \n`{bp}advice` \n`{bp}chuckjoke` \n`{bp}poll [question]` \n`{bp}csnd` \n`{bp}howdie [user]` \n`{bp}chatbot` \n`{bp}countryinfo [country-code]` ", inline=False)
     await loading_message.delete()
     await ctx.send(embed=em13)
@@ -6985,9 +6985,9 @@ async def Help(ctx, category="none"):
     em14.add_field(name=f'{bp}play', value=f'`{bp}play [song-name]` - Join to Voice Channel and play the song', inline=True)
     em14.add_field(name=f'{bp}join', value=f'`{bp}join` - Join Voice Channel', inline=True)
     em14.add_field(name=f'{bp}leave', value=f'`{bp}leave` - Leave Voice Channel', inline=True)
-    em14.add_field(name=f'{bp}pause', value=f'`{bp}pause` - Pause the paused music', inline=True)
-    em14.add_field(name=f'{bp}resume', value=f'`{bp}resume` - Resume the paused music', inline=True)
-    em14.add_field(name=f'{bp}stop', value=f'`{bp}stop` - Stop Playing', inline=True)
+    # em14.add_field(name=f'{bp}pause', value=f'`{bp}pause` - Pause the paused music', inline=True)
+    # em14.add_field(name=f'{bp}resume', value=f'`{bp}resume` - Resume the paused music', inline=True)
+    # em14.add_field(name=f'{bp}stop', value=f'`{bp}stop` - Stop Playing', inline=True)
     em14.add_field(name=f'{bp}skip', value=f'`{bp}skip` - Skip the current playing song and go to the next', inline=True)
     em14.add_field(name=f'{bp}summon', value=f'`{bp}summon [vc-name]` - Make the bot join to a VC (Case Sensitive)', inline=True)
     em14.add_field(name=f'{bp}now', value=f'`{bp}now` - Displays the current playing song', inline=True)
@@ -7359,34 +7359,34 @@ class Music(commands.Cog):
 
         await ctx.send(embed=ctx.voice_state.current.create_embed())
 
-    @commands.command(name='pause')
-    @commands.has_permissions(manage_guild=True)
-    async def _pause(self, ctx: commands.Context):
-        """Pauses the currently playing song."""
+    # @commands.command(name='pause')
+    # @commands.has_permissions(manage_guild=True)
+    # async def _pause(self, ctx: commands.Context):
+    #     """Pauses the currently playing song."""
 
-        if not ctx.voice_state.is_playing and ctx.voice_state.voice.is_playing():
-            ctx.voice_state.voice.pause()
-            await ctx.message.add_reaction('⏯')
+    #     if not ctx.voice_state.is_playing and ctx.voice_state.voice.is_playing():
+    #         ctx.voice_state.voice.pause()
+    #         await ctx.message.add_reaction('⏯')
 
-    @commands.command(name='resume')
-    @commands.has_permissions(manage_guild=True)
-    async def _resume(self, ctx: commands.Context):
-        """Resumes a currently paused song."""
+    # @commands.command(name='resume')
+    # @commands.has_permissions(manage_guild=True)
+    # async def _resume(self, ctx: commands.Context):
+    #     """Resumes a currently paused song."""
 
-        if not ctx.voice_state.is_playing and ctx.voice_state.voice.is_paused():
-            ctx.voice_state.voice.resume()
-            await ctx.message.add_reaction('⏯')
+    #     if not ctx.voice_state.is_playing and ctx.voice_state.voice.is_paused():
+    #         ctx.voice_state.voice.resume()
+    #         await ctx.message.add_reaction('⏯')
 
-    @commands.command(name='stop')
-    @commands.has_permissions(manage_guild=True)
-    async def _stop(self, ctx: commands.Context):
-        """Stops playing song and clears the queue."""
+    # @commands.command(name='stop')
+    # @commands.has_permissions(manage_guild=True)
+    # async def _stop(self, ctx: commands.Context):
+    #     """Stops playing song and clears the queue."""
 
-        ctx.voice_state.songs.clear()
+    #     ctx.voice_state.songs.clear()
 
-        if not ctx.voice_state.is_playing:
-            ctx.voice_state.voice.stop()
-            await ctx.message.add_reaction('⏹')
+    #     if not ctx.voice_state.is_playing:
+    #         ctx.voice_state.voice.stop()
+    #         await ctx.message.add_reaction('⏹')
 
     @commands.command(name='skip')
     async def _skip(self, ctx: commands.Context):
