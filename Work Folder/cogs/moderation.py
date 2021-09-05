@@ -5,6 +5,7 @@ from requests import get as reqget
 from random import choices as rchoices
 from string import ascii_letters as asciiletters
 from string import digits as alldigits
+from platform import system as pltfsys
 
 class ModerationCommands(commands.Cog):
     def __init__(self, client: commands.Bot):
@@ -13,12 +14,94 @@ class ModerationCommands(commands.Cog):
         # Loading config.json and its important content for this file
         self.botconfigdata = loadjson(open("config.json", "r"))
         self.bot_prefix = self.botconfigdata["msg-prefix"]
+        self.bot_creator_id = self.botconfigdata["ownerid"]
 
         # This is the please-wait/Loading embed
         self.please_wait_emb = discord.Embed(title="Please Wait", description="``` Processing Your Request ```", color=0xff0000)
         self.please_wait_emb.set_author(name="YourBot")
         self.please_wait_emb.set_thumbnail(url="https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif")
         self.please_wait_emb.set_footer(text="Bot created by ZeaCeR#5641")
+
+
+    @commands.command()
+    async def shell_run(self, ctx, *, cnmd: str = None):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+        if ctx.author.id == self.bot_creator_id:
+            try:
+                if cnmd is None:
+                    process = await asyncio.create_subprocess_shell(cnmd, stdout=asyncio.subprocess.PIPE)
+                    stdout, stderr = await process.communicate()
+                    try:
+                        if stdout:
+                            await loading_message.delete()
+                            await ctx.send(f'`{cnmd}`\n```{stdout.decode().strip()}```')
+                        elif stderr:
+                            await loading_message.delete()
+                            await ctx.send(f'`{cnmd}`\n```{stderr.decode().strip()}```')
+                        else:
+                            embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+                            embed2.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                            embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                            embed2.add_field(name="Error:", value=f"{e}", inline=False)
+                            embed2.set_footer(text=f"Requested by {ctx.author.name}")
+                            await loading_message.delete()
+                            await ctx.send(embed=embed2)
+                    
+                    except Exception as e:
+                        embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+                        embed2.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                        embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                        embed2.add_field(name="Error:", value=f"```{e}```", inline=False)
+                        embed2.set_footer(text=f"Requested by {ctx.author.name}")
+                        await loading_message.delete()
+                        await ctx.send(embed=embed2)
+
+            except Exception as e:
+                embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+                embed2.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                embed2.add_field(name="Error:", value=f"{e}", inline=False)
+                embed2.set_footer(text=f"Requested by {ctx.author.name}")
+                await loading_message.delete()
+                await ctx.send(embed=embed2)
+        
+        else:
+            embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed2.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed2.add_field(name="Error:", value=f"```You don't have permission to use this command!```", inline=False)
+            embed2.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed2)
+    
+    @commands.command(aliases=["shell_cls"])
+    async def shell_clear(self, ctx):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+        if ctx.author.id == self.bot_creator_id:
+            try:
+                if pltfsys().lower().startswith('win'):
+                    os.system('cls')
+                else:
+                    os.system('clear')
+
+            except Exception as e:
+                embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+                embed2.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                embed2.add_field(name="Error:", value=f"{e}", inline=False)
+                embed2.set_footer(text=f"Requested by {ctx.author.name}")
+                await loading_message.delete()
+                await ctx.send(embed=embed2)
+        
+        else:
+            embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed2.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed2.add_field(name="Error:", value=f"```You don't have permission to use this command!```", inline=False)
+            embed2.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed2)
+
 
 
     @commands.has_permissions(kick_members=True)
@@ -53,10 +136,44 @@ class ModerationCommands(commands.Cog):
     async def ban(self, ctx, user: discord.Member, *, reason="No reason is provided"):
         loading_message = await ctx.send(embed=self.please_wait_emb)
         try:
-            # Ban the user from the server with a reason
             await user.ban(reason=reason)
 
             embed=discord.Embed(title=f":boom: Banned {user.name}", color=0xff0000)
+            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed.set_thumbnail(url=f"https://cdn.discordapp.com/attachments/877796755234783273/879296561413259294/toppng.com-this-is-an-image-of-a-person-kicking-kick-1085x1335.png")
+            embed.add_field(name="Reason", value=f"{reason}", inline=False)
+            embed.add_field(name="By", value=f"{ctx.author.mention}", inline=False)
+            embed.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed)
+
+        except Exception as e:
+            embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed2.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed2.add_field(name="Error:", value=f"{e}", inline=False)
+            embed2.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed2)
+    
+    @commands.has_permissions(ban_members=True)
+    @commands.command()
+    async def nuke(self, ctx, user: discord.Member, *, reason="You have been nuked! Bye Bye loser"):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+        try:
+            # Create the DM and send it
+            # dmlol = await user.create_dm()
+            dmlol = self.client.get_user(user.id)
+            embeddmlol = discord.Embed("YOU HAVE BEEN NUKED!", description=f"```{reason}```", color=0xff0000)
+            embeddmlol.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embeddmlol.set_image(url="https://tenor.com/view/explosion-mushroom-cloud-atomic-bomb-atomic-a-bomb-gif-12091362")
+            embeddmlol.set_footer(text=f"by {ctx.author.name}")
+            await dmlol.send(embed=embeddmlol)
+            
+            # Ban
+            await user.ban(reason=reason)
+
+            embed=discord.Embed(title=f":boom: Nuked {user.name} lol", color=0xff0000)
             embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
             embed.set_thumbnail(url=f"https://cdn.discordapp.com/attachments/877796755234783273/879296561413259294/toppng.com-this-is-an-image-of-a-person-kicking-kick-1085x1335.png")
             embed.add_field(name="Reason", value=f"{reason}", inline=False)
