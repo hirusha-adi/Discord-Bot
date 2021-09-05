@@ -1,6 +1,10 @@
-import discord
+import discord, os, asyncio
 from discord.ext import commands
 from json import load as loadjson
+from requests import get as reqget
+from random import choices as rchoices
+from string import ascii_letters as asciiletters
+from string import digits as alldigits
 
 class ModerationCommands(commands.Cog):
     def __init__(self, client: commands.Bot):
@@ -172,6 +176,174 @@ class ModerationCommands(commands.Cog):
             await loading_message.delete()
             await ctx.send(embed=embed3)
 
+    @commands.has_permissions(manage_messages=True)
+    @commands.command(aliases=["new-emoji", "emojinew", "newemojis", "add-emoji", "addemoji"])
+    async def newemoji(self, ctx, name, link, filetyple):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+        try:
+            try:
+                image = reqget(link)
+                filename = ''.join(rchoices(asciiletters + alldigits, k=9))
+                with open(f"{filename}.{filetyple}", "wb") as fw:
+                    fw.write(image.content)
+                with open(f"{filename}.{filetyple}", "rb") as img:
+                    img_byte = img.read()
+                    await ctx.guild.create_custom_emoji(name = (f"{name}"), image = img_byte)
+                # await ctx.guild.create_custom_emoji(name = (name), image = link)
+                em = discord.Embed(title="New Emoji Added", color=0xff0000)
+                em.set_thumbnail(url=link)
+                em.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                em.add_field(name="Name", value=f'{name}')
+                em.set_footer(text=f"Requested by {ctx.author.name}")
+                em.add_field(name="Requested by", value=f'{ctx.author.mention}')
+                await loading_message.delete()
+                await ctx.send(embed=em)
+            except:
+                await loading_message.delete()
+                await ctx.send(f'```Error: Please enter the correct arguments in the correct order. use >Help for help ```')
+            finally:
+                if os.path.isfile(f"{filename}.{filetyple}"):
+                    os.remove(f"{filename}.{filetyple}")
+                else:
+                    pass
+
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+
+
+    @commands.has_permissions(manage_messages=True)
+    @commands.command()
+    async def slap(ctx, user: discord.Member, *, reason):
+        await ctx.send(f'{user.mention} is being slapped by {ctx.author.mention} \nReason: {reason}')
+
+    @commands.has_permissions(manage_messages=True)
+    @commands.command()
+    async def mute(self, ctx, member: discord.Member, *, reason="Reason not Provided"):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+        role = discord.utils.get(ctx.guild.roles, name="Muted")
+        guild = ctx.guild
+
+        if role not in guild.roles:
+            perms = discord.Permissions(send_messages=False, speak=False)
+            await guild.create_role(name="Muted", permissions=perms)
+            await member.add_roles(role)
+
+            em = discord.Embed(title="Mute", color=0xff0000)
+            em.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            em.add_field(name=f"✅ {member} was muted", value=f"by {ctx.author.mention}", inline=False)
+            em.add_field(name=f"Reason", value=f"{reason}", inline=False)
+            await loading_message.delete()
+            await ctx.send(embed=em)
+
+        else:
+            await member.add_roles(role)
+
+            em = discord.Embed(title="Mute", color=0xff0000)
+            em.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            em.add_field(name=f"✅ {member} was muted", value=f"by {ctx.author.mention}", inline=False)
+            em.add_field(name=f"Reason", value=f"{reason}", inline=False)
+            await loading_message.delete()
+            await ctx.send(embed=em)
+
+
+    @commands.has_permissions(manage_messages=True)
+    @commands.command()
+    async def unmute(self, ctx, member: discord.Member):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+        role = discord.utils.get(ctx.guild.roles, name="Muted")
+        guild = ctx.guild
+
+        if role not in guild.roles:
+            perms = discord.Permissions(send_messages=False, speak=False)
+            await guild.create_role(name="Muted", permissions=perms)
+        
+        try:
+            await member.remove_roles(role)
+            em = discord.Embed(title="Unmute", color=0xff0000)
+            em.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            em.add_field(name=f"✅ {member} was unmuted", value=f"by {ctx.author.mention}")
+            # em.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=em)
+
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+    
+
+    @commands.has_permissions(manage_messages=True)
+    @commands.command()
+    async def tempmute(self, ctx, member: discord.Member, time: int, d, *, reason="No reason is provided"):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+
+        guild = ctx.guild
+
+        for role in guild.roles:
+            if role.name == "Muted":
+                await member.add_roles(role)
+
+                embed = discord.Embed(title="muted!", description=f"{member.mention} has been tempmuted ", colour=discord.Colour.light_gray())
+                embed.add_field(name="reason:", value=reason, inline=False)
+                embed.add_field(name="time left for the mute:", value=f"{time}{d}", inline=False)
+                await ctx.send(embed=embed)
+
+                if d == "s":
+                    if time <= 1800:
+                        await asyncio.sleep(time)
+                    else:
+                        embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+                        embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                        embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                        embed3.add_field(name="Error:", value=f"Please enter a value below 1800 seconds", inline=False)
+                        embed3.set_footer(text=f"Requested by {ctx.author.name}")
+                        await loading_message.delete()
+                        await ctx.send(embed=embed3)
+                        await member.remove_roles(role)
+
+                if d == "m":
+                    if time <= 300:
+                        await asyncio.sleep(time*60)
+                    else:
+                        embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+                        embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                        embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                        embed3.add_field(name="Error:", value=f"Please enter a value below 300 minutes", inline=False)
+                        embed3.set_footer(text=f"Requested by {ctx.author.name}")
+                        await loading_message.delete()
+                        await ctx.send(embed=embed3)
+                        await member.remove_roles(role)
+
+                if d == "h":
+                    if time <= 5:
+                        await asyncio.sleep(time*60*60)
+                    else:
+                        embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+                        embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                        embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                        embed3.add_field(name="Error:", value=f"Please enter a value below 6 hours", inline=False)
+                        embed3.set_footer(text=f"Requested by {ctx.author.name}")
+                        await loading_message.delete()
+                        await ctx.send(embed=embed3)
+                        await member.remove_roles(role)
+
+
+
+
+                embed = discord.Embed(title="unmute (temp) ", description=f"unmuted -{member.mention} ", colour=discord.Colour.light_gray())
+                await ctx.send(embed=embed)
+
+                return
 
 
 

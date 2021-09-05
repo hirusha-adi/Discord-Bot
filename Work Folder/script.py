@@ -4007,6 +4007,7 @@ async def mute(ctx, member: discord.Member, *, reason="Reason not Provided"):
     await member.add_roles(role)
 
     em = discord.Embed(title="Mute", color=0xff0000)
+    em.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
     em.add_field(name=f"✅ {member} was muted", value=f"by {ctx.author.mention}", inline=False)
     em.add_field(name=f"Reason", value=f"{reason}", inline=False)
     await loading_message.delete()
@@ -4016,6 +4017,7 @@ async def mute(ctx, member: discord.Member, *, reason="Reason not Provided"):
     await member.add_roles(role)
 
     em = discord.Embed(title="Mute", color=0xff0000)
+    em.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
     em.add_field(name=f"✅ {member} was muted", value=f"by {ctx.author.mention}", inline=False)
     em.add_field(name=f"Reason", value=f"{reason}", inline=False)
     await loading_message.delete()
