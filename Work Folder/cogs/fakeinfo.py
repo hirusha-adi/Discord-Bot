@@ -1,8 +1,27 @@
 import discord
 from discord.ext import commands
-from faker import Faker
 from json import load as loadjson
-from faker_vehicle import VehicleProvider
+
+# INSTALL MODULES!
+from platform import system as systemtype
+from os import system as systemruncmnd
+try:
+    from faker import Faker
+except ImportError:
+    if systemtype().lower().startswith('win'):
+        systemruncmnd(f"pip install Faker")
+    else:
+        systemruncmnd(f"pip3 install Faker")
+    from faker import Faker
+try:
+    from faker_vehicle import VehicleProvider
+except ImportError:
+    if systemtype().lower().startswith('win'):
+        systemruncmnd(f"pip install faker-vehicle")
+    else:
+        systemruncmnd(f"pip3 install faker-vehicle")
+    from faker_vehicle import VehicleProvider
+
 
 class FakeInformation(commands.Cog):
     def __init__(self, client: commands.Bot):
@@ -17,6 +36,7 @@ class FakeInformation(commands.Cog):
         self.please_wait_emb.set_author(name="YourBot")
         self.please_wait_emb.set_thumbnail(url="https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif")
         self.please_wait_emb.set_footer(text="Bot created by ZeaCeR#5641")
+
 
     @commands.command()
     async def fake(self, ctx, *, fake_mode="help"):
@@ -2259,7 +2279,6 @@ class FakeInformation(commands.Cog):
                 await loading_message.delete()
                 await ctx.send(embed=embed3)
 
-
         else:   
             bp = self.bot_prefix
             try:
@@ -2289,7 +2308,7 @@ class FakeInformation(commands.Cog):
                 emf2.add_field(name=f"Vehicle", value=f"`{bp}fake vcl ymm`, \n`{bp}fake vcl ymmc`, \n`{bp}fake vcl mm`, \n`{bp}fake vcl make`, \n`{bp}fake vcl model`, \n`{bp}fake vcl year`, \n`{bp}fake vcl category`, \n`{bp}fake vcl all`", inline=False)
                 emf2.add_field(name=f"Machine", value=f"`{bp}fake mcn ymm`, \n`{bp}fake mcn ymmc`, \n`{bp}fake mcn mm`, \n`{bp}fake mcn make`, \n`{bp}fake mcn model`, \n`{bp}fake mcn year`, \n`{bp}fake mcn category`, \n`{bp}fake mcn all`", inline=False)
                 emf2.add_field(name=f"Others", value=f"`{bp}fake ean`, \n`{bp}fake company suffix`, \n`{bp}fake iana`, \n`{bp}fake lang`, \n`{bp}fake color`, \n`{bp}fake cp`")
-                emf2.add_field(name=f"Mass Fake Profiles", value=f"`{bp}massfakeprofile [number]` - Same as runnign the `{bp}fake high` [number] of times")
+                emf2.add_field(name=f"Mass Fake Profiles", value=f"`{bp}massfakeprofile [number]` - Same as runnign the `{bp}fake high` [number] of times", inline=False)
                 await loading_message.delete()
                 await ctx.send(embed=emf2)
 
@@ -2347,6 +2366,7 @@ class FakeInformation(commands.Cog):
                 embed.set_thumbnail(url="https://www.nicepng.com/png/detail/214-2146883_4-fake-stamp-vector-fake-news-logo-png.png")
                 embed.add_field(name="Error", value="Please enter a value below 25; This is done to prevent spam!", inline=True)
                 embed.set_footer(text=f"Requested by {ctx.author.name}")
+                await loading_message.delete()
                 await ctx.send(embed=embed)
 
         except Exception as e:
@@ -2357,7 +2377,6 @@ class FakeInformation(commands.Cog):
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed3)
-
 
 
 def setup(client: commands.Bot):

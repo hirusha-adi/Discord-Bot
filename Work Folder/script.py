@@ -506,62 +506,6 @@ async def countryinfo(ctx, *, countrycodeig):
     await ctx.send(embed=embed3)
 
 
-@client.command(aliases=["mass-fake-profile", "massfakeprofile", "mass-fake-profiles", "massfakeprofiles"])
-async def mfp(ctx, *, how_many):
-    loading_message = await ctx.send(embed=please_wait_emb)
-
-    try:
-      fake_how_many = int(how_many)
-      
-      # This is the limit for this command to stop spamming!
-      if fake_how_many <= 30:
-
-        embed=discord.Embed(title="Mass Fake Profiles", color=0xff0000)
-        embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-        embed.set_thumbnail(url="https://www.nicepng.com/png/detail/214-2146883_4-fake-stamp-vector-fake-news-logo-png.png")
-        embed.add_field(name=f"{ctx.author.name} requested {how_many} fake profiles!", value=f"Starting to send {how_many} fake profiles!", inline=True)
-        # embed.set_footer(text=f"Requested by {ctx.author.name}")
-        await loading_message.delete()
-        await ctx.send(embed=embed)
-
-        for i in range(fake_how_many):
-            fake = Faker()
-            simple_dict = fake.profile()
-            emf = discord.Embed(title="Fake Information Generator", color=0xF00000)
-            emf.set_thumbnail(url="https://www.nicepng.com/png/detail/214-2146883_4-fake-stamp-vector-fake-news-logo-png.png")
-            emf.set_footer(text=f"Requested by {ctx.author.name}")
-            emf.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            emf.add_field(name="Name", value=f"{str(simple_dict['name'])}")
-            emf.add_field(name="Job", value=f"{str(simple_dict['job'])}")
-            emf.add_field(name="Birthdate", value=f"{str(simple_dict['birthdate'])}")
-            emf.add_field(name="Company", value=f"{str(simple_dict['company'])}")
-            emf.add_field(name="SSN", value=f"{str(simple_dict['ssn'])}")
-            emf.add_field(name="Recidence", value=f"{str(simple_dict['residence'])}")
-            emf.add_field(name="Current Location", value=f"{str(simple_dict['current_location'])}")
-            emf.add_field(name="Blood Group", value=f"{str(simple_dict['blood_group'])}")
-            emf.add_field(name="Username", value=f"{str(simple_dict['username'])}")
-            emf.add_field(name="Address", value=f"{str(simple_dict['address'])}")
-            emf.add_field(name="Mail", value=f"{str(simple_dict['mail'])}")
-            await ctx.send(embed=emf)
-
-      else:
-        embed=discord.Embed(title="Mass Fake Profiles", color=0xff0000)
-        embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-        embed.set_thumbnail(url="https://www.nicepng.com/png/detail/214-2146883_4-fake-stamp-vector-fake-news-logo-png.png")
-        embed.add_field(name="Error", value="Please enter a value below 30; This is done to prevent spam!", inline=True)
-        embed.set_footer(text=f"Requested by {ctx.author.name}")
-        await ctx.send(embed=embed)
-
-    except Exception as e:
-      embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-      embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-      embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
-      embed3.add_field(name="Error:", value=f"{e}", inline=False)
-      embed3.set_footer(text=f"Requested by {ctx.author.name}")
-      await loading_message.delete()
-      await ctx.send(embed=embed3)
-
-
 @client.command()
 async def pervert(ctx):
     # Just a text
