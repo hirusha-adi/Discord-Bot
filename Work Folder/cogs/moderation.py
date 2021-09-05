@@ -260,21 +260,37 @@ class ModerationCommands(commands.Cog):
 
     @commands.has_permissions(manage_messages=True)
     @commands.command()
-    async def clear(self, ctx, amount=5):
+    async def clear(self, ctx, amount=5, *, member:discord.Member = None):
         try:
-            amttdel = amount + 1
-            await ctx.channel.purge(limit=amttdel)
+            if member == None:
+                amttdel = amount + 1
+                await ctx.channel.purge(limit=amttdel)
 
-            if amount == "1":
-                msgtxt = "message"
+                if amount == "1":
+                    msgtxt = "message"
+                else:
+                    msgtxt = "messages"
+
+                embed=discord.Embed(title="Success!", color=0xff0000)
+                embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                embed.add_field(name="Action", value=f"Deleted {amount} {msgtxt}!", inline=False)
+                embed.set_footer(text=f"Requested by {ctx.author.name}")
+                await ctx.send(embed=embed, delete_after=4)
             else:
-                msgtxt = "messages"
+                amttdel = amount + 1
+                await ctx.channel.purge(limit=amttdel, check=member)
 
-            embed=discord.Embed(title="Success!", color=0xff0000)
-            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            embed.add_field(name="Action", value=f"Deleted {amount} {msgtxt}!", inline=False)
-            embed.set_footer(text=f"Requested by {ctx.author.name}")
-            await ctx.send(embed=embed, delete_after=4)
+                if amount == "1":
+                    msgtxt = "message"
+                else:
+                    msgtxt = "messages"
+
+                embed=discord.Embed(title="Success!", color=0xff0000)
+                embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                embed.add_field(name="Action", value=f"Deleted {amount} {msgtxt}!", inline=False)
+                embed.set_footer(text=f"Requested by {ctx.author.name}")
+                await ctx.send(embed=embed, delete_after=4)
+
 
         except Exception as e:
             embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
