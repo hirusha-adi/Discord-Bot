@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 from faker import Faker
 from json import load as loadjson
+from faker_vehicle import VehicleProvider
 
 class FakeInformation(commands.Cog):
     def __init__(self, client: commands.Bot):
@@ -2114,6 +2115,156 @@ class FakeInformation(commands.Cog):
                 embed3.set_footer(text=f"Requested by {ctx.author.name}")
                 await loading_message.delete()
                 await ctx.send(embed=embed3)
+        
+
+        elif fake_mode.lower().startswith('vcl'):
+            fake = Faker()
+            try:
+                fake.add_provider(VehicleProvider)
+                try:
+                    fmall = fake_mode.split(" ")
+                    fmlast = fmall[-1]
+                except:
+                    fmlast = "all"
+
+                emf2 = discord.Embed(title="Fake Information Generator", color=0xF00000)
+                emf2.set_thumbnail(url="https://www.nicepng.com/png/detail/214-2146883_4-fake-stamp-vector-fake-news-logo-png.png")
+                emf2.set_footer(text=f"Requested by {ctx.author.name}")
+                emf2.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+
+                try:
+                    if fmlast == "ymm":
+                        vinfo = fake.vehicle_year_make_model()
+                        emf2.add_field(name="Vehicle Infromation", value=f"**Year, Make, Model:** \n{vinfo}")
+                    
+                    elif fmlast == "ymmc":
+                        vinfo = fake.vehicle_year_make_model_cat()
+                        emf2.add_field(name="Vehicle Infromation", value=f"**Year, Make, Model, Cat:** \n{vinfo}")
+                    
+                    elif fmlast == "mm":
+                        vinfo = fake.vehicle_make_model()
+                        emf2.add_field(name="Vehicle Infromation", value=f"**Make, Model:** \n{vinfo}")
+                    
+                    elif fmlast == "make":
+                        vinfo = fake.vehicle_make()
+                        emf2.add_field(name="Vehicle Infromation", value=f"**Make:** {vinfo}")
+                    
+                    elif fmlast == "model":
+                        vinfo = fake.vehicle_model()
+                        emf2.add_field(name="Vehicle Infromation", value=f"**Model:** {vinfo}")
+                    
+                    elif fmlast == "year":
+                        vinfo = fake.vehicle_model()
+                        emf2.add_field(name="Vehicle Infromation", value=f"**Year:** {vinfo}")
+                    
+                    elif fmlast == "category":
+                        vinfo = fake.vehicle_category()
+                        emf2.add_field(name="Vehicle Infromation", value=f"**Category:** {vinfo}")
+
+                    else:
+                        vinfo = fake.vehicle_object()
+                        emf2.add_field(name="Vehicle Infromation", value=f"**Year:** {vinfo['Year']} \n**Make:** {vinfo['Make']} \n**Model:** {vinfo['Model']} \n**Category:** {vinfo['Category']}")
+
+                except Exception as e:
+                    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+                    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+                    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+                    await loading_message.delete()
+                    await ctx.send(embed=embed3)
+                    return
+                try:
+                    fmall = fake_mode.split(" ")
+                    fmlast = fmall[-2:]
+                except:
+                    fmlast = "all"
+
+                
+                await loading_message.delete()
+                await ctx.send(embed=emf2)
+
+            except Exception as e:
+                embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+                embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                embed3.add_field(name="Error:", value=f"{e}", inline=False)
+                embed3.set_footer(text=f"Requested by {ctx.author.name}")
+                await loading_message.delete()
+                await ctx.send(embed=embed3)
+
+
+        elif fake_mode.lower().startswith('mcn'):
+            fake = Faker()
+            try:
+                fake.add_provider(VehicleProvider)
+                try:
+                    fmall = fake_mode.split(" ")
+                    fmlast = fmall[-1]
+                except:
+                    fmlast = "all"
+
+                emf2 = discord.Embed(title="Fake Information Generator", color=0xF00000)
+                emf2.set_thumbnail(url="https://www.nicepng.com/png/detail/214-2146883_4-fake-stamp-vector-fake-news-logo-png.png")
+                emf2.set_footer(text=f"Requested by {ctx.author.name}")
+                emf2.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+
+                try:
+                    if fmlast == "ymm":
+                        vinfo = fake.machine_year_make_model()
+                        emf2.add_field(name="Machine Infromation", value=f"**Year, Make, Model:** \n{vinfo}")
+                    
+                    elif fmlast == "ymmc":
+                        vinfo = fake.machine_year_make_model_cat()
+                        emf2.add_field(name="Machine Infromation", value=f"**Year, Make, Model, Cat:** \n{vinfo}")
+                    
+                    elif fmlast == "mm":
+                        vinfo = fake.machine_make_model()
+                        emf2.add_field(name="Machine Infromation", value=f"**Make, Model:** \n{vinfo}")
+                    
+                    elif fmlast == "make":
+                        vinfo = fake.machine_make()
+                        emf2.add_field(name="Machine Infromation", value=f"**Make:** {vinfo}")
+                    
+                    elif fmlast == "model":
+                        vinfo = fake.machine_model()
+                        emf2.add_field(name="Machine Infromation", value=f"**Model:** {vinfo}")
+                    
+                    elif fmlast == "year":
+                        vinfo = fake.machine_year()
+                        emf2.add_field(name="Machine Infromation", value=f"**Year:** {vinfo}")
+                    
+                    elif fmlast == "category":
+                        vinfo = fake.machine_category()
+                        emf2.add_field(name="Machine Infromation", value=f"**Category:** {vinfo}")
+
+                    else:
+                        vinfo = fake.machine_object()
+                        emf2.add_field(name="Machine Infromation", value=f"**Year:** {vinfo['Year']} \n**Make:** {vinfo['Make']} \n**Model:** {vinfo['Model']} \n**Category:** {vinfo['Category']}")
+
+                except Exception as e:
+                    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+                    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                    embed3.add_field(name="Error:", value=f"{e}", inline=False)
+                    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+                    await loading_message.delete()
+                    await ctx.send(embed=embed3)
+                    return
+
+
+                await loading_message.delete()
+                await ctx.send(embed=emf2)
+
+            except Exception as e:
+                embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+                embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                embed3.add_field(name="Error:", value=f"{e}", inline=False)
+                embed3.set_footer(text=f"Requested by {ctx.author.name}")
+                await loading_message.delete()
+                await ctx.send(embed=embed3)
+
 
         else:   
             bp = self.bot_prefix
@@ -2125,7 +2276,7 @@ class FakeInformation(commands.Cog):
                 emf2.add_field(name=f"{bp}fake high", value=f"Generate a high amount of information")
                 emf2.add_field(name=f"{bp}fake low", value=f"Generate a low amount of information")
                 emf2.add_field(name=f"{bp}fake help", value=f"Show this / list all commands")
-                emf2.add_field(name=f"Personal - Others", value=f", \n`{bp}fake job`, \n`{bp}fake licenseplate`, \n`{bp}fake bs`, \n`{bp}fake ssn`")
+                emf2.add_field(name=f"Personal - Others", value=f"`{bp}fake job`, \n`{bp}fake licenseplate`, \n`{bp}fake bs`, \n`{bp}fake ssn`")
                 emf2.add_field(name=f"Location", value=f"`{bp}fake country`, \n`{bp}fake postcode`, \n`{bp}fake street addr`, \n`{bp}fake street addr`, \n`{bp}fake addr`, \n`{bp}fake zipcode`, \n`{bp}fake city`")
                 emf2.add_field(name=f"Credit Card", value=f"`{bp}fake cc`, \n`{bp}fake cc ex`, \n`{bp}fake cc no`, \n`{bp}fake cc pr`, \n`{bp}fake cc cvv`")
                 emf2.add_field(name=f"Crypto", value=f"`{bp}fake crypto`, \n`{bp}fake crypto code`, \n`{bp}fake crypto name`")
@@ -2140,7 +2291,7 @@ class FakeInformation(commands.Cog):
                 emf2.add_field(name=f"Texts", value=f"`{bp}fake paragraph`, \n`{bp}fake sentence`, \n`{bp}fake text`")
                 emf2.add_field(name=f"Phone Number", value=f"`{bp}fake callingcode`, \n`{bp}fake msisdn`, \n`{bp}fake pno`")
                 emf2.add_field(name=f"User Agents", value=f"`{bp}fake chrome`, \n`{bp}fake firefox`, \n`{bp}fake ie`, \n`{bp}fake opera`, \n`{bp}fake safari`, \n`{bp}fake ua`")
-                emf2.add_field(name=f"Platofrm Tokens", value=f"`{bp}fake apt`, \n`{bp}fake iospt`n \n`{bp}fake linuxpt`, \n`{bp}fake linuxproc`, \n`{bp}fake macpt`, \n`{bp}fake macprocessor`, \n`{bp}fake winpt`, \n`{bp}fake ua`")
+                emf2.add_field(name=f"Platform Tokens", value=f"`{bp}fake apt`, \n`{bp}fake iospt`n \n`{bp}fake linuxpt`, \n`{bp}fake linuxproc`, \n`{bp}fake macpt`, \n`{bp}fake macprocessor`, \n`{bp}fake winpt`, \n`{bp}fake ua`")
                 emf2.add_field(name=f"Others", value=f"`{bp}fake ean`, \n`{bp}fake company suffix`, \n`{bp}fake iana`, \n`{bp}fake lang`, \n`{bp}fake color`, \n`{bp}fake cp`")
 
 
