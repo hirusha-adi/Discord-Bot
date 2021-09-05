@@ -1,4 +1,4 @@
-import discord, os, asyncio
+import discord, os, asyncio, subprocess
 from discord.ext import commands
 from json import load as loadjson
 from requests import get as reqget
@@ -6,6 +6,8 @@ from random import choices as rchoices
 from string import ascii_letters as asciiletters
 from string import digits as alldigits
 from platform import system as pltfsys
+from getpass import getuser as pcusername
+from platform import python_version as pyversion
 
 class ModerationCommands(commands.Cog):
     def __init__(self, client: commands.Bot):
@@ -21,6 +23,42 @@ class ModerationCommands(commands.Cog):
         self.please_wait_emb.set_author(name="YourBot")
         self.please_wait_emb.set_thumbnail(url="https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif")
         self.please_wait_emb.set_footer(text="Bot created by ZeaCeR#5641")
+
+    @commands.command()
+    async def shell_info(self, ctx):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+        if ctx.author.id == self.bot_creator_id:
+            try:
+                embed2=discord.Embed(title="Cleared Screen", description="The command ran successfully! ", color=0xff0000)
+                embed2.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                embed2.add_field(name="Operating System", value=f"```{pltfsys()}```", inline=False)
+                embed2.add_field(name="User", value=f"```{pcusername()}```", inline=False)
+                embed2.add_field(name="Python Version", value=f"```{pyversion()}```", inline=False)
+                embed2.add_field(name="Discord API Version", value=f"```{discord.__version__}```", inline=False)
+                try:
+                    embed2.add_field(name="CPU", value=f"```{(subprocess.check_output('lscpu', shell=True).strip()).decode()}```", inline=False)
+                except:
+                    pass
+                await loading_message.delete()
+                await ctx.send(embed=embed2)
+
+            except Exception as e:
+                embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+                embed2.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                embed2.add_field(name="Error:", value=f"{e}", inline=False)
+                embed2.set_footer(text=f"Requested by {ctx.author.name}")
+                await loading_message.delete()
+                await ctx.send(embed=embed2)
+        
+        else:
+            embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed2.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed2.add_field(name="Error:", value=f"```You don't have permission to use this command!```", inline=False)
+            embed2.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed2)
 
 
     @commands.command()
@@ -80,10 +118,22 @@ class ModerationCommands(commands.Cog):
         loading_message = await ctx.send(embed=self.please_wait_emb)
         if ctx.author.id == self.bot_creator_id:
             try:
+
                 if pltfsys().lower().startswith('win'):
                     os.system('cls')
+                    ostype = "Microsoft Windows"
+                    command = "cls"
                 else:
                     os.system('clear')
+                    ostype=pltfsys()
+                    command = "clear"
+
+                embed2=discord.Embed(title="Cleared Screen", description="The command ran successfully! ", color=0xff0000)
+                embed2.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                embed2.add_field(name="OS", value=f"{ostype}", inline=False)
+                embed2.add_field(name="Command", value=f"```{command}```", inline=False)
+                await loading_message.delete()
+                await ctx.send(embed=embed2)
 
             except Exception as e:
                 embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
@@ -110,13 +160,11 @@ class ModerationCommands(commands.Cog):
         loading_message = await ctx.send(embed=self.please_wait_emb)
         try:
             # Create the DM and send it
-            # dmlol = await member.create_dm()
-            dmlol = self.client.get_user(member.id)
-            embeddmlol = discord.Embed("YOU HAVE BEEN NUKED!", description=f"```{reason}```", color=0xff0000)
+            embeddmlol = discord.Embed(title="YOU HAVE BEEN NUKED!", description=f"```{reason}```", color=0xff0000)
             embeddmlol.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
             embeddmlol.set_image(url="https://tenor.com/view/bill-gates-gif-22015131")
             embeddmlol.set_footer(text=f"by {ctx.author.name}")
-            await dmlol.send(embed=embeddmlol)
+            await member.send(embed=embeddmlol)
 
             # Kick the member from the server with a reason provided
             await member.kick(reason=reason)
@@ -198,13 +246,11 @@ class ModerationCommands(commands.Cog):
         loading_message = await ctx.send(embed=self.please_wait_emb)
         try:
             # Create the DM and send it
-            # dmlol = await user.create_dm()
-            dmlol = self.client.get_user(user.id)
-            embeddmlol = discord.Embed("YOU HAVE BEEN NUKED!", description=f"```{reason}```", color=0xff0000)
+            embeddmlol = discord.Embed(title="YOU HAVE BEEN NUKED!", description=f"```{reason}```", color=0xff0000)
             embeddmlol.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
             embeddmlol.set_image(url="https://tenor.com/view/explosion-mushroom-cloud-atomic-bomb-atomic-a-bomb-gif-12091362")
             embeddmlol.set_footer(text=f"by {ctx.author.name}")
-            await dmlol.send(embed=embeddmlol)
+            await user.send(embed=embeddmlol)
             
             # Ban
             await user.ban(reason=reason)
@@ -278,7 +324,7 @@ class ModerationCommands(commands.Cog):
                 await ctx.send(embed=embed, delete_after=4)
             else:
                 amttdel = amount + 1
-                await ctx.channel.purge(limit=amttdel, check=member)
+                await ctx.channel.purge(limit=amttdel, check=lambda m: m.author == member)
 
                 if amount == "1":
                     msgtxt = "message"
@@ -523,48 +569,48 @@ class ModerationCommands(commands.Cog):
                 embed = discord.Embed(title="muted!", description=f"{member.mention} has been tempmuted ", colour=0xff0000)
                 embed.add_field(name="reason:", value=reason, inline=False)
                 embed.add_field(name="time left for the mute:", value=f"{time}{d}", inline=False)
+                embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                embed.set_footer(text=f"Requested by {ctx.author.name}")
+                await loading_message.delete()
                 await ctx.send(embed=embed)
 
                 if d == "s":
                     if time <= 1800:
                         await asyncio.sleep(time)
+                        await member.remove_roles(role)
                     else:
                         embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
                         embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
                         embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
                         embed3.add_field(name="Error:", value=f"Please enter a value below 1800 seconds", inline=False)
                         embed3.set_footer(text=f"Requested by {ctx.author.name}")
-                        await loading_message.delete()
                         await ctx.send(embed=embed3)
-                        await member.remove_roles(role)
 
                 if d == "m":
                     if time <= 300:
                         await asyncio.sleep(time*60)
+                        await member.remove_roles(role)
                     else:
                         embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
                         embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
                         embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
                         embed3.add_field(name="Error:", value=f"Please enter a value below 300 minutes", inline=False)
                         embed3.set_footer(text=f"Requested by {ctx.author.name}")
-                        await loading_message.delete()
                         await ctx.send(embed=embed3)
-                        await member.remove_roles(role)
 
                 if d == "h":
                     if time <= 5:
                         await asyncio.sleep(time*60*60)
+                        await member.remove_roles(role)
                     else:
                         embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
                         embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
                         embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
                         embed3.add_field(name="Error:", value=f"Please enter a value below 6 hours", inline=False)
                         embed3.set_footer(text=f"Requested by {ctx.author.name}")
-                        await loading_message.delete()
                         await ctx.send(embed=embed3)
-                        await member.remove_roles(role)
-
-                embed = discord.Embed(title="unmute (temp) ", description=f"unmuted -{member.mention} ", colour=discord.Colour.light_gray())
+                        
+                embed = discord.Embed(title="unmute (temp) ", description=f"unmuted -{member.mention} ", colour=0xff0000())
                 embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
                 embed.set_footer(text=f"Requested by {ctx.author.name}")
                 await ctx.send(embed=embed)
@@ -616,8 +662,10 @@ class ModerationCommands(commands.Cog):
                             embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
                             embed.add_field(name="Member Name", value=f"f{member.name}", inline=False)
                             embed.add_field(name="Member ID", value=f"{member.id}", inline=True)
-                            embed.add_field(name="Role", value=f"{rolename}", inline=False)
+                            embed.add_field(name="Role Name", value=f"{rolename}", inline=False)
+                            embed.set_thumbnail(url=f"{member.avatar_url}")
                             embed.set_footer(text=f"Requested by {ctx.author.name}")
+                            await loading_message.delete()
                             await ctx.send(embed=embed)
 
                         except Exception as e:
@@ -680,13 +728,15 @@ class ModerationCommands(commands.Cog):
                             return
                         
                         try:
-                            await member.add_roles(role)
+                            await member.remove_roles(role)
                             embed=discord.Embed(title="Removed Role!", color=0xff0000)
                             embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
                             embed.add_field(name="Member Name", value=f"f{member.name}", inline=False)
                             embed.add_field(name="Member ID", value=f"{member.id}", inline=True)
-                            embed.add_field(name="Role", value=f"{rolename}", inline=False)
+                            embed.add_field(name="Role Name", value=f"{rolename}", inline=False)
+                            embed.set_thumbnail(url=f"{member.avatar_url}")
                             embed.set_footer(text=f"Requested by {ctx.author.name}")
+                            await loading_message.delete()
                             await ctx.send(embed=embed)
 
                         except Exception as e:
