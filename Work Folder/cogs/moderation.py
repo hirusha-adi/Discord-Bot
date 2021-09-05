@@ -393,18 +393,153 @@ class ModerationCommands(commands.Cog):
                         await ctx.send(embed=embed3)
                         await member.remove_roles(role)
 
-
-
-
                 embed = discord.Embed(title="unmute (temp) ", description=f"unmuted -{member.mention} ", colour=discord.Colour.light_gray())
                 embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
                 embed.set_footer(text=f"Requested by {ctx.author.name}")
                 await ctx.send(embed=embed)
                 return
 
-    # @commands.has_permissions(manage_messages=True)
-    # @commands.command()
-    # # async def 
+
+    @commands.has_permissions(manage_messages=True)
+    @commands.command()
+    async def addrole(self, ctx, member: discord.Member = None, *, rolename: str = None):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+        try:
+            if member == None:
+                embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+                embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                embed3.add_field(name="Error:", value=f"Please enter the Member", inline=False)
+                embed3.set_footer(text=f"Requested by {ctx.author.name}")
+                await loading_message.delete()
+                await ctx.send(embed=embed3)
+                return
+            
+            else:
+                if rolename == None:
+                    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+                    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                    embed3.add_field(name="Error:", value=f"Please enter the rolename", inline=False)
+                    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+                    await loading_message.delete()
+                    await ctx.send(embed=embed3)
+                    return
+
+                else:
+                    if rolename is not None:
+                        role = discord.utils.find(lambda m: rolename.lower() in m.name.lower(), ctx.guild.roles)
+                        if not role:
+                            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+                            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                            embed3.add_field(name="Error:", value=f"The role: {rolename} does not exist!", inline=False)
+                            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+                            await loading_message.delete()
+                            await ctx.send(embed=embed3)
+                            return
+                        
+                        try:
+                            await member.add_roles(role)
+                            embed=discord.Embed(title="Added Role!", color=0xff0000)
+                            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                            embed.add_field(name="Member Name", value=f"f{member.name}", inline=False)
+                            embed.add_field(name="Member ID", value=f"{member.id}", inline=True)
+                            embed.add_field(name="Role", value=f"{rolename}", inline=False)
+                            embed.set_footer(text=f"Requested by {ctx.author.name}")
+                            await ctx.send(embed=embed)
+
+                        except Exception as e:
+                            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+                            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                            embed3.add_field(name="Error:", value=f"Unable to add role! \n{e}", inline=False)
+                            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+                            await loading_message.delete()
+                            await ctx.send(embed=embed3)
+                            return
+
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+    
+
+    @commands.has_permissions(manage_messages=True)
+    @commands.command()
+    async def removerole(self, ctx, member: discord.Member = None, *, rolename: str = None):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+        try:
+            if member == None:
+                embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+                embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                embed3.add_field(name="Error:", value=f"Please enter the Member", inline=False)
+                embed3.set_footer(text=f"Requested by {ctx.author.name}")
+                await loading_message.delete()
+                await ctx.send(embed=embed3)
+                return
+            
+            else:
+                if rolename == None:
+                    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+                    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                    embed3.add_field(name="Error:", value=f"Please enter the rolename", inline=False)
+                    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+                    await loading_message.delete()
+                    await ctx.send(embed=embed3)
+                    return
+
+                else:
+                    if rolename is not None:
+                        role = discord.utils.find(lambda m: rolename.lower() in m.name.lower(), ctx.guild.roles)
+                        if not role:
+                            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+                            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                            embed3.add_field(name="Error:", value=f"The role: {rolename} does not exist!", inline=False)
+                            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+                            await loading_message.delete()
+                            await ctx.send(embed=embed3)
+                            return
+                        
+                        try:
+                            await member.add_roles(role)
+                            embed=discord.Embed(title="Removed Role!", color=0xff0000)
+                            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                            embed.add_field(name="Member Name", value=f"f{member.name}", inline=False)
+                            embed.add_field(name="Member ID", value=f"{member.id}", inline=True)
+                            embed.add_field(name="Role", value=f"{rolename}", inline=False)
+                            embed.set_footer(text=f"Requested by {ctx.author.name}")
+                            await ctx.send(embed=embed)
+
+                        except Exception as e:
+                            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+                            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                            embed3.add_field(name="Error:", value=f"Unable to add role! \n{e}", inline=False)
+                            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+                            await loading_message.delete()
+                            await ctx.send(embed=embed3)
+                            return
+                            
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+                
+
+
+
 
 
 def setup(client: commands.Bot):
