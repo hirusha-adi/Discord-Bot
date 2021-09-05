@@ -90,7 +90,6 @@ bot_email_addr = os.environ['EMAILA']
 bot_email_password = os.environ['EMAILP']
 
 client = commands.Bot(command_prefix = bot_prefix)
-
 client.remove_command('help')
 
 token = os.environ['TOKEN']
@@ -218,183 +217,6 @@ def give_nice_codes():
   code = ''.join(random.choices(string.ascii_letters + string.digits, k=16))
   return f'https://discord.gift/{code}'
 
-def FAKE_PROFILE(howmuchinfo):
-  '''
-options available: high, name, dob, job, address, color, zipcode, lisence plate, iban, bban, cc, pno, bs, cp, cemail, ssn, ua, low
-  '''
-  if howmuchinfo == "high":
-    fake = Faker()
-    simple_dict = fake.profile()
-    fake_info_simple = "Name: " + str(simple_dict['name']) + "\nJob: " + str(simple_dict['job']) + "\nBirthdate: " + str(simple_dict['birthdate']) + "\nCompany: " + str(simple_dict['company']) + "\SSN: " + str(simple_dict['ssn']) + "\nRecidence: " + simple_dict['residence'] + "\nCurrent Location:" + str(simple_dict['current_location']) + "\nBlood Group: " + str(simple_dict['blood_group']) + "\nUsername: " + str(simple_dict['username']) + "\nAddress: " + str(simple_dict['address']) + "\nMail: " + str(simple_dict['mail'])
-    return fake_info_simple
-
-  elif howmuchinfo == "name":
-    faker = Faker()
-    try:
-      USname = faker.name()
-      return "Name: " + str(USname)
-    except:
-      return "Unable to generate a random name"
-
-  elif howmuchinfo == "dob":
-    faker = Faker()
-    try:
-      USdob = faker.date_of_birth()
-      return "DOB: " + str(USdob)
-    except:
-      return "Unable to generate a random name"
-  
-  elif howmuchinfo == "addr":
-    faker = Faker()
-    try:
-      USaddress = faker.address()
-      return "Address: \n" + str(USaddress)
-    except:
-      return "Unable to generate a random address"
-  
-  elif howmuchinfo == "job":
-    faker = Faker()
-    try:
-      USjob = faker.job()
-      return "Job: " + str(USjob)
-    except:
-      return "Unable to generate a random job"
-  
-  elif howmuchinfo == "color":
-    faker = Faker()
-    try:
-      USfavColor = faker.color_name()
-      return "Color: " + str(USfavColor)
-    except:
-      return "Unable to generate a random color"
-  
-  elif howmuchinfo == "zipcode":
-    faker = Faker()
-    try:
-      USzip = faker.zipcode()
-      return "Zip Code: " + str(USzip)
-    except:
-      return "Unable to generate a random zipcode"
-  
-  elif howmuchinfo == "city":
-    faker = Faker()
-    try:
-      UScity = faker.city()
-      return "City: " + str(UScity)
-    except:
-      return "Unable to generate a random zipcode"
-  
-  elif howmuchinfo == "license plate":
-    faker = Faker()
-    try:
-      USnumberPlate = faker.license_plate()
-      return "Number Plate: " + str(USnumberPlate)
-    except:
-      return "Unable to generate a random license plate"
-
-  elif howmuchinfo == "bban":
-    faker = Faker()
-    try:
-      USbasicBankAccountNumber = faker.bban()
-      return "Basic Bank Account Number: " + str(USbasicBankAccountNumber)
-    except:
-      return "Unable to generate a random Basic Bank Account Number"
-  
-  elif howmuchinfo == "iban":
-    faker = Faker()
-    try:
-      USinternationalBankAccountNumber = faker.iban()
-      return "International Bank Account Number: " + str(USinternationalBankAccountNumber)
-    except:
-      return "Unable to generate a random International Bank Account Number"
-  
-  elif howmuchinfo == "bs":
-    faker = Faker()
-    try:
-      USbs = faker.bs()
-      return "BS: " + str(USbs)
-    except:
-      return "Unable to generate a random BS"
-  
-  elif howmuchinfo == "cc":
-    faker = Faker()
-    try:
-      UScreditcard = faker.credit_card_full()
-      return "Credit Card: \n" + str(UScreditcard)
-    except:
-      return "Unable to generate a random Credit Card"
-  
-  elif howmuchinfo == "cemail":
-    faker = Faker()
-    try:
-      UScompanyemail = faker.company_email()
-      return "Email: " + str(UScompanyemail)
-    except:
-      return "Unable to generate a random Email"
-  
-  elif howmuchinfo == "pno":
-    faker = Faker()
-    try:
-      USphoneNumber = faker.phone_number()
-      return "Phone Number: " + str(USphoneNumber)
-    except:
-      return "Unable to generate a random Phone Number"
-  
-  elif howmuchinfo == "cp":
-    faker = Faker()
-    try:
-      UScatchPhrase = faker.catch_phrase()
-      return "Catch Phrase: " + str(UScatchPhrase)
-    except:
-      return "Unable to generate a random catch phrase"
-  
-  elif howmuchinfo == "ssn":
-    faker = Faker()
-    try:
-      USssa = faker.ssn()
-      return "SSN: " + str(USssa)
-    except:
-      return "Unable to generate a random SSN"
-  
-  elif howmuchinfo == "ua":
-    faker = Faker()
-    try:
-      USuseragent = faker.ssn()
-      return "User Agent: " + str(USuseragent)
-    except:
-      return "Unable to generate a random User Agent"
-  
-  elif howmuchinfo == "low":
-    fake_low = Faker()
-    shitthing_simple = fake_low.simple_profile()
-
-    fake_info_low_info = "Name: " + str(shitthing_simple['name']) + "\nSex: " + str(shitthing_simple['sex']) + "\nAddress: " + str(shitthing_simple['address']) + "\nMail: " + str(shitthing_simple['mail']) + "\nBirthday: " + str(shitthing_simple['birthdate'])
-
-    return fake_info_low_info
-  
-  elif howmuchinfo == "help":
-    fake_help = """high -> Generate a fake profile with high amount of  information
-name -> create a fake name
-dob -> create a fake Date of Birth
-addr -> create a fake address
-job -> create a fake job
-color -> create a fake color
-zipcode -> create a fake zipcode
-city -> create a fake city
-lp -> create a fake Lisence Number Plate
-bban -> create a random Basic Bank Account Number
-iban -> create a random International Bank Account Number
-bs -> create a fake BS / Degree
-cc -> create credit card details ( not valid )
-pno -> create a fake phone number
-cemail -> create a company email number
-cp -> create a random catch phrase
-ssn -> create a fake ssn number
-    """
-    return fake_help
-  
-  else:
-    return "[-] Please enter a valid option, type '>fake help' for help"
 
 def ipinfoshit(ipfromuser):
     r = requests.get('http://ip-api.com/json/' + str(ipfromuser)) # include the ip
@@ -4439,318 +4261,318 @@ async def newemoji(ctx, name, link, filetyple):
     await loading_message.delete()
     await ctx.send(embed=embed3)
 
-@commands.has_permissions(administrator=True)
-@client.command()
-async def make_server_new_roles(ctx):
-  loading_message = await ctx.send(embed=please_wait_emb)
-  try:
-    guild = ctx.guild
-    role8 = discord.utils.get(ctx.guild.roles, name="Owner")
-    if role8 not in guild.roles:
-      perms8 = discord.Permissions(
-        add_reactions=True,
-        administrator=True,
-        attach_files=True,
-        ban_members=True,
-        change_nickname=True,
-        connect=True,
-        create_instant_invite=True,
-        deafen_members=True,
-        embed_links=True,
-        external_emojis=True,
-        kick_members=True,
-        manage_channels=True,
-        manage_emojis=True,
-        manage_guild=True,
-        manage_messages=True,
-        manage_nicknames=True,
-        manage_permissions=True,
-        manage_roles=True,
-        manage_webhooks=True,
-        mention_everyone=True,
-        move_members=True,
-        mute_members=True,
-        priority_speaker=True,
-        view_guild_insights=True, 
-        view_channel=True, 
-        view_audit_log=True,
-        use_voice_activation=True,
-        use_slash_commands=True,
-        use_external_emojis=True,
-        stream=True, 
-        speak=True,
-        send_tts_messages=True,
-        send_messages=True,
-        request_to_speak=True,
-        read_messages=True,
-        read_message_history=True)
-      await guild.create_role(name="Owner", permissions=perms8)
+# @commands.has_permissions(administrator=True)
+# @client.command()
+# async def make_server_new_roles(ctx):
+#   loading_message = await ctx.send(embed=please_wait_emb)
+#   try:
+#     guild = ctx.guild
+#     role8 = discord.utils.get(ctx.guild.roles, name="Owner")
+#     if role8 not in guild.roles:
+#       perms8 = discord.Permissions(
+#         add_reactions=True,
+#         administrator=True,
+#         attach_files=True,
+#         ban_members=True,
+#         change_nickname=True,
+#         connect=True,
+#         create_instant_invite=True,
+#         deafen_members=True,
+#         embed_links=True,
+#         external_emojis=True,
+#         kick_members=True,
+#         manage_channels=True,
+#         manage_emojis=True,
+#         manage_guild=True,
+#         manage_messages=True,
+#         manage_nicknames=True,
+#         manage_permissions=True,
+#         manage_roles=True,
+#         manage_webhooks=True,
+#         mention_everyone=True,
+#         move_members=True,
+#         mute_members=True,
+#         priority_speaker=True,
+#         view_guild_insights=True, 
+#         view_channel=True, 
+#         view_audit_log=True,
+#         use_voice_activation=True,
+#         use_slash_commands=True,
+#         use_external_emojis=True,
+#         stream=True, 
+#         speak=True,
+#         send_tts_messages=True,
+#         send_messages=True,
+#         request_to_speak=True,
+#         read_messages=True,
+#         read_message_history=True)
+#       await guild.create_role(name="Owner", permissions=perms8)
     
-    role7 = discord.utils.get(ctx.guild.roles, name="Administrator")
-    if role7 not in guild.roles:
-      perms7 = discord.Permissions(
-        add_reactions=True,
-        administrator=True,
-        attach_files=True,
-        ban_members=True,
-        change_nickname=True,
-        connect=True,
-        create_instant_invite=True,
-        deafen_members=True,
-        embed_links=True,
-        external_emojis=True,
-        kick_members=True,
-        manage_channels=True,
-        manage_emojis=True,
-        manage_guild=True,
-        manage_messages=True,
-        manage_nicknames=True,
-        manage_permissions=True,
-        manage_roles=True,
-        manage_webhooks=True,
-        mention_everyone=True,
-        move_members=True,
-        mute_members=True,
-        priority_speaker=True,
-        view_guild_insights=True, 
-        view_channel=True, 
-        view_audit_log=True,
-        use_voice_activation=True,
-        use_slash_commands=True,
-        use_external_emojis=True,
-        stream=True, 
-        speak=True,
-        send_tts_messages=True,
-        send_messages=True,
-        request_to_speak=True,
-        read_messages=True,
-        read_message_history=True)
-      await guild.create_role(name="Administrator", permissions=perms7)
+#     role7 = discord.utils.get(ctx.guild.roles, name="Administrator")
+#     if role7 not in guild.roles:
+#       perms7 = discord.Permissions(
+#         add_reactions=True,
+#         administrator=True,
+#         attach_files=True,
+#         ban_members=True,
+#         change_nickname=True,
+#         connect=True,
+#         create_instant_invite=True,
+#         deafen_members=True,
+#         embed_links=True,
+#         external_emojis=True,
+#         kick_members=True,
+#         manage_channels=True,
+#         manage_emojis=True,
+#         manage_guild=True,
+#         manage_messages=True,
+#         manage_nicknames=True,
+#         manage_permissions=True,
+#         manage_roles=True,
+#         manage_webhooks=True,
+#         mention_everyone=True,
+#         move_members=True,
+#         mute_members=True,
+#         priority_speaker=True,
+#         view_guild_insights=True, 
+#         view_channel=True, 
+#         view_audit_log=True,
+#         use_voice_activation=True,
+#         use_slash_commands=True,
+#         use_external_emojis=True,
+#         stream=True, 
+#         speak=True,
+#         send_tts_messages=True,
+#         send_messages=True,
+#         request_to_speak=True,
+#         read_messages=True,
+#         read_message_history=True)
+#       await guild.create_role(name="Administrator", permissions=perms7)
     
-    role5 = discord.utils.get(ctx.guild.roles, name="BOT")
-    if role5 not in guild.roles:
-      perms5 = discord.Permissions(
-        add_reactions=True,
-        administrator=False,
-        attach_files=True,
-        ban_members=False,
-        change_nickname=True,
-        connect=True,
-        create_instant_invite=True,
-        deafen_members=False,
-        embed_links=True,
-        external_emojis=True,
-        kick_members=False,
-        manage_channels=False,
-        manage_emojis=False,
-        manage_guild=False,
-        manage_messages=False,
-        manage_nicknames=False,
-        manage_permissions=False,
-        manage_roles=False,
-        manage_webhooks=False,
-        mention_everyone=False,
-        move_members=False,
-        mute_members=False,
-        priority_speaker=True,
-        view_guild_insights=True, 
-        view_channel=True, 
-        view_audit_log=False,
-        use_voice_activation=True,
-        use_slash_commands=True,
-        use_external_emojis=True,
-        stream=True,
-        speak=True,
-        send_tts_messages=False,
-        send_messages=True,
-        request_to_speak=True,
-        read_messages=True,
-        read_message_history=True)
-      await guild.create_role(name="BOT", permissions=perms5)
+#     role5 = discord.utils.get(ctx.guild.roles, name="BOT")
+#     if role5 not in guild.roles:
+#       perms5 = discord.Permissions(
+#         add_reactions=True,
+#         administrator=False,
+#         attach_files=True,
+#         ban_members=False,
+#         change_nickname=True,
+#         connect=True,
+#         create_instant_invite=True,
+#         deafen_members=False,
+#         embed_links=True,
+#         external_emojis=True,
+#         kick_members=False,
+#         manage_channels=False,
+#         manage_emojis=False,
+#         manage_guild=False,
+#         manage_messages=False,
+#         manage_nicknames=False,
+#         manage_permissions=False,
+#         manage_roles=False,
+#         manage_webhooks=False,
+#         mention_everyone=False,
+#         move_members=False,
+#         mute_members=False,
+#         priority_speaker=True,
+#         view_guild_insights=True, 
+#         view_channel=True, 
+#         view_audit_log=False,
+#         use_voice_activation=True,
+#         use_slash_commands=True,
+#         use_external_emojis=True,
+#         stream=True,
+#         speak=True,
+#         send_tts_messages=False,
+#         send_messages=True,
+#         request_to_speak=True,
+#         read_messages=True,
+#         read_message_history=True)
+#       await guild.create_role(name="BOT", permissions=perms5)
     
-    role6 = discord.utils.get(ctx.guild.roles, name="Moderator")
-    if role6 not in guild.roles:
-      perms6 = discord.Permissions(
-        add_reactions=True,
-        administrator=False,
-        attach_files=True,
-        ban_members=False,
-        change_nickname=True,
-        connect=True,
-        create_instant_invite=True,
-        deafen_members=True,
-        embed_links=True,
-        external_emojis=True,
-        kick_members=True,
-        manage_channels=False,
-        manage_emojis=True,
-        manage_guild=False,
-        manage_messages=True,
-        manage_nicknames=True,
-        manage_permissions=False,
-        manage_roles=False,
-        manage_webhooks=False,
-        mention_everyone=False,
-        move_members=True,
-        mute_members=True,
-        priority_speaker=True,
-        view_guild_insights=True, 
-        view_channel=True, 
-        view_audit_log=True,
-        use_voice_activation=True,
-        use_slash_commands=True,
-        use_external_emojis=True,
-        stream=True, 
-        speak=True,
-        send_tts_messages=True,
-        send_messages=True,
-        request_to_speak=True,
-        read_messages=True,
-        read_message_history=True)
-      await guild.create_role(name="Moderator", permissions=perms6)
+#     role6 = discord.utils.get(ctx.guild.roles, name="Moderator")
+#     if role6 not in guild.roles:
+#       perms6 = discord.Permissions(
+#         add_reactions=True,
+#         administrator=False,
+#         attach_files=True,
+#         ban_members=False,
+#         change_nickname=True,
+#         connect=True,
+#         create_instant_invite=True,
+#         deafen_members=True,
+#         embed_links=True,
+#         external_emojis=True,
+#         kick_members=True,
+#         manage_channels=False,
+#         manage_emojis=True,
+#         manage_guild=False,
+#         manage_messages=True,
+#         manage_nicknames=True,
+#         manage_permissions=False,
+#         manage_roles=False,
+#         manage_webhooks=False,
+#         mention_everyone=False,
+#         move_members=True,
+#         mute_members=True,
+#         priority_speaker=True,
+#         view_guild_insights=True, 
+#         view_channel=True, 
+#         view_audit_log=True,
+#         use_voice_activation=True,
+#         use_slash_commands=True,
+#         use_external_emojis=True,
+#         stream=True, 
+#         speak=True,
+#         send_tts_messages=True,
+#         send_messages=True,
+#         request_to_speak=True,
+#         read_messages=True,
+#         read_message_history=True)
+#       await guild.create_role(name="Moderator", permissions=perms6)
     
-    role3 = discord.utils.get(ctx.guild.roles, name="Senior")
-    if role3 not in guild.roles:
-      perms3 = discord.Permissions(
-        add_reactions=True,
-        administrator=False,
-        attach_files=True,
-        ban_members=False,
-        change_nickname=True,
-        connect=True,
-        create_instant_invite=True,
-        deafen_members=False,
-        embed_links=True,
-        external_emojis=True,
-        kick_members=False,
-        manage_channels=False,
-        manage_emojis=False,
-        manage_guild=False,
-        manage_messages=False,
-        manage_nicknames=False,
-        manage_permissions=False,
-        manage_roles=False,
-        manage_webhooks=True,
-        mention_everyone=False,
-        move_members=False,
-        mute_members=False,
-        priority_speaker=True,
-        view_guild_insights=True, 
-        view_channel=True, 
-        view_audit_log=True,
-        use_voice_activation=True,
-        use_slash_commands=True,
-        use_external_emojis=True,
-        stream=True,
-        speak=True,
-        send_tts_messages=False,
-        send_messages=True,
-        request_to_speak=True,
-        read_messages=True,
-        read_message_history=True)
-      await guild.create_role(name="Senior", permissions=perms3)
+#     role3 = discord.utils.get(ctx.guild.roles, name="Senior")
+#     if role3 not in guild.roles:
+#       perms3 = discord.Permissions(
+#         add_reactions=True,
+#         administrator=False,
+#         attach_files=True,
+#         ban_members=False,
+#         change_nickname=True,
+#         connect=True,
+#         create_instant_invite=True,
+#         deafen_members=False,
+#         embed_links=True,
+#         external_emojis=True,
+#         kick_members=False,
+#         manage_channels=False,
+#         manage_emojis=False,
+#         manage_guild=False,
+#         manage_messages=False,
+#         manage_nicknames=False,
+#         manage_permissions=False,
+#         manage_roles=False,
+#         manage_webhooks=True,
+#         mention_everyone=False,
+#         move_members=False,
+#         mute_members=False,
+#         priority_speaker=True,
+#         view_guild_insights=True, 
+#         view_channel=True, 
+#         view_audit_log=True,
+#         use_voice_activation=True,
+#         use_slash_commands=True,
+#         use_external_emojis=True,
+#         stream=True,
+#         speak=True,
+#         send_tts_messages=False,
+#         send_messages=True,
+#         request_to_speak=True,
+#         read_messages=True,
+#         read_message_history=True)
+#       await guild.create_role(name="Senior", permissions=perms3)
     
-    role2 = discord.utils.get(ctx.guild.roles, name="Junior")
-    if role2 not in guild.roles:
-      perms2 = discord.Permissions(
-        add_reactions=True,
-        administrator=False,
-        attach_files=True,
-        ban_members=False,
-        change_nickname=True,
-        connect=True,
-        create_instant_invite=True,
-        deafen_members=False,
-        embed_links=True,
-        external_emojis=True,
-        kick_members=False,
-        manage_channels=False,
-        manage_emojis=False,
-        manage_guild=False,
-        manage_messages=False,
-        manage_nicknames=False,
-        manage_permissions=False,
-        manage_roles=False,
-        manage_webhooks=False,
-        mention_everyone=False,
-        move_members=False,
-        mute_members=False,
-        priority_speaker=True,
-        view_guild_insights=True, 
-        view_channel=True, 
-        view_audit_log=False,
-        use_voice_activation=True,
-        use_slash_commands=True,
-        use_external_emojis=True,
-        stream=True,
-        speak=True,
-        send_tts_messages=False,
-        send_messages=True,
-        request_to_speak=True,
-        read_messages=True,
-        read_message_history=True)
-      await guild.create_role(name="Junior", permissions=perms2)
+#     role2 = discord.utils.get(ctx.guild.roles, name="Junior")
+#     if role2 not in guild.roles:
+#       perms2 = discord.Permissions(
+#         add_reactions=True,
+#         administrator=False,
+#         attach_files=True,
+#         ban_members=False,
+#         change_nickname=True,
+#         connect=True,
+#         create_instant_invite=True,
+#         deafen_members=False,
+#         embed_links=True,
+#         external_emojis=True,
+#         kick_members=False,
+#         manage_channels=False,
+#         manage_emojis=False,
+#         manage_guild=False,
+#         manage_messages=False,
+#         manage_nicknames=False,
+#         manage_permissions=False,
+#         manage_roles=False,
+#         manage_webhooks=False,
+#         mention_everyone=False,
+#         move_members=False,
+#         mute_members=False,
+#         priority_speaker=True,
+#         view_guild_insights=True, 
+#         view_channel=True, 
+#         view_audit_log=False,
+#         use_voice_activation=True,
+#         use_slash_commands=True,
+#         use_external_emojis=True,
+#         stream=True,
+#         speak=True,
+#         send_tts_messages=False,
+#         send_messages=True,
+#         request_to_speak=True,
+#         read_messages=True,
+#         read_message_history=True)
+#       await guild.create_role(name="Junior", permissions=perms2)
 
-    role1 = discord.utils.get(ctx.guild.roles, name="Rookie")
-    if role1 not in guild.roles:
-      perms1 = discord.Permissions(
-        add_reactions=True,
-        administrator=False,
-        attach_files=True,
-        ban_members=False,
-        change_nickname=True,
-        connect=True,
-        create_instant_invite=True,
-        deafen_members=False,
-        embed_links=True,
-        external_emojis=True,
-        kick_members=False,
-        manage_channels=False,
-        manage_emojis=False,
-        manage_guild=False,
-        manage_messages=False,
-        manage_nicknames=False,
-        manage_permissions=False,
-        manage_roles=False,
-        manage_webhooks=False,
-        mention_everyone=False,
-        move_members=False,
-        mute_members=False,
-        priority_speaker=False,
-        view_guild_insights=True, 
-        view_channel=True, 
-        view_audit_log=False,
-        use_voice_activation=True,
-        use_slash_commands=True,
-        use_external_emojis=True,
-        stream=True,
-        speak=True,
-        send_tts_messages=False,
-        send_messages=True,
-        request_to_speak=True,
-        read_messages=True,
-        read_message_history=False)
-      await guild.create_role(name="Rookie", permissions=perms1)
+#     role1 = discord.utils.get(ctx.guild.roles, name="Rookie")
+#     if role1 not in guild.roles:
+#       perms1 = discord.Permissions(
+#         add_reactions=True,
+#         administrator=False,
+#         attach_files=True,
+#         ban_members=False,
+#         change_nickname=True,
+#         connect=True,
+#         create_instant_invite=True,
+#         deafen_members=False,
+#         embed_links=True,
+#         external_emojis=True,
+#         kick_members=False,
+#         manage_channels=False,
+#         manage_emojis=False,
+#         manage_guild=False,
+#         manage_messages=False,
+#         manage_nicknames=False,
+#         manage_permissions=False,
+#         manage_roles=False,
+#         manage_webhooks=False,
+#         mention_everyone=False,
+#         move_members=False,
+#         mute_members=False,
+#         priority_speaker=False,
+#         view_guild_insights=True, 
+#         view_channel=True, 
+#         view_audit_log=False,
+#         use_voice_activation=True,
+#         use_slash_commands=True,
+#         use_external_emojis=True,
+#         stream=True,
+#         speak=True,
+#         send_tts_messages=False,
+#         send_messages=True,
+#         request_to_speak=True,
+#         read_messages=True,
+#         read_message_history=False)
+#       await guild.create_role(name="Rookie", permissions=perms1)
     
-    embed = discord.Embed(title=f'Server Roles Starter Template', description=f'Requested by {ctx.author.mention}', color=0xff0000)
-    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/856461730695217172/868832176496594944/Avatar.png")
-    embed.add_field(name="Created Roles", value=f'Owner\nAdministrator\nBOT\nModerator\nSenior\nJunior\nRookie', inline=False)
-    all_roles_in_server = ", ".join([str(r.mention) for r in ctx.guild.roles])
-    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-    embed.add_field(name="Roles in the server", value=f'{all_roles_in_server}', inline=False)
-    embed.set_footer(text=f"Requested by {ctx.author.name}")
-    # embed.set_footer(text=datetime.datetime.now())
-    await loading_message.delete()
-    await ctx.send(embed=embed)
+#     embed = discord.Embed(title=f'Server Roles Starter Template', description=f'Requested by {ctx.author.mention}', color=0xff0000)
+#     embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/856461730695217172/868832176496594944/Avatar.png")
+#     embed.add_field(name="Created Roles", value=f'Owner\nAdministrator\nBOT\nModerator\nSenior\nJunior\nRookie', inline=False)
+#     all_roles_in_server = ", ".join([str(r.mention) for r in ctx.guild.roles])
+#     embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+#     embed.add_field(name="Roles in the server", value=f'{all_roles_in_server}', inline=False)
+#     embed.set_footer(text=f"Requested by {ctx.author.name}")
+#     # embed.set_footer(text=datetime.datetime.now())
+#     await loading_message.delete()
+#     await ctx.send(embed=embed)
   
-  except Exception as e:
-    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
-    embed3.add_field(name="Error:", value=f"{e}", inline=False)
-    embed3.set_footer(text=f"Requested by {ctx.author.name}")
-    await loading_message.delete()
-    await ctx.send(embed=embed3)
+#   except Exception as e:
+#     embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+#     embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+#     embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+#     embed3.add_field(name="Error:", value=f"{e}", inline=False)
+#     embed3.set_footer(text=f"Requested by {ctx.author.name}")
+#     await loading_message.delete()
+#     await ctx.send(embed=embed3)
 
 
 @client.command()
