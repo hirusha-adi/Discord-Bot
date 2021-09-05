@@ -42,7 +42,7 @@ class ModerationCommands(commands.Cog):
                             embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
                             embed2.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
                             embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
-                            embed2.add_field(name="Error:", value=f"{e}", inline=False)
+                            embed2.add_field(name="Error:", value=f"Unable to get the output!", inline=False)
                             embed2.set_footer(text=f"Requested by {ctx.author.name}")
                             await loading_message.delete()
                             await ctx.send(embed=embed2)
@@ -74,6 +74,7 @@ class ModerationCommands(commands.Cog):
             await loading_message.delete()
             await ctx.send(embed=embed2)
     
+
     @commands.command(aliases=["shell_cls"])
     async def shell_clear(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
@@ -103,6 +104,41 @@ class ModerationCommands(commands.Cog):
             await ctx.send(embed=embed2)
 
 
+    @commands.has_permissions(kick_members=True)
+    @commands.command()
+    async def piethrow(self, ctx, member : discord.Member, *, reason=None): # call the member as in member object from discord module
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+        try:
+            # Create the DM and send it
+            # dmlol = await member.create_dm()
+            dmlol = self.client.get_user(member.id)
+            embeddmlol = discord.Embed("YOU HAVE BEEN NUKED!", description=f"```{reason}```", color=0xff0000)
+            embeddmlol.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embeddmlol.set_image(url="https://tenor.com/view/bill-gates-gif-22015131")
+            embeddmlol.set_footer(text=f"by {ctx.author.name}")
+            await dmlol.send(embed=embeddmlol)
+
+            # Kick the member from the server with a reason provided
+            await member.kick(reason=reason)
+
+            embed=discord.Embed(title=f":boom: Kicked {member.name}", color=0xff0000)
+            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed.set_thumbnail(url=f"https://cdn.discordapp.com/attachments/877796755234783273/879296561413259294/toppng.com-this-is-an-image-of-a-person-kicking-kick-1085x1335.png")
+            embed.add_field(name="Reason", value=f"{reason}", inline=False)
+            embed.add_field(name="By", value=f"{ctx.author.mention}", inline=False)
+            embed.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed)
+
+        except Exception as e:
+            embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed2.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed2.add_field(name="Error:", value=f"{e}", inline=False)
+            embed2.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed2)
+    
 
     @commands.has_permissions(kick_members=True)
     @commands.command()
@@ -248,6 +284,7 @@ class ModerationCommands(commands.Cog):
             embed2.set_footer(text=f"Requested by {ctx.author.name}")
             await ctx.send(embed=embed2)
     
+    
     @commands.has_permissions(manage_messages=True)
     @commands.command()
     async def clean(self, ctx, amount=5):
@@ -321,6 +358,7 @@ class ModerationCommands(commands.Cog):
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed3)
+
 
     @commands.has_permissions(manage_channels=True)
     @commands.command()
