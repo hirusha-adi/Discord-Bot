@@ -411,7 +411,6 @@ async def unban(ctx, *, member):
               embed=discord.Embed(title=":hammer: Unbanned User", description=f"{user.mention}", color=0xff0000)
               embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
               embed.set_footer(text=f"Requested by {ctx.author.name}")
-              
               await loading_message.delete()
               await ctx.send(embed=embed)
               return
@@ -425,7 +424,7 @@ async def unban(ctx, *, member):
       await ctx.send(embed=embed2)
 
 
-@client.command()
+@client.command(aliases=["invite", "botlink", "invitelink"])
 async def inv(ctx):
     await ctx.send("```Hey there! Make sure you have me in your server too! Bot Invite link:```" + give_server_invite_link())
 
@@ -3953,6 +3952,7 @@ async def cnick(ctx, member: discord.Member, *, nick):
       embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/880035248820342824/chuck-norris.png")
       embed.add_field(name="Error", value="Unable to change the nickname!", inline=False)
       embed.set_footer(text=f"Requested by {ctx.author.name}")
+      await loading_message.delete()
       await ctx.send(embed=embed)
       return
 
