@@ -2174,12 +2174,6 @@ class FakeInformation(commands.Cog):
                     await loading_message.delete()
                     await ctx.send(embed=embed3)
                     return
-                try:
-                    fmall = fake_mode.split(" ")
-                    fmlast = fmall[-2:]
-                except:
-                    fmlast = "all"
-
                 
                 await loading_message.delete()
                 await ctx.send(embed=emf2)
@@ -2273,28 +2267,29 @@ class FakeInformation(commands.Cog):
                 emf2.set_thumbnail(url="https://www.nicepng.com/png/detail/214-2146883_4-fake-stamp-vector-fake-news-logo-png.png")
                 emf2.set_footer(text=f"Requested by {ctx.author.name}")
                 emf2.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-                emf2.add_field(name=f"{bp}fake high", value=f"Generate a high amount of information")
-                emf2.add_field(name=f"{bp}fake low", value=f"Generate a low amount of information")
-                emf2.add_field(name=f"{bp}fake help", value=f"Show this / list all commands")
-                emf2.add_field(name=f"Personal - Others", value=f"`{bp}fake job`, \n`{bp}fake licenseplate`, \n`{bp}fake bs`, \n`{bp}fake ssn`")
-                emf2.add_field(name=f"Location", value=f"`{bp}fake country`, \n`{bp}fake postcode`, \n`{bp}fake street addr`, \n`{bp}fake street addr`, \n`{bp}fake addr`, \n`{bp}fake zipcode`, \n`{bp}fake city`")
-                emf2.add_field(name=f"Credit Card", value=f"`{bp}fake cc`, \n`{bp}fake cc ex`, \n`{bp}fake cc no`, \n`{bp}fake cc pr`, \n`{bp}fake cc cvv`")
-                emf2.add_field(name=f"Crypto", value=f"`{bp}fake crypto`, \n`{bp}fake crypto code`, \n`{bp}fake crypto name`")
-                emf2.add_field(name=f"Currency", value=f"`{bp}fake curr`, \n`{bp}fake curr code`, \n`{bp}fake curr name`, \n`{bp}fake curr symbol`, \n`{bp}fake pricetag`")
-                emf2.add_field(name=f"Date", value=f"`{bp}fake date`, \n`{bp}fake century`, \n`{bp}fake dob`")
-                emf2.add_field(name=f"File", value=f"`{bp}fake file name`, \n`{bp}fake file ex`, \n`{bp}fake file path`")
-                emf2.add_field(name=f"Unix", value=f"`{bp}fake unix device`, \n`{bp}fake unix partition`")
-                emf2.add_field(name=f"Banking", value=f"`{bp}fake aba`, \n`{bp}fake bank country`, \n`{bp}fake bban`, \n`{bp}fake iban`")
-                emf2.add_field(name=f"Technical", value=f"`{bp}fake email`, \n`{bp}fake cemail`, \n`{bp}fake email free`, \n`{bp}fake domain`, \n`{bp}fake hostname`, \n`{bp}fake http method`n \n`{bp}fake img url`, \n`{bp}fake ipv4`, \n`{bp}fake ipv4 class`, \n`{bp}fake ipv4 private`, \n`{bp}fake ipv4 public`, \n`{bp}fake ipv6`, \n`{bp}fake macaddr`, \n`{bp}fake nic handle`, \n`{bp}fake port`, \n`{bp}fake ripeid`, \n`{bp}fake slug`, \n`{bp}fake tld`, \n`{bp}fake uri`, \n`{bp}fake uri ex`, \n`{bp}fake url`, \n`{bp}fake username`")
-                emf2.add_field(name=f"ISBN", value=f"`{bp}fake isbn10`, \n`{bp}fake isbn13`")
-                emf2.add_field(name=f"Name", value=f"`{bp}fake name`, \n`{bp}fake fname`, \n`{bp}fake fname male`, \n`{bp}fake fname female`, \n`{bp}fake fname nb`, \n`{bp}fake lname`n \n`{bp}fake lname male`, \n`{bp}fake lname female`, \n`{bp}fake lname nb`, \n`{bp}fake name female`, \n`{bp}fake name male`, \n`{bp}fake name nb`, \n`{bp}fake prefix`, \n`{bp}fake suffix`")
-                emf2.add_field(name=f"Texts", value=f"`{bp}fake paragraph`, \n`{bp}fake sentence`, \n`{bp}fake text`")
-                emf2.add_field(name=f"Phone Number", value=f"`{bp}fake callingcode`, \n`{bp}fake msisdn`, \n`{bp}fake pno`")
-                emf2.add_field(name=f"User Agents", value=f"`{bp}fake chrome`, \n`{bp}fake firefox`, \n`{bp}fake ie`, \n`{bp}fake opera`, \n`{bp}fake safari`, \n`{bp}fake ua`")
-                emf2.add_field(name=f"Platform Tokens", value=f"`{bp}fake apt`, \n`{bp}fake iospt`n \n`{bp}fake linuxpt`, \n`{bp}fake linuxproc`, \n`{bp}fake macpt`, \n`{bp}fake macprocessor`, \n`{bp}fake winpt`, \n`{bp}fake ua`")
+                emf2.add_field(name=f"{bp}fake high", value=f"Generate a high amount of information", inline=False)
+                emf2.add_field(name=f"{bp}fake low", value=f"Generate a low amount of information", inline=False)
+                emf2.add_field(name=f"{bp}fake help", value=f"Show this / list all commands", inline=False)
+                emf2.add_field(name=f"Personal - Others", value=f"`{bp}fake job`, \n`{bp}fake licenseplate`, \n`{bp}fake bs`, \n`{bp}fake ssn`", inline=False)
+                emf2.add_field(name=f"Location", value=f"`{bp}fake country`, \n`{bp}fake postcode`, \n`{bp}fake street addr`, \n`{bp}fake street addr`, \n`{bp}fake addr`, \n`{bp}fake zipcode`, \n`{bp}fake city`", inline=False)
+                emf2.add_field(name=f"Credit Card", value=f"`{bp}fake cc`, \n`{bp}fake cc ex`, \n`{bp}fake cc no`, \n`{bp}fake cc pr`, \n`{bp}fake cc cvv`", inline=False)
+                emf2.add_field(name=f"Crypto", value=f"`{bp}fake crypto`, \n`{bp}fake crypto code`, \n`{bp}fake crypto name`", inline=False)
+                emf2.add_field(name=f"Currency", value=f"`{bp}fake curr`, \n`{bp}fake curr code`, \n`{bp}fake curr name`, \n`{bp}fake curr symbol`, \n`{bp}fake pricetag`", inline=False)
+                emf2.add_field(name=f"Date", value=f"`{bp}fake date`, \n`{bp}fake century`, \n`{bp}fake dob`", inline=False)
+                emf2.add_field(name=f"File", value=f"`{bp}fake file name`, \n`{bp}fake file ex`, \n`{bp}fake file path`", inline=False)
+                emf2.add_field(name=f"Unix", value=f"`{bp}fake unix device`, \n`{bp}fake unix partition`", inline=False)
+                emf2.add_field(name=f"Banking", value=f"`{bp}fake aba`, \n`{bp}fake bank country`, \n`{bp}fake bban`, \n`{bp}fake iban`", inline=False)
+                emf2.add_field(name=f"Technical", value=f"`{bp}fake email`, \n`{bp}fake cemail`, \n`{bp}fake email free`, \n`{bp}fake domain`, \n`{bp}fake hostname`, \n`{bp}fake http method`n \n`{bp}fake img url`, \n`{bp}fake ipv4`, \n`{bp}fake ipv4 class`, \n`{bp}fake ipv4 private`, \n`{bp}fake ipv4 public`, \n`{bp}fake ipv6`, \n`{bp}fake macaddr`, \n`{bp}fake nic handle`, \n`{bp}fake port`, \n`{bp}fake ripeid`, \n`{bp}fake slug`, \n`{bp}fake tld`, \n`{bp}fake uri`, \n`{bp}fake uri ex`, \n`{bp}fake url`, \n`{bp}fake username`", inline=False)
+                emf2.add_field(name=f"ISBN", value=f"`{bp}fake isbn10`, \n`{bp}fake isbn13`", inline=False)
+                emf2.add_field(name=f"Name", value=f"`{bp}fake name`, \n`{bp}fake fname`, \n`{bp}fake fname male`, \n`{bp}fake fname female`, \n`{bp}fake fname nb`, \n`{bp}fake lname`n \n`{bp}fake lname male`, \n`{bp}fake lname female`, \n`{bp}fake lname nb`, \n`{bp}fake name female`, \n`{bp}fake name male`, \n`{bp}fake name nb`, \n`{bp}fake prefix`, \n`{bp}fake suffix`", inline=False)
+                emf2.add_field(name=f"Texts", value=f"`{bp}fake paragraph`, \n`{bp}fake sentence`, \n`{bp}fake text`", inline=False)
+                emf2.add_field(name=f"Phone Number", value=f"`{bp}fake callingcode`, \n`{bp}fake msisdn`, \n`{bp}fake pno`", inline=False)
+                emf2.add_field(name=f"User Agents", value=f"`{bp}fake chrome`, \n`{bp}fake firefox`, \n`{bp}fake ie`, \n`{bp}fake opera`, \n`{bp}fake safari`, \n`{bp}fake ua`", inline=False)
+                emf2.add_field(name=f"Platform Tokens", value=f"`{bp}fake apt`, \n`{bp}fake iospt`n \n`{bp}fake linuxpt`, \n`{bp}fake linuxproc`, \n`{bp}fake macpt`, \n`{bp}fake macprocessor`, \n`{bp}fake winpt`, \n`{bp}fake ua`", inline=False)
+                emf2.add_field(name=f"Vehicle", value=f"`{bp}fake vcl ymm`, \n`{bp}fake vcl ymmc`, \n`{bp}fake vcl mm`, \n`{bp}fake vcl make`, \n`{bp}fake vcl model`, \n`{bp}fake vcl year`, \n`{bp}fake vcl category`, \n`{bp}fake vcl all`", inline=False)
+                emf2.add_field(name=f"Machine", value=f"`{bp}fake mcn ymm`, \n`{bp}fake mcn ymmc`, \n`{bp}fake mcn mm`, \n`{bp}fake mcn make`, \n`{bp}fake mcn model`, \n`{bp}fake mcn year`, \n`{bp}fake mcn category`, \n`{bp}fake mcn all`", inline=False)
                 emf2.add_field(name=f"Others", value=f"`{bp}fake ean`, \n`{bp}fake company suffix`, \n`{bp}fake iana`, \n`{bp}fake lang`, \n`{bp}fake color`, \n`{bp}fake cp`")
-
-
+                emf2.add_field(name=f"Mass Fake Profiles", value=f"`{bp}massfakeprofile [number]` - Same as runnign the `{bp}fake high` [number] of times")
                 await loading_message.delete()
                 await ctx.send(embed=emf2)
 
@@ -2306,10 +2301,64 @@ class FakeInformation(commands.Cog):
                 embed3.set_footer(text=f"Requested by {ctx.author.name}")
                 await loading_message.delete()
                 await ctx.send(embed=embed3)
+    
+    
+    @commands.command(aliases=["mass-fake-profile", "massfakeprofile", "mass-fake-profiles", "massfakeprofiles"])
+    async def mfp(self, ctx, *, how_many):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
 
-
+        try:
+            fake_how_many = int(how_many)
             
-        
+            # This is the limit for this command to stop spamming!
+            if fake_how_many <= 25:
+
+                embed=discord.Embed(title="Mass Fake Profiles", color=0xff0000)
+                embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                embed.set_thumbnail(url="https://www.nicepng.com/png/detail/214-2146883_4-fake-stamp-vector-fake-news-logo-png.png")
+                embed.add_field(name=f"{ctx.author.name} requested {how_many} fake profiles!", value=f"Starting to send {how_many} fake profiles!", inline=True)
+                # embed.set_footer(text=f"Requested by {ctx.author.name}")
+                await loading_message.delete()
+                await ctx.send(embed=embed)
+
+                for i in range(fake_how_many):
+                    fake = Faker()
+                    simple_dict = fake.profile()
+                    emf = discord.Embed(title="Fake Information Generator", color=0xF00000)
+                    emf.set_thumbnail(url="https://www.nicepng.com/png/detail/214-2146883_4-fake-stamp-vector-fake-news-logo-png.png")
+                    emf.set_footer(text=f"Requested by {ctx.author.name}")
+                    emf.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                    emf.add_field(name="Name", value=f"{str(simple_dict['name'])}")
+                    emf.add_field(name="Job", value=f"{str(simple_dict['job'])}")
+                    emf.add_field(name="Birthdate", value=f"{str(simple_dict['birthdate'])}")
+                    emf.add_field(name="Company", value=f"{str(simple_dict['company'])}")
+                    emf.add_field(name="SSN", value=f"{str(simple_dict['ssn'])}")
+                    emf.add_field(name="Recidence", value=f"{str(simple_dict['residence'])}")
+                    emf.add_field(name="Current Location", value=f"{str(simple_dict['current_location'])}")
+                    emf.add_field(name="Blood Group", value=f"{str(simple_dict['blood_group'])}")
+                    emf.add_field(name="Username", value=f"{str(simple_dict['username'])}")
+                    emf.add_field(name="Address", value=f"{str(simple_dict['address'])}")
+                    emf.add_field(name="Mail", value=f"{str(simple_dict['mail'])}")
+                    await ctx.send(embed=emf)
+
+            else:
+                embed=discord.Embed(title="Mass Fake Profiles", color=0xff0000)
+                embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                embed.set_thumbnail(url="https://www.nicepng.com/png/detail/214-2146883_4-fake-stamp-vector-fake-news-logo-png.png")
+                embed.add_field(name="Error", value="Please enter a value below 25; This is done to prevent spam!", inline=True)
+                embed.set_footer(text=f"Requested by {ctx.author.name}")
+                await ctx.send(embed=embed)
+
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+
+
 
 def setup(client: commands.Bot):
     client.add_cog(FakeInformation(client))
