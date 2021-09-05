@@ -1,13 +1,15 @@
 import discord
 from discord.ext import commands
 from faker import Faker
+from json import load as loadjson
 
-class Startup(commands.Cog):
+class FakeInformation(commands.Cog):
     def __init__(self, client: commands.Bot):
         self.client = client
 
-        # Bot starting time, we find the time delta of this to send the uptime
-        self.start_time = None
+        # Loading config.json and its important content for this file
+        self.botconfigdata = loadjson(open("config.json", "r"))
+        self.bot_prefix = self.botconfigdata["msg-prefix"]
 
         # This is the please-wait/Loading embed
         self.please_wait_emb = discord.Embed(title="Please Wait", description="``` Processing Your Request ```", color=0xff0000)
@@ -454,7 +456,7 @@ class Startup(commands.Cog):
                 await loading_message.delete()
                 await ctx.send(embed=embed3)
         
-        elif fake_mode == "street name":
+        elif fake_mode == "street addr":
             faker = Faker()
             try:
                 USssa = faker.street_name()
@@ -518,7 +520,11 @@ class Startup(commands.Cog):
         # The usage is like 'fake ean 10' - 10 is the length
             faker = Faker()
             try:
-                nu_of_time = fake_mode.split(" ")[-1]
+                try:
+                    nu_of_time = fake_mode.split(" ")[-1]
+                    tempshit = int(nu_of_time)
+                except:
+                    nu_of_time = 10
 
                 USssa = faker.ean(length=int(nu_of_time))
                 emf2 = discord.Embed(title="Fake Information Generator", color=0xF00000)
@@ -1275,7 +1281,7 @@ class Startup(commands.Cog):
                 emf2.set_thumbnail(url="https://www.nicepng.com/png/detail/214-2146883_4-fake-stamp-vector-fake-news-logo-png.png")
                 emf2.set_footer(text=f"Requested by {ctx.author.name}")
                 emf2.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-                emf2.add_field(name="Port Number", value=f"{USssa}")
+                emf2.add_field(name="RIPE ID", value=f"{USssa}")
                 await loading_message.delete()
                 await ctx.send(embed=emf2)
             except Exception as e:
@@ -2108,7 +2114,51 @@ class Startup(commands.Cog):
                 embed3.set_footer(text=f"Requested by {ctx.author.name}")
                 await loading_message.delete()
                 await ctx.send(embed=embed3)
+
+        else:   
+            bp = self.bot_prefix
+            try:
+                emf2 = discord.Embed(title="Fake Information Generator", color=0xF00000)
+                emf2.set_thumbnail(url="https://www.nicepng.com/png/detail/214-2146883_4-fake-stamp-vector-fake-news-logo-png.png")
+                emf2.set_footer(text=f"Requested by {ctx.author.name}")
+                emf2.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                emf2.add_field(name=f"{bp}fake high", value=f"Generate a high amount of information")
+                emf2.add_field(name=f"{bp}fake low", value=f"Generate a low amount of information")
+                emf2.add_field(name=f"{bp}fake help", value=f"Show this / list all commands")
+                emf2.add_field(name=f"Personal - Others", value=f", \n`{bp}fake job`, \n`{bp}fake licenseplate`, \n`{bp}fake bs`, \n`{bp}fake ssn`")
+                emf2.add_field(name=f"Location", value=f"`{bp}fake country`, \n`{bp}fake postcode`, \n`{bp}fake street addr`, \n`{bp}fake street addr`, \n`{bp}fake addr`, \n`{bp}fake zipcode`, \n`{bp}fake city`")
+                emf2.add_field(name=f"Credit Card", value=f"`{bp}fake cc`, \n`{bp}fake cc ex`, \n`{bp}fake cc no`, \n`{bp}fake cc pr`, \n`{bp}fake cc cvv`")
+                emf2.add_field(name=f"Crypto", value=f"`{bp}fake crypto`, \n`{bp}fake crypto code`, \n`{bp}fake crypto name`")
+                emf2.add_field(name=f"Currency", value=f"`{bp}fake curr`, \n`{bp}fake curr code`, \n`{bp}fake curr name`, \n`{bp}fake curr symbol`, \n`{bp}fake pricetag`")
+                emf2.add_field(name=f"Date", value=f"`{bp}fake date`, \n`{bp}fake century`, \n`{bp}fake dob`")
+                emf2.add_field(name=f"File", value=f"`{bp}fake file name`, \n`{bp}fake file ex`, \n`{bp}fake file path`")
+                emf2.add_field(name=f"Unix", value=f"`{bp}fake unix device`, \n`{bp}fake unix partition`")
+                emf2.add_field(name=f"Banking", value=f"`{bp}fake aba`, \n`{bp}fake bank country`, \n`{bp}fake bban`, \n`{bp}fake iban`")
+                emf2.add_field(name=f"Technical", value=f"`{bp}fake email`, \n`{bp}fake cemail`, \n`{bp}fake email free`, \n`{bp}fake domain`, \n`{bp}fake hostname`, \n`{bp}fake http method`n \n`{bp}fake img url`, \n`{bp}fake ipv4`, \n`{bp}fake ipv4 class`, \n`{bp}fake ipv4 private`, \n`{bp}fake ipv4 public`, \n`{bp}fake ipv6`, \n`{bp}fake macaddr`, \n`{bp}fake nic handle`, \n`{bp}fake port`, \n`{bp}fake ripeid`, \n`{bp}fake slug`, \n`{bp}fake tld`, \n`{bp}fake uri`, \n`{bp}fake uri ex`, \n`{bp}fake url`, \n`{bp}fake username`")
+                emf2.add_field(name=f"ISBN", value=f"`{bp}fake isbn10`, \n`{bp}fake isbn13`")
+                emf2.add_field(name=f"Name", value=f"`{bp}fake name`, \n`{bp}fake fname`, \n`{bp}fake fname male`, \n`{bp}fake fname female`, \n`{bp}fake fname nb`, \n`{bp}fake lname`n \n`{bp}fake lname male`, \n`{bp}fake lname female`, \n`{bp}fake lname nb`, \n`{bp}fake name female`, \n`{bp}fake name male`, \n`{bp}fake name nb`, \n`{bp}fake prefix`, \n`{bp}fake suffix`")
+                emf2.add_field(name=f"Texts", value=f"`{bp}fake paragraph`, \n`{bp}fake sentence`, \n`{bp}fake text`")
+                emf2.add_field(name=f"Phone Number", value=f"`{bp}fake callingcode`, \n`{bp}fake msisdn`, \n`{bp}fake pno`")
+                emf2.add_field(name=f"User Agents", value=f"`{bp}fake chrome`, \n`{bp}fake firefox`, \n`{bp}fake ie`, \n`{bp}fake opera`, \n`{bp}fake safari`, \n`{bp}fake ua`")
+                emf2.add_field(name=f"Platofrm Tokens", value=f"`{bp}fake apt`, \n`{bp}fake iospt`n \n`{bp}fake linuxpt`, \n`{bp}fake linuxproc`, \n`{bp}fake macpt`, \n`{bp}fake macprocessor`, \n`{bp}fake winpt`, \n`{bp}fake ua`")
+                emf2.add_field(name=f"Others", value=f"`{bp}fake ean`, \n`{bp}fake company suffix`, \n`{bp}fake iana`, \n`{bp}fake lang`, \n`{bp}fake color`, \n`{bp}fake cp`")
+
+
+                await loading_message.delete()
+                await ctx.send(embed=emf2)
+
+            except Exception as e:
+                embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+                embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                embed3.add_field(name="Error:", value=f"{e}", inline=False)
+                embed3.set_footer(text=f"Requested by {ctx.author.name}")
+                await loading_message.delete()
+                await ctx.send(embed=embed3)
+
+
+            
         
 
 def setup(client: commands.Bot):
-    client.add_cog(Startup(client))
+    client.add_cog(FakeInformation(client))

@@ -1,17 +1,12 @@
 import discord
 from discord.ext import commands
 
-
-
-
-
-
 class ForNewlyCreatedServers(commands.Cog):
     def __init__(self, client: commands.Bot):
         self.client = client
         
         # Bot starting time, we find the time delta of this to send the uptime
-        self.start_time = None
+        # self.start_time = None
         
         # This is the please-wait/Loading embed
         self.please_wait_emb = discord.Embed(title="Please Wait", description="``` Processing Your Request ```", color=0xff0000)
@@ -337,6 +332,8 @@ class ForNewlyCreatedServers(commands.Cog):
 
 
 
+def setup(client: commands.Bot):
+    client.add_cog(ForNewlyCreatedServers(client))
 
 
 

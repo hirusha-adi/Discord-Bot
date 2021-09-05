@@ -62,7 +62,8 @@ def INSTALL_ALL():
         "soupsieve",
         "stem",
         "torrequest",
-        "password-strength"
+        "password-strength",
+        "faker-vehicle"
     )
     for module in module_nl:
         pip_install(module)
