@@ -1,3 +1,10 @@
 # To do list
 + newav, av2 command is incomplete, do it!, use some string formating!
 
+# New commands - 
++ fakeinfo many commands - completed: help
++ tempmute command - moderation cog - just temp ban for max of 5 hours
++ clean - delete the messages sent by YourBot
+
+
+

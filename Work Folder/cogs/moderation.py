@@ -108,8 +108,64 @@ class ModerationCommands(commands.Cog):
     @commands.has_permissions(manage_messages=True)
     @commands.command()
     async def clear(self, ctx, amount=5):
-        amttdel = amount + 1
-        await ctx.channel.purge(limit=amttdel)
+        try:
+            amttdel = amount + 1
+            await ctx.channel.purge(limit=amttdel)
+
+            if amount == "1":
+                msgtxt = "message"
+            else:
+                msgtxt = "messages"
+
+            embed=discord.Embed(title="Success!", color=0xff0000)
+            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed.add_field(name="Action", value=f"Deleted {amount} {msgtxt}!", inline=False)
+            embed.set_footer(text=f"Requested by {ctx.author.name}")
+            await ctx.send(embed=embed, delete_after=4)
+
+        except Exception as e:
+            embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed2.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed2.add_field(name="Error:", value=f"{e}", inline=False)
+            embed2.set_footer(text=f"Requested by {ctx.author.name}")
+            await ctx.send(embed=embed2)
+    
+    @commands.has_permissions(manage_messages=True)
+    @commands.command()
+    async def clean(self, ctx, amount=5):
+        try:
+            if amount <= 100:
+                amttdel = amount + 1
+                await ctx.channel.purge(limit=amttdel, check=lambda m: m.author == self.client.user)
+
+                if amount == "1":
+                    msgtxt = "message"
+                else:
+                    msgtxt = "messages"
+
+                embed=discord.Embed(title="Success!", color=0xff0000)
+                embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                embed.add_field(name="Action", value=f"Deleted {amount} {msgtxt} sent by YourBot!", inline=False)
+                embed.set_footer(text=f"Requested by {ctx.author.name}")
+                await ctx.send(embed=embed, delete_after=4)
+            
+            else:
+                embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+                embed2.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                embed2.add_field(name="Error:", value=f"Please enter a value below 100!", inline=False)
+                embed2.set_footer(text=f"Requested by {ctx.author.name}")
+                await ctx.send(embed=embed2)
+
+        except Exception as e:
+            embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed2.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed2.add_field(name="Error:", value=f"{e}", inline=False)
+            embed2.set_footer(text=f"Requested by {ctx.author.name}")
+            await ctx.send(embed=embed2)
+
 
     @commands.has_permissions(manage_nicknames=True)
     @commands.command(aliases=["changenickname", "change-nickname", "change-nick"])
@@ -293,7 +349,7 @@ class ModerationCommands(commands.Cog):
             if role.name == "Muted":
                 await member.add_roles(role)
 
-                embed = discord.Embed(title="muted!", description=f"{member.mention} has been tempmuted ", colour=discord.Colour.light_gray())
+                embed = discord.Embed(title="muted!", description=f"{member.mention} has been tempmuted ", colour=0xff0000)
                 embed.add_field(name="reason:", value=reason, inline=False)
                 embed.add_field(name="time left for the mute:", value=f"{time}{d}", inline=False)
                 await ctx.send(embed=embed)
@@ -341,12 +397,14 @@ class ModerationCommands(commands.Cog):
 
 
                 embed = discord.Embed(title="unmute (temp) ", description=f"unmuted -{member.mention} ", colour=discord.Colour.light_gray())
+                embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                embed.set_footer(text=f"Requested by {ctx.author.name}")
                 await ctx.send(embed=embed)
-
                 return
 
-
-
+    # @commands.has_permissions(manage_messages=True)
+    # @commands.command()
+    # # async def 
 
 
 def setup(client: commands.Bot):
