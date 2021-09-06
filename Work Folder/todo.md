@@ -7,6 +7,6 @@
 + clean - delete the messages sent by YourBot
 + addrole -  add a role to a user
 + removerole - remove a role from a user
-
++ pornlink [query] - search for porn link
 
 

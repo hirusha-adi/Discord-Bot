@@ -283,6 +283,46 @@ class NSFWCommands(commands.Cog):
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed3)
+    
+    @commands.command()
+    async def pornlink(self, ctx, *, querywhatsearch):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+
+        try:
+            r = requests.get(f"https://www.eporner.com/api/v2/video/search/?query={querywhatsearch}&per_page=50&thumbsize=big&order=top-weekly&format=json")
+            resultjson = r.json()
+            index_to_give = randomint(1, 50)
+            em = discord.Embed(color=0xff0000)
+            em.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            em.set_image(url=resultjson['url'])
+            em.add_field(name="Title", value=f'{resultjson["videos"][index_to_give]["title"]}', inline=False)
+            em.add_field(name="Keywords", value=f'{resultjson["videos"][index_to_give]["keywords"]}', inline=False)
+            em.add_field(name="Views", value=f'{resultjson["videos"][index_to_give]["views"]}', inline=False)
+            em.add_field(name="Rating", value=f'{resultjson["videos"][index_to_give]["rate"]}', inline=False)
+            em.add_field(name="Uploaded on", value=f'{resultjson["videos"][index_to_give]["added"]}', inline=False)
+            em.add_field(name="Length", value=f'{resultjson["Length"][index_to_give]["length_min"]}', inline=False)
+            em.add_field(name="URL", value=f'{resultjson["videos"][index_to_give]["url"]}', inline=False)
+            em.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=em)
+
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+
+
+
+
+
+
+
+
+
 
 
 def setup(client: commands.Bot):
