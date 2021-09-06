@@ -797,7 +797,35 @@ class ModerationCommands(commands.Cog):
             await loading_message.delete()
             await ctx.send(embed=embed3)
 
+    @commands.has_permissions(administrator=True)
+    @commands.command()
+    async def spam(self, ctx, number_of_times_to_spam, *, message):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
 
+        try:
+            embed=discord.Embed(title="Spam Messages!", color=0xff0000)
+            embed.set_footer(text=f"Requested by {ctx.author.name}")
+            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed.add_field(name="Requested by: ", value=f"{ctx.author}", inline=False)
+            embed.add_field(name="Number of Messages: ", value=f"{number_of_times_to_spam}", inline=False)
+            embed.add_field(name="Message: ", value=f"{message}", inline=False)
+            await loading_message.delete()
+            await ctx.send(embed=embed)
+
+            # THE SPAM WILL START HERE
+            # ONLY 2 MESSAGES WILL BE SENT FOR A SECOND
+            for iteration, x in enumerate(range(int(number_of_times_to_spam))):
+                await ctx.send(message)
+                asyncio.sleep(0.5)
+
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
 
 
 
