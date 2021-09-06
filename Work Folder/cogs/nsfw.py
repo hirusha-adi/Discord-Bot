@@ -322,12 +322,17 @@ class NSFWCommands(commands.Cog):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
         try:
-            r = requests.get(f"https://www.eporner.com/api/v2/video/search/?query={querywhatsearch}&per_page=20&thumbsize=big&order=top-weekly&format=json")
+            r = requests.get(f"https://www.eporner.com/api/v2/video/search/?query={querywhatsearch}&per_page=40&thumbsize=big&order=top-weekly&format=json")
             resultjson = r.json()
 
             if int(howmany) <= 20: 
+                emchannels = discord.Embed(title="Pornographic Content", description="```Please check your Direct Messages```",color=0xff0000)
+                emchannels.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                emchannels.set_footer(text=f"Requested by {ctx.author.name}")
+                await loading_message.delete()
+                await ctx.send(embed=emchannels)
+                
                 for index_to_give in range(int(howmany)):
-                    # index_to_give = randomint(1, 60)
                     em = discord.Embed(title="Pornographic Content", description="Here are some videos for you!",color=0xff0000)
                     em.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
                     em.set_image(url=resultjson["videos"][index_to_give]["default_thumb"]["src"])
@@ -340,14 +345,13 @@ class NSFWCommands(commands.Cog):
                     em.add_field(name="Length", value=f'{resultjson["videos"][index_to_give]["length_min"]}', inline=False)
                     em.add_field(name="URL", value=f'{resultjson["videos"][index_to_give]["url"]}', inline=False)
                     em.set_footer(text=f"Requested by {ctx.author.name}")
-                    await loading_message.delete()
                     await ctx.author.send(embed=em)
             else:
                 embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
                 embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
                 embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
                 embed3.add_field(name="Error:", value=f"High value", inline=False)
-                embed3.add_field(name="Possible Fix", value=f"Enter a number below 20", inline=False)
+                embed3.add_field(name="Possible Fix", value=f"Enter a number below 40", inline=False)
                 embed3.set_footer(text=f"Requested by {ctx.author.name}")
                 await loading_message.delete()
                 await ctx.send(embed=embed3)

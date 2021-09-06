@@ -6337,10 +6337,13 @@ async def on_message(message):
       embed.add_field(name="Command", value=f"{message.content}", inline=False)
       embed.add_field(name="User Name", value=f"{message.author.name}", inline=True)
       embed.add_field(name="User ID", value=f"{message.author.id}", inline=True)
-      embed.add_field(name="Sever Name", value=f"{message.guild.name}", inline=True)
-      embed.add_field(name="Sever ID", value=f"{message.guild.id}", inline=True)
-      embed.add_field(name="Channel Name", value=f"{message.channel.name}", inline=True)
-      embed.add_field(name="Channel ID", value=f"{message.channel.id}", inline=True)
+      try:
+        embed.add_field(name="Sever Name", value=f"{message.guild.name}", inline=True)
+        embed.add_field(name="Sever ID", value=f"{message.guild.id}", inline=True)
+        embed.add_field(name="Channel Name", value=f"{message.channel.name}", inline=True)
+        embed.add_field(name="Channel ID", value=f"{message.channel.id}", inline=True)
+      except AttributeError:
+        embed.add_field(name="Location", value=f"Direct Message", inline=True)
 
       # await channel.send(f'{message.content}')
       await channel.send(embed=embed)
