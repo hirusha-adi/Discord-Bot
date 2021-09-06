@@ -1,21 +1,21 @@
 import discord
 from discord.ext import commands
 from json import load as loadjson
-
-# INSTALL MODULES!
 from platform import system as systemtype
 from os import system as systemruncmnd
+
 try:
     from faker import Faker
-except ImportError:
+except:
     if systemtype().lower().startswith('win'):
         systemruncmnd(f"pip install Faker")
     else:
         systemruncmnd(f"pip3 install Faker")
     from faker import Faker
+
 try:
     from faker_vehicle import VehicleProvider
-except ImportError:
+except:
     if systemtype().lower().startswith('win'):
         systemruncmnd(f"pip install faker-vehicle")
     else:

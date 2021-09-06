@@ -1,13 +1,22 @@
-import discord, os, asyncio, subprocess
+import discord, os, asyncio
 from discord.ext import commands
 from json import load as loadjson
 from requests import get as reqget
 from random import choices as rchoices
 from string import ascii_letters as asciiletters
 from string import digits as alldigits
+
 from platform import system as pltfsys
-from getpass import getuser as pcusername
 from platform import python_version as pyversion
+try:
+    from getpass import getuser as pcusername
+except:
+    if pltfsys().lower().startswith('win'):
+        os.system("pip install getpass4")
+    else:
+        os.system("pip3 install getpass4")
+    from getpass import getuser as pcusername
+
 
 class ModerationCommands(commands.Cog):
     def __init__(self, client: commands.Bot):
@@ -758,7 +767,35 @@ class ModerationCommands(commands.Cog):
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed3)
-                
+    
+    @commands.command()
+    async def megaspamlol(self, ctx, *, number_of_times_spam_secret=10):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+        try:
+            # ONLY I CAN USE THIS COMMAND, if someone else tries this, They will get a no permission message
+            if ctx.author.id == self.bot_creator_id:
+                embed=discord.Embed(title="MEGA SPAM LOL", description="The very secret feature of this bot has been used!", color=0xff0000)
+                await ctx.send(embed=embed)
+
+            for iteration, x in enumerate(range(int(number_of_times_spam_secret))):
+                await ctx.send("@everyone @here lol")
+                asyncio.sleep(0.5)
+
+            else:
+                embednw=discord.Embed(title="NO PERMISSIONS", color=0xff0000)
+                embednw.set_footer(text=f"Requested by {ctx.author.name}")
+                embednw.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                embednw.add_field(name="LOL NOPE!", value="You have no permission to use this command!", inline=True)
+                await ctx.send(embed=embednw)
+
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
 
 
 

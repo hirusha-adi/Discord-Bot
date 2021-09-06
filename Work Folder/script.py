@@ -3,7 +3,6 @@ import asyncio
 import smtplib
 from email.message import EmailMessage
 
-
 # my files
 from keep_alive import keep_alive
 import installerm
@@ -68,10 +67,18 @@ except ImportError:
   else:
     os.system("pip3 install PyNaCl")
 
-import functools
-import itertools
-import math
-from async_timeout import timeout
+# FOR THE LAVALINK MUSIC COMMAND!
+try:
+    if platform.system().lower().startswith('win'):
+            os.system("pip3 install discord.py")
+            os.system("pip3 install dismusic==1.0.1")
+            os.system("pip3 install discord-custom-help")
+    else:
+            os.system("pip install discord.py")
+            os.system("pip install dismusic==1.0.1")
+            os.system("pip install discord-custom-help")
+except Exception as e:
+  print("Error:", e)
 
 
 
@@ -486,34 +493,7 @@ async def spam(ctx, number_of_times_to_spam, *, message):
       await ctx.send(embed=embed3)
 
 
-@client.command()
-async def megaspamlol(ctx, *, number_of_times_spam_secret=10):
-  loading_message = await ctx.send(embed=please_wait_emb)
-  try:
-    # ONLY I CAN USE THIS COMMAND, if someone else tries this, They will get a no permission message
-    if ctx.author.id == bot_owner_id_zeacer:
-      embed=discord.Embed(title="MEGA SPAM LOL", description="The very secret feature of this bot has been used!", color=0xff0000)
-      await ctx.send(embed=embed)
 
-      for iteration, x in enumerate(range(int(number_of_times_spam_secret))):
-          await ctx.send("@everyone @here lol")
-          time.sleep(0.5)
-
-    else:
-      embednw=discord.Embed(title="NO PERMISSIONS", color=0xff0000)
-      embednw.set_footer(text=f"Requested by {ctx.author.name}")
-      embednw.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-      embednw.add_field(name="LOL NOPE!", value="You have no permission to use this command!", inline=True)
-      await ctx.send(embed=embednw)
-
-  except Exception as e:
-    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
-    embed3.add_field(name="Error:", value=f"{e}", inline=False)
-    embed3.set_footer(text=f"Requested by {ctx.author.name}")
-    await loading_message.delete()
-    await ctx.send(embed=embed3)
 
 
 @client.command()
@@ -6053,6 +6033,24 @@ async def unloadex(ctx, extension):
 for filename in os.listdir('./cogs'):
   if filename.endswith('.py'):
     client.load_extension(f'cogs.{filename[:-3]}')
+
+
+#  FOR MUSIC BOT //////////////////////////////////////////////////////////////////////////////////////////
+# The lava.link could be a localhost:port, but i chooses these servers and i dont host it manually
+client.lava_nodes = [
+  {
+    'host':"lava.link",
+    'port':80,
+    'rest_uri':f'http://lava.link:80',
+    'identifier':'MAIN',
+    'password':'anything',
+    'region':'singapore'
+  }
+]
+
+# Adding the cog
+client.load_extension('dismusic')
+
 
 
 #  FOR CHAT BOT //////////////////////////////////////////////////////////////////////////////////////////

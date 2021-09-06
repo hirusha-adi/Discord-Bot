@@ -1,7 +1,17 @@
-import discord, os, asyncio, json, requests
+import discord, json
 from discord.ext import commands
 from json import load as loadjson
 from random import randint as randomint
+from platform import system as systemtype
+from os import system as systemruncmnd
+try:
+    import requests
+except:
+    if systemtype().lower().startswith('win'):
+        systemruncmnd("pip install requests")
+    else:
+        systemruncmnd("pip3 install requests")
+    import requests
 
 
 class NSFWCommands(commands.Cog):
@@ -371,4 +381,3 @@ class NSFWCommands(commands.Cog):
 
 def setup(client: commands.Bot):
     client.add_cog(NSFWCommands(client))
-
