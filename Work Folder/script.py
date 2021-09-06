@@ -1010,237 +1010,6 @@ async def asciiart(ctx, *, text):
     await loading_message.delete()
     await ctx.send(embed=embed3)
 
-# Most of the NSFW image/GIF commands have the same structure
-# ---------------------------------
-# @client.command()
-# async def nsfw_command_name(ctx):
-#   Sending the loading message
-# 
-#   Sending a request to a public API
-#   Converting the data from bytes to json
-#   Creating a discord Embed
-#   Adding the url extracted from the API result
-# 
-#   Deleting the loading message
-#   Sending the embed
-# ---------------------------------
-
-# @client.command()
-# async def anal(ctx):
-#   loading_message = await ctx.send(embed=please_wait_emb)
-
-#   try:
-#     r = requests.get("https://nekos.life/api/v2/img/anal")
-#     res = r.json()
-#     em = discord.Embed(color=0xff0000)
-#     em.set_footer(text=f"Requested by {ctx.author.name}")
-#     em.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-#     em.set_image(url=res['url'])
-#     await loading_message.delete()
-#     await ctx.send(embed=em)
-  
-#   except Exception as e:
-#     embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-#     embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-#     embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
-#     embed3.add_field(name="Error:", value=f"{e}", inline=False)
-#     embed3.set_footer(text=f"Requested by {ctx.author.name}")
-#     await loading_message.delete()
-#     await ctx.send(embed=embed3)
-
-
-# @client.command()
-# async def erofeet(ctx):
-#   loading_message = await ctx.send(embed=please_wait_emb)
-  
-#   try:
-#     r = requests.get("https://nekos.life/api/v2/img/erofeet")
-#     res = r.json()
-#     em = discord.Embed(color=0xff0000)
-#     em.set_footer(text=f"Requested by {ctx.author.name}")
-#     em.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-#     em.set_image(url=res['url'])
-#     await loading_message.delete()
-#     await ctx.send(embed=em)
-  
-#   except Exception as e:
-#     embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-#     embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-#     embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
-#     embed3.add_field(name="Error:", value=f"{e}", inline=False)
-#     embed3.set_footer(text=f"Requested by {ctx.author.name}")
-#     await loading_message.delete()
-#     await ctx.send(embed=embed3)
-
-
-# @client.command()
-# async def feet(ctx):
-#   loading_message = await ctx.send(embed=please_wait_emb)
-  
-#   try:
-#     r = requests.get("https://nekos.life/api/v2/img/feetg")
-#     res = r.json()
-#     em = discord.Embed(color=0xff0000)
-#     em.set_footer(text=f"Requested by {ctx.author.name}")
-#     em.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-#     em.set_image(url=res['url'])
-#     await loading_message.delete()
-#     await ctx.send(embed=em)
-
-#   except Exception as e:
-#     embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-#     embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-#     embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
-#     embed3.add_field(name="Error:", value=f"{e}", inline=False)
-#     embed3.set_footer(text=f"Requested by {ctx.author.name}")
-#     await loading_message.delete()
-#     await ctx.send(embed=embed3)
-
-
-# @client.command()
-# async def hentai(ctx):
-#   loading_message = await ctx.send(embed=please_wait_emb)
-
-#   try:
-#     r = requests.get("https://nekos.life/api/v2/img/Random_hentai_gif")
-#     res = r.json()
-#     em = discord.Embed(color=0xff0000)
-#     em.set_footer(text=f"Requested by {ctx.author.name}")
-#     em.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-#     em.set_image(url=res['url'])
-#     await loading_message.delete()
-#     await ctx.send(embed=em)
-  
-#   except Exception as e:
-#     embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-#     embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-#     embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
-#     embed3.add_field(name="Error:", value=f"{e}", inline=False)
-#     embed3.set_footer(text=f"Requested by {ctx.author.name}")
-#     await loading_message.delete()
-#     await ctx.send(embed=embed3)
-
-
-# @client.command()
-# async def boobs(ctx):
-#   loading_message = await ctx.send(embed=please_wait_emb)
-
-#   try:
-#     r = requests.get("https://nekos.life/api/v2/img/boobs")
-#     res = r.json()
-#     em = discord.Embed(color=0xff0000)
-#     em.set_image(url=res['url'])
-#     em.set_footer(text=f"Requested by {ctx.author.name}")
-#     em.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-#     await loading_message.delete()
-#     await ctx.send(embed=em)
-
-#   except Exception as e:
-#     embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-#     embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-#     embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
-#     embed3.add_field(name="Error:", value=f"{e}", inline=False)
-#     embed3.set_footer(text=f"Requested by {ctx.author.name}")
-#     await loading_message.delete()
-#     await ctx.send(embed=embed3)
-
-
-# @client.command()
-# async def tits(ctx):
-#   loading_message = await ctx.send(embed=please_wait_emb)
-
-#   try:
-#     r = requests.get("https://nekos.life/api/v2/img/tits")
-#     res = r.json()
-#     em = discord.Embed(color=0xff0000)
-#     em.set_image(url=res['url'])
-#     em.set_footer(text=f"Requested by {ctx.author.name}")
-#     em.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-#     await loading_message.delete()
-#     await ctx.send(embed=em)
-
-#   except Exception as e:
-#     embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-#     embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-#     embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
-#     embed3.add_field(name="Error:", value=f"{e}", inline=False)
-#     embed3.set_footer(text=f"Requested by {ctx.author.name}")
-#     await loading_message.delete()
-#     await ctx.send(embed=embed3)
-
-
-# @client.command()
-# async def blowjob(ctx):
-#   loading_message = await ctx.send(embed=please_wait_emb)
-
-#   try:
-#     r = requests.get("https://nekos.life/api/v2/img/blowjob")
-#     res = r.json()
-#     em = discord.Embed(color=0xff0000)
-#     em.set_footer(text=f"Requested by {ctx.author.name}")
-#     em.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-#     em.set_image(url=res['url'])
-#     await loading_message.delete()
-#     await ctx.send(embed=em)
-  
-#   except Exception as e:
-#     embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-#     embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-#     embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
-#     embed3.add_field(name="Error:", value=f"{e}", inline=False)
-#     embed3.set_footer(text=f"Requested by {ctx.author.name}")
-#     await loading_message.delete()
-#     await ctx.send(embed=embed3)
-
-
-# @client.command()
-# async def lewd(ctx):
-#   loading_message = await ctx.send(embed=please_wait_emb)
-
-#   try:
-#     r = requests.get("https://nekos.life/api/v2/img/nsfw_neko_gif")
-#     res = r.json()
-#     em = discord.Embed(color=0xff0000)
-#     em.set_image(url=res['url'])
-#     em.set_footer(text=f"Requested by {ctx.author.name}")
-#     em.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-#     await loading_message.delete()
-#     await ctx.send(embed=em)
-
-#   except Exception as e:
-#     embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-#     embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-#     embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
-#     embed3.add_field(name="Error:", value=f"{e}", inline=False)
-#     embed3.set_footer(text=f"Requested by {ctx.author.name}")
-#     await loading_message.delete()
-#     await ctx.send(embed=embed3)
-
-
-# @client.command()
-# async def lesbian(ctx):
-#   loading_message = await ctx.send(embed=please_wait_emb)
-
-#   try:
-#     r = requests.get("https://nekos.life/api/v2/img/les")
-#     res = r.json()
-#     em = discord.Embed(color=0xff0000)
-#     em.set_image(url=res['url'])
-#     em.set_footer(text=f"Requested by {ctx.author.name}")
-#     em.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-#     await loading_message.delete()
-#     await ctx.send(embed=em)
-
-#   except Exception as e:
-#     embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-#     embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-#     embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
-#     embed3.add_field(name="Error:", value=f"{e}", inline=False)
-#     embed3.set_footer(text=f"Requested by {ctx.author.name}")
-#     await loading_message.delete()
-#     await ctx.send(embed=embed3)
-
-# THESE COMMANDS HAVE THE STRUCTURE AS THE NSFW COMMANDS DID
 
 @client.command()
 async def feed(ctx, user: discord.Member = None):
@@ -1432,6 +1201,29 @@ async def pat(ctx, user: discord.Member = None):
       em.set_footer(text=f"Requested by {ctx.author.name}")
       await loading_message.delete()
       await ctx.send(embed=em)
+
+# @client.command()
+# async def erofeet(ctx):
+#   loading_message = await ctx.send(embed=please_wait_emb)
+  
+#   try:
+#     r = requests.get("https://nekos.life/api/v2/img/erofeet")
+#     res = r.json()
+#     em = discord.Embed(color=0xff0000)
+#     em.set_footer(text=f"Requested by {ctx.author.name}")
+#     em.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+#     em.set_image(url=res['url'])
+#     await loading_message.delete()
+#     await ctx.send(embed=em)
+  
+#   except Exception as e:
+#     embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+#     embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+#     embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+#     embed3.add_field(name="Error:", value=f"{e}", inline=False)
+#     embed3.set_footer(text=f"Requested by {ctx.author.name}")
+#     await loading_message.delete()
+#     await ctx.send(embed=embed3)
   
   except Exception as e:
     embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
