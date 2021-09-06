@@ -5280,7 +5280,7 @@ async def Help(ctx, category="none"):
 {bp}asciiart test -> will send a ascii art ( same as {bp}ascii but different style)
 """
 
-  help_2 = f"""{bp}lebsian -> will send lesbian gis and pics (NSFW)
+  help_2 = f"""{bp}lesbian -> will send lesbian gis and pics (NSFW)
 {bp}anal -> will send anal (NSFW)
 {bp}erofeet -> will send erofeet (NSFW)
 {bp}feet -> will send feet pics and gifs (NSFW)
@@ -5489,7 +5489,7 @@ async def Help(ctx, category="none"):
   elif category.lower() in nsfw_wl:
     em4 = discord.Embed(title=f'NSFW', description=f'use >Help [category]', color=0xff0000)
     em4.set_thumbnail(url=bot_info_cmnd_thumbnail_link)
-    em4.add_field(name=f'{bp}lebsian', value=f'`{bp}lebsian` - Send Images/GIFs', inline=True)
+    em4.add_field(name=f'{bp}lesbian', value=f'`{bp}lebsian` - Send Images/GIFs', inline=True)
     em4.add_field(name=f'{bp}anal', value=f'`{bp}anal` - Send Images/GIFs', inline=True)
     em4.add_field(name=f'{bp}feet', value=f'`{bp}feet` - Send Images/GIFs', inline=True)
     em4.add_field(name=f'{bp}hentai', value=f'`{bp}hentai` - Send Images/GIFs', inline=True)
