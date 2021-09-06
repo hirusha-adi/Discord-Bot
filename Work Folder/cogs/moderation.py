@@ -1,10 +1,12 @@
-import discord, os, asyncio
+import discord, os, asyncio, io, aiohttp
 from discord.ext import commands
 from json import load as loadjson
 from requests import get as reqget
 from random import choices as rchoices
 from string import ascii_letters as asciiletters
 from string import digits as alldigits
+from datetime import datetime as datet
+from typing import Optional, Text
 
 from platform import system as pltfsys
 from platform import python_version as pyversion
@@ -826,6 +828,188 @@ class ModerationCommands(commands.Cog):
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed3)
+
+    @commands.command(aliases=['pfp', 'avatar'])
+    async def av(self, ctx, *, user: discord.User = None):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+
+        try:
+            format = "gif"
+            user = user or ctx.author
+
+            if user.is_avatar_animated() != True:
+                format = "png"
+
+            avatar = user.avatar_url_as(format=format if format != "gif" else None)
+
+            async with aiohttp.ClientSession() as session:
+                async with session.get(str(avatar)) as resp:
+                    image = await resp.read()
+            with io.BytesIO(image) as file:
+                await loading_message.delete()
+                await ctx.send(file=discord.File(file, f"Avatar.{format}"))
+        
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+
+    @commands.command(aliases=["av2"])
+    async def newav(self, ctx, user: discord.User = None):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+
+        link = f"{ctx.author.avatar_url}"
+        await ctx.send(link)
+        await ctx.send("STILL UNDER DEVELOPMENT!")
+        await loading_message.delete()
+
+    @commands.command(aliases=["guildinfo", "serverinfo", "si"])
+    async def infoserver(self, ctx):
+        try:
+            loading_message = await ctx.send(embed=self.please_wait_emb)
+            date_format = "%a, %d %b %Y %I:%M %p"
+            embed = discord.Embed(title=f"Server Info of {ctx.guild.name}:",
+                                    description=f"{ctx.guild.member_count} Members\n {len(ctx.guild.roles)} Roles\n {len(ctx.guild.text_channels)} Text-Channels\n {len(ctx.guild.voice_channels)} Voice-Channels\n {len(ctx.guild.categories)} Categories",
+                                    timestamp=datet.utcnow(), color=0xff0000)
+            embed.add_field(name="Server created at", value=f"{ctx.guild.created_at.strftime(date_format)}")
+            embed.add_field(name="Server Owner", value=f"<@{ctx.guild.owner_id}>")
+            embed.add_field(name="Server Region", value=f"{ctx.guild.region}")
+            embed.add_field(name="Server ID", value=f"{ctx.guild.id}")
+            embed.add_field(name="Bots", value=len(list(filter(lambda m: m.bot, ctx.guild.members))))
+            embed.add_field(name="Banned members", value=len(await ctx.guild.bans()))
+            embed.add_field(name="Invites", value=len(await ctx.guild.invites()))
+            embed.set_footer(text=f"Requested by {ctx.author.name}")
+            embed.set_thumbnail(url=f"{ctx.guild.icon_url}")
+            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            await loading_message.delete()
+            await ctx.send(embed=embed)
+        
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+
+        # emsi = discord.Embed(title=f'Info of **__{ctx.guild.name}__**')
+        # emsi.set_thumbnail(url=f"{ctx.guild.icon_url}")
+        # emsi.add_field(name=f"**Name: **", value=f'{ctx.guild.name}', inline=True)
+        # emsi.add_field(name=f"ID:", value=f'{ctx.guild.id}', inline=True)
+        # emsi.add_field(name=f"Owner:", value=f'<@{ctx.guild.owner_id}>', inline=True)
+        # emsi.add_field(name=f"Owner ID:", value=f'{ctx.guild.owner_id}', inline=True)
+        # emsi.add_field(name=f"Region:", value=f'{ctx.guild.region}', inline=True)
+        # await ctx.send(embed=emsi)
+
+    @commands.command(aliases=["servericon"])
+    async def guildicon(self, ctx):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+
+        try:
+            embed = discord.Embed(color=0xff0000)
+            embed.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)   
+            embed.set_image(url=ctx.guild.icon_url)
+            embed.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed)
+        
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+
+    @commands.command(aliases=["account-creation-date", "account-date"])
+    async def accdate(self, ctx, *, user: discord.User = None):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+
+        try:
+            if user is None:
+                user = ctx.author     
+
+            date_format = "%a, %d %b %Y %I:%M %p"
+            em = discord.Embed(description=user.mention, color=0xff0000)
+            em.set_author(name=str(user), icon_url=user.avatar_url)
+            em.set_thumbnail(url=user.avatar_url)
+            em.add_field(name="Registered", value=user.created_at.strftime(date_format))
+            em.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            return await ctx.send(embed=em)
+        
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+
+    @commands.command(aliases=["userinfo", "uinfo", "user-info"])
+    async def whoareyou(self, ctx, target: Optional[discord.Member]):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+
+        try:
+            target = target or ctx.author
+
+            embed = discord.Embed(title="User Information", color=target.color, timestamp=datet.utcnow())
+
+            fields = [("Name", str(target), True),
+                    ("ID", target.id, True),
+                    ("Bot?", target.bot, True),
+                    ("Top role", target.top_role.mention, True),
+                    ("Status", str(target.status).title(), True),
+                    ("Activity", f"{str(target.activity.type).split('.')[-1].title() if target.activity else 'N/A'} {target.activity.name if target.activity else ''}", True),
+                    ("Created at", target.created_at.strftime("%d/%m/%Y %H:%M:%S"), True),
+                    ("Joined at", target.joined_at.strftime("%d/%m/%Y %H:%M:%S"), True),
+                    ("Boosted", bool(target.premium_since), True)]
+            
+            for name, value, inline in fields:
+                embed.add_field(name=name, value=value, inline=inline)
+            
+            embed.set_thumbnail(url=f"{target.avatar_url}")
+            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed)
+
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
