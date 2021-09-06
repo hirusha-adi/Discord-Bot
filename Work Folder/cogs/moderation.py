@@ -997,6 +997,27 @@ class ModerationCommands(commands.Cog):
         await ctx.send(f'This feature will be available in the future! Make sure to type the info command to see more information')
 
 
+    @commands.command(aliases=["server-icon"])
+    async def iconserver(self, ctx):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+
+        try:
+            em = discord.Embed(title=ctx.guild.name)
+            em.set_footer(text=f"Requested by {ctx.author.name}")
+            em.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            em.set_image(url=ctx.guild.icon_url)
+            em.add_field(name="Server Name:", value=f"{ctx.guild.name}", inline=False)
+            await loading_message.delete()
+            await ctx.send(embed=em)
+
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
 
 
 
