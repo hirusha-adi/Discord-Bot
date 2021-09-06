@@ -990,6 +990,11 @@ class ModerationCommands(commands.Cog):
             await loading_message.delete()
             await ctx.send(embed=embed3)
 
+    @commands.command()
+    async def changeprefix(self, ctx):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+        await loading_message.delete()
+        await ctx.send(f'This feature will be available in the future! Make sure to type the info command to see more information')
 
 
 
