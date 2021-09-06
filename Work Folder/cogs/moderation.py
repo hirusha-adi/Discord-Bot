@@ -35,10 +35,10 @@ class ModerationCommands(commands.Cog):
                 embed2.add_field(name="User", value=f"```{pcusername()}```", inline=False)
                 embed2.add_field(name="Python Version", value=f"```{pyversion()}```", inline=False)
                 embed2.add_field(name="Discord API Version", value=f"```{discord.__version__}```", inline=False)
-                try:
-                    embed2.add_field(name="CPU", value=f"```{(subprocess.check_output('lscpu', shell=True).strip()).decode()}```", inline=False)
-                except:
-                    pass
+                # try:
+                #     embed2.add_field(name="CPU", value=f"```{(subprocess.check_output('lscpu', shell=True).strip()).decode()}```", inline=False)
+                # except:
+                #     pass
                 await loading_message.delete()
                 await ctx.send(embed=embed2)
 
@@ -162,7 +162,7 @@ class ModerationCommands(commands.Cog):
             # Create the DM and send it
             embeddmlol = discord.Embed(title="YOU HAVE BEEN NUKED!", description=f"```{reason}```", color=0xff0000)
             embeddmlol.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            embeddmlol.set_image(url="https://tenor.com/view/bill-gates-gif-22015131")
+            embeddmlol.set_image(url="https://tenor.com/view/bill-gates-cake-face-cake-smash-gif-14539940")
             embeddmlol.set_footer(text=f"by {ctx.author.name}")
             await member.send(embed=embeddmlol)
 
@@ -248,7 +248,8 @@ class ModerationCommands(commands.Cog):
             # Create the DM and send it
             embeddmlol = discord.Embed(title="YOU HAVE BEEN NUKED!", description=f"```{reason}```", color=0xff0000)
             embeddmlol.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            embeddmlol.set_image(url="https://tenor.com/view/explosion-mushroom-cloud-atomic-bomb-atomic-a-bomb-gif-12091362")
+            # embeddmlol.set_image(url="https://tenor.com/view/rage-broccoli-nuke-gachibrocc-gachi-gif-21547004")
+            embeddmlol.set_image(url="https://tenor.com/view/nope-orbital-laser-nuke-it-from-orbit-gif-14464332")
             embeddmlol.set_footer(text=f"by {ctx.author.name}")
             await user.send(embed=embeddmlol)
             
