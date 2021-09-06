@@ -3,6 +3,7 @@ from discord.ext import commands
 from json import load as loadjson
 from platform import system as pltfsys
 from random import randint as randomint
+import urllib, aiohttp, textwrap
 
 try:
     import requests
@@ -534,6 +535,7 @@ class ModerationCommands(commands.Cog):
             await loading_message.delete()
             await ctx.send(embed=embed3)
 
+
     @commands.command(aliases=["mincraft-info", "mincraft-user-info", "minecraftinfo"])
     async def mcinfo(self, ctx, *, MinecraftUserName):
         loading_message = await ctx.send(embed=self.please_wait_emb)
@@ -556,6 +558,76 @@ class ModerationCommands(commands.Cog):
             await loading_message.delete()
             await ctx.send(embed=embed)
         
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+
+        
+    @commands.command(aliases=["lyricsof"])
+    async def lyrics(self, ctx, *, search = None):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+
+        try:
+            if not search:
+                embed = discord.Embed(
+                    title = "No search argument!",
+                    description = "You havent entered anything, so i couldnt find lyrics!",
+                    color=0xff0000
+                )
+                embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                embed.set_footer(text=f"Requested by {ctx.author.name}")
+                try:
+                    await loading_message.delete()
+                except:
+                    pass
+                return await ctx.send(embed = embed)
+            
+            song = urllib.parse.quote(search)
+            
+            async with aiohttp.ClientSession() as lyricsSession:
+                async with lyricsSession.get(f'https://some-random-api.ml/lyrics?title={song}') as jsondata: 
+                    if not 300 > jsondata.status >= 200: 
+                        try:
+                            await loading_message.delete()
+                        except:
+                            pass
+                            return await ctx.send(f'Recieved poor status code of {jsondata.status}')
+                        lyricsData = await jsondata.json() 
+
+            error = lyricsData.get('error')
+            if error: 
+                try:
+                    await loading_message.delete()
+                except:
+                    pass
+                return await ctx.send(f'Recieved unexpected error: {error}')
+
+            songLyrics = lyricsData['lyrics'] 
+            songArtist = lyricsData['author'] 
+            songTitle = lyricsData['title'] 
+            songThumbnail = lyricsData['thumbnail']['genius']
+            
+            for chunk in textwrap.wrap(songLyrics, 4096, replace_whitespace = False):
+                embed = discord.Embed(
+                    title = f'{songTitle} - {songArtist}',
+                    description = chunk,
+                    color = 0xff0000
+                    # timestamp = datetime.datetime.utcnow()
+                )
+                embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                embed.set_thumbnail(url = songThumbnail)
+                embed.set_footer(text=f"Requested by {ctx.author.name}")
+                try:
+                    await loading_message.delete()
+                except:
+                    pass
+                await ctx.send(embed = embed)
+
         except Exception as e:
             embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
             embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
