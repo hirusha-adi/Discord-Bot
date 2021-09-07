@@ -3,7 +3,7 @@ from discord.ext import commands
 from json import load as loadjson
 from json import loads as loadjsonstring
 from bs4 import BeautifulSoup
-
+from random import choice as randomchoice
 
 class OtherCommandsFun(commands.Cog):
     def __init__(self, client: commands.Bot):
@@ -227,6 +227,70 @@ class OtherCommandsFun(commands.Cog):
             await ctx.send(embed=embed3)
 
 
+    @commands.command(alieases=["guess-age"])
+    async def guessage(self, ctx, *, nameToSearch):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+
+        try:
+            r = requests.get("https://api.agify.io/?name=" + nameToSearch)
+            c = r.json()
+            try:
+                name = c["name"]
+            except:
+                name = "Unable to get the Name"
+            try:
+                age = c["age"]
+            except:
+                age = "Unable to get the Age"
+            try:
+                count = c["count"]
+            except:
+                count = "Unable to get the Count"
+
+            embed=discord.Embed(title="Guess Age", color=0xff0000)
+            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/880027346478968872/image.jfif")
+            embed.add_field(name="Name", value=f"{name}", inline=False)
+            embed.add_field(name="Age", value=f"{age}", inline=False)
+            embed.add_field(name="Count", value=f"{count}", inline=False)
+            embed.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed)
+
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+
+    @commands.command(aliases=["propose"])
+    async def howpropose(self, ctx, *, name="your crush/gf"):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+
+        try:
+            choicestosel = (
+            f'You may directly propose {name} as she will accept you',
+            f'You will need to have a lot of foreplay before sex {name} to make her like you',
+            f'Buy {name} a pizza and kiss her',
+            f'Buy a vibrator for {name}',
+            f'say {name} a thot',
+            f'touch {name}s vagina',
+            f'ask "PLEASE SEND BOOB AND PUSSY PICS" from {name}'
+            )
+            await loading_message.delete()
+            await ctx.send(f'{randomchoice(choicestosel)}')
+        
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
 
 
 
