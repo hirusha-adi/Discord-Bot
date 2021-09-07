@@ -254,106 +254,12 @@ please_wait_wt_bfd = 2
 
 
 
-@client.command(aliases=["addition"])
-async def add(ctx, number_1, number_2):
-  loading_message = await ctx.send(embed=please_wait_emb)
-  try:
-    ans = float(number_1) + float(number_2)
-
-    embed=discord.Embed(title="Addition", color=0xff0000)
-    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879962889509806080/addition-icon-3.jpg")
-    embed.add_field(name="Query", value=f"{number_1} + {number_2}", inline=False)
-    embed.add_field(name="Result", value=f"{ans}", inline=True)
-    embed.set_footer(text=f"Requested by {ctx.author.name}")
-    await loading_message.delete()
-    await ctx.send(embed=embed)
-  
-  except Exception as e:
-    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
-    embed3.add_field(name="Error:", value=f"{e}", inline=False)
-    embed3.set_footer(text=f"Requested by {ctx.author.name}")
-    await loading_message.delete()
-    await ctx.send(embed=embed3)
 
 
-@client.command(aliases=["substraction", "substract"])
-async def subs(ctx, number_1, number_2):
-  loading_message = await ctx.send(embed=please_wait_emb)
-
-  try:
-    ans = float(number_1) - float(number_2)
-
-    embed=discord.Embed(title="Substraction", color=0xff0000)
-    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879964954806083604/1043.png")
-    embed.add_field(name="Query", value=f"{number_1} - {number_2}", inline=False)
-    embed.add_field(name="Result", value=f"{ans}", inline=True)
-    embed.set_footer(text=f"Requested by {ctx.author.name}")
-    await ctx.send(embed=embed)
-  
-  except Exception as e:
-    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
-    embed3.add_field(name="Error:", value=f"{e}", inline=False)
-    embed3.set_footer(text=f"Requested by {ctx.author.name}")
-    await loading_message.delete()
-    await ctx.send(embed=embed3)
 
 
-@client.command(aliases=["multiplication", "multiply"])
-async def mul(ctx, number_1, number_2):
-  loading_message = await ctx.send(embed=please_wait_emb)
-
-  try:
-    ans = float(number_1) * float(number_2)
-
-    embed=discord.Embed(title="Multiplication", color=0xff0000)
-    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879965848603869214/43165.png")
-    embed.add_field(name="Query", value=f"{number_1} x {number_2}", inline=False)
-    embed.add_field(name="Result", value=f"{ans}", inline=True)
-    embed.set_footer(text="Requested by {ctx.author.name}")
-    await loading_message.delete()
-    await ctx.send(embed=embed)
-  
-  except Exception as e:
-    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
-    embed3.add_field(name="Error:", value=f"{e}", inline=False)
-    embed3.set_footer(text=f"Requested by {ctx.author.name}")
-    await loading_message.delete()
-    await ctx.send(embed=embed3)
 
 
-@client.command(aliases=["division", "divide"])
-async def div(ctx, number_1, number_2):
-  loading_message = await ctx.send(embed=please_wait_emb)
-
-  try:
-    ans = float(number_1) / float(number_2)
-
-    embed=discord.Embed(title="Division", color=0xff0000)
-    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879966441502294026/674233_mathematics_512x512.png")
-    embed.add_field(name="Query", value=f"{number_1} / {number_2}", inline=False)
-    embed.add_field(name="Result", value=f"{ans}", inline=True)
-    embed.set_footer(text=f"Requested by {ctx.author.name}")
-    await loading_message.delete()
-    await ctx.send(embed=embed)
-  
-  except Exception as e:
-    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
-    embed3.add_field(name="Error:", value=f"{e}", inline=False)
-    embed3.set_footer(text=f"Requested by {ctx.author.name}")
-    await loading_message.delete()
-    await ctx.send(embed=embed3)
 
 
 
