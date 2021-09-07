@@ -1,9 +1,10 @@
-import discord, requests, hashlib
+import discord, requests, hashlib, urllib, base64, asyncio
 from discord.ext import commands
 from json import load as loadjson
+from random import choices as randomchoices
+from string import ascii_letters, digits
 
-
-class BotGeneralCommands(commands.Cog):
+class ToolCommands(commands.Cog):
     def __init__(self, client: commands.Bot):
         self.client = client
 
@@ -33,6 +34,44 @@ class BotGeneralCommands(commands.Cog):
             em.add_field(name="Shortened Link", value=r, inline=False)
             await loading_message.delete()
             await ctx.send(embed=em)
+
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+    
+    @commands.command()
+    async def nitro(self, ctx, *, number_of_times):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+
+        try:
+        # The limit is 20 to prevent spam
+            if int(number_of_times) <= 20:
+                embed=discord.Embed(title="Nitro Code Generator", color=0xff0000)
+                embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                embed.set_thumbnail(url="https://user-images.githubusercontent.com/36286877/127767330-d3e68d90-67a0-4672-b3e1-6193b323bc21.png")
+                embed.add_field(name="You have Requested:", value=f"{number_of_times} Nitro Codes", inline=False)
+                embed.set_footer(text=f"Requested by {ctx.author.name}")
+                await loading_message.delete()
+                await ctx.send(embed=embed)
+                
+                for iteration, x in enumerate(range(int(number_of_times))):
+                    code = ''.join(randomchoices(ascii_letters + digits, k=16))
+                    await ctx.send(f'https://discord.gift/{code}')
+                    asyncio.sleep(0.4)
+
+            else:
+                embed=discord.Embed(title="Nitro Code Generator", color=0xff0000)
+                embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                embed.set_thumbnail(url="https://www.nicepng.com/png/detail/214-2146883_4-fake-stamp-vector-fake-news-logo-png.png")
+                embed.add_field(name="Error", value="Please enter a value below 20; This is done to prevent spam!", inline=True)
+                embed.set_footer(text=f"Requested by {ctx.author.name}")
+                await loading_message.delete()
+                await ctx.send(embed=embed)
 
         except Exception as e:
             embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
@@ -300,4 +339,4 @@ async def hastebin(self, ctx, *, message):
 
     
 def setup(client: commands.Bot):
-    client.add_cog(BotGeneralCommands(client))
+    client.add_cog(ToolCommands(client))
