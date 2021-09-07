@@ -171,10 +171,60 @@ class OtherCommandsFun(commands.Cog):
             await ctx.send(embed=embed3)
 
     
-    
+    @commands.command()
+    async def advice(self, ctx):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
 
+        try:
+            r = requests.get("https://api.adviceslip.com/advice").json()
+            c = r['slip']['advice']
 
+            embed=discord.Embed(title="an Adive", color=0xff0000)
+            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/880034306720956456/download_1.jfif")
+            embed.add_field(name="Advice", value=f"{c}", inline=False)
+            embed.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed)
 
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+
+    @commands.command(aliases=["chuck-norris-joke", "chuck-joke"])
+    async def chuckjoke(self, ctx):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+
+        try:
+            url = f"https://api.chucknorris.io/jokes/random"
+            r = requests.get(url).json()
+            joke = r['value']
+            created_at = r['created_at']
+            urlfj = r['url']
+
+            embed=discord.Embed(title="Chuck Joke", color=0xff0000)
+            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/880035248820342824/chuck-norris.png")
+            embed.add_field(name="Joke", value=f"{joke}", inline=False)
+            embed.add_field(name="Created At", value=f"{created_at}", inline=False)
+            embed.add_field(name="URL", value=f"{urlfj}", inline=True)
+            embed.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed)
+        
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
 
 
 

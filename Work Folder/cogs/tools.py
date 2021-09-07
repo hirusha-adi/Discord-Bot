@@ -1,8 +1,21 @@
-import discord, requests, hashlib, urllib, base64, asyncio
+import discord, requests, hashlib, urllib, base64, asyncio, os
 from discord.ext import commands
 from json import load as loadjson
 from random import choices as randomchoices
 from string import ascii_letters, digits
+
+from platform import system as pltfsys
+try:
+    import instaloader
+except:
+    if pltfsys().lower().startswith('win'):
+        os.system("pip install instaloader")
+    else:
+        os.system("pip3 install instaloader")
+    import instaloader
+
+
+
 
 class ToolCommands(commands.Cog):
     def __init__(self, client: commands.Bot):
@@ -333,6 +346,223 @@ async def hastebin(self, ctx, *, message):
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed3)
+
+    @commands.command(aliases=["to-binary", "e_binary"])
+    async def binary(ctx, *, ToBinaryText):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+        try:
+            r = requests.get('https://some-random-api.ml/binary?text=' + ToBinaryText)
+            c = r.json()
+            fact = c["binary"]
+
+            embed=discord.Embed(title="to Binary", color=0xff0000)
+            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/880025172055314462/85-855085_binary-codes-on-data-sheet-with-magnifying-lens.png")
+            embed.add_field(name="Query", value=f"{ToBinaryText}", inline=False)
+            embed.add_field(name="Result", value=f"{fact}", inline=True)
+            embed.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed)
+        
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+
+
+    @commands.command(aliases=["b2t", "d_binary", "decode_binary"])
+    async def b_2txt(self, ctx, *, ToTextBinary):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+
+        try:
+            r = requests.get('https://some-random-api.ml/binary?decode=' + ToTextBinary)
+            c = r.json()
+            fact = c["text"]
+
+            embed=discord.Embed(title="From Binary", color=0xff0000)
+            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/880025172055314462/85-855085_binary-codes-on-data-sheet-with-magnifying-lens.png")
+            embed.add_field(name="Query", value=f"{ToTextBinary}", inline=False)
+            embed.add_field(name="Result", value=f"{fact}", inline=True)
+            embed.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed)
+        
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+
+
+    @commands.command(aliases=["b642t", "d_b64", "d_base64"])
+    async def b64_2txt(self, ctx, *, ToTextBase64):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+
+        try:
+            r = requests.get('https://some-random-api.ml/base64?decode=' + ToTextBase64)
+            c = r.json()
+            fact = c["text"]
+
+            embed=discord.Embed(title="From Base64", color=0xff0000)
+            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879955815602200586/base64-logo-352x200.jpg")
+            embed.add_field(name="Query", value=f"{ToTextBase64}", inline=False)
+            embed.add_field(name="Result", value=f"{fact}", inline=True)
+            embed.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed)
+        
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+
+
+    
+    @commands.command()
+    async def cleanuri(self, ctx, *, websiteurl):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+
+        try:
+            url = 'https://cleanuri.com/api/v1/shorten'
+            myobj = {'url': f'{websiteurl}'}  
+            r = requests.post(url, data = myobj).json()
+            shorten_url = r['result_url']
+            
+            embed=discord.Embed(title="URL Shortener", color=0xff0000)
+            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/880028609924976690/828161_url_512x512.png")
+            embed.add_field(name="Original Link", value=f"{websiteurl}", inline=False)
+            embed.add_field(name="Shortened Link", value=f"{shorten_url}", inline=False)
+            embed.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed)
+        
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+
+
+    
+    @commands.command(aliases=["generate-pwd", "gen-pwd", "generate-password", "gen-password", "newpassword", "password", "newpass", "passwordnew"])
+    async def genpwd(self, ctx, *, numberofcharacters=16):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+
+        try:
+            pwd_lenlis = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40)
+            try:
+                numberofcharsinint = int(numberofcharacters)
+
+            except Exception as e:
+                embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+                embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                embed3.add_field(name="Error:", value=f"{e}", inline=False)
+                embed3.set_footer(text=f"Requested by {ctx.author.name}")
+                await loading_message.delete()
+                await ctx.send(embed=embed3)
+                return
+            
+            if numberofcharsinint in pwd_lenlis:
+                url = f"https://passwordinator.herokuapp.com/generate?num=true&char=true&caps=true&len={numberofcharacters}"
+                r = requests.get(url)
+                c = r.json()
+
+                embed=discord.Embed(title="Password Generator", color=0xff0000)
+                embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/880031728369016832/704187.png")
+                embed.add_field(name="Password Length", value=f"{numberofcharacters}", inline=False)
+                embed.add_field(name="Password", value=f"{c['data']}", inline=False)
+                embed.set_footer(text=f"Requested by {ctx.author.name}")
+                await loading_message.delete()
+                await ctx.send(embed=embed)
+
+            else:
+                embed=discord.Embed(title="Password Generator", description="An Error has occured!", color=0xff0000)
+                embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/880031728369016832/704187.png")
+                embed.add_field(name="Error", value="The value of the number is high", inline=False)
+                embed.add_field(name="Possible Fix", value="Enter a value below 40", inline=False)
+                embed.set_footer(text=f"Requested by {ctx.author.name}")
+                await loading_message.delete()
+                await ctx.send(embed=embed)
+
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+
+    @commands.command(aliases=["clearscreennodelete", "clear-screen-no-delete", "clearscreen"])
+    async def csnd(self, ctx):
+        await ctx.send(f'Clearing some screen space - \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRequested by {ctx.author.mention}')
+
+    
+    @commands.command()
+    async def ig_pfp(self, ctx, *, ig_uname):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+        try:
+            igpfp = instaloader.Instaloader()
+            igpfp.download_profile(ig_uname, profile_pic_only=True)
+            os.chdir(f'{ig_uname}')
+            try:
+                os.system("mv *.jpg ..")
+            except:
+                os.system("move *.jpg ..")
+            os.chdir("..")
+            try:
+                os.system("mv *.jpg igtemp.jpg")
+            except:
+                os.system("ren *.jpg igtemp.jpg")
+            try:
+                os.system(f'rm -r {ig_uname}')
+            except:
+                os.system(f'DEL {ig_uname} /F/Q/S')
+
+            # OLD CODE
+            # await ctx.send(file=discord.File(f'igtemp.jpg'))
+            # await ctx.send(f"Profile link: https://instagram.com/{ig_uname}")
+
+            # NEW CODE
+            file = discord.File(f'igtemp.jpg', filename="image.jpg")
+            embed=discord.Embed(title="Instagram Profile Picture", description=f"of {ig_uname}", color=0xff0000)
+            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed.add_field(name="Link", value=f"https://instagram.com/{ig_uname}", inline=False)
+            embed.set_image(url="attachment://image.jpg")
+            embed.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(file=file, embed=embed)
+
+            try:
+                os.system(f"rm igtemp.jpg")
+            except:
+                os.remove(f'{ig_uname}')
+        except Exception as e:
+            await ctx.send(f"Error: {e}")
+    
+
+
+
 
 
 

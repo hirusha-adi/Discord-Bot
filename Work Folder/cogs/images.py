@@ -2,7 +2,7 @@ import discord, requests, aiohttp
 from discord.ext import commands
 from json import load as loadjson
 from json import loads as loadjsonstring
-
+from os import remove as osremovef
 
 class OtherCommandsFun(commands.Cog):
     def __init__(self, client: commands.Bot):
@@ -308,6 +308,433 @@ class OtherCommandsFun(commands.Cog):
             await loading_message.delete()
             await ctx.send(embed=embed3)
     
+    @commands.command(aliases=["a-pikachu", "pikachuu"])
+    async def pikachu(self, ctx):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+
+        try:
+            r = requests.get('https://some-random-api.ml/img/pikachu')
+            c = r.json()
+            fact = c["link"]
+            em = discord.Embed(title='a Pickachu', color=0xff0000)
+            em.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            em.set_image(url=fact)
+            em.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=em)
+
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+
+
+    @commands.command(aliases=["a-wink", "winks"])
+    async def wink(self, ctx):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+
+        try:
+            r = requests.get('https://some-random-api.ml/animu/wink')
+            c = r.json()
+            fact = c["link"]
+            em = discord.Embed(title='a wink', color=0xff0000)
+            em.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            em.set_image(url=fact)
+            em.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=em)
+        
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+
+    @commands.command(aliases=["gay-colors", "gay-colours"])
+    async def gay(self, ctx, *, messagelink):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+
+        try:
+            weblink = 'https://some-random-api.ml/canvas/gay?avatar=' + messagelink
+            r = requests.get(weblink)
+            em = discord.Embed(title='Gay Picture', color=0xff0000)
+            em.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            em.set_image(url=weblink)
+            em.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=em)
+        
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+
+    @commands.command(aliases=["glass-colors", "glass-colours", "glassy-colors", "glassy-colours"])
+    async def glass(self, ctx, *, messagelink):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+
+        try:
+            weblink = 'https://some-random-api.ml/canvas/glass/?avatar=' + messagelink
+            em = discord.Embed(title='Glassy Picture', color=0xff0000)
+            em.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            em.set_image(url=weblink)
+            em.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=em)
+        
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+
+
+
+
+
+        
+    @commands.command(aliases=["wasted-colors", "wasted-colours", "wasted-image", "wasted-img"])
+    async def wasted(self, ctx, *, messagelink, color=0xff0000):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+
+        try:
+            weblink = 'https://some-random-api.ml/canvas/glass/?avatar=' + messagelink
+            em = discord.Embed(title='a Wasted Picture', color=0xff0000)
+            em.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            em.set_image(url=weblink)
+            em.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=em)
+        
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+
+
+    @commands.command()
+    async def triggered(self, ctx, *, messagelink):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+
+        try:
+            weblink = 'https://some-random-api.ml/canvas/triggered?avatar=' + messagelink
+            em = discord.Embed(title='a TRIGGERED Picture', color=0xff0000)
+            em.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            em.set_image(url=weblink)
+            em.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=em)
+
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+
+
+    @commands.command(aliases=["bandw", "black-and-white"])
+    async def grayscale(self, ctx, *, messagelink):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+
+        try:
+            weblink = 'https://some-random-api.ml/canvas/greyscale?avatar=' + messagelink
+            em = discord.Embed(title='a Black and White Picture', color=0xff0000)
+            em.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            em.set_image(url=weblink)
+            em.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=em)
+        
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+
+
+    @commands.command(aliases=["invert-img", "invert-colors", "invert-image"])
+    async def invert(self, ctx, *, messagelink):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+
+        try:
+            weblink = 'https://some-random-api.ml/canvas/invert?avatar=' + messagelink
+            em = discord.Embed(title='a Inverted Picture', color=0xff0000)
+            em.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            em.set_image(url=weblink)
+            em.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=em)
+        
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+
+
+    @commands.command(aliases=["bright-img", "bright-colors", "bright-image", "bright"])
+    async def brightness(self, ctx, *, messagelink):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+
+        try:
+            weblink = 'https://some-random-api.ml/canvas/brightness?avatar=' + messagelink
+            em = discord.Embed(title='a Brightened Picture', color=0xff0000)
+            em.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            em.set_image(url=weblink)
+            em.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=em)
+        
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            em.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+
+
+    @commands.command(aliases=["threshold-img", "threshold-colors", "threshold-image", "thresh"])
+    async def threshold(self, ctx, *, messagelink):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+
+        try:
+            weblink = 'https://some-random-api.ml/canvas/threshold?avatar=' + messagelink
+            em = discord.Embed(title='a Threshold Picture', color=0xff0000)
+            em.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            em.set_image(url=weblink)
+            em.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=em)
+
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            em.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+
+
+    @commands.command(aliases=["sepia-image", "sepia-color"])
+    async def sepia(self, ctx, *, messagelink):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+
+        try:
+            weblink = 'https://some-random-api.ml/canvas/greyscale?avatar=' + messagelink
+            em = discord.Embed(title='a Sepia Picture', color=0xff0000)
+            em.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            em.set_image(url=weblink)
+            em.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=em)
+        
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+
+
+    @commands.command(aliases=["red-image", "red-color"])
+    async def red(self, ctx, *, messagelink):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+
+        try:
+            weblink = 'https://some-random-api.ml/canvas/red?avatar=' + messagelink
+            em = discord.Embed(title='a Red Picture', color=0xff0000)
+            em.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            em.set_image(url=weblink)
+            em.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=em)
+
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+
+
+    @commands.command(aliases=["green-image", "green-color"])
+    async def green(self, ctx, *, messagelink):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+
+        try:
+            weblink = 'https://some-random-api.ml/canvas/green?avatar=' + messagelink
+            em = discord.Embed(title='a Green Picture', color=0xff0000)
+            em.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            em.set_image(url=weblink)
+            em.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=em)
+
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+
+
+    @commands.command(aliases=["blue-image", "blue-color"])
+    async def blue(self, ctx, *, messagelink):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+
+        try:
+            weblink = 'https://some-random-api.ml/canvas/blue?avatar=' + messagelink
+            em = discord.Embed(title='a Blue Picture', color=0xff0000)
+            em.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            em.set_image(url=weblink)
+            em.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=em)
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+
+
+    @commands.command(aliases=["tint-image", "tint-color"])
+    async def tint(self, ctx, colorTotint, *, messagelink):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+
+        try:
+            weblink = 'https://some-random-api.ml/canvas/color?avatar=' + messagelink + "&color=%" + colorTotint
+            em = discord.Embed(title='a Tinted Picture', color=0xff0000)
+            embed_text = "Picture tinted in " + colorTotint
+            em.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            em.set_image(url=weblink)
+            em.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=em)
+
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+
+
+    @commands.command(aliases=["pixelate-image"])
+    async def pixelate(self, ctx, *, messagelink):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+
+        try:
+            weblink = 'https://some-random-api.ml/canvas/pixelate' + messagelink
+            em = discord.Embed(title='a Blue Picture', color=0xff0000)
+            em.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            em.set_image(url=weblink)
+            em.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=em)
+        
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+
+    @commands.command(aliases=["ytc", "youtubecomment", "youtube-comment", "yt-comment", "you-tube-comment"])
+    async def ytcomment(self, ctx, usernameofu="ZeaCeR5641", commentmsg="This_is_a_test", profilepictureLink="https://static.wikia.nocookie.net/ba0628fe-3bc1-42c3-9c0c-aa91ba24f03c/scale-to-width/370", mode="dark"):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+
+        try:
+            weblink = "https://some-random-api.ml/canvas/youtube-comment?username=" + usernameofu.replace("_", "%20") + "&comment=" + commentmsg.replace("_", "%20") + "&avatar=" + profilepictureLink + "&dark=true"
+            # em = discord.Embed(title='a picture of a YouTube Comment')
+            # em.set_author(name='Fake YouTube Comment')
+            # em.set_image(url=weblink)
+            # await ctx.send(embed=em)
+            await loading_message.delete()
+            await ctx.send(weblink)
+        
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+
+    @commands.command()
+    async def monstor(self, ctx):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+
+        try:
+            websitelink = r'https://app.pixelencounter.com/api/basic/svgmonsters/image/png?primaryColor=%23FC6400&size=100'
+            r = requests.get(websitelink)
+            c = r.content
+            file = open("monstorimg.png", 'wb')
+            file.write(c)
+            file.close()
+            with open("monstorimg.png", 'rb') as f:
+                picture = discord.File(f)
+                await loading_message.delete()
+                await ctx.send(file=picture)
+            osremovef("monstorimg.png")
+        
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+
+
+
+
 
 
 

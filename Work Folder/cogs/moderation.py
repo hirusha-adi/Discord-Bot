@@ -1020,6 +1020,25 @@ class ModerationCommands(commands.Cog):
             await ctx.send(embed=embed3)
 
 
+    
+    @commands.command()
+    async def afk(self, ctx, *, message):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+
+        try:
+            member = ctx.author
+            await member.edit(nick=f'[AFK] {member} {message}')
+            await loading_message.delete()
+            await ctx.send(f"{member.mention} changed to AFK {message}")
+        
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
 
 
 

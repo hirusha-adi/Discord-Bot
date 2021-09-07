@@ -58,6 +58,61 @@ class BotGeneralCommands(commands.Cog):
             await loading_message.delete()
             await ctx.send(embed=embed2)
 
+    @commands.command()
+    async def howdie(self, ctx, member: discord.Member = "none"):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+
+        try:
+            dying_methods = ("will get hit by a car",
+                    "will die from a hear disease",
+                    "will die from an accident",
+                    "your enemy will find and kill you",
+                    "will die from a stroke",
+                    "will die from a kidney disease",
+                    "will die from luver disease",
+                    "will die from hypertension",
+                    "will die from parkinson disease",
+                    "will die from an explosion",
+                    "will die from drug poisoning",
+                    "will get killed by a ghost",
+                    "will get killed by falling from a staircase",
+                    "will die from an assault from a firearm",
+                    "will die by burning into ashes",
+                    "will die by drowning in water",
+                    "will die by drowning in swimming pool",
+                    "will die by falling from a ladder",
+                    "will get killed by a plane crash",
+                    "will get killed by a flood",
+                    "will get killed by a tsunami",
+                    "will get killed by lightening",
+                    "will die from a drug overdose",
+                    "will get killed by stray dogs"
+                    )
+            if member == "none":
+                embed=discord.Embed(title="Death...??", color=0xff0000)
+                embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                embed.set_footer(text=f"Requested by {ctx.author.name}")
+                embed.add_field(name=f"{ctx.author.name}", value=f"{randomchoice(dying_methods)}.", inline=False)
+                await loading_message.delete()
+                await ctx.send(embed=embed)
+
+            else:
+                embed=discord.Embed(title="Death...??", color=0xff0000)
+                embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                embed.set_footer(text="Requested by {ctx.author.name}")
+                embed.add_field(name=f"{member.name}", value=f"{randomchoice(dying_methods)}.", inline=False)
+                await loading_message.delete()
+                await ctx.send(embed=embed)
+        
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+
 
 
 
