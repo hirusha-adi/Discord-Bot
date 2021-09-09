@@ -9,6 +9,9 @@
 + removerole - remove a role from a user
 + pornlink [query] - search for porn link
 + pornlinks [number] [query] - send porn links with info to DM
++ e_ceaser, d_ceaser - new commands for ciphering text in cogs.tool
+
+
 
 
 
