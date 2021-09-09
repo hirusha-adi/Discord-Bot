@@ -2362,7 +2362,7 @@ class FakeInformation(commands.Cog):
                 emf2.add_field(name=f"User Agents", value=f"`{bp}fake chrome`, \n`{bp}fake firefox`, \n`{bp}fake ie`, \n`{bp}fake opera`, \n`{bp}fake safari`, \n`{bp}fake ua`", inline=False)
                 emf2.add_field(name=f"Platform Tokens", value=f"`{bp}fake apt`, \n`{bp}fake iospt`n \n`{bp}fake linuxpt`, \n`{bp}fake linuxproc`, \n`{bp}fake macpt`, \n`{bp}fake macprocessor`, \n`{bp}fake winpt`, \n`{bp}fake ua`", inline=False)
                 emf2.add_field(name=f"Vehicle", value=f"`{bp}fake vcl ymm`, \n`{bp}fake vcl ymmc`, \n`{bp}fake vcl mm`, \n`{bp}fake vcl make`, \n`{bp}fake vcl model`, \n`{bp}fake vcl year`, \n`{bp}fake vcl category`, \n`{bp}fake vcl all`", inline=False)
-                emf2.add_field(name=f"Machine", value=f"`{bp}fake mcn ymm`, \n`{bp}fake mcn ymmc`, \n`{bp}fake mcn mm`, \n`{bp}fake mcn make`, \n`{bp}fake mcn model`, \n`{bp}fake mcn year`, \n`{bp}fake mcn category`, \n`{bp}fake mcn all`", inline=False)
+                emf2.add_field(name=f"Machine", value=f"`{bp}fake mcn ymm`, \n`{bp}fake mcn ymmc`, \n`{bp}fake mcn mm`, \n`{bp}fake mcn make`, \n`{bp}fake mcn model`, \n`{bp}fake mcn year`, \n`{bp}fake mcn category`, \n`{bp}fake mcn all`, \n`{bp}bottoken`", inline=False)
                 emf2.add_field(name=f"Others", value=f"`{bp}fake ean`, \n`{bp}fake company suffix`, \n`{bp}fake iana`, \n`{bp}fake lang`, \n`{bp}fake color`, \n`{bp}fake cp`")
                 emf2.add_field(name=f"Mass Fake Profiles", value=f"`{bp}massfakeprofile [number]` - Same as runnign the `{bp}fake high` [number] of times", inline=False)
                 await loading_message.delete()
@@ -2433,6 +2433,32 @@ class FakeInformation(commands.Cog):
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed3)
+    
+    
+    @commands.command()
+    async def bottoken(self, ctx):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+
+        try:
+            r = requests.get("https://some-random-api.ml/bottoken").json()
+
+            embed=discord.Embed(title="Discord Bot Token Generator", description="`{r['token']}`", color=0xff0000)
+            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed.set_thumbnail(url="https://user-images.githubusercontent.com/36286877/127767330-d3e68d90-67a0-4672-b3e1-6193b323bc21.png")
+            embed.set_footer(text="Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed)
+
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://media.discordapp.net/attachments/877796755234783273/880745781966037032/new-scrabble-words-2018-beatdown-5657-57124c9f228c0258d65053fe7d3891491x.jpg")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.add_field(name="Possible Fix:", value=f"You must have only one '||' part for the whole message for the bot to divide the string", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+
 
 
 def setup(client: commands.Bot):

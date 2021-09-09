@@ -4,6 +4,8 @@ from json import load as loadjson
 from random import choices as randomchoices
 from string import ascii_letters, digits
 from password_strength import PasswordStats
+from email.message import EmailMessage
+import smtplib
 
 from platform import system as pltfsys
 try:
@@ -40,7 +42,9 @@ class ToolCommands(commands.Cog):
         self.please_wait_emb.set_author(name="YourBot")
         self.please_wait_emb.set_thumbnail(url="https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif")
         self.please_wait_emb.set_footer(text="Bot created by ZeaCeR#5641")
-    
+
+        self.bot_email_addr = os.environ['EMAILA']
+        self.bot_email_password = os.environ['EMAILP']
         
         self.filepwdlist1 = open("pwds2.txt", "r")
         self.lines = self.filepwdlist1.readlines()
@@ -1177,7 +1181,7 @@ async def hastebin(self, ctx, *, message):
             await ctx.send(embed=embed3)
 
     @commands.command(aliases=["sendmail"])
-    async def sendemail(ctx, senderemail, recieveremail, emailsubject="Hey", *, emailcontent="Hello There!"):
+    async def sendemail(self, ctx, senderemail, recieveremail, emailsubject="Hey", *, emailcontent="Hello There!"):
         verified_mails = ("gmail.com", "outlook.com", "yahoo.com")
         embed=discord.Embed(title="Please Wait", description="``` This may take longer than usual! ```", color=0xff0000)
         embed.set_thumbnail(url="https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif") 
@@ -1192,7 +1196,7 @@ async def hastebin(self, ctx, *, message):
                     server.starttls()
 
                     try:
-                        server.login(bot_email_addr, bot_email_password)
+                        server.login(self.bot_email_addr, self.bot_email_password)
 
                     except Exception as e:
                         embede=discord.Embed(title="Something was wrong!", description="Your request did not complete due to an error!", color=0xff0000)
@@ -1212,7 +1216,7 @@ async def hastebin(self, ctx, *, message):
                     whoasktosendid = ctx.author.id
                     emailcontentfinal = f"""This message it being sent from the discord bot named YourBot and was requested by the user {whoasktosend} / {whoasktosendid} / {senderemail}. The message: {emailcontent}   | Thank You. Have a Nice day, Stay safe! - YourBot"""
 
-                    email['From'] = bot_email_addr
+                    email['From'] = self.bot_email_addr
                     email['To'] = recieveremail
                     email['Subject'] = emailsubject
                     email.set_content(emailcontentfinal)
@@ -1253,8 +1257,6 @@ async def hastebin(self, ctx, *, message):
                         pass
                     await ctx.send(embed=embed3)
 
-
-
             else:
                 embed=discord.Embed(title="Something was wrong!", description="Your request did not complete due to an error!", color=0xff0000)
                 embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
@@ -1281,7 +1283,35 @@ async def hastebin(self, ctx, *, message):
             await ctx.send(embed=embed3)
 
 
+    @commands.command(aliases=["similarity", "closematch", "closematches"])
+    async def similiar(self, ctx, *, message):
+        """
+        The two messages ( strings ) will be divided by the 
+        """
+        loading_message = await ctx.send(embed=self.please_wait_emb)
 
+        try:
+            message1, message2 = message.split('||')
+            r = requests.get(f"https://some-random-api.ml/stringsimilarity?string1={message1}&string2={message2}").json()
+
+            embed=discord.Embed(title="Find Similarity", description="between two strings", color=0xff0000)
+            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed.set_thumbnail(url="https://media.discordapp.net/attachments/877796755234783273/880742956552822794/mr-bean-avatar-character-cartoon-rowan-atkinson-png-image-33.png?width=454&height=584")
+            embed.add_field(name="First", value=f"{message1}", inline=False)
+            embed.add_field(name="Second", value=f"{message2}", inline=False)
+            embed.add_field(name="Similarity", value=f"{r['similarity']}", inline=False)
+            embed.set_footer(text=f"Requested by {ctx.author.name}")
+            await ctx.send(embed=embed)
+        
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://media.discordapp.net/attachments/877796755234783273/880745781966037032/new-scrabble-words-2018-beatdown-5657-57124c9f228c0258d65053fe7d3891491x.jpg")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.add_field(name="Possible Fix:", value=f"You must have only one '||' part for the whole message for the bot to divide the string", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
 
 
 
