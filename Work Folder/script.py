@@ -1,25 +1,33 @@
-# my files
+# MY FILES
+
 from keep_alive import keep_alive
 import installerm
 
+# OTHERS
+
 import platform
 import os
+
 try:
+  from prsaw import RandomStuffV2
   os.system("pip3 install prsaw")
-  print("TEST")
-except Exception as e:
-  print("error: ", e)
+except:
+  if platform.system().lower().startswith('win'):
+    os.system("pip install prsaw")
+  else:
+    os.system("pip3 install prsaw")
+  from prsaw import RandomStuffV2
 
+# The main module
 try:
-  # installerm.INSTALL_ALL()
-  print("TEST")
-except Exception as e:
-  print("error: ", e)
+  import discord
+except:
+  if platform.system().lower().startswith('win'):
+    os.system("pip install discord")
+  else:
+    os.system("pip3 install discord")
+  import discord
 
-# all imports
-
-from prsaw import RandomStuffV2
-import discord
 from discord.ext import commands
 import random
 import json
@@ -30,15 +38,17 @@ if platform.system().lower().startswith('win'):
   os.system("pip install PyNaCl")
 else:
   os.system("pip3 install PyNaCl")
+
 try:
   import nacl
-except ImportError:
+except:
   if platform.system().lower().startswith('win'):
     os.system("pip install PyNaCl")
   else:
     os.system("pip3 install PyNaCl")
+  import nacl
 
-# FOR THE LAVALINK MUSIC COMMAND!
+
 try:
     if platform.system().lower().startswith('win'):
             os.system("pip install dismusic==1.0.1")
@@ -48,15 +58,12 @@ except Exception as e:
   print("Error:", e)
 
 
-
 botconfigdata = json.load(open("config.json", "r"))
 bot_prefix = botconfigdata["msg-prefix"]
-bot_info_cmnd_thumbnail_link = botconfigdata["info-command-thumbnail-link"]
-bot_creator_name = botconfigdata["bot-creator-name"]
-bot_current_version = botconfigdata["bot-version"]
 bot_owner_id_zeacer = botconfigdata["ownerid"]
 bot_logging_commands_status = botconfigdata["log-user-data"]
 bot_logging_channel_id = botconfigdata["log-channel-id"]
+
 
 token = os.environ['TOKEN']
 bot_email_addr = os.environ['EMAILA']
@@ -206,6 +213,7 @@ async def unloadex(ctx, extension):
 for filename in os.listdir('./cogs'):
   if filename.endswith('.py'):
     client.load_extension(f'cogs.{filename[:-3]}')
+    print(f"[+] Loaded: cogs.{filename[:-3]}")
 
 
 # MUSIC BOT //////////////////////////////////////////////////////////////////////////////////////////
@@ -236,7 +244,6 @@ channel_lis = ( 863706778743341076, 874577378746175508, 874963358254780447, 8749
 
 bp = bot_prefix
 
-
 @client.event
 async def on_message(message):
   
@@ -257,7 +264,8 @@ async def on_message(message):
   
   if client.user == message.author:
     return
-    
+  
+  # Logging user messages to YourBot log server
   if bot_logging_commands_status == "yes":
     if message.content.startswith('>'):
       channel = client.get_channel(bot_logging_channel_id)
