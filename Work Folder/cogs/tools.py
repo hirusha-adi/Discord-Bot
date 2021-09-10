@@ -430,7 +430,7 @@ class ToolCommands(commands.Cog):
             await ctx.send(embed=embed3)
 
     @commands.command(aliases=["to-binary", "e_binary"])
-    async def binary(ctx, *, ToBinaryText):
+    async def binary(self, ctx, *, ToBinaryText):
         loading_message = await ctx.send(embed=self.please_wait_emb)
         try:
             r = requests.get('https://some-random-api.ml/binary?text=' + ToBinaryText)
@@ -456,7 +456,7 @@ class ToolCommands(commands.Cog):
             await ctx.send(embed=embed3)
     
     @commands.command(aliases=["e_cipher"])
-    async def e_ceaser(ctx, *, ToCeaserCipher):
+    async def e_ceaser(self, ctx, *, ToCeaserCipher):
         loading_message = await ctx.send(embed=self.please_wait_emb)
         try:
             
@@ -489,7 +489,7 @@ class ToolCommands(commands.Cog):
             await ctx.send(embed=embed3)
     
     @commands.command(aliases=["d_cipher"])
-    async def d_ceaser(ctx, *, ToCeaserCipher):
+    async def d_ceaser(self, ctx, *, ToCeaserCipher):
         loading_message = await ctx.send(embed=self.please_wait_emb)
         try:
             
@@ -775,7 +775,7 @@ class ToolCommands(commands.Cog):
 
     
     @commands.command(aliases=["count-words", "countwords", "wordcount"])
-    async def count(ctx, *, words):
+    async def count(self, ctx, *, words):
         loading_message = await ctx.send(embed=self.please_wait_emb)
         try:
             spl = words.split(" ")
