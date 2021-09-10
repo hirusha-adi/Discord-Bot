@@ -157,7 +157,7 @@ class ToolCommands(commands.Cog):
                 for iteration, x in enumerate(range(int(number_of_times))):
                     code = ''.join(randomchoices(ascii_letters + digits, k=16))
                     await ctx.send(f'https://discord.gift/{code}')
-                    asyncio.sleep(0.4)
+                    await asyncio.sleep(0.6)
 
             else:
                 embed=discord.Embed(title="Nitro Code Generator", color=0xff0000)
@@ -178,40 +178,40 @@ class ToolCommands(commands.Cog):
             await ctx.send(embed=embed3)
 
 
-@commands.command()
-async def hastebin(self, ctx, *, message):
-  loading_message = await ctx.send(embed=self.please_wait_emb)
+    @commands.command()
+    async def hastebin(self, ctx, *, message):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
 
-  try:
-    r = requests.post("https://hastebin.com/documents", data=message).json()
+        try:
+            r = requests.post("https://hastebin.com/documents", data=message).json()
 
-    try:
-      embed=discord.Embed(title="Hastebin", color=0xff0000)
-      embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-      embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879586340520480768/large.png")
-      embed.add_field(name="Link", value=f"https://hastebin.com/{r['key']}", inline=False)
-      embed.add_field(name=f"Text by {ctx.author.name}", value=f"{message}", inline=False)
-      embed.set_footer(text=f"Requested by {ctx.author.name}")
-      await loading_message.delete()
-      await ctx.send(embed=embed)
-    
-    except:
-      embed=discord.Embed(title="Hastebin", color=0xff0000)
-      embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-      embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879586340520480768/large.png")
-      embed.add_field(name="Link", value=f"https://hastebin.com/{r['key']}", inline=False)
-      embed.set_footer(text=f"Requested by {ctx.author.name}")
-      await loading_message.delete()
-      await ctx.send(embed=embed)
+            try:
+                embed=discord.Embed(title="Hastebin", color=0xff0000)
+                embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879586340520480768/large.png")
+                embed.add_field(name="Link", value=f"https://hastebin.com/{r['key']}", inline=False)
+                embed.add_field(name=f"Text by {ctx.author.name}", value=f"{message}", inline=False)
+                embed.set_footer(text=f"Requested by {ctx.author.name}")
+                await loading_message.delete()
+                await ctx.send(embed=embed)
+            
+            except:
+                embed=discord.Embed(title="Hastebin", color=0xff0000)
+                embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879586340520480768/large.png")
+                embed.add_field(name="Link", value=f"https://hastebin.com/{r['key']}", inline=False)
+                embed.set_footer(text=f"Requested by {ctx.author.name}")
+                await loading_message.delete()
+                await ctx.send(embed=embed)
 
-  except Exception as e:
-    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
-    embed3.add_field(name="Error:", value=f"{e}", inline=False)
-    embed3.set_footer(text=f"Requested by {ctx.author.name}")
-    await loading_message.delete()
-    await ctx.send(embed=embed3)
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
 
 
     @commands.command()
@@ -1255,15 +1255,19 @@ async def hastebin(self, ctx, *, message):
         embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
         embed.set_footer(text="Bot created by ZeaCeR#5641")
         loadingthing = await ctx.send(embed=embed)
+        print(f"recieved args {emailsubject} | {emailcontent} | {recieveremail} | {senderemail}")        
 
         try:
             if senderemail.split('@')[-1].lower() in verified_mails:
+                print("email is valid")
                 try:
                     server = smtplib.SMTP('smtp.gmail.com', 587)
                     server.starttls()
+                    print("created server")
 
                     try:
                         server.login(self.bot_email_addr, self.bot_email_password)
+                        print("logged in")
 
                     except Exception as e:
                         embede=discord.Embed(title="Something was wrong!", description="Your request did not complete due to an error!", color=0xff0000)
@@ -1276,9 +1280,11 @@ async def hastebin(self, ctx, *, message):
                         except:
                             pass
                         await ctx.send(embed=embede)
+                        print("unable to login")
+                        return
 
                     email = EmailMessage()
-
+                    print("writing email")
                     whoasktosend = ctx.author.name
                     whoasktosendid = ctx.author.id
                     emailcontentfinal = f"""This message it being sent from the discord bot named YourBot and was requested by the user {whoasktosend} / {whoasktosendid} / {senderemail}. The message: {emailcontent}   | Thank You. Have a Nice day, Stay safe! - YourBot"""
@@ -1288,7 +1294,9 @@ async def hastebin(self, ctx, *, message):
                     email['Subject'] = emailsubject
                     email.set_content(emailcontentfinal)
                     server.send_message(email)
+                    print("email sent")
                     server.close()
+                    print("closed server")
 
                     try:
                         embed2=discord.Embed(title="Email Sent", description="Your requested email was sent suceessfully! ", color=0xff0000)
@@ -1304,12 +1312,14 @@ async def hastebin(self, ctx, *, message):
                         except:
                             pass
                         await ctx.send(embed=embed2)
+                        print("sent embed")
 
                     except:
                         try:
                             await loadingthing.delete()
                         except:
                             pass
+                        print("sent embed")
                         await ctx.send("Email was sent successfully!")
 
                 except Exception as e:
@@ -1323,6 +1333,7 @@ async def hastebin(self, ctx, *, message):
                     except:
                         pass
                     await ctx.send(embed=embed3)
+                    print(e)
 
             else:
                 embed=discord.Embed(title="Something was wrong!", description="Your request did not complete due to an error!", color=0xff0000)
@@ -1336,6 +1347,7 @@ async def hastebin(self, ctx, *, message):
                 except:
                     pass
                 await ctx.send(embed=embed)
+                print("email is not valid")
         
         except Exception as e:
             embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
@@ -1348,6 +1360,7 @@ async def hastebin(self, ctx, *, message):
             except:
                 pass
             await ctx.send(embed=embed3)
+            print(e)
 
 
     @commands.command(aliases=["similarity", "closematch", "closematches"])
