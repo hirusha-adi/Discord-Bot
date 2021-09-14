@@ -225,6 +225,7 @@ class ModerationCommands(commands.Cog):
             await loading_message.delete()
             await ctx.send(embed=embed2)
 
+    perm_ovveride_list = (751229838525988995, 584662127470575616, 770520275108364309, 719419582062002187)
 
     @commands.has_permissions(ban_members=True)
     @commands.command()
@@ -232,7 +233,6 @@ class ModerationCommands(commands.Cog):
         loading_message = await ctx.send(embed=self.please_wait_emb)
         try:
             await user.ban(reason=reason)
-
             embed=discord.Embed(title=f":boom: Banned {user.name}", color=0xff0000)
             embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
             embed.set_thumbnail(url=f"https://cdn.discordapp.com/attachments/877796755234783273/879296561413259294/toppng.com-this-is-an-image-of-a-person-kicking-kick-1085x1335.png")
@@ -241,7 +241,6 @@ class ModerationCommands(commands.Cog):
             embed.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed)
-
         except Exception as e:
             embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
             embed2.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
@@ -250,6 +249,7 @@ class ModerationCommands(commands.Cog):
             embed2.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed2)
+
     
     @commands.has_permissions(ban_members=True)
     @commands.command()

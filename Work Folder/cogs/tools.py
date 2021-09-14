@@ -6,6 +6,8 @@ from string import ascii_letters, digits
 from password_strength import PasswordStats
 from email.message import EmailMessage
 import smtplib
+import threading
+
 
 from platform import system as pltfsys
 try:
@@ -795,7 +797,7 @@ class ToolCommands(commands.Cog):
             await ctx.send(embed=embed3)
 
     
-    # def SHERLOCK_THING(usernametofind):
+    # async def SHERLOCK_THING(usernametofind):
     #   change_directory("dsherlock")
     #   try:
     #     print("RUNNING THE COMMAND!")
