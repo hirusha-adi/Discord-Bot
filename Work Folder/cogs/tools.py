@@ -6,6 +6,7 @@ from string import ascii_letters, digits
 from password_strength import PasswordStats
 from email.message import EmailMessage
 import smtplib
+from pytube import *
 
 
 
@@ -1148,66 +1149,33 @@ class ToolCommands(commands.Cog):
             await loading_message.delete()
             await ctx.send(embed=embed3)
 
-
+    
     @commands.command(aliases=["download-audio", "ytd", "youtubedownload"])
     async def audio(self, ctx, *, ytvlink):
+        DOWNLOAD_QUALITY = "320kbps"
         loading_message = await ctx.send(embed=self.please_wait_emb)
-
         try:
-            if ytvlink.lower().startswith('https://'):
+            if ytvlink.lower().startswith('http') or ytvlink.lower().startswith('https'):
+                ytvlink_link = True
+                ytvlink = ytvlink
+            
+            else:
+                videosSearch = VideosSearch(f'{ytvlink}', limit = 1)
+                mainresult = videosSearch.result()["result"]
+                video_index = mainresult[0]
+                ytvlink = video_index["link"]
+
+            try:
                 try:
+                    yt = YouTube(ytvlink)
+                except Exception as e:
+                    await ctx.send(f'{e}')
+
+                try:
+                    video = yt.streams.filter(only_audio=True).filter(abr=f"{DOWNLOAD_QUALITY}").first().download()
+                except:
                     try:
-                        options = {
-                        # 'format': "134",
-                        'format': 'bestaudio/best',  # choice of quality
-                        'extractaudio': True,        # only keep the audio
-                        'audioformat': "mp3",        # convert to mp3
-                        'outtmpl': '%(id)s',         # name the file the ID of the video
-                        'noplaylist': True,          # only download single song, not playlist
-                        'listformats': True,         # print a list of the formats to stdout and exit
-                        }
-                        ydl_opts = {'format':'139'} # this is for .m4a - lowest audio quality i guess
-
-                        file_extentsion_dlded = "m4a"
-
-                        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-                            ydl.download([f'{ytvlink}'])
-
-                        try:
-                            os.system(f"mv *.{file_extentsion_dlded} audio1.{file_extentsion_dlded}")
-                        except:
-                            try:
-                                os.system(f"Ren *.{file_extentsion_dlded} audio1.{file_extentsion_dlded}")
-                            except:
-                                pass
-                    
-                        try:
-                            with open(f"audio1.{file_extentsion_dlded}", "rb") as f:
-                                audiof = discord.File(f)
-                                await loading_message.delete()
-                                await ctx.send(file=audiof)
-                        except Exception as e:
-                            embed=discord.Embed(title="An error has occured!", color=0xff0000)
-                            embed.add_field(name="Error:", value=f"{e}", inline=False)
-                            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-                            embed.set_footer(text=f"Requested by {ctx.author.name}")
-                            await loading_message.delete()
-                            await ctx.send(embed=embed)
-                        
-                        finally:
-                            try:
-                                os.system(f"rm audio1.{file_extentsion_dlded}")
-                            except Exception as e:
-                                embed=discord.Embed(title="An error has occured!", color=0xff0000)
-                                embed.add_field(name="Error:", value=f"{e}", inline=False)
-                                embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-                                embed.set_footer(text=f"Requested by {ctx.author.name}")
-                                try:
-                                    await loading_message.delete()
-                                except:
-                                    pass
-                                await ctx.send(embed=embed)
-                            
+                        video = yt.streams.filter(only_audio=True).first().download()
                     except Exception as e:
                         embed=discord.Embed(title="An error has occured!", color=0xff0000)
                         embed.add_field(name="Error:", value=f"{e}", inline=False)
@@ -1215,6 +1183,33 @@ class ToolCommands(commands.Cog):
                         embed.set_footer(text=f"Requested by {ctx.author.name}")
                         await loading_message.delete()
                         await ctx.send(embed=embed)
+                        return
+                
+                try:
+                    os.system("mv *.webm audio0001.webm")
+                except:
+                    try:
+                        os.rename("*.webm", "audio0001.webm")
+                    except:
+                        embed=discord.Embed(title="An error has occured!", color=0xff0000)
+                        embed.add_field(name="Error:", value="Unable to rename file", inline=False)
+                        embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                        embed.set_footer(text=f"Requested by {ctx.author.name}")
+                        try:
+                            await loading_message.delete()
+                        except:
+                            pass
+                        await ctx.send(embed=embed)
+                        return
+
+                try:
+                    with open("audio0001.webm", "rb") as f:
+                        audiof = discord.File(f)
+                        try:
+                            await loading_message.delete()
+                        except:
+                            pass
+                        await ctx.send(file=audiof)
 
                 except Exception as e:
                     embed=discord.Embed(title="An error has occured!", color=0xff0000)
@@ -1226,36 +1221,159 @@ class ToolCommands(commands.Cog):
                     except:
                         pass
                     await ctx.send(embed=embed)
-
-                finally:
-                    try:
-                        os.system(f"rm audio1.{file_extentsion_dlded}")
-                    except Exception as e:
-                        embed=discord.Embed(title="An error has occured!", color=0xff0000)
-                        embed.add_field(name="Error:", value=f"{e}", inline=False)
-                        embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-                        embed.set_footer(text=f"Requested by {ctx.author.name}")
-                        try:
-                            await loading_message.delete()
-                        except:
-                            pass
-                        await ctx.send(embed=embed)
-
-            else:
+            
+            except Exception as e:
                 embed=discord.Embed(title="An error has occured!", color=0xff0000)
+                embed.add_field(name="Error:", value=f"{e}", inline=False)
                 embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
                 embed.set_footer(text=f"Requested by {ctx.author.name}")
-                embed.add_field(name="Error:", value=f"Please enter a vliad youtube url!", inline=False)
+                try:
+                    await loading_message.delete()
+                except:
+                    pass
                 await ctx.send(embed=embed)
 
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
-            embed3.add_field(name="Error:", value=f"{e}", inline=False)
-            embed3.set_footer(text=f"Requested by {ctx.author.name}")
-            await loading_message.delete()
-            await ctx.send(embed=embed3)
+            embed=discord.Embed(title="An error has occured!", color=0xff0000)
+            embed.add_field(name="Error:", value=f"{e}", inline=False)
+            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed.set_footer(text=f"Requested by {ctx.author.name}")
+            try:
+                await loading_message.delete()
+            except:
+                pass
+            await ctx.send(embed=embed)
+
+        finally:
+            try:
+                os.system("rm audio0001.webm")
+            except:
+                try:
+                    os.system("rm -rf audio0001.webm")
+                except Exception as e:
+                    embed=discord.Embed(title="An error has occured!", color=0xff0000)
+                    embed.add_field(name="Error:", value=f"{e}", inline=False)
+                    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                    embed.set_footer(text=f"Requested by {ctx.author.name}")
+                    try:
+                        await loading_message.delete()
+                    except:
+                        pass
+                    await ctx.send(embed=embed)
+
+
+
+
+
+
+    # @commands.command(aliases=["download-audio", "ytd", "youtubedownload"])
+    # async def audio(self, ctx, *, ytvlink):
+    #     loading_message = await ctx.send(embed=self.please_wait_emb)
+
+    #     try:
+    #         if ytvlink.lower().startswith('https://'):
+    #             try:
+    #                 try:
+    #                     options = {
+    #                     # 'format': "134",
+    #                     'format': 'bestaudio/best',  # choice of quality
+    #                     'extractaudio': True,        # only keep the audio
+    #                     'audioformat': "mp3",        # convert to mp3
+    #                     'outtmpl': '%(id)s',         # name the file the ID of the video
+    #                     'noplaylist': True,          # only download single song, not playlist
+    #                     'listformats': True,         # print a list of the formats to stdout and exit
+    #                     }
+    #                     ydl_opts = {'format':'139'} # this is for .m4a - lowest audio quality i guess
+
+    #                     file_extentsion_dlded = "m4a"
+
+    #                     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+    #                         ydl.download([f'{ytvlink}'])
+
+    #                     try:
+    #                         os.system(f"mv *.{file_extentsion_dlded} audio1.{file_extentsion_dlded}")
+    #                     except:
+    #                         try:
+    #                             os.system(f"Ren *.{file_extentsion_dlded} audio1.{file_extentsion_dlded}")
+    #                         except:
+    #                             pass
+                    
+    #                     try:
+    #                         with open(f"audio1.{file_extentsion_dlded}", "rb") as f:
+    #                             audiof = discord.File(f)
+    #                             await loading_message.delete()
+    #                             await ctx.send(file=audiof)
+    #                     except Exception as e:
+    #                         embed=discord.Embed(title="An error has occured!", color=0xff0000)
+    #                         embed.add_field(name="Error:", value=f"{e}", inline=False)
+    #                         embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    #                         embed.set_footer(text=f"Requested by {ctx.author.name}")
+    #                         await loading_message.delete()
+    #                         await ctx.send(embed=embed)
+                        
+    #                     finally:
+    #                         try:
+    #                             os.system(f"rm audio1.{file_extentsion_dlded}")
+    #                         except Exception as e:
+    #                             embed=discord.Embed(title="An error has occured!", color=0xff0000)
+    #                             embed.add_field(name="Error:", value=f"{e}", inline=False)
+    #                             embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    #                             embed.set_footer(text=f"Requested by {ctx.author.name}")
+    #                             try:
+    #                                 await loading_message.delete()
+    #                             except:
+    #                                 pass
+    #                             await ctx.send(embed=embed)
+                            
+    #                 except Exception as e:
+    #                     embed=discord.Embed(title="An error has occured!", color=0xff0000)
+    #                     embed.add_field(name="Error:", value=f"{e}", inline=False)
+    #                     embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    #                     embed.set_footer(text=f"Requested by {ctx.author.name}")
+    #                     await loading_message.delete()
+    #                     await ctx.send(embed=embed)
+
+    #             except Exception as e:
+    #                 embed=discord.Embed(title="An error has occured!", color=0xff0000)
+    #                 embed.add_field(name="Error:", value=f"{e}", inline=False)
+    #                 embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    #                 embed.set_footer(text=f"Requested by {ctx.author.name}")
+    #                 try:
+    #                     await loading_message.delete()
+    #                 except:
+    #                     pass
+    #                 await ctx.send(embed=embed)
+
+    #             finally:
+    #                 try:
+    #                     os.system(f"rm audio1.{file_extentsion_dlded}")
+    #                 except Exception as e:
+    #                     embed=discord.Embed(title="An error has occured!", color=0xff0000)
+    #                     embed.add_field(name="Error:", value=f"{e}", inline=False)
+    #                     embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    #                     embed.set_footer(text=f"Requested by {ctx.author.name}")
+    #                     try:
+    #                         await loading_message.delete()
+    #                     except:
+    #                         pass
+    #                     await ctx.send(embed=embed)
+
+    #         else:
+    #             embed=discord.Embed(title="An error has occured!", color=0xff0000)
+    #             embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    #             embed.set_footer(text=f"Requested by {ctx.author.name}")
+    #             embed.add_field(name="Error:", value=f"Please enter a vliad youtube url!", inline=False)
+    #             await ctx.send(embed=embed)
+
+    #     except Exception as e:
+    #         embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+    #         embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    #         embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    #         embed3.add_field(name="Error:", value=f"{e}", inline=False)
+    #         embed3.set_footer(text=f"Requested by {ctx.author.name}")
+    #         await loading_message.delete()
+    #         await ctx.send(embed=embed3)
+
 
     @commands.command(aliases=["sendmail"])
     async def sendemail(self, ctx, senderemail, recieveremail, emailsubject="Hey", *, emailcontent="Hello There!"):
