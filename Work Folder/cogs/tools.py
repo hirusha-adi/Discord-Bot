@@ -6,7 +6,7 @@ from string import ascii_letters, digits
 from password_strength import PasswordStats
 from email.message import EmailMessage
 import smtplib
-import threading
+
 
 
 from platform import system as pltfsys
@@ -28,6 +28,14 @@ except:
         os.system("pip3 install pyfiglet")
     from pyfiglet import Figlet
 
+try:
+    from youtubesearchpython import VideosSearch
+except:
+    if pltfsys().lower().startswith('win'):
+        os.system("pip install youtube-search-python")
+    else:
+        os.system("pip3 install youtube-search-python")
+    from youtubesearchpython import VideosSearch
 
 
 class ToolCommands(commands.Cog):
@@ -1394,6 +1402,30 @@ class ToolCommands(commands.Cog):
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed3)
+    
+    @commands.command()
+    async def youtube(self, ctx, *, query):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+        try:
+            videosSearch = VideosSearch(f'{query}', limit = 1)
+            mainresult = videosSearch.result()["result"]
+            video_index = mainresult[0]
+            video_link = video_index["link"]
+            await loading_message.delete()
+            await ctx.send(video_link)
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://media.discordapp.net/attachments/877796755234783273/880745781966037032/new-scrabble-words-2018-beatdown-5657-57124c9f228c0258d65053fe7d3891491x.jpg")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.add_field(name="Possible Fix:", value=f"Search something valid", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+
+
+
+
 
 
 

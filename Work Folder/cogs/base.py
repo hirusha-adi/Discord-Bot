@@ -2,6 +2,7 @@ import discord, datetime
 from discord.ext import commands
 from json import load as loadjson
 from time import time as nowtime
+import platform
 
 class BotMainCommands(commands.Cog):
     def __init__(self, client: commands.Bot):
@@ -26,7 +27,7 @@ class BotMainCommands(commands.Cog):
     @commands.Cog.listener()
     async def on_ready(self):
         print(f'Discord.py API version: {discord.__version__}')
-        print(f'Python version: {self.platform.python_version()}')
+        print(f'Python version: {platform.python_version()}')
         print(f'Logged in as {self.client.user.name}')
         global start_time
         start_time = nowtime()
