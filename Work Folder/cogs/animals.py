@@ -4,7 +4,7 @@ from json import load as loadjson
 from json import loads as loadjsonstring
 
 
-class Animals(commands.Cog):
+class Animals(commands.Cog, description="Images/Facts about animals"):
     def __init__(self, client: commands.Bot):
         self.client = client
 
@@ -19,7 +19,9 @@ class Animals(commands.Cog):
         self.please_wait_emb.set_thumbnail(url="https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif")
         self.please_wait_emb.set_footer(text="Bot created by ZeaCeR#5641")
 
-    @commands.command()
+    @commands.command(breif="Image of a panda", 
+    description="Send an image of a panda. Works on both DM and on servers",
+    help="Send an image of a panda. Works on both DM and on servers")
     async def panda(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
         
@@ -43,7 +45,9 @@ class Animals(commands.Cog):
             await ctx.send(embed=embed3)
 
 
-    @commands.command()
+    @commands.command(breif="Image of a dog", 
+    description="Send an image of a dog. Works on both DM and on servers",
+    help="Send an image of a dog. Works on both DM and on servers")
     async def dog(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
         try:
@@ -63,7 +67,7 @@ class Animals(commands.Cog):
             await ctx.send(embed=embed3)
 
     
-    @commands.command()
+    @commands.command(breif="Image of a cat", description="Send an image of a cat. Works on both DM and on servers")
     async def cat(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
         try:
@@ -83,7 +87,10 @@ class Animals(commands.Cog):
             await loading_message.delete()
             await ctx.send(embed=embed3)
 
-    @commands.command(aliases=["dog-facts", "dogfacts", "dog-fact"])
+    @commands.command(aliases=["dog-facts", "dogfacts", "dog-fact"], 
+    breif="Fact about dogs", 
+    description="Send a fact about dogs. Works on both DM and on servers",
+    help="Send a fact about dogs. Works on both DM and on servers")
     async def dogfact(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -110,7 +117,10 @@ class Animals(commands.Cog):
             await ctx.send(embed=embed3)
 
 
-    @commands.command(aliases=["cat-facts", "catfacts", "cat-fact"])
+    @commands.command(aliases=["cat-facts", "catfacts", "cat-fact"], 
+    breif="Fact about cats", 
+    description="Send a fact about cats. Works on both DM and on servers",
+    help="Send a fact about cats. Works on both DM and on servers")
     async def catfact(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -137,7 +147,10 @@ class Animals(commands.Cog):
             await ctx.send(embed=embed3)
 
 
-    @commands.command(aliases=["elephant-facts", "elephantfacts", "elephant-fact"])
+    @commands.command(aliases=["elephant-facts", "elephantfacts", "elephant-fact"], 
+    breif="Fact about elephants", 
+    description="Send a fact about elephants. Works on both DM and on servers",
+    help="Send a fact about elephants. Works on both DM and on servers")
     async def elephantfact(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -164,7 +177,10 @@ class Animals(commands.Cog):
             await ctx.send(embed=embed3)
 
 
-    @commands.command(aliases=["panda-facts", "pandafacts", "panda-fact"])
+    @commands.command(aliases=["panda-facts", "pandafacts", "panda-fact"], 
+    breif="Fact about pandas", 
+    description="Send a fact about pandas. Works on both DM and on servers",
+    help="Send a fact about pandas. Works on both DM and on servers")
     async def pandafact(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -191,7 +207,10 @@ class Animals(commands.Cog):
             await ctx.send(embed=embed3)
 
 
-    @commands.command(aliases=["fox-facts", "foxfacts", "fox-fact"])
+    @commands.command(aliases=["fox-facts", "foxfacts", "fox-fact"], 
+    breif="Fact about foxes", 
+    description="Send a fact about foxes. Works on both DM and on servers",
+    help="Send a fact about foxes. Works on both DM and on servers")
     async def foxfact(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -218,7 +237,10 @@ class Animals(commands.Cog):
             await ctx.send(embed=embed3)
 
 
-    @commands.command(aliases=["bird-facts", "birdfacts", "bird-fact"])
+    @commands.command(aliases=["bird-facts", "birdfacts", "bird-fact"], 
+    breif="Fact about birds", 
+    description="Send a fact about birds. Works on both DM and on servers",
+    help="Send a fact about birds. Works on both DM and on servers")
     async def birdfact(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -245,7 +267,10 @@ class Animals(commands.Cog):
             await ctx.send(embed=embed3)
 
 
-    @commands.command(aliases=["koala-facts", "koalafacts", "koala-fact"])
+    @commands.command(aliases=["koala-facts", "koalafacts", "koala-fact"], 
+    breif="Fact about koalas", 
+    description="Send a fact about koalas. Works on both DM and on servers",
+    help="Send a fact about koalas. Works on both DM and on servers")
     async def koalafact(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -272,7 +297,10 @@ class Animals(commands.Cog):
             await ctx.send(embed=embed3)
 
 
-    @commands.command(aliases=["redpandaimage", "redpandaimg"])
+    @commands.command(aliases=["redpandaimage", "redpandaimg"], 
+    breif="Image of a red panda", 
+    description="Send an image of a red panda. Works on both DM and on servers",
+    help="Send an image of a red panda. Works on both DM and on servers")
     async def redpanda(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -299,7 +327,10 @@ class Animals(commands.Cog):
             await ctx.send(embed=embed3)
 
 
-    @commands.command(aliases=["birds", "bird-image", "bird-img"])
+    @commands.command(aliases=["birds", "bird-image", "bird-img"], 
+    breif="Image of a bird", 
+    description="Send an image of a bird. Works on both DM and on servers",
+    help="Send an image of a bird. Works on both DM and on servers")
     async def bird(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -324,7 +355,10 @@ class Animals(commands.Cog):
             await ctx.send(embed=embed3)
 
 
-    @commands.command(aliases=["foxes", "fox-image", "fox-img"])
+    @commands.command(aliases=["foxes", "fox-image", "fox-img"], 
+    breif="Image of a fox", 
+    description="Send an image of a fox. Works on both DM and on servers",
+    help="Send an image of a fox. Works on both DM and on servers")
     async def fox(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -349,7 +383,9 @@ class Animals(commands.Cog):
             await ctx.send(embed=embed3)
 
 
-    @commands.command()
+    @commands.command(breif="Image of a raccoon", 
+    description="Send an image of a raccoon. Works on both DM and on servers",
+    help="Send an image of a raccoon. Works on both DM and on servers")
     async def raccoon(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -373,7 +409,9 @@ class Animals(commands.Cog):
             await ctx.send(embed=embed3)
 
 
-    @commands.command()
+    @commands.command(breif="Fact about raccoons", 
+    description="Send a fact about raccoons. Works on both DM and on servers",
+    help="Send a fact about raccoons. Works on both DM and on servers")
     async def raccoonfact(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -397,7 +435,9 @@ class Animals(commands.Cog):
             await loading_message.delete()
             await ctx.send(embed=embed3)
 
-    @commands.command()
+    @commands.command(breif="Image of a kangaroo", 
+    description="Send an image of a kangaroo. Works on both DM and on servers",
+    help="Send an image of a kangaroo. Works on both DM and on servers")
     async def kangaroo(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -421,7 +461,9 @@ class Animals(commands.Cog):
             await ctx.send(embed=embed3)
 
 
-    @commands.command()
+    @commands.command(breif="Fact about kangaroos", 
+    description="Send a fact about kangaroos. Works on both DM and on servers",
+    help="Send a fact about kangaroos. Works on both DM and on servers")
     async def kangaroofact(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -445,7 +487,9 @@ class Animals(commands.Cog):
             await loading_message.delete()
             await ctx.send(embed=embed3)
     
-    @commands.command()
+    @commands.command(breif="Fact about whales", 
+    description="Send a fact about whales. Works on both DM and on servers", 
+    help="Send a fact about whales. Works on both DM and on servers")
     async def whalefact(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -469,9 +513,6 @@ class Animals(commands.Cog):
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed3)
-
-
-
 
 
 

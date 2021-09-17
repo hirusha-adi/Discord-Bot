@@ -59,10 +59,10 @@ except Exception as e:
 
 
 # FOR helpcmd cog
-if platform.system().lower().startswith('win'):
-    os.system("pip install discord-custom-help")
-else:
-    os.system("pip3 install discord-custom-help")
+# if platform.system().lower().startswith('win'):
+#     os.system("pip install discord-custom-help")
+# else:
+#     os.system("pip3 install discord-custom-help")
 
 
 botconfigdata = json.load(open("config.json", "r"))
