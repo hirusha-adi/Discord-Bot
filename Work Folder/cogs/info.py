@@ -26,7 +26,7 @@ except:
 
 
 
-class ModerationCommands(commands.Cog):
+class Information(commands.Cog):
     def __init__(self, client: commands.Bot):
         self.client = client
 
@@ -652,4 +652,4 @@ class ModerationCommands(commands.Cog):
 
 
 def setup(client: commands.Bot):
-    client.add_cog(ModerationCommands(client))
+    client.add_cog(Information(client))

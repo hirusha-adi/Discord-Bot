@@ -4,7 +4,7 @@ from json import load as loadjson
 from json import loads as loadjsonstring
 
 
-class OtherCommandsFun(commands.Cog):
+class Animals(commands.Cog):
     def __init__(self, client: commands.Bot):
         self.client = client
 
@@ -272,7 +272,7 @@ class OtherCommandsFun(commands.Cog):
             await ctx.send(embed=embed3)
 
 
-    @commands.command(aliases=["redpanda", "redpandaimage", "redpandaimg"])
+    @commands.command(aliases=["redpandaimage", "redpandaimg"])
     async def redpanda(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -479,5 +479,5 @@ class OtherCommandsFun(commands.Cog):
 
 
 def setup(client: commands.Bot):
-    client.add_cog(OtherCommandsFun(client))
+    client.add_cog(Animals(client))
 

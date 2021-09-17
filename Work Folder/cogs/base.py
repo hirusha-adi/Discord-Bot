@@ -4,7 +4,7 @@ from json import load as loadjson
 from time import time as nowtime
 import platform
 
-class BotMainCommands(commands.Cog):
+class Main(commands.Cog):
     def __init__(self, client: commands.Bot):
         self.client = client
 
@@ -171,4 +171,4 @@ class BotMainCommands(commands.Cog):
 
 
 def setup(client: commands.Bot):
-    client.add_cog(BotMainCommands(client))
+    client.add_cog(Main(client))

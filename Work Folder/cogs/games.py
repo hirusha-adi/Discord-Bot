@@ -3,7 +3,7 @@ from discord.ext import commands
 from json import load as loadjson
 from random import choice as randomchoice
 
-class BotGeneralCommands(commands.Cog):
+class Games(commands.Cog):
     def __init__(self, client: commands.Bot):
         self.client = client
 
@@ -160,4 +160,4 @@ class BotGeneralCommands(commands.Cog):
 
 
 def setup(client: commands.Bot):
-    client.add_cog(BotGeneralCommands(client))
+    client.add_cog(Games(client))

@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 
-class ForNewlyCreatedServers(commands.Cog):
+class ServerSetup(commands.Cog):
     def __init__(self, client: commands.Bot):
         self.client = client
         
@@ -333,7 +333,7 @@ class ForNewlyCreatedServers(commands.Cog):
 
 
 def setup(client: commands.Bot):
-    client.add_cog(ForNewlyCreatedServers(client))
+    client.add_cog(ServerSetup(client))
 
 
 

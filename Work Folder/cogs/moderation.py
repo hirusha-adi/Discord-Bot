@@ -20,7 +20,7 @@ except:
     from getpass import getuser as pcusername
 
 
-class ModerationCommands(commands.Cog):
+class Moderation(commands.Cog):
     def __init__(self, client: commands.Bot):
         self.client = client
 
@@ -1059,4 +1059,4 @@ class ModerationCommands(commands.Cog):
 
 
 def setup(client: commands.Bot):
-    client.add_cog(ModerationCommands(client))
+    client.add_cog(Moderation(client))

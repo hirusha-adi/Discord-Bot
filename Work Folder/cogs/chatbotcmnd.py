@@ -3,7 +3,7 @@ from discord.ext import commands
 from json import load as loadjson
 
 
-class ChatBotCommands(commands.Cog):
+class ChatBot(commands.Cog):
     def __init__(self, client: commands.Bot):
         self.client = client
 
@@ -107,5 +107,5 @@ class ChatBotCommands(commands.Cog):
 
 
 def setup(client: commands.Bot):
-    client.add_cog(ChatBotCommands(client))
+    client.add_cog(ChatBot(client))
 

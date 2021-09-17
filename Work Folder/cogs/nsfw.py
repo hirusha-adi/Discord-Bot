@@ -14,7 +14,7 @@ except:
     import requests
 
 
-class NSFWCommands(commands.Cog):
+class NSFW(commands.Cog):
     def __init__(self, client: commands.Bot):
         self.client = client
 
@@ -380,4 +380,4 @@ class NSFWCommands(commands.Cog):
 
 
 def setup(client: commands.Bot):
-    client.add_cog(NSFWCommands(client))
+    client.add_cog(NSFW(client))

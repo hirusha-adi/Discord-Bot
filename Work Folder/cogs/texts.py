@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 from json import load as loadjson
 
-class TextCommands(commands.Cog):
+class Texts(commands.Cog):
     def __init__(self, client: commands.Bot):
         self.client = client
 
@@ -544,6 +544,6 @@ class TextCommands(commands.Cog):
 
 
 def setup(client: commands.Bot):
-    client.add_cog(TextCommands(client))
+    client.add_cog(Texts(client))
 
 

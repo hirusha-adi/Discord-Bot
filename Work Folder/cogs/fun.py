@@ -5,7 +5,7 @@ from json import loads as loadjsonstring
 from bs4 import BeautifulSoup
 from random import choice as randomchoice
 
-class OtherCommandsFun(commands.Cog):
+class Fun(commands.Cog):
     def __init__(self, client: commands.Bot):
         self.client = client
 
@@ -329,7 +329,7 @@ class OtherCommandsFun(commands.Cog):
 
 
 def setup(client: commands.Bot):
-    client.add_cog(OtherCommandsFun(client))
+    client.add_cog(Fun(client))
 
 
 

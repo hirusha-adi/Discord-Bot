@@ -9,7 +9,6 @@ import smtplib
 from pytube import *
 
 
-
 from platform import system as pltfsys
 try:
     import instaloader
@@ -39,7 +38,7 @@ except:
     from youtubesearchpython import VideosSearch
 
 
-class ToolCommands(commands.Cog):
+class Tools(commands.Cog):
     def __init__(self, client: commands.Bot):
         self.client = client
 
@@ -1160,22 +1159,31 @@ class ToolCommands(commands.Cog):
                 ytvlink = ytvlink
             
             else:
+                ytvlink_link = False
                 videosSearch = VideosSearch(f'{ytvlink}', limit = 1)
                 mainresult = videosSearch.result()["result"]
                 video_index = mainresult[0]
                 ytvlink = video_index["link"]
 
             try:
+                # Inititalizing the video
                 try:
                     yt = YouTube(ytvlink)
                 except Exception as e:
-                    await ctx.send(f'{e}')
-
+                    embed=discord.Embed(title="An error has occured!", color=0xff0000)
+                    embed.add_field(name="Error:", value=f"Unable to access the video!", inline=False)
+                    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                    embed.set_footer(text=f"Requested by {ctx.author.name}")
+                    await loading_message.delete()
+                    await ctx.send(embed=embed)
+                    return
+                
+                # Downloading the video
                 try:
-                    video = yt.streams.filter(only_audio=True).filter(abr=f"{DOWNLOAD_QUALITY}").first().download()
+                    video = yt.streams.filter(only_audio=True).filter(abr=f"{DOWNLOAD_QUALITY}").filter(file_extension="webm").first().download()
                 except:
                     try:
-                        video = yt.streams.filter(only_audio=True).first().download()
+                        video = yt.streams.filter(only_audio=True).filter(file_extension="webm").first().download()
                     except Exception as e:
                         embed=discord.Embed(title="An error has occured!", color=0xff0000)
                         embed.add_field(name="Error:", value=f"{e}", inline=False)
@@ -1185,6 +1193,7 @@ class ToolCommands(commands.Cog):
                         await ctx.send(embed=embed)
                         return
                 
+                # Renaming the video
                 try:
                     os.system("mv *.webm audio0001.webm")
                 except:
@@ -1201,9 +1210,19 @@ class ToolCommands(commands.Cog):
                             pass
                         await ctx.send(embed=embed)
                         return
-
+                
+                # Converting to mp3
                 try:
-                    with open("audio0001.webm", "rb") as f:
+                    # os.system("ffmpeg -i audio0001.webm audio0001.mp3")
+                    # filename_lastpart = "audio0001.mp3"
+
+                    filename_lastpart = "audio0001.webm"
+                except:
+                    filename_lastpart = "audio0001.webm"
+                    
+                # Sending the video
+                try:
+                    with open(f"{filename_lastpart}", "rb") as f:
                         audiof = discord.File(f)
                         try:
                             await loading_message.delete()
@@ -1260,6 +1279,22 @@ class ToolCommands(commands.Cog):
                     except:
                         pass
                     await ctx.send(embed=embed)
+            
+            # try:
+            #     os.system("rm audio0001.mp3")
+            # except:
+            #     try:
+            #         os.system("rm -rf audio0001.mp3")
+            #     except Exception as e:
+            #         embed=discord.Embed(title="An error has occured!", color=0xff0000)
+            #         embed.add_field(name="Error:", value=f"{e}", inline=False)
+            #         embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            #         embed.set_footer(text=f"Requested by {ctx.author.name}")
+            #         try:
+            #             await loading_message.delete()
+            #         except:
+            #             pass
+            #         await ctx.send(embed=embed)
 
 
 
@@ -1552,4 +1587,4 @@ class ToolCommands(commands.Cog):
 
 
 def setup(client: commands.Bot):
-    client.add_cog(ToolCommands(client))
+    client.add_cog(Tools(client))

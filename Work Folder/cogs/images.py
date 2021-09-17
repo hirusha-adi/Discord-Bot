@@ -4,7 +4,7 @@ from json import load as loadjson
 from json import loads as loadjsonstring
 from os import remove as osremovef
 
-class OtherCommandsFun(commands.Cog):
+class Images(commands.Cog):
     def __init__(self, client: commands.Bot):
         self.client = client
 
@@ -773,6 +773,6 @@ class OtherCommandsFun(commands.Cog):
 
 
 def setup(client: commands.Bot):
-    client.add_cog(OtherCommandsFun(client))
+    client.add_cog(Images(client))
 
 
