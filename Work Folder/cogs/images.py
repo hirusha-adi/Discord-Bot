@@ -22,10 +22,9 @@ class Images(commands.Cog):
 
 
 
-
-
-
-    @commands.command()
+    @commands.command(breif="send a Image/GIF",
+    description="send a Image/GIF",
+    help="send a Image/GIF")
     async def feed(self, ctx, user: discord.Member = None):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -58,7 +57,9 @@ class Images(commands.Cog):
             await loading_message.delete()
             await ctx.send(embed=embed3)
 
-    @commands.command()
+    @commands.command(breif="send a Image/GIF",
+    description="send a Image/GIF",
+    help="send a Image/GIF")
     async def tickle(self, ctx, user: discord.Member = None):
         loading_message = await ctx.send(embed=self.please_wait_emb)
         try:
@@ -90,7 +91,9 @@ class Images(commands.Cog):
             await loading_message.delete()
             await ctx.send(embed=embed3)
 
-    @commands.command()
+    @commands.command(breif="send a Image/GIF",
+    description="send a Image/GIF",
+    help="send a Image/GIF")
     async def hit(self, ctx, user: discord.Member = None):
         loading_message = await ctx.send(embed=self.please_wait_emb)
         
@@ -122,7 +125,9 @@ class Images(commands.Cog):
             await loading_message.delete()
             await ctx.send(embed=embed3)
 
-    @commands.command()
+    @commands.command(breif="send a Image/GIF",
+    description="send a Image/GIF",
+    help="send a Image/GIF")
     async def hug(self, ctx, user: discord.Member):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -155,7 +160,9 @@ class Images(commands.Cog):
             await ctx.send(embed=embed3)
 
     
-    @commands.command()
+    @commands.command(breif="send a Image/GIF",
+    description="send a Image/GIF",
+    help="send a Image/GIF")
     async def smug(self, ctx, user: discord.Member):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -189,7 +196,9 @@ class Images(commands.Cog):
             await ctx.send(embed=embed3)
 
 
-    @commands.command()
+    @commands.command(breif="send a Image/GIF",
+    description="send a Image/GIF",
+    help="send a Image/GIF")
     async def pat(self, ctx, user: discord.Member = None):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -222,7 +231,9 @@ class Images(commands.Cog):
             await loading_message.delete()
             await ctx.send(embed=embed3)
 
-    @commands.command()
+    @commands.command(breif="send a Image/GIF",
+    description="send a Image/GIF",
+    help="send a Image/GIF")
     async def erofeet(self, ctx):
       loading_message = await ctx.send(embed=self.please_wait_emb)
     
@@ -246,7 +257,9 @@ class Images(commands.Cog):
         await ctx.send(embed=embed3)
     
 
-    @commands.command()
+    @commands.command(breif="send a Image/GIF",
+    description="send a Image/GIF",
+    help="send a Image/GIF")
     async def kiss(self, ctx, user: discord.Member = None):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -279,7 +292,10 @@ class Images(commands.Cog):
             await loading_message.delete()
             await ctx.send(embed=embed3)
     
-    @commands.command(aliases=["lol"])
+    @commands.command(aliases=["lol"],
+    breif="a good meme",
+    description="Send a meme to laugh at! ",
+    help="Send a meme to laugh at! ")
     async def meme(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -308,7 +324,10 @@ class Images(commands.Cog):
             await loading_message.delete()
             await ctx.send(embed=embed3)
     
-    @commands.command(aliases=["a-pikachu", "pikachuu"])
+    @commands.command(aliases=["a-pikachu", "pikachuu"],
+    breif="Pikachu images",
+    description="Send a random image of pikachu",
+    help="Send a random image of pikachu")
     async def pikachu(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -333,7 +352,10 @@ class Images(commands.Cog):
             await ctx.send(embed=embed3)
 
 
-    @commands.command(aliases=["a-wink", "winks"])
+    @commands.command(aliases=["a-wink", "winks"],
+    breif="send a Image/GIF",
+    description="send a Image/GIF",
+    help="send a Image/GIF")
     async def wink(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -357,8 +379,12 @@ class Images(commands.Cog):
             await loading_message.delete()
             await ctx.send(embed=embed3)
 
-    @commands.command(aliases=["gay-colors", "gay-colours"])
-    async def gay(self, ctx, *, messagelink):
+
+    @commands.command(aliases=["gay-colors", "gay-colours"],
+    breif="Add effects/overlays to a image",
+    description="Add effects/overlays to any image given! the link of the image should be direct!",
+    help="Add effects/overlays to any image given! the link of the image should be direct!")
+    async def gay(self, ctx, *, messagelink: str):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
         try:
@@ -380,7 +406,11 @@ class Images(commands.Cog):
             await loading_message.delete()
             await ctx.send(embed=embed3)
 
-    @commands.command(aliases=["glass-colors", "glass-colours", "glassy-colors", "glassy-colours"])
+
+    @commands.command(aliases=["glass-colors", "glass-colours", "glassy-colors", "glassy-colours"],
+    breif="Add effects/overlays to a image",
+    description="Add effects/overlays to any image given! the link of the image should be direct!",
+    help="Add effects/overlays to any image given! the link of the image should be direct!")
     async def glass(self, ctx, *, messagelink):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -407,7 +437,10 @@ class Images(commands.Cog):
 
 
         
-    @commands.command(aliases=["wasted-colors", "wasted-colours", "wasted-image", "wasted-img"])
+    @commands.command(aliases=["wasted-colors", "wasted-colours", "wasted-image", "wasted-img"],
+    breif="Add effects/overlays to a image",
+    description="Add effects/overlays to any image given! the link of the image should be direct!",
+    help="Add effects/overlays to any image given! the link of the image should be direct!")
     async def wasted(self, ctx, *, messagelink, color=0xff0000):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -430,7 +463,10 @@ class Images(commands.Cog):
             await ctx.send(embed=embed3)
 
 
-    @commands.command()
+    @commands.command(
+    breif="Add effects/overlays to a image",
+    description="Add effects/overlays to any image given! the link of the image should be direct!",
+    help="Add effects/overlays to any image given! the link of the image should be direct!")
     async def triggered(self, ctx, *, messagelink):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -453,7 +489,10 @@ class Images(commands.Cog):
             await ctx.send(embed=embed3)
 
 
-    @commands.command(aliases=["bandw", "black-and-white"])
+    @commands.command(aliases=["bandw", "black-and-white"],
+    breif="Add effects/overlays to a image",
+    description="Add effects/overlays to any image given! the link of the image should be direct!",
+    help="Add effects/overlays to any image given! the link of the image should be direct!")
     async def grayscale(self, ctx, *, messagelink):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -476,7 +515,10 @@ class Images(commands.Cog):
             await ctx.send(embed=embed3)
 
 
-    @commands.command(aliases=["invert-img", "invert-colors", "invert-image"])
+    @commands.command(aliases=["invert-img", "invert-colors", "invert-image"],
+    breif="Invert colors",
+    description="Invert the colors of any given image! the link of the image should be direct!",
+    help="Invert the colors of any given image! the link of the image should be direct!")
     async def invert(self, ctx, *, messagelink):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -499,8 +541,11 @@ class Images(commands.Cog):
             await ctx.send(embed=embed3)
 
 
-    @commands.command(aliases=["bright-img", "bright-colors", "bright-image", "bright"])
-    async def brightness(self, ctx, *, messagelink):
+    @commands.command(aliases=["bright-img", "bright-colors", "bright-image", "brightimg"],
+    breif="Add effects/overlays to a image",
+    description="Add effects/overlays to any image given! the link of the image should be direct!",
+    help="Add effects/overlays to any image given! the link of the image should be direct!")
+    async def brighten(self, ctx, *, messagelink):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
         try:
@@ -523,7 +568,10 @@ class Images(commands.Cog):
             await ctx.send(embed=embed3)
 
 
-    @commands.command(aliases=["threshold-img", "threshold-colors", "threshold-image", "thresh"])
+    @commands.command(aliases=["threshold-img", "threshold-colors", "threshold-image", "thresh"],
+    breif="Add effects/overlays to a image",
+    description="Add effects/overlays to any image given! the link of the image should be direct!",
+    help="Add effects/overlays to any image given! the link of the image should be direct!")
     async def threshold(self, ctx, *, messagelink):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -547,7 +595,10 @@ class Images(commands.Cog):
             await ctx.send(embed=embed3)
 
 
-    @commands.command(aliases=["sepia-image", "sepia-color"])
+    @commands.command(aliases=["sepia-image", "sepia-color"],
+    breif="Add effects/overlays to a image",
+    description="Add effects/overlays to any image given! the link of the image should be direct!",
+    help="Add effects/overlays to any image given! the link of the image should be direct!")
     async def sepia(self, ctx, *, messagelink):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -570,7 +621,10 @@ class Images(commands.Cog):
             await ctx.send(embed=embed3)
 
 
-    @commands.command(aliases=["red-image", "red-color"])
+    @commands.command(aliases=["red-image", "red-color"],
+    breif="Add effects/overlays to a image",
+    description="Add effects/overlays to any image given! the link of the image should be direct!",
+    help="Add effects/overlays to any image given! the link of the image should be direct!")
     async def red(self, ctx, *, messagelink):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -593,7 +647,10 @@ class Images(commands.Cog):
             await ctx.send(embed=embed3)
 
 
-    @commands.command(aliases=["green-image", "green-color"])
+    @commands.command(aliases=["green-image", "green-color"],
+    breif="Add effects/overlays to a image",
+    description="Add effects/overlays to any image given! the link of the image should be direct!",
+    help="Add effects/overlays to any image given! the link of the image should be direct!")
     async def green(self, ctx, *, messagelink):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -616,7 +673,10 @@ class Images(commands.Cog):
             await ctx.send(embed=embed3)
 
 
-    @commands.command(aliases=["blue-image", "blue-color"])
+    @commands.command(aliases=["blue-image", "blue-color"],
+    breif="Add effects/overlays to a image",
+    description="Add effects/overlays to any image given! the link of the image should be direct!",
+    help="Add effects/overlays to any image given! the link of the image should be direct!")
     async def blue(self, ctx, *, messagelink):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -638,7 +698,10 @@ class Images(commands.Cog):
             await ctx.send(embed=embed3)
 
 
-    @commands.command(aliases=["tint-image", "tint-color"])
+    @commands.command(aliases=["tint-image", "tint-color"],
+    breif="Add effects/overlays to a image",
+    description="Add color overlays to any image given! the link of the image should be direct! the `colorTotint` should be a hex code",
+    help="Add color overlays to any image given! the link of the image should be direct! the `colorTotint` should be a hex code")
     async def tint(self, ctx, colorTotint, *, messagelink):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -662,7 +725,10 @@ class Images(commands.Cog):
             await ctx.send(embed=embed3)
 
 
-    @commands.command(aliases=["pixelate-image"])
+    @commands.command(aliases=["pixelate-image"],
+    breif="Add effects/overlays to a image",
+    description="Add effects/overlays to any image given! the link of the image should be direct!",
+    help="Add effects/overlays to any image given! the link of the image should be direct!")
     async def pixelate(self, ctx, *, messagelink):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -684,7 +750,10 @@ class Images(commands.Cog):
             await loading_message.delete()
             await ctx.send(embed=embed3)
 
-    @commands.command(aliases=["ytc", "youtubecomment", "youtube-comment", "yt-comment", "you-tube-comment"])
+    @commands.command(aliases=["ytc", "youtubecomment", "youtube-comment", "yt-comment", "you-tube-comment"],
+    breif="Create a fake YouTube comment",
+    description="Create an real looking image of a youtube command! in `commentmsg`, please use `_` instead of a space! the pofile picture links is optional, if you give a profile picture link, please give a direct link for it to create the image successfully! ",
+    help="Create an real looking image of a youtube command! in `commentmsg`, please use `_` instead of a space! the pofile picture links is optional, if you give a profile picture link, please give a direct link for it to create the image successfully! ")
     async def ytcomment(self, ctx, usernameofu="ZeaCeR5641", commentmsg="This_is_a_test", profilepictureLink="https://static.wikia.nocookie.net/ba0628fe-3bc1-42c3-9c0c-aa91ba24f03c/scale-to-width/370", mode="dark"):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
