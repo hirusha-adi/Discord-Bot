@@ -4,7 +4,7 @@ from json import load as loadjson
 
 
 class ChatBot(commands.Cog):
-    def __init__(self, client: commands.Bot):
+    def __init__(self, client: commands.Bot, description="Advance chatbot - manual setup by creator"):
         self.client = client
 
         # Loading config.json and its important content for this file
@@ -19,9 +19,9 @@ class ChatBot(commands.Cog):
         self.please_wait_emb.set_footer(text="Bot created by ZeaCeR#5641")
 
 
-
-
-    @commands.command()
+    @commands.command(breif="use a word from below list",
+    description="olddays | main | history | list | help",
+    help="olddays | main | history | list | help")
     async def chatbot(self, ctx, command="main"):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 

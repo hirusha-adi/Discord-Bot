@@ -5,7 +5,7 @@ from json import loads as loadjsonstring
 from bs4 import BeautifulSoup
 from random import choice as randomchoice
 
-class Fun(commands.Cog):
+class Fun(commands.Cog, description="Laughter is the best medicine!"):
     def __init__(self, client: commands.Bot):
         self.client = client
 
@@ -21,7 +21,9 @@ class Fun(commands.Cog):
         self.please_wait_emb.set_footer(text="Bot created by ZeaCeR#5641")
 
 
-    @commands.command()
+    @commands.command(breif="Inspiration quotes",
+    description="Get an inspiration quote with the author's name",
+    help="Get an inspiration quote with the author's name")
     async def inspire(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -46,7 +48,9 @@ class Fun(commands.Cog):
             await loading_message.delete()
             await ctx.send(embed=embed2)
 
-    @commands.command()
+    @commands.command(breif="Activity to do",
+    description="Get an activity/task to do when you are bored",
+    help="Get an activity/task to do when you are bored")
     async def bored(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -75,7 +79,9 @@ class Fun(commands.Cog):
             await loading_message.delete()
             await ctx.send(embed=embed3)
 
-    @commands.command()
+    @commands.command(breif="a Dad Joke",
+    description="All you need is a dad joke right now!",
+    help="All you need is a dad joke right now!")
     async def dadjoke(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -107,7 +113,9 @@ class Fun(commands.Cog):
     
 
 
-    @commands.command()
+    @commands.command(breif="a Joke",
+    description="All you need is a joke right now!",
+    help="All you need is a dad right now!")
     async def joke(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -140,7 +148,10 @@ class Fun(commands.Cog):
         await ctx.send(embed=embed)
 
 
-    @commands.command(aliases=['wouldyourather', 'would-you-rather', 'wyrq'])
+    @commands.command(aliases=['wouldyourather', 'would-you-rather', 'wyrq'],
+    breif="would you rather?",
+    description="just a simple 'would you rather?' question",
+    help="just a simple 'would you rather?' question")
     async def wyr(self, ctx, *, questionhere):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -171,7 +182,9 @@ class Fun(commands.Cog):
             await ctx.send(embed=embed3)
 
     
-    @commands.command()
+    @commands.command(breif="an Advice",
+    description="Good advices make our like better!",
+    help="Good advices make our like better!")
     async def advice(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -196,7 +209,10 @@ class Fun(commands.Cog):
             await loading_message.delete()
             await ctx.send(embed=embed3)
 
-    @commands.command(aliases=["chuck-norris-joke", "chuck-joke"])
+    @commands.command(aliases=["chuck-norris-joke", "chuck-joke"],
+    breif="a Chuck Norris Joke",
+    description="send a Chuck Norris Joke to you",
+    help="send a Chuck Norris Joke to you")
     async def chuckjoke(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -227,7 +243,10 @@ class Fun(commands.Cog):
             await ctx.send(embed=embed3)
 
 
-    @commands.command(alieases=["guess-age"])
+    @commands.command(alieases=["guess-age"],
+    breif="Guess your age",
+    description="Enter the name and this will guess your age + send the number of people with the name",
+    help="Enter the name and this will guess your age + send the number of people with the name")
     async def guessage(self, ctx, *, nameToSearch):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -266,7 +285,10 @@ class Fun(commands.Cog):
             await loading_message.delete()
             await ctx.send(embed=embed3)
 
-    @commands.command(aliases=["propose"])
+    @commands.command(aliases=["propose"],
+    breif="best method to propose",
+    description="This will give you the best method on how to propose your crush/gf",
+    help="This will give you the best method on how to propose your crush/gf")
     async def howpropose(self, ctx, *, name="your crush/gf"):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -292,7 +314,10 @@ class Fun(commands.Cog):
             await loading_message.delete()
             await ctx.send(embed=embed3)
 
-    @commands.command(aliases=["jokenew"])
+    @commands.command(aliases=["jokenew"],
+    breif="a new Joke",
+    description="Laughing is a real good medicine",
+    help="Laughing is a real good medicine")
     async def joke2(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -317,9 +342,26 @@ class Fun(commands.Cog):
             await ctx.send(embed=embed3)
 
 
+    @commands.command(aliases=["bettasinghe", "weththasinghe", "wettasinghe"],
+    breif="iPhone 5s Flex",
+    description="rare footage of a big headed oblivion flexing an iphone 5s",
+    help="rare footage of a big headed oblivion flexing an iphone 5s")
+    async def minusha(self, ctx):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
 
-
-
+        try:
+            await loading_message.delete()
+            ctx.send("https://cdn.discordapp.com/attachments/877796755234783273/888643848845283328/minusha_flexing_iphone_5s.mp4")
+            
+        
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
 
 
 

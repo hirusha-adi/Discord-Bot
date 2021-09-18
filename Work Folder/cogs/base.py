@@ -4,7 +4,7 @@ from json import load as loadjson
 from time import time as nowtime
 import platform
 
-class Main(commands.Cog):
+class Main(commands.Cog, description="For bot information"):
     def __init__(self, client: commands.Bot):
         self.client = client
 
@@ -54,11 +54,17 @@ class Main(commands.Cog):
             await ctx.send(embed=embed)
             return
 
-    @commands.command(aliases=["invite", "botlink", "invitelink"])
+    @commands.command(aliases=["invite", "botlink", "invitelink"],
+    breif="Bot Invite Link",
+    description="Get the bot invite link",
+    help="Get the bot invite link")
     async def inv(self, ctx):
         await ctx.send("```Hey there! Make sure you have me in your server too! Bot Invite link:```" + str(self.bot_inv_link))
 
-    @commands.command() 
+
+    @commands.command(breif="Bot Ping",
+    description="Show the response time of the bot",
+    help="Show the response time of the bot")
     async def ping(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
         try:
@@ -79,7 +85,11 @@ class Main(commands.Cog):
             await loading_message.delete()
             await ctx.send(embed=embed2)
 
-    @commands.command(aliases=["about"])
+
+    @commands.command(aliases=["about"],
+    breif="Bot Information",
+    description="Show information about the bot",
+    help="Show information about the bot")
     async def info(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -105,7 +115,9 @@ class Main(commands.Cog):
             await ctx.send(embed=embed3)
 
 
-    @commands.command()
+    @commands.command(breif="Bot Uptime",
+    description="Show the uptime of the bot",
+    help="Show the uptime of the bot")
     async def uptime(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -129,7 +141,9 @@ class Main(commands.Cog):
             await ctx.send(embed=embed3)
 
 
-    @commands.command()
+    @commands.command(breif="Bot Status",
+    description="Show the status of the bot",
+    help="Show the status of the bot")
     async def status(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 

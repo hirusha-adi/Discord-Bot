@@ -23,7 +23,7 @@ except:
     from faker_vehicle import VehicleProvider
 
 
-class FakeInformation(commands.Cog):
+class FakeInformation(commands.Cog, description="Generate fake/random information"):
     def __init__(self, client: commands.Bot):
         self.client = client
 
@@ -38,7 +38,9 @@ class FakeInformation(commands.Cog):
         self.please_wait_emb.set_footer(text="Bot created by ZeaCeR#5641")
     
     
-    @commands.command()
+    @commands.command(breif="Fake face generator",
+    description="Create a face of a person that does not exits | use `m` for male and `f` for female",
+    help="Create a face of a person that does not exits | use `m` for male and `f` for female")
     async def face(self, ctx, gender="any"):
         try:
             # any_wl = ("any", "everything", "both", "all", "whole")
@@ -92,9 +94,9 @@ class FakeInformation(commands.Cog):
             await ctx.send(embed=embed3)
 
 
-
-
-    @commands.command()
+    @commands.command(breif="Fake Information Generator",
+    description="Please use `>fake help` for more information",
+    help="Please use `>fake help` for more information")
     async def fake(self, ctx, *, fake_mode="help"):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -2378,7 +2380,10 @@ class FakeInformation(commands.Cog):
                 await ctx.send(embed=embed3)
     
     
-    @commands.command(aliases=["mass-fake-profile", "massfakeprofile", "mass-fake-profiles", "massfakeprofiles"])
+    @commands.command(aliases=["mass-fake-profile", "massfakeprofile", "mass-fake-profiles", "massfakeprofiles"],
+    breif="Mass Fake Profiles",
+    description="Generate mass fake profiles and send them",
+    help="Generate mass fake profiles and send them")
     async def mfp(self, ctx, *, how_many):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -2435,14 +2440,16 @@ class FakeInformation(commands.Cog):
             await ctx.send(embed=embed3)
     
     
-    @commands.command()
+    @commands.command(breif="Fake discord bot token",
+    description="Generate a fake discord bot token and send it",
+    help="Generate a fake discord bot token and send it")
     async def bottoken(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
         try:
             r = requests.get("https://some-random-api.ml/bottoken").json()
 
-            embed=discord.Embed(title="Discord Bot Token Generator", description="`{r['token']}`", color=0xff0000)
+            embed=discord.Embed(title="Discord Bot Token Generator", description=f"`{r['token']}`", color=0xff0000)
             embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
             embed.set_thumbnail(url="https://user-images.githubusercontent.com/36286877/127767330-d3e68d90-67a0-4672-b3e1-6193b323bc21.png")
             embed.set_footer(text="Requested by {ctx.author.name}")
