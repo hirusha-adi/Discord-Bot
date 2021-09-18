@@ -4,7 +4,7 @@ from json import load as loadjson
 from random import choice as randomchoice
 
 class Games(commands.Cog):
-    def __init__(self, client: commands.Bot):
+    def __init__(self, client: commands.Bot, description="a set of simple commands"):
         self.client = client
 
         # Loading config.json and its important content for this file
@@ -19,7 +19,10 @@ class Games(commands.Cog):
         self.please_wait_emb.set_footer(text="Bot created by ZeaCeR#5641")
 
 
-    @commands.command(aliases=["8ball", "eightball"])
+    @commands.command(aliases=["8ball", "eightball"],
+    breif="the 8ball game",
+    description="the simple 8ball game!",
+    help="the simple 8ball game!")
     async def _8ball(self, ctx, *, question):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -58,7 +61,10 @@ class Games(commands.Cog):
             await loading_message.delete()
             await ctx.send(embed=embed2)
 
-    @commands.command()
+    @commands.command(
+    breif="how does he/she die?",
+    description="will send a random picked method of how he/she might die in the future!",
+    help="will send a random picked method of how he/she might die in the future!")
     async def howdie(self, ctx, member: discord.Member = "none"):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -115,8 +121,9 @@ class Games(commands.Cog):
 
 
 
-
-    @commands.command()
+    @commands.command(breif="the slots game",
+    description="the simple slots game to have some fun!",
+    help="the simple slots game to have some fun!")
     async def slots(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 

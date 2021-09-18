@@ -351,7 +351,7 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
 
         try:
             await loading_message.delete()
-            ctx.send("https://cdn.discordapp.com/attachments/877796755234783273/888643848845283328/minusha_flexing_iphone_5s.mp4")
+            await ctx.send("https://cdn.discordapp.com/attachments/877796755234783273/888643848845283328/minusha_flexing_iphone_5s.mp4")
             
         
         except Exception as e:
@@ -362,9 +362,6 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed3)
-
-
-
 
 
 
