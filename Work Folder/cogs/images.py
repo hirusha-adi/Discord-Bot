@@ -752,8 +752,8 @@ class Images(commands.Cog):
 
     @commands.command(aliases=["ytc", "youtubecomment", "youtube-comment", "yt-comment", "you-tube-comment"],
     breif="Create a fake YouTube comment",
-    description="Create an real looking image of a youtube command! in `commentmsg`, please use `_` instead of a space! the pofile picture links is optional, if you give a profile picture link, please give a direct link for it to create the image successfully! ",
-    help="Create an real looking image of a youtube command! in `commentmsg`, please use `_` instead of a space! the pofile picture links is optional, if you give a profile picture link, please give a direct link for it to create the image successfully! ")
+    description="Create a real looking image of a youtube comment! in `commentmsg`, please use `_` instead of a space! the pofile picture links is optional, if you give a profile picture link, please give a direct link for it to create the image successfully! ",
+    help="Create a real looking image of a youtube command! in `commentmsg`, please use `_` instead of a space! the pofile picture links is optional, if you give a profile picture link, please give a direct link for it to create the image successfully! ")
     async def ytcomment(self, ctx, usernameofu="ZeaCeR5641", commentmsg="This_is_a_test", profilepictureLink="https://static.wikia.nocookie.net/ba0628fe-3bc1-42c3-9c0c-aa91ba24f03c/scale-to-width/370", mode="dark"):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -775,7 +775,10 @@ class Images(commands.Cog):
             await loading_message.delete()
             await ctx.send(embed=embed3)
     
-    @commands.command(aliases=["twc"])
+    @commands.command(aliases=["twc"],
+    breif="Create a fake tweet",
+    description="Create a real looking image of a tweet! please give a direct link of the profile picture' to create the image successfully! you can enter the comment in any way you like",
+    help="Create a real looking image of a tweet! please give a direct link of the profile picture' to create the image successfully! you can enter the comment in any way you like")
     async def twittercomment(self, ctx, usernametw="User1", displaynametw="user", linkpfp="https://media.discordapp.net/attachments/877796755234783273/879295069834850324/Avatar.png?width=300&height=300", *, commenttw="The comment comes here" ):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -801,7 +804,10 @@ class Images(commands.Cog):
             await loading_message.delete()
             await ctx.send(embed=embed3)
 
-    @commands.command()
+    @commands.command(
+    breif="A cute monstor image",
+    description="This will send a low resolution picture of a monstor. the image is in .png format",
+    help="This will send a low resolution picture of a monstor. the image is in .png format")
     async def monstor(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -826,14 +832,6 @@ class Images(commands.Cog):
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed3)
-
-
-
-
-
-
-
-
 
 
 
