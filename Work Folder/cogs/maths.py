@@ -21,8 +21,11 @@ class Mathematics(commands.Cog):
 
 
 
-    @commands.command(aliases=["addition"])
-    async def add(self, ctx, number_1, number_2):
+    @commands.command(aliases=["addition"],
+    breif="Addition",
+    description="Add two numbers easily!",
+    help="Add two numbers easily!")
+    async def add(self, ctx, number_1:int, number_2:int):
         loading_message = await ctx.send(embed=self.please_wait_emb)
         try:
             ans = float(number_1) + float(number_2)
@@ -45,8 +48,11 @@ class Mathematics(commands.Cog):
             await loading_message.delete()
             await ctx.send(embed=embed3)
 
-    @commands.command(aliases=["substraction", "substract"])
-    async def subs(self, ctx, number_1, number_2):
+    @commands.command(aliases=["substraction", "substract"],
+    breif="Substraction",
+    description="substract two numbers easily!",
+    help="substract two numbers easily!")
+    async def subs(self, ctx, number_1:int, number_2:int):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
         try:
@@ -70,8 +76,11 @@ class Mathematics(commands.Cog):
             await ctx.send(embed=embed3)
 
     
-    @commands.command(aliases=["multiplication", "multiply"])
-    async def mul(self, ctx, number_1, number_2):
+    @commands.command(aliases=["multiplication", "multiply"],
+    breif="Multiplication",
+    description="multiply two numbers easily!",
+    help="multiply two numbers easily!")
+    async def mul(self, ctx, number_1:int, number_2:int):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
         try:
@@ -96,8 +105,11 @@ class Mathematics(commands.Cog):
             await ctx.send(embed=embed3)
 
 
-    @commands.command(aliases=["division", "divide"])
-    async def div(self, ctx, number_1, number_2):
+    @commands.command(aliases=["division", "divide"],
+    breif="Division",
+    description="divide two numbers easily!",
+    help="divide two numbers easily!")
+    async def div(self, ctx, number_1:int, number_2:int):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
         try:
