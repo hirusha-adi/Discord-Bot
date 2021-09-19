@@ -5,7 +5,7 @@ from json import loads as loadjsonstring
 from os import remove as osremovef
 
 class Images(commands.Cog):
-    def __init__(self, client: commands.Bot):
+    def __init__(self, client: commands.Bot, description="Send fun images | Add effects/overlays to images"):
         self.client = client
 
         # Loading config.json and its important content for this file

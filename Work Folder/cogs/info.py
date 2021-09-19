@@ -26,7 +26,7 @@ except:
 
 
 
-class Information(commands.Cog):
+class Information(commands.Cog, description="Gather information easily without leaving discord!"):
     def __init__(self, client: commands.Bot):
         self.client = client
 
@@ -153,7 +153,10 @@ class Information(commands.Cog):
             await ctx.send(embed=embed3)
 
 
-    @commands.command()
+    @commands.command(
+    breif="main Covid-19 information - Global",
+    description="send the main information of the current covid-19 status globally",
+    help="send the main information of the current covid-19 status globally")
     async def covidlow(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -185,7 +188,10 @@ class Information(commands.Cog):
             await ctx.send(embed=embed3)
 
 
-    @commands.command(aliases=["covidlk"])
+    @commands.command(aliases=["covidlk"],
+    breif="Covid-19 information - Sri Lanka",
+    description="send the all information of the current covid-19 status in Sri Lanka",
+    help="send the all information of the current covid-19 status Sri Lanka")
     async def covidsl(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -229,7 +235,10 @@ class Information(commands.Cog):
             await ctx.send(embed=embed3)
 
 
-    @commands.command(aliases=["covidall"])
+    @commands.command(aliases=["covidall"],
+    breif="Covid-19 information - Global",
+    description="send all information of the current covid-19 status globally",
+    help="send all information of the current covid-19 status globally")
     async def covid(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -273,7 +282,10 @@ class Information(commands.Cog):
             await ctx.send(embed=embed3)
 
 
-    @commands.command()
+    @commands.command(
+    breif="seacrh wikipedia",
+    description="Send the first two sentences in the wikipedia summary",
+    help="Send the first two sentences in the wikipedia summary")
     async def wiki(self, ctx, *, word_to_search):
         loading_message = await ctx.send(embed=self.please_wait_emb)
         try:
@@ -294,7 +306,10 @@ class Information(commands.Cog):
             await loading_message.delete()
             await ctx.send(embed=embed3)
 
-    @commands.command()
+    @commands.command(
+    breif="MAC Address information",
+    description="Find the vendor of the MAC Address.",
+    help="Find the vendor of the MAC Address.")
     async def mac(self, ctx, *, mac):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -318,7 +333,10 @@ class Information(commands.Cog):
             await loading_message.delete()
             await ctx.send(embed=embed3)
 
-    @commands.command()
+    @commands.command(
+    breif="Bitcoin price",
+    description="get the realtime bitcoin price. this command uses the cryptocompare API",
+    help="get the realtime bitcoin price. this command uses the cryptocompare API")
     async def bitcoin(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
         
@@ -348,7 +366,10 @@ class Information(commands.Cog):
             await ctx.send(embed=embed3)
     
     
-    @commands.command()
+    @commands.command(
+    breif="Etherium price",
+    description="get the realtime Etherium price. this command uses the cryptocompare API",
+    help="get the realtime Etherium price. this command uses the cryptocompare API")
     async def eth(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -378,7 +399,10 @@ class Information(commands.Cog):
             await ctx.send(embed=embed3)
 
 
-    @commands.command()
+    @commands.command(
+    breif="DogeCoin price",
+    description="get the realtime DogeCoin price. this command uses the cryptocompare API",
+    help="get the realtime DogeCoin price. this command uses the cryptocompare API")
     async def doge(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -408,7 +432,10 @@ class Information(commands.Cog):
             await ctx.send(embed=embed3)
 
 
-    @commands.command()
+    @commands.command(
+    breif="Monero price",
+    description="get the realtime Monero price. this command uses the cryptocompare API",
+    help="get the realtime Monero price. this command uses the cryptocompare API")
     async def xmr(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -437,7 +464,10 @@ class Information(commands.Cog):
             await loading_message.delete()
             await ctx.send(embed=embed3)
 
-    @commands.command()
+    @commands.command(
+    breif="Ripple price",
+    description="get the realtime Ripple price. this command uses the cryptocompare API",
+    help="get the realtime Ripple price. this command uses the cryptocompare API")
     async def xrp(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -467,7 +497,10 @@ class Information(commands.Cog):
             await ctx.send(embed=embed3)
 
         
-    @commands.command()
+    @commands.command(
+    breif="Pokemon information",
+    description="find information about pokemon characters. defaults to pikachu. if `mode` is new, this will send a nice embed or else, it will send a ugly message. Make sure the `pokemonName` doesn't have spaces in it!",
+    help="find information about pokemon characters. defaults to pikachu. if `mode` is new, this will send a nice embed or else, it will send a ugly message. Make sure the `pokemonName` doesn't have spaces in it!")
     async def pokemon(self, ctx, pokemonName="pikachu", mode="new"):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -554,7 +587,10 @@ class Information(commands.Cog):
             await ctx.send(embed=embed3)
 
 
-    @commands.command(aliases=["mincraft-info", "mincraft-user-info", "minecraftinfo"])
+    @commands.command(aliases=["mincraft-info", "mincraft-user-info", "minecraftinfo"],
+    breif="Minecraft account information",
+    description="Find information about a minecraft account with the username!",
+    help="Find information about a minecraft account with the username!")
     async def mcinfo(self, ctx, *, MinecraftUserName):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -586,7 +622,10 @@ class Information(commands.Cog):
             await ctx.send(embed=embed3)
 
         
-    @commands.command(aliases=["lyricsof"])
+    @commands.command(aliases=["lyricsof"],
+    breif="Song Lyrics",
+    description="Enter the song name as `search` and the bot will send the lyrics of the given song in an embed with some additional information!",
+    help="Enter the song name as `search` and the bot will send the lyrics of the given song in an embed with some additional information!")
     async def lyrics(self, ctx, *, search = None):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
