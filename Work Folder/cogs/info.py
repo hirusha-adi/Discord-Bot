@@ -41,7 +41,10 @@ class Information(commands.Cog):
         self.please_wait_emb.set_thumbnail(url="https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif")
         self.please_wait_emb.set_footer(text="Bot created by ZeaCeR#5641")
 
-    @commands.command(aliases=["ipinfo", "infoip", "ip-info", "info-ip"])
+    @commands.command(aliases=["ipinfo", "infoip", "ip-info", "info-ip"],
+    breif="find IP address information",
+    description="Find information of the given IPv4 Address and country information. `ip_from_user` should be a IPv4 and a valid Public IP",
+    help="Find information of the given IPv4 Address and country information. `ip_from_user` should be a IPv4 and a valid Public IP")
     async def ip(self, ctx, *, ip_from_user):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -68,7 +71,10 @@ class Information(commands.Cog):
             await ctx.send(embed=embed3)
 
 
-    @commands.command(alises=["country-info", "country", "infocountry", "country-information"])
+    @commands.command(aliases=["country-info", "country", "infocountry", "country-information"],
+    breif="find country information",
+    description="Find information of a country. the `countrycode` should be like `sg` for Singapore and `uk` for United Kingdom. This command is powered by the WordBank API",
+    help="Find information of a country. the `countrycode` should be like `sg` for Singapore and `uk` for United Kingdom. This command is powered by the WordBank API")
     async def countryinfo(self, ctx, *, countrycodeig):
         # MAKE SURE TO ENTER THE COUNTRY CODE AND NOT THE COUNTRY NAME
         # eg- sg ( for Singapore ), us for ( United States )
@@ -95,7 +101,10 @@ class Information(commands.Cog):
             await ctx.send(embed=embed3)
 
 
-    @commands.command()
+    @commands.command(
+    breif="Bitcoin price",
+    description="get the realtime bitcoin price. this command uses the coindesk API",
+    help="get the realtime bitcoin price. this command uses the coindesk API")
     async def btc(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -116,14 +125,23 @@ class Information(commands.Cog):
             await ctx.send(embed=embed3)
 
         
-    @commands.command()
+    @commands.command(
+    breif="Random color generator",
+    description="Generate a color (hex code). The embed color is of the random generated color.",
+    help="Generate a color (hex code). The embed color is of the random generated color.")
     async def color(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
         try:
             give_random_color_get = discord.Color(randomint(0x000000, 0xFFFFFF))
+            
+            # await loading_message.delete()
+            # await ctx.send("```" + give_random_color_get + "```")
+            
+            embed3=discord.Embed(title="Color generator", description=f" ```{give_random_color_get}``` ", color=give_random_color_get)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
-            await ctx.send("```" + give_random_color_get + "```")
+            await ctx.send(embed=embed3)
 
         except Exception as e:
             embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
