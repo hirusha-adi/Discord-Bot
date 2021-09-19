@@ -1,4 +1,4 @@
-import discord, os, asyncio
+import discord, os, asyncio, json, datetime
 from discord.ext import commands
 from json import load as loadjson
 from platform import system as pltfsys
@@ -23,6 +23,14 @@ except:
         os.system("pip3 install wikipedia")
     import wikipedia
 
+try:
+    from PIL import Image, ImageFont, ImageDraw
+except:
+    if pltfsys().lower().startswith('win'):
+        os.system("pip install Pillow")
+    else:
+        os.system("pip3 install Pillow")
+    from PIL import Image, ImageFont, ImageDraw
 
 
 
@@ -622,63 +630,75 @@ class Information(commands.Cog, description="Gather information easily without l
             await ctx.send(embed=embed3)
 
         
-    @commands.command(aliases=["lyricsof"],
+    @commands.command(aliases=["lyricsof", "lyric"],
     breif="Song Lyrics",
     description="Enter the song name as `search` and the bot will send the lyrics of the given song in an embed with some additional information!",
     help="Enter the song name as `search` and the bot will send the lyrics of the given song in an embed with some additional information!")
     async def lyrics(self, ctx, *, search = None):
+        """Send lyrics of any given song! (only English songs have been tested so far)
+
+        Args:
+            ctx (commands.Context)
+            search (String): Song name. Defaults to None.
+
+        Returns:
+            Sends the embed to the user with some error handling
+
+        Thanks to: https://some-random-api.ml/docs/examples/Python#discord-bot-lyrics-example
+        """
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
         try:
-            if not search:
+            if not search: # if user hasnt given an argument, throw a error and come out of the command
                 embed = discord.Embed(
                     title = "No search argument!",
                     description = "You havent entered anything, so i couldnt find lyrics!",
                     color=0xff0000
                 )
-                embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-                embed.set_footer(text=f"Requested by {ctx.author.name}")
                 try:
                     await loading_message.delete()
                 except:
                     pass
-                return await ctx.send(embed = embed)
+                return await ctx.reply(embed = embed)
+                # ctx.reply is available only on discord.py version 1.6.0, if you have a version lower than that use ctx.send
             
-            song = urllib.parse.quote(search)
+            song = urllib.parse.quote(search) # url-encode the song provided so it can be passed on to the API
             
             async with aiohttp.ClientSession() as lyricsSession:
-                async with lyricsSession.get(f'https://some-random-api.ml/lyrics?title={song}') as jsondata: 
-                    if not 300 > jsondata.status >= 200: 
+                async with lyricsSession.get(f'https://some-random-api.ml/lyrics?title={song}') as jsondata: # define jsondata and fetch from API
+                    if not 300 > jsondata.status >= 200: # if an unexpected HTTP status code is recieved from the website, throw an error and come out of the command
                         try:
                             await loading_message.delete()
                         except:
                             pass
-                            return await ctx.send(f'Recieved poor status code of {jsondata.status}')
-                        lyricsData = await jsondata.json() 
+                        return await ctx.send(f'Recieved poor status code of {jsondata.status}')
+
+                    lyricsData = await jsondata.json() # load the json data into its json form
 
             error = lyricsData.get('error')
-            if error: 
+            if error: # checking if there is an error recieved by the API, and if there is then throwing an error message and returning out of the command
                 try:
                     await loading_message.delete()
                 except:
                     pass
                 return await ctx.send(f'Recieved unexpected error: {error}')
 
-            songLyrics = lyricsData['lyrics'] 
-            songArtist = lyricsData['author'] 
-            songTitle = lyricsData['title'] 
-            songThumbnail = lyricsData['thumbnail']['genius']
-            
+            songLyrics = lyricsData['lyrics'] # the lyrics
+            songArtist = lyricsData['author'] # the author's name
+            songTitle = lyricsData['title'] # the song's title
+            songThumbnail = lyricsData['thumbnail']['genius'] # the song's picture/thumbnail
+
+            # sometimes the song's lyrics can be above 4096 characters, and if it is then we will not be able to send it in one single message on Discord due to the character limit
+            # this is why we split the song into chunks of 4096 characters and send each part individually
             for chunk in textwrap.wrap(songLyrics, 4096, replace_whitespace = False):
                 embed = discord.Embed(
-                    title = f'{songTitle} - {songArtist}',
+                    title = songTitle,
                     description = chunk,
-                    color = 0xff0000
-                    # timestamp = datetime.datetime.utcnow()
+                    color = 0xff0000,
+                    timestamp = datetime.datetime.utcnow()
                 )
                 embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
                 embed.set_thumbnail(url = songThumbnail)
-                embed.set_footer(text=f"Requested by {ctx.author.name}")
                 try:
                     await loading_message.delete()
                 except:
@@ -693,15 +713,227 @@ class Information(commands.Cog, description="Gather information easily without l
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed3)
+    
+
+    @commands.command(aliases=["fn"],
+    breif="Fortnite Account Information",
+    description="send the account username as `args`. will send a image with matches, wins, win percentage, kills, deaths, k/d and kpm in all solom duo, squad game modes + overall information",
+    help="send the account username as `args`. will send a image with matches, wins, win percentage, kills, deaths, k/d and kpm in all solom duo, squad game modes + overall information")
+    async def fortnite(self, ctx, *args):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+        try:
+            username = list(args)
+            format_player_name = '%20'.join(username)
+            print("recievd args")
+
+            try:
+                request_url = f'https://fortnite-api.com/v1/stats/br/v2?name={format_player_name}'
+                fortnite_response = json.loads(requests.get(request_url,params={'displayName': username}).content)
+                # print("recieved API response")
+            except Exception as e:
+                try:
+                    await loading_message.delete()
+                except:
+                    pass
+                await ctx.send(f"Unable to get information: {e}")
+                return
 
 
+            if fortnite_response['status'] == 200:
+                # Images
+                fortnite_template_image = Image.open('assets/fortnite_template.png')
+                # print("opened image")
 
+                # Fonts
+                username_font = ImageFont.truetype('assets/theboldfont.ttf', 50)
+                stats_font = ImageFont.truetype('assets/theboldfont.ttf', 40)
+                # print("fonts - ok")
 
+                # Positions
+                username_position = 135, 163
 
+                # Overall stats
+                overall_wins_position = 43, 300
+                overall_win_rate_position = 155, 300
+                overall_kd_position = 285, 300
+                overall_kpm_position = 400, 300
+                overall_matches_position = 63, 450
+                overall_kills_position = 210, 450
+                overall_deaths_position = 350, 450
 
+                # Solo stats
+                solo_matches_position = 540, 130
+                solo_wins_position = 685, 130
+                solo_win_rate_position = 795, 130
+                solo_kills_position = 910, 130
+                solo_deaths_position = 1050, 130
+                solo_kd_position = 1170, 130
+                solo_kpm_position = 1270, 130
 
+                # Duo stats
+                duo_matches_position = 540, 345
+                duo_wins_position = 685, 345
+                duo_win_rate_position = 795, 345
+                duo_kills_position = 910, 345
+                duo_deaths_position = 1050, 345
+                duo_kd_position = 1170, 345
+                duo_kpm_position = 1270, 345
 
+                # Squad stats
+                squad_matches_position = 540, 560
+                squad_wins_position = 685, 560
+                squad_win_rate_position = 795, 560
+                squad_kills_position = 910, 560
+                squad_deaths_position = 1050, 560
+                squad_kd_position = 1170, 560
+                squad_kpm_position = 1270, 560
 
+                # print("position variables - ok")
+
+                # Draws
+                draw_on_image = ImageDraw.Draw(fortnite_template_image)
+
+                print("Draw - ok")
+
+                # Username
+                draw_on_image.text(username_position, fortnite_response['data']['account']['name'], 'white',
+                                font=username_font)
+                
+                # print("Text - ok")
+
+                # Overall stats
+                if fortnite_response['data']['stats']['all']['overall'] is not None:
+                    draw_on_image.text(overall_wins_position,
+                                    str(fortnite_response['data']['stats']['all']['overall']['wins']),
+                                    'white', font=stats_font)
+                    draw_on_image.text(overall_win_rate_position,
+                                    str(round(fortnite_response['data']['stats']['all']['overall']['winRate'], 2)),
+                                    'white', font=stats_font)
+                    draw_on_image.text(overall_kd_position,
+                                    str(round(fortnite_response['data']['stats']['all']['overall']['kd'], 2)),
+                                    'white', font=stats_font)
+                    draw_on_image.text(overall_kpm_position,
+                                    str(round(fortnite_response['data']['stats']['all']['overall']['killsPerMatch'], 2)),
+                                    'white', font=stats_font)
+                    draw_on_image.text(overall_matches_position,
+                                    str(fortnite_response['data']['stats']['all']['overall']['matches']),
+                                    'white', font=stats_font)
+                    draw_on_image.text(overall_kills_position,
+                                    str(fortnite_response['data']['stats']['all']['overall']['kills']),
+                                    'white', font=stats_font)
+                    draw_on_image.text(overall_deaths_position,
+                                    str(fortnite_response['data']['stats']['all']['overall']['deaths']),
+                                    'white', font=stats_font)
+                    
+                    # print("write ok")
+
+                # Solo stats
+                if fortnite_response['data']['stats']['all']['solo'] is not None:
+                    draw_on_image.text(duo_matches_position,
+                                    str(fortnite_response['data']['stats']['all']['solo']['matches']),
+                                    'white', font=stats_font)
+                    draw_on_image.text(duo_wins_position, str(fortnite_response['data']['stats']['all']['solo']['wins']),
+                                    'white', font=stats_font)
+                    draw_on_image.text(duo_win_rate_position,
+                                    str(round(fortnite_response['data']['stats']['all']['solo']['winRate'], 2)),
+                                    'white', font=stats_font)
+                    draw_on_image.text(duo_kills_position,
+                                    str(fortnite_response['data']['stats']['all']['solo']['kills']),
+                                    'white', font=stats_font)
+                    draw_on_image.text(duo_deaths_position,
+                                    str(fortnite_response['data']['stats']['all']['solo']['deaths']),
+                                    'white', font=stats_font)
+                    draw_on_image.text(duo_kd_position,
+                                    str(round(fortnite_response['data']['stats']['all']['solo']['kd'], 2)),
+                                    'white', font=stats_font)
+                    draw_on_image.text(duo_kpm_position,
+                                    str(round(fortnite_response['data']['stats']['all']['solo']['killsPerMatch'], 2)),
+                                    'white', font=stats_font)
+
+                    # print("write ok")
+
+                # Duo stats
+                if fortnite_response['data']['stats']['all']['duo'] is not None:
+                    draw_on_image.text(solo_matches_position,
+                                    str(fortnite_response['data']['stats']['all']['duo']['matches']),
+                                    'white', font=stats_font)
+                    draw_on_image.text(solo_wins_position, str(fortnite_response['data']['stats']['all']['duo']['wins']),
+                                    'white', font=stats_font)
+                    draw_on_image.text(solo_win_rate_position,
+                                    str(round(fortnite_response['data']['stats']['all']['duo']['winRate'], 2)),
+                                    'white', font=stats_font)
+                    draw_on_image.text(solo_kills_position,
+                                    str(fortnite_response['data']['stats']['all']['duo']['kills']),
+                                    'white', font=stats_font)
+                    draw_on_image.text(solo_deaths_position,
+                                    str(fortnite_response['data']['stats']['all']['duo']['deaths']),
+                                    'white', font=stats_font)
+                    draw_on_image.text(solo_kd_position,
+                                    str(round(fortnite_response['data']['stats']['all']['duo']['kd'], 2)),
+                                    'white', font=stats_font)
+                    draw_on_image.text(solo_kpm_position,
+                                    str(round(fortnite_response['data']['stats']['all']['duo']['killsPerMatch'], 2)),
+                                    'white', font=stats_font)
+
+                    # print("write ok")
+
+                # Squad stats
+                if fortnite_response['data']['stats']['all']['squad'] is not None:
+                    draw_on_image.text(squad_matches_position,
+                                    str(fortnite_response['data']['stats']['all']['squad']['matches']),
+                                    'white', font=stats_font)
+                    draw_on_image.text(squad_wins_position, str(fortnite_response['data']['stats']['all']['squad']['wins']),
+                                    'white', font=stats_font)
+                    draw_on_image.text(squad_win_rate_position,
+                                    str(round(fortnite_response['data']['stats']['all']['squad']['winRate'], 2)),
+                                    'white', font=stats_font)
+                    draw_on_image.text(squad_kills_position,
+                                    str(fortnite_response['data']['stats']['all']['squad']['kills']),
+                                    'white', font=stats_font)
+                    draw_on_image.text(squad_deaths_position,
+                                    str(fortnite_response['data']['stats']['all']['squad']['deaths']),
+                                    'white', font=stats_font)
+                    draw_on_image.text(squad_kd_position,
+                                    str(round(fortnite_response['data']['stats']['all']['squad']['kd'], 2)),
+                                    'white', font=stats_font)
+                    draw_on_image.text(squad_kpm_position,
+                                    str(round(fortnite_response['data']['stats']['all']['squad']['killsPerMatch'], 2)),
+                                    'white', font=stats_font)
+
+                    # print("write ok")
+
+                # print("saving image")
+                # Save image
+                fortnite_template_image.convert('RGB').save('fortnite.jpg', 'JPEG')
+                # print("Image saved")
+
+                try:
+                    await loading_message.delete()
+                except:
+                    pass
+                await ctx.send(file=discord.File('fortnite.jpg'))
+
+            else:
+                try:
+                    await loading_message.delete()
+                except:
+                    pass
+                await ctx.send(f":no_entry: **{fortnite_response['error']}**")
+
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+        
+        finally:
+            try:
+                os.remove("fortnite.jpg")
+            except:
+                os.system("rm -rf fortnite.jpg")
 
 
 
