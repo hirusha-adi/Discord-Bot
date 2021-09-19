@@ -958,7 +958,10 @@ class Information(commands.Cog, description="Gather information easily without l
 
 
 
-    @commands.command(aliases=["covidcus", "covidcustom"])
+    @commands.command(aliases=["covidcus", "covidcustom"],
+    breif="Covid Deaths in a country",
+    description="send a graph with the deaths of the specified country. THIS IS STILL NOT PERFECT AND THIS COMMAND WILL BE COMPLETED SOON! MAYBE USING THIS COMMAND RIGHT NOW WILL BREAK THE BOT. IM NOT SURE LOL",
+    help="send a graph with the deaths of the specified country. THIS IS STILL NOT PERFECT AND THIS COMMAND WILL BE COMPLETED SOON! MAYBE USING THIS COMMAND RIGHT NOW WILL BREAK THE BOT. IM NOT SURE LOL")
     async def covidc(self, ctx, *, country: str):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
