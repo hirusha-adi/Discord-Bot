@@ -5,6 +5,27 @@ from platform import system as pltfsys
 from random import randint as randomint
 import urllib, aiohttp, textwrap
 
+# for `covidcustom` command
+try:
+    from matplotlib import pyplot
+except:
+    if pltfsys().lower().startswith('win'):
+        os.system("pip install matplotlib")
+    else:
+        os.system("pip3 install matplotlib")
+    from matplotlib import pyplot
+
+
+try:
+    import pandas as pd
+except:
+    if pltfsys().lower().startswith('win'):
+        os.system("pip install pandas")
+    else:
+        os.system("pip3 install pandas")
+    import pandas as pd
+
+
 try:
     import requests
 except:
@@ -934,6 +955,69 @@ class Information(commands.Cog, description="Gather information easily without l
                 os.remove("fortnite.jpg")
             except:
                 os.system("rm -rf fortnite.jpg")
+
+
+
+    @commands.command(aliases=["covidcus", "covidcustom"])
+    async def covidc(self, ctx, *, country: str):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+
+        try:
+            try:
+                covid_request_url = urllib.request.Request(f'https://api.covid19api.com/dayone/country/{country}')
+                request_result = json.loads(urllib.request.urlopen(covid_request_url).read().decode('utf-8'))
+            except Exception as e:
+                embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+                embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                embed3.add_field(name="Error:", value=f"{e}", inline=False)
+                embed3.set_footer(text=f"Requested by {ctx.author.name}")
+                await loading_message.delete()
+                await ctx.send(embed=embed3)
+                return
+
+            data_set = [(datetime.datetime.strptime(date_index['Date'], '%Y-%m-%dT%H:%M:%SZ').strftime('%b'), death_index['Deaths'])
+                        for date_index, death_index in zip(request_result, request_result)]
+
+            # Plot
+            data_frame = pd.DataFrame(data_set)
+            data_frame.plot(x=0, y=1, color='#00012C', label='Months')
+
+            # Label
+            pyplot.title(f'Showing Deaths in {country}')
+            pyplot.xlabel('Months')
+            pyplot.ylabel('Number of Deaths')
+
+            # Legend
+            pyplot.legend(loc='upper left')
+
+            # Color
+            pyplot.axes().set_facecolor('#9A1622')
+
+            pyplot.savefig('covid_death_graph.png', bbox_inches='tight')
+
+            await loading_message.delete()
+
+            await ctx.send(file=discord.File('covid_death_graph.png'))
+    
+
+        except Exception as e:
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+        
+        finally:
+            try:
+                os.remove("covid_death_graph.png")
+            except:
+                os.system("rm -rf covid_death_graph.png")
+
+
+
 
 
 
