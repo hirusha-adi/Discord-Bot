@@ -47,7 +47,7 @@ class Help(commands.Cog):
 
         # I SETTLED WITH THIS
         os.environ['DCH_COLOR'] = 'ff0000' # Any hex color code
-        self.client.load_extension('dch')
+        self.client.load_extension('cogs.dch')
 
 
         # LATEST COMMAND

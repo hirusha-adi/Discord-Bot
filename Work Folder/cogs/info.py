@@ -1002,7 +1002,7 @@ class Information(commands.Cog, description="Gather information easily without l
             await loading_message.delete()
 
             await ctx.send(file=discord.File('covid_death_graph.png'))
-    
+
 
         except Exception as e:
             embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)

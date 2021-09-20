@@ -1,0 +1,16 @@
+{
+    "PLASE_WAIT_EMBED":{
+        "TITLE":"Please Wait",
+        "DESCRIPTION":"Processing Your Request",
+        "AUTHOR_NAME":"YourBot",
+        "AUTHOR_LINK":"https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png",
+        "THUMBNAIL":"https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif",
+        "FOOTER":"Bot created by ZeaCeR#5641",
+        "COLOR":"red"
+    },
+    "COMMON_FOR_ALL":{
+        "AUTHOR":"YourBot",
+        "AUTHOR_LINK":"https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png",
+        "COLOR":"red"
+    }
+}
