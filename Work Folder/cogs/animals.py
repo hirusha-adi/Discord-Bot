@@ -2,7 +2,7 @@ import discord, requests, aiohttp
 from discord.ext import commands
 from json import load as loadjson
 from json import loads as loadjsonstring
-import database.retrieve as dbEmbed
+import database.retrieve_embeds as getembed
 
 
 class Animals(commands.Cog, description="Images/Facts about animals"):
@@ -15,15 +15,15 @@ class Animals(commands.Cog, description="Images/Facts about animals"):
         self.bot_inv_link = self.botconfigdata["invite-link"]
 
         # This is the please-wait/Loading embed
-        self.please_wait_emb = discord.Embed(title=dbEmbed.PleaseWait.TITLE, description=f"``` {dbEmbed.PleaseWait.DESCRIPTION} ```", color=dbEmbed.PleaseWait.COLOR)
-        self.please_wait_emb.set_author(name=dbEmbed.PleaseWait.AUTHOR_NAME, icon_url=dbEmbed.PleaseWait.AUTHOR_LINK)
-        self.please_wait_emb.set_thumbnail(url=dbEmbed.PleaseWait.THUMBNAIL)
-        self.please_wait_emb.set_footer(text=dbEmbed.PleaseWait.FOOTER)
+        self.please_wait_emb = discord.Embed(title=getembed.PleaseWait.TITLE, description=f"``` {getembed.PleaseWait.DESCRIPTION} ```", color=getembed.PleaseWait.COLOR)
+        self.please_wait_emb.set_author(name=getembed.PleaseWait.AUTHOR_NAME, icon_url=getembed.PleaseWait.AUTHOR_LINK)
+        self.please_wait_emb.set_thumbnail(url=getembed.PleaseWait.THUMBNAIL)
+        self.please_wait_emb.set_footer(text=getembed.PleaseWait.FOOTER)
 
         # THIS IS FOR THE EMBEDS
-        self.AUTHOR = dbEmbed.Common.AUTHOR
-        self.AUTHOR_LINK = dbEmbed.Common.AUTHOR_LINK
-        self.COLOR = dbEmbed.Common.COLOR
+        self.AUTHOR = getembed.Common.AUTHOR
+        self.AUTHOR_LINK = getembed.Common.AUTHOR_LINK
+        self.COLOR = getembed.Common.COLOR
 
 
     @commands.command(breif="Image of a panda", 

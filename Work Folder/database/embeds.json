@@ -8,9 +8,48 @@
         "FOOTER":"Bot created by ZeaCeR#5641",
         "COLOR":"red"
     },
+
     "COMMON_FOR_ALL":{
         "AUTHOR":"YourBot",
         "AUTHOR_LINK":"https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png",
         "COLOR":"red"
+    },
+
+    "ERRORS":{
+        "MISSING_PERMISSION":{
+            "TITLE":"ERROR",
+            "DESCRIPTION":"`You don't have the permissions required to use this command!`",
+            "AUTHOR_NAME":"YourBot",
+            "AUTHOR_LINK":"https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png",
+            "THUMBNAIL":"https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png",
+            "COLOR":"red"
+        },
+
+        "MISSING_ARGUMENTS":{
+            "TITLE":"Please Wait",
+            "DESCRIPTION":"An error has been occured!",
+            "AUTHOR_NAME":"YourBot",
+            "AUTHOR_LINK":"https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png",
+            "THUMBNAIL":"https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png",
+            "ERROR":"Error",
+            "ERROR_VALUE":"You haven't passed the needed arguments for this command to run properly",
+            "POSSIBLE_FIX":"Possible Fix",
+            "POSSIBLE_FIX_VALUE":"use `>help` to list out all the command and check the proper usage of the command you used",
+            "COLOR":"red"
+        },
+
+        "COMMON":{
+            "TITLE":":red_square: Error!",
+            "DESCRIPTION":"The command was unable to run successfully! ",
+            "THUMBNAIL":"https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png"
+        }
     }
+
 }
+
+
+
+
+
+
+
