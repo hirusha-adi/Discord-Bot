@@ -80,10 +80,17 @@ class ErrorEmbeds:
     elif embeddata["ERRORS"]["MISSING_ARGUMENTS"]["COLOR"] == "blue":
         ARGS_COLOR = 0x0000ff
 
+    # COMMON
     TITLE = embeddata["ERRORS"]["COMMON"]["TITLE"]
     DESCRIPTION = embeddata["ERRORS"]["COMMON"]["DESCRIPTION"]
     THUMBNAIL = embeddata["ERRORS"]["COMMON"]["THUMBNAIL"]
 
+    if embeddata["ERRORS"]["COMMON"]["COLOR"] == "red":
+        COLOR = 0xff0000
+    elif embeddata["ERRORS"]["COMMON"]["COLOR"] == "green":
+        COLOR = 0x00ff00
+    elif embeddata["ERRORS"]["COMMON"]["COLOR"] == "blue":
+        COLOR = 0x0000ff
 
 
 

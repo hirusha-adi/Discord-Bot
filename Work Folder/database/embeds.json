@@ -41,7 +41,8 @@
         "COMMON":{
             "TITLE":":red_square: Error!",
             "DESCRIPTION":"The command was unable to run successfully! ",
-            "THUMBNAIL":"https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png"
+            "THUMBNAIL":"https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png",
+            "COLOR":"red"
         }
     }
 

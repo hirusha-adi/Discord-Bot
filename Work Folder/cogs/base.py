@@ -73,7 +73,7 @@ class Main(commands.Cog, description="For bot information"):
     async def ping(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
         try:
-            embed=discord.Embed(title="Response Time", color=0xff0000)
+            embed=discord.Embed(title="Response Time", color=getembed.Common.COLOR)
             embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879311068097290320/PngItem_1526969.png")
             embed.add_field(name=f"Ping :timer:", value=f"{round(self.client.latency * 1000)} ms", inline=False)
@@ -82,7 +82,7 @@ class Main(commands.Cog, description="For bot information"):
             await ctx.send(embed=embed)
 
         except Exception as e:
-            embed2=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=0xff0000)
+            embed2=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
             embed2.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed2.add_field(name="Error:", value=f"{e}", inline=False)
@@ -99,7 +99,7 @@ class Main(commands.Cog, description="For bot information"):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
         try:
-            em = discord.Embed(title=getembed.Common.AUTHOR, color=0xFF0000)
+            em = discord.Embed(title=getembed.Common.AUTHOR, color=getembed.Common.COLOR)
             em.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
             em.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             em.add_field(name="Version", value=f'{self.bot_current_version}')
@@ -111,7 +111,7 @@ class Main(commands.Cog, description="For bot information"):
             await ctx.send(embed=em)
 
         except Exception as e:
-            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=0xff0000)
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
             embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -130,14 +130,14 @@ class Main(commands.Cog, description="For bot information"):
             current_time = nowtime()
             difference = int(round(current_time - start_time))
             text = str(datetime.timedelta(seconds=difference))
-            embed=discord.Embed(color=0xff0000)
+            embed=discord.Embed(color=getembed.Common.COLOR)
             embed.add_field(name="The bot was online for: ", value=f":alarm_clock: {text}", inline=False)
             embed.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed)
         
         except Exception as e:
-            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=0xff0000)
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
             embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -157,7 +157,7 @@ class Main(commands.Cog, description="For bot information"):
             difference = int(round(current_time - start_time))
             text = str(datetime.timedelta(seconds=difference))
 
-            embed=discord.Embed(color=0xff0000)
+            embed=discord.Embed(color=getembed.Common.COLOR)
             embed.add_field(name="Announcements", value=getbase.BotBase.STATUS_ANNOUNCEMENTS, inline=False)
             embed.add_field(name="Servers", value=f"{len(self.client.guilds)}", inline=True)
             embed.add_field(name="Uptime", value=f"{text}", inline=True)
@@ -170,20 +170,13 @@ class Main(commands.Cog, description="For bot information"):
             await ctx.send(embed=embed)
         
         except Exception as e:
-            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=0xff0000)
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
             embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed3)
-
-
-
-
-
-
-
 
 
 
