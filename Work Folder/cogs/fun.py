@@ -4,6 +4,8 @@ from json import load as loadjson
 from json import loads as loadjsonstring
 from bs4 import BeautifulSoup
 from random import choice as randomchoice
+import database.retrieve_embeds as getembed
+
 
 class Fun(commands.Cog, description="Laughter is the best medicine!"):
     def __init__(self, client: commands.Bot):
@@ -14,12 +16,12 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
         self.bot_prefix = self.botconfigdata["msg-prefix"]
         self.bot_inv_link = self.botconfigdata["invite-link"]
 
-        # This is the please-wait/Loading embed
-        self.please_wait_emb = discord.Embed(title="Please Wait", description="``` Processing Your Request ```", color=0xff0000)
-        self.please_wait_emb.set_author(name="YourBot")
-        self.please_wait_emb.set_thumbnail(url="https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif")
-        self.please_wait_emb.set_footer(text="Bot created by ZeaCeR#5641")
-
+       # This is the please-wait/Loading embed
+        self.please_wait_emb = discord.Embed(title=getembed.PleaseWait.TITLE, description=f"``` {getembed.PleaseWait.DESCRIPTION} ```", color=getembed.PleaseWait.COLOR)
+        self.please_wait_emb.set_author(name=getembed.PleaseWait.AUTHOR_NAME, icon_url=getembed.PleaseWait.AUTHOR_LINK)
+        self.please_wait_emb.set_thumbnail(url=getembed.PleaseWait.THUMBNAIL)
+        self.please_wait_emb.set_footer(text=getembed.PleaseWait.FOOTER)
+    
 
     @commands.command(breif="Inspiration quotes",
     description="Get an inspiration quote with the author's name",
@@ -31,8 +33,8 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
             r = requests.get("https://zenquotes.io/api/random")
             json_data = loadjsonstring(r.text)
             quote = json_data[0]['q'] + " - " + json_data[0]['a']
-            embed=discord.Embed(title="Inspirational isn't it?", color=0xff0000)
-            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed=discord.Embed(title="Inspirational isn't it?", color=getembed.Common.COLOR)
+            embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879382016041291828/NicePng_light-streak-png_395357.png")
             embed.add_field(name="Inspirational Quote:", value=f"{quote}", inline=True)
             embed.set_footer(text=f"Requested by {ctx.author.name}")
@@ -40,13 +42,13 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
             await ctx.send(embed=embed)
 
         except Exception as e:
-            embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-            embed2.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
-            embed2.add_field(name="Error:", value=f"{e}", inline=False)
-            embed2.set_footer(text=f"Requested by {ctx.author.name}")
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
-            await ctx.send(embed=embed2)
+            await ctx.send(embed=embed3)
 
     @commands.command(breif="Activity to do",
     description="Get an activity/task to do when you are bored",
@@ -58,8 +60,8 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
             r = requests.get('http://www.boredapi.com/api/activity/')
             data = r.json()
             what_to_do_when_bored = f'[+] Activity: {data["activity"]} \n[+] Type: {data["type"]} \n[+] Participants: {data["participants"]} \n[+] Key: {data["key"]} \n[+] Accessibility: {data["accessibility"]} '
-            embed=discord.Embed(title="Heres an Activity for you", description="If you are bored, consider doing this", color=0xff0000)
-            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed=discord.Embed(title="Heres an Activity for you", description="If you are bored, consider doing this", color=getembed.Common.COLOR)
+            embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed.add_field(name="Activity", value=f"{data['activity']}", inline=False)
             embed.add_field(name="Type", value=f"{data['type']}", inline=False)
             embed.add_field(name="Participants", value=f"{data['participants']}", inline=False)
@@ -71,9 +73,9 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
             await ctx.send(embed=embed)
 
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
@@ -94,8 +96,8 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
                 async with session.get("https://icanhazdadjoke.com", headers=headers) as req:
                     r = await req.json()
 
-            embed=discord.Embed(title="a Dad Joke", color=0xff0000)
-            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed=discord.Embed(title="a Dad Joke", color=getembed.Common.COLOR)
+            embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(url="https://user-images.githubusercontent.com/36286877/127767330-d3e68d90-67a0-4672-b3e1-6193b323bc21.png")
             embed.add_field(name="Joke", value=f"{r['joke']}", inline=False)
             embed.set_footer(text=f"Requested by {ctx.author.name}")
@@ -103,9 +105,9 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
             await ctx.send(embed=embed)
 
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
@@ -119,33 +121,43 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
     async def joke(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
-        r = requests.get("https://v2.jokeapi.dev/joke/Any")
-        c = r.json()
-        # print(c)
-
         try:
-            jokeit = c["joke"]
-        except:
-            try:
-                jokeit = c["setup"]
-            except Exception as e:
-                embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-                embed2.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-                embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
-                embed2.add_field(name="Error:", value=f"{e}", inline=False)
-                embed2.set_footer(text=f"Requested by {ctx.author.name}")
-                await loading_message.delete()
-                await ctx.send(embed=embed2)
-                return
+            r = requests.get("https://v2.jokeapi.dev/joke/Any")
+            c = r.json()
+            # print(c)
 
-        embed=discord.Embed(title=":grin: a Joke", color=0xff0000)
-        embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-        embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879303282139463680/480px-Happy_smiley_face.png")
-        embed.add_field(name="Joke", value=f"{jokeit}", inline=False)
-        embed.add_field(name="Information", value=f"Category: {c['category']} \nType: {c['type']} \nNSFW: {c['flags']['nsfw']} \nReligious: {c['flags']['religious']} \nPolitical: {c['flags']['political']} \nRacist: {c['flags']['racist']} \nSexist: {c['flags']['sexist']} \nExplicit: {c['flags']['explicit']} \nLanguage: {c['lang']}", inline=True)
-        embed.set_footer(text=f"Requested by {ctx.author.name}")
-        await loading_message.delete()
-        await ctx.send(embed=embed)
+            try:
+                jokeit = c["joke"]
+            except:
+                try:
+                    jokeit = c["setup"]
+                except Exception as e:
+                    embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
+                    embed2.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+                    embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                    embed2.add_field(name="Error:", value=f"{e}", inline=False)
+                    embed2.set_footer(text=f"Requested by {ctx.author.name}")
+                    await loading_message.delete()
+                    await ctx.send(embed=embed2)
+                    return
+
+            embed=discord.Embed(title=":grin: a Joke", color=getembed.Common.COLOR)
+            embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879303282139463680/480px-Happy_smiley_face.png")
+            embed.add_field(name="Joke", value=f"{jokeit}", inline=False)
+            embed.add_field(name="Information", value=f"Category: {c['category']} \nType: {c['type']} \nNSFW: {c['flags']['nsfw']} \nReligious: {c['flags']['religious']} \nPolitical: {c['flags']['political']} \nRacist: {c['flags']['racist']} \nSexist: {c['flags']['sexist']} \nExplicit: {c['flags']['explicit']} \nLanguage: {c['lang']}", inline=True)
+            embed.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed)
+
+        except Exception as e:
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
 
 
     @commands.command(aliases=['wouldyourather', 'would-you-rather', 'wyrq'],
@@ -163,8 +175,8 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
             qor = soup.find(id='qor').text
             qb = soup.find(id='qb').text
 
-            embed=discord.Embed(title="Would You Rather", color=0xff0000)
-            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed=discord.Embed(title="Would You Rather", color=getembed.Common.COLOR)
+            embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879583873527332904/Would-You-Rather_Questions-680x430.jpg")
             embed.add_field(name="Question", value=f"{questionhere}", inline=False)
             embed.add_field(name="Answer", value=f"{qa}\n{qor}\n{qb}", inline=False)
@@ -173,9 +185,9 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
             await ctx.send(embed=embed)
 
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
@@ -192,8 +204,8 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
             r = requests.get("https://api.adviceslip.com/advice").json()
             c = r['slip']['advice']
 
-            embed=discord.Embed(title="an Adive", color=0xff0000)
-            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed=discord.Embed(title="an Adive", color=getembed.Common.COLOR)
+            embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/880034306720956456/download_1.jfif")
             embed.add_field(name="Advice", value=f"{c}", inline=False)
             embed.set_footer(text=f"Requested by {ctx.author.name}")
@@ -201,13 +213,14 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
             await ctx.send(embed=embed)
 
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed3)
+
 
     @commands.command(aliases=["chuck-norris-joke", "chuck-joke"],
     breif="a Chuck Norris Joke",
@@ -223,8 +236,8 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
             created_at = r['created_at']
             urlfj = r['url']
 
-            embed=discord.Embed(title="Chuck Joke", color=0xff0000)
-            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed=discord.Embed(title="Chuck Joke", color=getembed.Common.COLOR)
+            embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/880035248820342824/chuck-norris.png")
             embed.add_field(name="Joke", value=f"{joke}", inline=False)
             embed.add_field(name="Created At", value=f"{created_at}", inline=False)
@@ -234,9 +247,9 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
             await ctx.send(embed=embed)
         
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
@@ -266,8 +279,8 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
             except:
                 count = "Unable to get the Count"
 
-            embed=discord.Embed(title="Guess Age", color=0xff0000)
-            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed=discord.Embed(title="Guess Age", color=getembed.Common.COLOR)
+            embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/880027346478968872/image.jfif")
             embed.add_field(name="Name", value=f"{name}", inline=False)
             embed.add_field(name="Age", value=f"{age}", inline=False)
@@ -277,9 +290,9 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
             await ctx.send(embed=embed)
 
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
@@ -306,9 +319,9 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
             await ctx.send(f'{randomchoice(choicestosel)}')
         
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
@@ -324,8 +337,8 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
         try:
             r = requests.get("https://some-random-api.ml/joke").json()
 
-            embed=discord.Embed(title="a Joke", color=0xff0000)
-            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed=discord.Embed(title="a Joke", color=getembed.Common.COLOR)
+            embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(url="https://media.discordapp.net/attachments/877796755234783273/880742956552822794/mr-bean-avatar-character-cartoon-rowan-atkinson-png-image-33.png?width=454&height=584")
             embed.add_field(name="Joke", value=f"{r['joke']}", inline=False)
             embed.set_footer(text=f"Requested by {ctx.author.name}")
@@ -333,9 +346,9 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
             await ctx.send(embed=embed)
         
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
@@ -355,9 +368,9 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
             
         
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
