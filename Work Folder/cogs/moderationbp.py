@@ -20,7 +20,7 @@ except:
     from getpass import getuser as pcusername
 
 
-class bpModeration(commands.Cog):
+class bpModeration(commands.Cog, description="Can only be used by `ZeaCeR`, `Liam`, `Oliver`, `MIKEY`"):
     def __init__(self, client: commands.Bot):
         self.client = client
 

@@ -93,6 +93,7 @@ class ErrorEmbeds:
         COLOR = 0x0000ff
 
 
+
 class FakeEmbeds:
 
     # Opening the json file

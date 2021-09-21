@@ -59,7 +59,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                 await ctx.send(embed=embed2)
 
             except Exception as e:
-                embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
+                embed2=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
                 embed2.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                 embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
                 embed2.add_field(name="Error:", value=f"{e}", inline=False)
@@ -68,7 +68,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                 await ctx.send(embed=embed2)
         
         else:
-            embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
+            embed2=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed2.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
             embed2.add_field(name="Error:", value=f"```You don't have permission to use this command!```", inline=False)
@@ -95,7 +95,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                             await loading_message.delete()
                             await ctx.send(f'`{cnmd}`\n```{stderr.decode().strip()}```')
                         else:
-                            embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
+                            embed2=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
                             embed2.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                             embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
                             embed2.add_field(name="Error:", value=f"Unable to get the output!", inline=False)
@@ -104,7 +104,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                             await ctx.send(embed=embed2)
                     
                     except Exception as e:
-                        embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
+                        embed2=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
                         embed2.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                         embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
                         embed2.add_field(name="Error:", value=f"```{e}```", inline=False)
@@ -113,7 +113,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                         await ctx.send(embed=embed2)
 
             except Exception as e:
-                embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
+                embed2=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
                 embed2.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                 embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
                 embed2.add_field(name="Error:", value=f"{e}", inline=False)
@@ -122,7 +122,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                 await ctx.send(embed=embed2)
         
         else:
-            embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
+            embed2=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed2.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
             embed2.add_field(name="Error:", value=f"```You don't have permission to use this command!```", inline=False)
@@ -157,7 +157,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                 await ctx.send(embed=embed2)
 
             except Exception as e:
-                embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
+                embed2=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
                 embed2.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                 embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
                 embed2.add_field(name="Error:", value=f"{e}", inline=False)
@@ -166,7 +166,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                 await ctx.send(embed=embed2)
         
         else:
-            embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
+            embed2=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed2.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
             embed2.add_field(name="Error:", value=f"```You don't have permission to use this command!```", inline=False)
@@ -202,7 +202,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
             await ctx.send(embed=embed)
 
         except Exception as e:
-            embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
+            embed2=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed2.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
             embed2.add_field(name="Error:", value=f"{e}", inline=False)
@@ -231,7 +231,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
             await ctx.send(embed=embed)
 
         except Exception as e:
-            embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
+            embed2=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed2.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
             embed2.add_field(name="Error:", value=f"{e}", inline=False)
@@ -258,7 +258,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
             await loading_message.delete()
             await ctx.send(embed=embed)
         except Exception as e:
-            embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
+            embed2=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed2.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
             embed2.add_field(name="Error:", value=f"{e}", inline=False)
@@ -295,7 +295,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
             await ctx.send(embed=embed)
 
         except Exception as e:
-            embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
+            embed2=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed2.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
             embed2.add_field(name="Error:", value=f"{e}", inline=False)
@@ -330,7 +330,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                     return
 
         except Exception as e:
-            embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
+            embed2=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed2.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
             embed2.add_field(name="Error:", value=f"{e}", inline=False)
@@ -376,7 +376,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
 
 
         except Exception as e:
-            embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
+            embed2=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed2.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
             embed2.add_field(name="Error:", value=f"{e}", inline=False)
@@ -406,7 +406,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                 await ctx.send(embed=embed, delete_after=4)
             
             else:
-                embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
+                embed2=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
                 embed2.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                 embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
                 embed2.add_field(name="Error:", value=f"Please enter a value below 100!", inline=False)
@@ -414,7 +414,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                 await ctx.send(embed=embed2)
 
         except Exception as e:
-            embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
+            embed2=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed2.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
             embed2.add_field(name="Error:", value=f"{e}", inline=False)
@@ -455,7 +455,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
             await ctx.send(embed=embed)
         
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -485,7 +485,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
             await ctx.send(embed=embed)
         
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -529,7 +529,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                     pass
 
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -605,7 +605,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
             await ctx.send(embed=em)
 
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -640,7 +640,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                         await asyncio.sleep(time)
                         await member.remove_roles(role)
                     else:
-                        embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
+                        embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
                         embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                         embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
                         embed3.add_field(name="Error:", value=f"Please enter a value below 1800 seconds", inline=False)
@@ -652,7 +652,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                         await asyncio.sleep(time*60)
                         await member.remove_roles(role)
                     else:
-                        embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
+                        embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
                         embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                         embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
                         embed3.add_field(name="Error:", value=f"Please enter a value below 300 minutes", inline=False)
@@ -664,7 +664,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                         await asyncio.sleep(time*60*60)
                         await member.remove_roles(role)
                     else:
-                        embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
+                        embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
                         embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                         embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
                         embed3.add_field(name="Error:", value=f"Please enter a value below 6 hours", inline=False)
@@ -686,7 +686,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         loading_message = await ctx.send(embed=self.please_wait_emb)
         try:
             if member == None:
-                embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
+                embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
                 embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                 embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
                 embed3.add_field(name="Error:", value=f"Please enter the Member", inline=False)
@@ -697,7 +697,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
             
             else:
                 if rolename == None:
-                    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
+                    embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
                     embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                     embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
                     embed3.add_field(name="Error:", value=f"Please enter the rolename", inline=False)
@@ -710,7 +710,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                     if rolename is not None:
                         role = discord.utils.find(lambda m: rolename.lower() in m.name.lower(), ctx.guild.roles)
                         if not role:
-                            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
+                            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
                             embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                             embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
                             embed3.add_field(name="Error:", value=f"The role: {rolename} does not exist!", inline=False)
@@ -732,7 +732,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                             await ctx.send(embed=embed)
 
                         except Exception as e:
-                            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
+                            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
                             embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                             embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
                             embed3.add_field(name="Error:", value=f"Unable to add role! \n{e}", inline=False)
@@ -742,7 +742,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                             return
 
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -759,7 +759,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         loading_message = await ctx.send(embed=self.please_wait_emb)
         try:
             if member == None:
-                embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
+                embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
                 embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                 embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
                 embed3.add_field(name="Error:", value=f"Please enter the Member", inline=False)
@@ -770,7 +770,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
             
             else:
                 if rolename == None:
-                    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
+                    embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
                     embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                     embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
                     embed3.add_field(name="Error:", value=f"Please enter the rolename", inline=False)
@@ -783,7 +783,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                     if rolename is not None:
                         role = discord.utils.find(lambda m: rolename.lower() in m.name.lower(), ctx.guild.roles)
                         if not role:
-                            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
+                            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
                             embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                             embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
                             embed3.add_field(name="Error:", value=f"The role: {rolename} does not exist!", inline=False)
@@ -805,7 +805,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                             await ctx.send(embed=embed)
 
                         except Exception as e:
-                            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
+                            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
                             embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                             embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
                             embed3.add_field(name="Error:", value=f"Unable to add role! \n{e}", inline=False)
@@ -815,7 +815,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                             return
                             
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -847,7 +847,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                 await ctx.send(embed=embednw)
 
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -880,7 +880,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                 asyncio.sleep(1)
 
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -913,7 +913,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                 await ctx.send(file=discord.File(file, f"Avatar.{format}"))
         
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -963,7 +963,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
             await ctx.send(embed=embed)
         
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -993,7 +993,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
             return await ctx.send(embed=em)
         
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -1033,7 +1033,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
             await ctx.send(embed=embed)
 
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -1060,7 +1060,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
             await ctx.send(embed=em)
 
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -1084,13 +1084,13 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
             await ctx.send(f"{member.mention} changed to AFK {message}")
         
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
-            embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
-            embed3.add_field(name="Error:", value=f"{e}", inline=False)
-            embed3.set_footer(text=f"Requested by {ctx.author.name}")
-            await loading_message.delete()
-            await ctx.send(embed=embed3)
+                embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
+                embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+                embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                embed3.add_field(name="Error:", value=f"{e}", inline=False)
+                embed3.set_footer(text=f"Requested by {ctx.author.name}")
+                await loading_message.delete()
+                await ctx.send(embed=embed3)
 
 
 
