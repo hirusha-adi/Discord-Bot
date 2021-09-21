@@ -44,6 +44,14 @@
             "THUMBNAIL":"https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png",
             "COLOR":"red"
         }
+    },
+
+        "FAKE_INFO":{
+        "AUTHOR_NAME":"YourBot",
+        "AUTHOR_LINK":"https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png",
+        "COLOR":"red",
+        "THUMBNAIL":"https://www.nicepng.com/png/detail/214-2146883_4-fake-stamp-vector-fake-news-logo-png.png",
+        "TITLE":"Fake Information Generator"
     }
 
 }

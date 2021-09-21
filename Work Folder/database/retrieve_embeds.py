@@ -93,9 +93,25 @@ class ErrorEmbeds:
         COLOR = 0x0000ff
 
 
+class FakeEmbeds:
 
+    # Opening the json file
+    with open("database/embeds.json", "r", encoding="utf8") as embedsf:
+        embeddata = json.load(embedsf)
 
+    # VARIABLES
+    # The author info also comes for the error embed\
+    TITLE = embeddata["FAKE_INFO"]["TITLE"]
+    THUMBNAIL = embeddata["FAKE_INFO"]["THUMBNAIL"]
+    AUTHOR_LINK = embeddata["FAKE_INFO"]["AUTHOR_LINK"]
+    AUTHOR_NAME = embeddata["FAKE_INFO"]["AUTHOR_NAME"]
 
+    if embeddata["FAKE_INFO"]["COLOR"] == "red":
+        COLOR = 0xff0000
+    elif embeddata["FAKE_INFO"]["COLOR"] == "green":
+        COLOR = 0x00ff00
+    elif embeddata["FAKE_INFO"]["COLOR"] == "blue":
+        COLOR = 0x0000ff
 
 
 
