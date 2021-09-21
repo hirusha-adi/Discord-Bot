@@ -50,7 +50,8 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
             await loading_message.delete()
             await ctx.send(embed=embed3)
 
-    @commands.command(breif="Activity to do",
+
+    @commands.command(breif="get an Activity to do",
     description="Get an activity/task to do when you are bored",
     help="Get an activity/task to do when you are bored")
     async def bored(self, ctx):
