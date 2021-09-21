@@ -61,7 +61,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
             except Exception as e:
                 embed2=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
                 embed2.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-                embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                 embed2.add_field(name="Error:", value=f"{e}", inline=False)
                 embed2.set_footer(text=f"Requested by {ctx.author.name}")
                 await loading_message.delete()
@@ -70,7 +70,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         else:
             embed2=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed2.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-            embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed2.add_field(name="Error:", value=f"```You don't have permission to use this command!```", inline=False)
             embed2.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
@@ -97,7 +97,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                         else:
                             embed2=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
                             embed2.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-                            embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                            embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                             embed2.add_field(name="Error:", value=f"Unable to get the output!", inline=False)
                             embed2.set_footer(text=f"Requested by {ctx.author.name}")
                             await loading_message.delete()
@@ -106,7 +106,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                     except Exception as e:
                         embed2=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
                         embed2.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-                        embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                        embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                         embed2.add_field(name="Error:", value=f"```{e}```", inline=False)
                         embed2.set_footer(text=f"Requested by {ctx.author.name}")
                         await loading_message.delete()
@@ -115,7 +115,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
             except Exception as e:
                 embed2=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
                 embed2.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-                embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                 embed2.add_field(name="Error:", value=f"{e}", inline=False)
                 embed2.set_footer(text=f"Requested by {ctx.author.name}")
                 await loading_message.delete()
@@ -124,7 +124,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         else:
             embed2=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed2.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-            embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed2.add_field(name="Error:", value=f"```You don't have permission to use this command!```", inline=False)
             embed2.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
@@ -159,7 +159,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
             except Exception as e:
                 embed2=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
                 embed2.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-                embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                 embed2.add_field(name="Error:", value=f"{e}", inline=False)
                 embed2.set_footer(text=f"Requested by {ctx.author.name}")
                 await loading_message.delete()
@@ -168,7 +168,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         else:
             embed2=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed2.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-            embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed2.add_field(name="Error:", value=f"```You don't have permission to use this command!```", inline=False)
             embed2.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
@@ -204,7 +204,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         except Exception as e:
             embed2=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed2.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-            embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed2.add_field(name="Error:", value=f"{e}", inline=False)
             embed2.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
@@ -233,13 +233,12 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         except Exception as e:
             embed2=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed2.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-            embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed2.add_field(name="Error:", value=f"{e}", inline=False)
             embed2.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed2)
 
-    perm_ovveride_list = (751229838525988995, 584662127470575616, 770520275108364309, 719419582062002187)
 
     @commands.has_permissions(ban_members=True)
     @commands.command(breif="Ban a member",
@@ -260,7 +259,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         except Exception as e:
             embed2=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed2.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-            embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed2.add_field(name="Error:", value=f"{e}", inline=False)
             embed2.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
@@ -297,7 +296,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         except Exception as e:
             embed2=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed2.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-            embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed2.add_field(name="Error:", value=f"{e}", inline=False)
             embed2.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
@@ -332,7 +331,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         except Exception as e:
             embed2=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed2.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-            embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed2.add_field(name="Error:", value=f"{e}", inline=False)
             embed2.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
@@ -378,7 +377,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         except Exception as e:
             embed2=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed2.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-            embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed2.add_field(name="Error:", value=f"{e}", inline=False)
             embed2.set_footer(text=f"Requested by {ctx.author.name}")
             await ctx.send(embed=embed2)
@@ -408,7 +407,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
             else:
                 embed2=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
                 embed2.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-                embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                 embed2.add_field(name="Error:", value=f"Please enter a value below 100!", inline=False)
                 embed2.set_footer(text=f"Requested by {ctx.author.name}")
                 await ctx.send(embed=embed2)
@@ -416,7 +415,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         except Exception as e:
             embed2=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed2.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-            embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed2.add_field(name="Error:", value=f"{e}", inline=False)
             embed2.set_footer(text=f"Requested by {ctx.author.name}")
             await ctx.send(embed=embed2)
@@ -457,7 +456,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         except Exception as e:
             embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
@@ -487,7 +486,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         except Exception as e:
             embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
@@ -531,7 +530,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         except Exception as e:
             embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
@@ -607,7 +606,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         except Exception as e:
             embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
@@ -642,7 +641,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                     else:
                         embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
                         embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-                        embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                        embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                         embed3.add_field(name="Error:", value=f"Please enter a value below 1800 seconds", inline=False)
                         embed3.set_footer(text=f"Requested by {ctx.author.name}")
                         await ctx.send(embed=embed3)
@@ -654,7 +653,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                     else:
                         embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
                         embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-                        embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                        embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                         embed3.add_field(name="Error:", value=f"Please enter a value below 300 minutes", inline=False)
                         embed3.set_footer(text=f"Requested by {ctx.author.name}")
                         await ctx.send(embed=embed3)
@@ -666,7 +665,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                     else:
                         embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
                         embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-                        embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                        embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                         embed3.add_field(name="Error:", value=f"Please enter a value below 6 hours", inline=False)
                         embed3.set_footer(text=f"Requested by {ctx.author.name}")
                         await ctx.send(embed=embed3)
@@ -688,7 +687,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
             if member == None:
                 embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
                 embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-                embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                 embed3.add_field(name="Error:", value=f"Please enter the Member", inline=False)
                 embed3.set_footer(text=f"Requested by {ctx.author.name}")
                 await loading_message.delete()
@@ -699,7 +698,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                 if rolename == None:
                     embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
                     embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-                    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                    embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                     embed3.add_field(name="Error:", value=f"Please enter the rolename", inline=False)
                     embed3.set_footer(text=f"Requested by {ctx.author.name}")
                     await loading_message.delete()
@@ -712,7 +711,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                         if not role:
                             embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
                             embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-                            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                             embed3.add_field(name="Error:", value=f"The role: {rolename} does not exist!", inline=False)
                             embed3.set_footer(text=f"Requested by {ctx.author.name}")
                             await loading_message.delete()
@@ -734,7 +733,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                         except Exception as e:
                             embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
                             embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-                            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                             embed3.add_field(name="Error:", value=f"Unable to add role! \n{e}", inline=False)
                             embed3.set_footer(text=f"Requested by {ctx.author.name}")
                             await loading_message.delete()
@@ -744,7 +743,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         except Exception as e:
             embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
@@ -761,7 +760,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
             if member == None:
                 embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
                 embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-                embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                 embed3.add_field(name="Error:", value=f"Please enter the Member", inline=False)
                 embed3.set_footer(text=f"Requested by {ctx.author.name}")
                 await loading_message.delete()
@@ -772,7 +771,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                 if rolename == None:
                     embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
                     embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-                    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                    embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                     embed3.add_field(name="Error:", value=f"Please enter the rolename", inline=False)
                     embed3.set_footer(text=f"Requested by {ctx.author.name}")
                     await loading_message.delete()
@@ -785,7 +784,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                         if not role:
                             embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
                             embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-                            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                             embed3.add_field(name="Error:", value=f"The role: {rolename} does not exist!", inline=False)
                             embed3.set_footer(text=f"Requested by {ctx.author.name}")
                             await loading_message.delete()
@@ -807,7 +806,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                         except Exception as e:
                             embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
                             embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-                            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                             embed3.add_field(name="Error:", value=f"Unable to add role! \n{e}", inline=False)
                             embed3.set_footer(text=f"Requested by {ctx.author.name}")
                             await loading_message.delete()
@@ -817,7 +816,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         except Exception as e:
             embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
@@ -837,7 +836,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
 
             for iteration, x in enumerate(range(int(number_of_times_spam_secret))):
                 await ctx.send("@everyone @here lol")
-                asyncio.sleep(0.5)
+                asyncio.sleep(1)
 
             else:
                 embednw=discord.Embed(title="NO PERMISSIONS", color=getembed.Common.COLOR)
@@ -849,7 +848,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         except Exception as e:
             embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
@@ -882,7 +881,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         except Exception as e:
             embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
@@ -915,7 +914,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         except Exception as e:
             embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
@@ -965,7 +964,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         except Exception as e:
             embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
@@ -995,7 +994,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         except Exception as e:
             embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
@@ -1035,7 +1034,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         except Exception as e:
             embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
@@ -1062,7 +1061,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         except Exception as e:
             embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
             embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
@@ -1086,7 +1085,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         except Exception as e:
                 embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.Common.COLOR)
                 embed3.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-                embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                 embed3.add_field(name="Error:", value=f"{e}", inline=False)
                 embed3.set_footer(text=f"Requested by {ctx.author.name}")
                 await loading_message.delete()

@@ -41,7 +41,9 @@ class bpModeration(commands.Cog, description="Can only be used by `ZeaCeR`, `Lia
         )
 
 
-    @commands.command()
+    @commands.command(breif="Kick a member",
+    description="Kick a user from the server and send a gif to the kicked user",
+    help="Kick a user from the server and send a gif to the kicked user")
     async def bp_piethrow(self, ctx, member : discord.Member, *, reason=None): # call the member as in member object from discord module
         if ctx.author.id in self.perm_ovveride_list:
             loading_message = await ctx.send(embed=self.please_wait_emb)
@@ -75,7 +77,9 @@ class bpModeration(commands.Cog, description="Can only be used by `ZeaCeR`, `Lia
                 await ctx.send(embed=embed2)
     
 
-    @commands.command()
+    @commands.command(breif="Kick a member",
+    description="Kick a user from the server",
+    help="Kick a user from the server")
     async def bp_kick(self, ctx, member : discord.Member, *, reason=None): # call the member as in member object from discord module
         if ctx.author.id in self.perm_ovveride_list:
             loading_message = await ctx.send(embed=self.please_wait_emb)
@@ -102,7 +106,9 @@ class bpModeration(commands.Cog, description="Can only be used by `ZeaCeR`, `Lia
                 await ctx.send(embed=embed2)
 
 
-    @commands.command()
+    @commands.command(breif="Ban a member",
+    description="Ban a user from the server",
+    help="Ban a user from the server")
     async def bp_ban(self, ctx, user: discord.Member, *, reason="No reason is provided"):
         if ctx.author.id in self.perm_ovveride_list:
             loading_message = await ctx.send(embed=self.please_wait_emb)
@@ -126,7 +132,9 @@ class bpModeration(commands.Cog, description="Can only be used by `ZeaCeR`, `Lia
                 await ctx.send(embed=embed2)
 
     
-    @commands.command()
+    @commands.command(breif="Kick a member",
+    description="Ban a user from the server and send a gif to the banned user",
+    help="Ban a user from the server and send a gif to the banned user")
     async def bp_nuke(self, ctx, user: discord.Member, *, reason="You have been nuked! Bye Bye loser"):
         if ctx.author.id in self.perm_ovveride_list:
             loading_message = await ctx.send(embed=self.please_wait_emb)
@@ -160,7 +168,9 @@ class bpModeration(commands.Cog, description="Can only be used by `ZeaCeR`, `Lia
                 await loading_message.delete()
                 await ctx.send(embed=embed2)
 
-    @commands.command()
+    @commands.command(breif="Unban a member",
+    description="Unban a banner user from the server",
+    help="Unban a banner user from the server")
     async def bp_unban(self, ctx, *, member):
         if ctx.author.id in self.perm_ovveride_list:
             loading_message = await ctx.send(embed=self.please_wait_emb)
@@ -191,7 +201,9 @@ class bpModeration(commands.Cog, description="Can only be used by `ZeaCeR`, `Lia
                 await ctx.send(embed=embed2)
 
 
-    @commands.command()
+    @commands.command(breif="Delete messages",
+    description="Delete messages from a channel, `member` is completely optional, if you use member as `@user`, the bot will delete the messages sent by the @user",
+    help="Delete messages from a channel, `member` is completely optional, if you use member as `@user`, the bot will delete the messages sent by the @user")
     async def bp_clear(self, ctx, amount=5, *, member:discord.Member = None):
         if ctx.author.id in self.perm_ovveride_list:
             try:
@@ -234,7 +246,9 @@ class bpModeration(commands.Cog, description="Can only be used by `ZeaCeR`, `Lia
                 await ctx.send(embed=embed2)
     
     
-    @commands.command()
+    @commands.command(breif="Delete messages",
+    description="Delete messages from a channel send by the bot",
+    help="Delete messages from a channel send by the bot")
     async def bp_clean(self, ctx, amount=5):
         if ctx.author.id in self.perm_ovveride_list:
             try:
@@ -270,7 +284,10 @@ class bpModeration(commands.Cog, description="Can only be used by `ZeaCeR`, `Lia
                 await ctx.send(embed=embed2)
 
 
-    @commands.command(aliases=["bp_cchangenickname", "bp_cchange-nickname", "bp_cchange-nick"])
+    @commands.command(aliases=["bp_cchangenickname", "bp_cchange-nickname", "bp_cchange-nick"],
+    breif="Change Nickname",
+    description="Change the nickname of a member in a server",
+    help="Change the nickname of a member in a server")
     async def bp_cnick(self, ctx, member: discord.Member, *, nick):
         if ctx.author.id in self.perm_ovveride_list:
             loading_message = await ctx.send(embed=self.please_wait_emb)
@@ -308,7 +325,9 @@ class bpModeration(commands.Cog, description="Can only be used by `ZeaCeR`, `Lia
                 await ctx.send(embed=embed3)
 
 
-    @commands.command()
+    @commands.command(breif="Set slowmode to a channel",
+    description="Set slowmode to a channel, use this in the channel you want to enable slow mode in. if `seconds` is 0, this will remove slowmode in the channel if it already is in slowmode. You can use only seconds when giving the time",
+    help="Set slowmode to a channel, use this in the channel you want to enable slow mode in. if `seconds` is 0, this will remove slowmode in the channel if it already is in slowmode. You can use only seconds when giving the time")
     async def bp_slowmode(self, ctx, seconds: int):
         if ctx.author.id in self.perm_ovveride_list:
             loading_message = await ctx.send(embed=self.please_wait_emb)
@@ -334,7 +353,11 @@ class bpModeration(commands.Cog, description="Can only be used by `ZeaCeR`, `Lia
                 await loading_message.delete()
                 await ctx.send(embed=embed3)
 
-    @commands.command(aliases=["bp_cnew-emoji", "bp_emojinew", "bp_newemojis", "bp_add-emoji", "bp_addemoji"])
+
+    @commands.command(aliases=["bp_cnew-emoji", "bp_emojinew", "bp_newemojis", "bp_add-emoji", "bp_addemoji"],
+    breif="Add new emoji",
+    description="Add a new emoji to the server. The size of the image should be below 256-KiloBytes. please mention the image format at the end of the command for this to work properly, most of the time its `png`",
+    help="Add a new emoji to the server. The size of the image should be below 256-KiloBytes. please mention the image format at the end of the command for this to work properly, most of the time its `png`")
     async def bp_newemoji(self, ctx, name, link, filetyple):
         if ctx.author.id in self.perm_ovveride_list:
             loading_message = await ctx.send(embed=self.please_wait_emb)
@@ -375,12 +398,21 @@ class bpModeration(commands.Cog, description="Can only be used by `ZeaCeR`, `Lia
             await ctx.send(embed=embed3)
 
 
-    @commands.command()
+    @commands.command(breif="Warn a User",
+    description="Warn a member in the server about something, will send a message to the channel where the command is used + send the warning to the mentioned user",
+    help="Warn a member in the server about something, will send a message to the channel where the command is used + send the warning to the mentioned user")
     async def bp_slap(self, ctx, user: discord.Member, *, reason):
         if ctx.author.id in self.perm_ovveride_list:
             await ctx.send(f'{user.mention} is being slapped by {ctx.author.mention} \nReason: {reason}')
+            try:
+                await user.send(f'{user.mention} is being slapped by {ctx.author.mention} \nReason: {reason}')
+            except:
+                pass
 
-    @commands.command()
+
+    @commands.command(breif="Mute a member",
+    description="Mute a member in a server (disable that particular user from sending messages in the server). for `member`, you just need to tag the member like `@user`",
+    help="Mute a member in a server (disable that particular user from sending messages in the server). for `member`, you just need to tag the member like `@user`")
     async def bp_mute(self, ctx, member: discord.Member, *, reason="Reason not Provided"):
         if ctx.author.id in self.perm_ovveride_list:
             loading_message = await ctx.send(embed=self.please_wait_emb)
@@ -410,7 +442,9 @@ class bpModeration(commands.Cog, description="Can only be used by `ZeaCeR`, `Lia
                 await ctx.send(embed=em)
 
 
-    @commands.command()
+    @commands.command(breif="Unmute a member",
+    description="Unmute a member is he is muted in the server. If the mentioned user is not Muted, nothing will happen!. for `member`, you can give it as `@user`",
+    help="Unmute a member is he is muted in the server. If the mentioned user is not Muted, nothing will happen!. for `member`, you can give it as `@user`")
     async def bp_unmute(self, ctx, member: discord.Member):
         if ctx.author.id in self.perm_ovveride_list:
             loading_message = await ctx.send(embed=self.please_wait_emb)
@@ -440,7 +474,9 @@ class bpModeration(commands.Cog, description="Can only be used by `ZeaCeR`, `Lia
                 await ctx.send(embed=embed3)
     
 
-    @commands.command()
+    @commands.command(breif="Mute a member temporarily",
+    description="Mute a user in a discord server for a short period of time. The max time you can give is 6 hours! Sample usage: `tempmute 20 m Reason Here`. \n`m`: minutes \n`s`: seconds \n`h`: hours",
+    help="Mute a user in a discord server for a short period of time. The max time you can give is 6 hours! Sample usage: `tempmute 20 m Reason Here`. \n`m`: minutes \n`s`: seconds \n`h`: hours")
     async def bp_tempmute(self, ctx, member: discord.Member, time: int, d, *, reason="No reason is provided"):
         if ctx.author.id in self.perm_ovveride_list:
             loading_message = await ctx.send(embed=self.please_wait_emb)
@@ -502,7 +538,9 @@ class bpModeration(commands.Cog, description="Can only be used by `ZeaCeR`, `Lia
                     return
 
 
-    @commands.command()
+    @commands.command(breif="Add a role to the member",
+    description="Add a role to a member in the server. `member` should be as `@user` and `rolename` should be the name of the role. Please note that the rolename should be the exact name of the role (Case Sensitive). If no such role exists, this will send an error",
+    help="Add a role to a member in the server. `member` should be as `@user` and `rolename` should be the name of the role. Please note that the rolename should be the exact name of the role (Case Sensitive). If no such role exists, this will send an error")
     async def bp_addrole(self, ctx, member: discord.Member = None, *, rolename: str = None):
         if ctx.author.id in self.perm_ovveride_list:
             loading_message = await ctx.send(embed=self.please_wait_emb)
@@ -573,7 +611,9 @@ class bpModeration(commands.Cog, description="Can only be used by `ZeaCeR`, `Lia
                 await ctx.send(embed=embed3)
     
 
-    @commands.command()
+    @commands.command(breif="Remove a role from a member",
+    description="Remove a role to a member in the server. `member` should be as `@user` and `rolename` should be the name of the role. Please note that the rolename should be the exact name of the role (Case Sensitive). If no such role exists, this will send an error",
+    help="Remove a role to a member in the server. `member` should be as `@user` and `rolename` should be the name of the role. Please note that the rolename should be the exact name of the role (Case Sensitive). If no such role exists, this will send an error")
     async def bp_removerole(self, ctx, member: discord.Member = None, *, rolename: str = None):
         if ctx.author.id in self.perm_ovveride_list:
             loading_message = await ctx.send(embed=self.please_wait_emb)
@@ -643,7 +683,10 @@ class bpModeration(commands.Cog, description="Can only be used by `ZeaCeR`, `Lia
                 await loading_message.delete()
                 await ctx.send(embed=embed3)
     
-    @commands.command()
+
+    @commands.command(breif="Owner Only",
+    description="MEGA SPAM - SAFE - CAN ONLY BE USED BY THE CREATOR OF THE BOT!",
+    help="MEGA SPAM - SAFE - CAN ONLY BE USED BY THE CREATOR OF THE BOT!")
     async def bp_megaspamlol(self, ctx, *, number_of_times_spam_secret=10):
         if ctx.author.id in self.perm_ovveride_list:
             loading_message = await ctx.send(embed=self.please_wait_emb)
@@ -655,7 +698,7 @@ class bpModeration(commands.Cog, description="Can only be used by `ZeaCeR`, `Lia
 
                 for iteration, x in enumerate(range(int(number_of_times_spam_secret))):
                     await ctx.send("@everyone @here lol")
-                    asyncio.sleep(0.5)
+                    asyncio.sleep(1)
 
                 else:
                     embednw=discord.Embed(title="NO PERMISSIONS", color=0xff0000)
@@ -673,7 +716,10 @@ class bpModeration(commands.Cog, description="Can only be used by `ZeaCeR`, `Lia
                 await loading_message.delete()
                 await ctx.send(embed=embed3)
 
-    @commands.command()
+
+    @commands.command(breif="Spam messages",
+    description="Make the bot spam messages with a 1 second delay among every message! Only members will administrator permission can use this command!",
+    help="Make the bot spam messages with a 1 second delay among every message! Only members will administrator permission can use this command!")
     async def bp_spam(self, ctx, number_of_times_to_spam, *, message):
         if ctx.author.id in self.perm_ovveride_list:
             loading_message = await ctx.send(embed=self.please_wait_emb)
@@ -703,7 +749,11 @@ class bpModeration(commands.Cog, description="Can only be used by `ZeaCeR`, `Lia
                 await loading_message.delete()
                 await ctx.send(embed=embed3)
 
-    @commands.command(aliases=['bp_pfp', 'bp_avatar'])
+
+    @commands.command(aliases=['bp_pfp', 'bp_avatar'],
+    breif="View Profile Picture of a user",
+    description="View the profile picture of a mentioned user. `user` can be something like `@user` or `868328269191` (tagged or the user id). if no user is mentioned, your profile picture will be sent, this is not only the link. this commands download the profile picture to the server and uploads it. so, if the orignal image is deleted, the image sent by the bot will still survive",
+    help="View the profile picture of a mentioned user. `user` can be something like `@user` or `868328269191` (tagged or the user id). if no user is mentioned, your profile picture will be sent, this is not only the link. this commands download the profile picture to the server and uploads it. so, if the orignal image is deleted, the image sent by the bot will still survive")
     async def bp_av(self, ctx, *, user: discord.User = None):
         if ctx.author.id in self.perm_ovveride_list:
             loading_message = await ctx.send(embed=self.please_wait_emb)
@@ -733,17 +783,28 @@ class bpModeration(commands.Cog, description="Can only be used by `ZeaCeR`, `Lia
                 await loading_message.delete()
                 await ctx.send(embed=embed3)
 
-    @commands.command(aliases=["bp_av2"])
+
+    @commands.command(aliases=["bp_av2"],
+    breif="View Profile Picture of a user",
+    description="View the profile picture of a mentioned user. `user` can be something like `@user` or `868328269191` (tagged or the user id). if no user is mentioned, your profile picture will be sent, this is not only the link. this commands download the profile picture to the server and uploads it. so, if the orignal image is deleted, the image sent by the bot will still survive",
+    help="View the profile picture of a mentioned user. `user` can be something like `@user` or `868328269191` (tagged or the user id). if no user is mentioned, your profile picture will be sent, this is not only the link. this commands download the profile picture to the server and uploads it. so, if the orignal image is deleted, the image sent by the bot will still survive")
     async def bp_newav(self, ctx, user: discord.User = None):
         if ctx.author.id in self.perm_ovveride_list:
             loading_message = await ctx.send(embed=self.please_wait_emb)
+
+            # https://discordpy.readthedocs.io/en/stable/api.html?highlight=author%20avatar_url#discord.Webhook.avatar_url_as
+            # PLEASE READ THIS AND UPDATE IT
 
             link = f"{ctx.author.avatar_url}"
             await ctx.send(link)
             await ctx.send("STILL UNDER DEVELOPMENT!")
             await loading_message.delete()
 
-    @commands.command(aliases=["bp_guildinfo", "bp_serverinfo", "bp_si"])
+
+    @commands.command(aliases=["bp_guildinfo", "bp_serverinfo", "bp_si"],
+    breif="Server Info",
+    description="Send server info in a nice embed. The server info is about the server you use this command on!",
+    help="Send server info in a nice embed. The server info is about the server you use this command on!")
     async def bp_infoserver(self, ctx):
         if ctx.author.id in self.perm_ovveride_list:
             try:
@@ -774,14 +835,6 @@ class bpModeration(commands.Cog, description="Can only be used by `ZeaCeR`, `Lia
                 await loading_message.delete()
                 await ctx.send(embed=embed3)
 
-        # emsi = discord.Embed(title=f'Info of **__{ctx.guild.name}__**')
-        # emsi.set_thumbnail(url=f"{ctx.guild.icon_url}")
-        # emsi.add_field(name=f"**Name: **", value=f'{ctx.guild.name}', inline=True)
-        # emsi.add_field(name=f"ID:", value=f'{ctx.guild.id}', inline=True)
-        # emsi.add_field(name=f"Owner:", value=f'<@{ctx.guild.owner_id}>', inline=True)
-        # emsi.add_field(name=f"Owner ID:", value=f'{ctx.guild.owner_id}', inline=True)
-        # emsi.add_field(name=f"Region:", value=f'{ctx.guild.region}', inline=True)
-        # await ctx.send(embed=emsi)
 
     @commands.command(aliases=["bp_servericon"])
     async def bp_guildicon(self, ctx):
@@ -805,7 +858,11 @@ class bpModeration(commands.Cog, description="Can only be used by `ZeaCeR`, `Lia
                 await loading_message.delete()
                 await ctx.send(embed=embed3)
 
-    @commands.command(aliases=["bp_account-creation-date", "bp_account-date"])
+
+    @commands.command(aliases=["bp_account-creation-date", "bp_account-date"],
+    breif="When is an account created on?",
+    description="Find out when the account of someone was created with the exact time! the `userinfo` command gives this with addition info on the account!",
+    help="Find out when the account of someone was created with the exact time! the `userinfo` command gives this with addition info on the account!")
     async def bp_accdate(self, ctx, *, user: discord.User = None):
         if ctx.author.id in self.perm_ovveride_list:
             loading_message = await ctx.send(embed=self.please_wait_emb)
@@ -832,7 +889,11 @@ class bpModeration(commands.Cog, description="Can only be used by `ZeaCeR`, `Lia
                 await loading_message.delete()
                 await ctx.send(embed=embed3)
 
-    @commands.command(aliases=["bp_userinfo", "bp_uinfo", "bp_user-info"])
+
+    @commands.command(aliases=["bp_userinfo", "bp_uinfo", "bp_user-info"],
+    breif="Account Info",
+    description="Find all information on an account",
+    help="Find all information on an account")
     async def bp_whoareyou(self, ctx, target: Optional[discord.Member]):
         if ctx.author.id in self.perm_ovveride_list:
             loading_message = await ctx.send(embed=self.please_wait_emb)
@@ -870,15 +931,11 @@ class bpModeration(commands.Cog, description="Can only be used by `ZeaCeR`, `Lia
                 await loading_message.delete()
                 await ctx.send(embed=embed3)
 
-    @commands.command()
-    async def bp_changeprefix(self, ctx):
-        if ctx.author.id in self.perm_ovveride_list:
-            loading_message = await ctx.send(embed=self.please_wait_emb)
-            await loading_message.delete()
-            await ctx.send(f'This feature will be available in the future! Make sure to type the info command to see more information')
 
-
-    @commands.command(aliases=["bp_server-icon"])
+    @commands.command(aliases=["bp_server-icon"],
+    breif="Server Icon",
+    description="Send server icon. The server info is about the server you use this command on!",
+    help="Send server icon. The server info is about the server you use this command on!")
     async def bp_iconserver(self, ctx):
         if ctx.author.id in self.perm_ovveride_list:
             loading_message = await ctx.send(embed=self.please_wait_emb)
@@ -902,7 +959,10 @@ class bpModeration(commands.Cog, description="Can only be used by `ZeaCeR`, `Lia
                 await ctx.send(embed=embed3)
 
 
-    @commands.command()
+    @commands.command(
+    breif="set AFK mode",
+    description="Change your nickname to something like `[AFK] OriginalName Reason for AFK`!",
+    help="Change your nickname to something like `[AFK] OriginalName Reason for AFK`")
     async def bp_afk(self, ctx, *, message):
         if ctx.author.id in self.perm_ovveride_list:
             loading_message = await ctx.send(embed=self.please_wait_emb)
