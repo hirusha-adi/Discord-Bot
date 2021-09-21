@@ -2246,9 +2246,9 @@ class FakeInformation(commands.Cog, description="Generate fake/random informatio
                         emf2.add_field(name="Vehicle Infromation", value=f"**Year:** {vinfo['Year']} \n**Make:** {vinfo['Make']} \n**Model:** {vinfo['Model']} \n**Category:** {vinfo['Category']}")
 
                 except Exception as e:
-                    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+                    embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
                     embed3.set_author(name=getembed.FakeEmbeds.AUTHOR_NAME, icon_url=getembed.FakeEmbeds.AUTHOR_LINK)
-                    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                    embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                     embed3.add_field(name="Error:", value=f"{e}", inline=False)
                     embed3.set_footer(text=f"Requested by {ctx.author.name}")
                     await loading_message.delete()
@@ -2317,9 +2317,9 @@ class FakeInformation(commands.Cog, description="Generate fake/random informatio
                         emf2.add_field(name="Machine Infromation", value=f"**Year:** {vinfo['Year']} \n**Make:** {vinfo['Make']} \n**Model:** {vinfo['Model']} \n**Category:** {vinfo['Category']}")
 
                 except Exception as e:
-                    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+                    embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
                     embed3.set_author(name=getembed.FakeEmbeds.AUTHOR_NAME, icon_url=getembed.FakeEmbeds.AUTHOR_LINK)
-                    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                    embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                     embed3.add_field(name="Error:", value=f"{e}", inline=False)
                     embed3.set_footer(text=f"Requested by {ctx.author.name}")
                     await loading_message.delete()
@@ -2433,9 +2433,9 @@ class FakeInformation(commands.Cog, description="Generate fake/random informatio
                 await ctx.send(embed=embed)
 
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
             embed3.set_author(name=getembed.FakeEmbeds.AUTHOR_NAME, icon_url=getembed.FakeEmbeds.AUTHOR_LINK)
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
@@ -2459,9 +2459,9 @@ class FakeInformation(commands.Cog, description="Generate fake/random informatio
             await ctx.send(embed=embed)
 
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
             embed3.set_author(name=getembed.FakeEmbeds.AUTHOR_NAME, icon_url=getembed.FakeEmbeds.AUTHOR_LINK)
-            embed3.set_thumbnail(url="https://media.discordapp.net/attachments/877796755234783273/880745781966037032/new-scrabble-words-2018-beatdown-5657-57124c9f228c0258d65053fe7d3891491x.jpg")
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.add_field(name="Possible Fix:", value=f"You must have only one '||' part for the whole message for the bot to divide the string", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")

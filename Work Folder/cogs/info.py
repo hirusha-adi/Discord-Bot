@@ -83,7 +83,7 @@ class Information(commands.Cog, description="Gather information easily without l
             r = requests.get(f"https://ipapi.co/{ip_from_user}/json").json()
             rc = requests.get(f"https://api.worldbank.org/v2/country/{r['country_code']}?format=json").json()
 
-            embed=discord.Embed(title="IP Information", color=0xff0000)
+            embed=discord.Embed(title="IP Information", color=getembed.Common.COLOR)
             embed.set_thumbnail(url="https://user-images.githubusercontent.com/36286877/127773181-c98b63be-b18b-4d8b-a8b6-9426bd031b7c.png")
             embed.set_footer(text=f"Requested by {ctx.author.name}")
             embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
@@ -114,7 +114,7 @@ class Information(commands.Cog, description="Gather information easily without l
         try:
             rc = requests.get(f"https://api.worldbank.org/v2/country/{countrycodeig}?format=json").json()
 
-            embed=discord.Embed(title="Country Information", color=0xff0000)
+            embed=discord.Embed(title="Country Information", color=getembed.Common.COLOR)
             embed.set_thumbnail(url="https://user-images.githubusercontent.com/36286877/129850352-33345963-273b-42bf-b2bc-5523c8158229.png")
             embed.set_footer(text=f"Requested by {ctx.author.name}")
             embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
@@ -199,7 +199,7 @@ class Information(commands.Cog, description="Gather information easily without l
             deaths = data["deaths"]
             recovered = data["recovered"]
             
-            em = discord.Embed(title="COVID-19 Stats Global - Low Info", color=0xff0000)
+            em = discord.Embed(title="COVID-19 Stats Global - Low Info", color=getembed.Common.COLOR)
             em.set_footer(text=f"Requested by {ctx.author.name}")
             em.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             em.set_thumbnail(url="https://www.apsf.org/wp-content/uploads/newsletters/2020/3502/coronavirus-covid-19.png")
@@ -241,7 +241,7 @@ class Information(commands.Cog, description="Gather information easily without l
             local_recovered = data['local_recovered']
             local_active_cases = data['local_active_cases']
             
-            em = discord.Embed(title="COVID-19 Statistics - Sri Lanka", color=0xff0000)
+            em = discord.Embed(title="COVID-19 Statistics - Sri Lanka", color=getembed.Common.COLOR)
             em.set_footer(text=f"Requested by {ctx.author.name}")
             em.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             em.set_thumbnail(url="https://www.apsf.org/wp-content/uploads/newsletters/2020/3502/coronavirus-covid-19.png")
@@ -288,7 +288,7 @@ class Information(commands.Cog, description="Gather information easily without l
             total_pcr_testing_count = data['total_pcr_testing_count']
             total_antigen_testing_count = data['total_antigen_testing_count']
             
-            em = discord.Embed(title="COVID-19 Stats Global - All Info", color=0xff0000)
+            em = discord.Embed(title="COVID-19 Stats Global - All Info", color=getembed.Common.COLOR)
             em.set_footer(text=f"Requested by {ctx.author.name}")
             em.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             em.set_thumbnail(url="https://www.apsf.org/wp-content/uploads/newsletters/2020/3502/coronavirus-covid-19.png")
@@ -320,7 +320,7 @@ class Information(commands.Cog, description="Gather information easily without l
     async def wiki(self, ctx, *, word_to_search):
         loading_message = await ctx.send(embed=self.please_wait_emb)
         try:
-            embed=discord.Embed(title="Wikipedia Search", description="Search Wikipedia without visiting!", color=0xff0000)
+            embed=discord.Embed(title="Wikipedia Search", description="Search Wikipedia without visiting!", color=getembed.Common.COLOR)
             embed.set_footer(text=f"Requested by {ctx.author.name}")
             embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             # embed.add_field(name="Content", value=f"``` {search_wikipedia(word_to_search)} ```", inline=True)
@@ -347,7 +347,7 @@ class Information(commands.Cog, description="Gather information easily without l
         try:
             r = requests.get('http://api.macvendors.com/' + mac)
 
-            embed=discord.Embed(title="MAC Lookup", color=0xff0000)
+            embed=discord.Embed(title="MAC Lookup", color=getembed.Common.COLOR)
             embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(url="https://regmedia.co.uk/2016/09/22/wifi_icon_shutterstock.jpg?x=1200&y=794")
             embed.add_field(name="Result", value=f"{r.text}", inline=False)
@@ -378,7 +378,7 @@ class Information(commands.Cog, description="Gather information easily without l
             usd = r['USD']
             eur = r['EUR']
 
-            embed=discord.Embed(title="Bitcoin", color=0xff0000)
+            embed=discord.Embed(title="Bitcoin", color=getembed.Common.COLOR)
             embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(url="https://cdn.pixabay.com/photo/2013/12/08/12/12/bitcoin-225079_960_720.png")
             embed.add_field(name="USD", value=f"{usd}$", inline=False)
@@ -411,7 +411,7 @@ class Information(commands.Cog, description="Gather information easily without l
             usd = r['USD']
             eur = r['EUR']
 
-            embed=discord.Embed(title="Ethereum", color=0xff0000)
+            embed=discord.Embed(title="Ethereum", color=getembed.Common.COLOR)
             embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/271256875205525504/374282740218200064/2000px-Ethereum_logo.png")
             embed.add_field(name="USD", value=f"{usd}$", inline=False)
@@ -444,7 +444,7 @@ class Information(commands.Cog, description="Gather information easily without l
             eur = NegroPuketDOGE['EUR']
             usd = NegroPuketDOGE['USD']
 
-            embed=discord.Embed(title="Doge Coin", color=0xff0000)
+            embed=discord.Embed(title="Doge Coin", color=getembed.Common.COLOR)
             embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879741979183968286/Dogecoin_Logo.png")
             embed.add_field(name="USD", value=f"{usd}", inline=False)
@@ -477,7 +477,7 @@ class Information(commands.Cog, description="Gather information easily without l
             eur = NegroPuket['EUR']
             usd = NegroPuket['USD']
 
-            embed=discord.Embed(title="XMR", color=0xff0000)
+            embed=discord.Embed(title="XMR", color=getembed.Common.COLOR)
             embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879739662837633074/monero-logo-png-transparent.png")
             embed.add_field(name="USD", value=f"{usd}", inline=False)
@@ -509,7 +509,7 @@ class Information(commands.Cog, description="Gather information easily without l
             eur = kekistan['EUR']
             usd = kekistan['USD']
 
-            embed=discord.Embed(title="Doge Coin", color=0xff0000)
+            embed=discord.Embed(title="Doge Coin", color=getembed.Common.COLOR)
             embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879741815237017680/52.png")
             embed.add_field(name="USD", value=f"{usd}", inline=False)
@@ -569,7 +569,7 @@ class Information(commands.Cog, description="Gather information easily without l
             evolutionsLine = family["evolutionLine"]
 
             if mode == "new":
-                embed=discord.Embed(title="Pokemon!", color=0xff0000)
+                embed=discord.Embed(title="Pokemon!", color=getembed.Common.COLOR)
                 embed.set_thumbnail(url=str(normal_sprites))
                 embed.add_field(name="General", value="**+ Name:** " + str(name) + "\n**+ ID:** " + str(id) + "\n**+ Type:** " + str(typep) + "\n**+ Species:** " + str(species) + "\n**+ Abilities:** " + str(abilities) + "\n**+Height:** " + str(height) + "\n**+ Weight:** " + str(weight) + "\n**+ Base Experience:** " + str(base_experience) + "\n**+ Gender:** " + str(gender) + "\n**Egg Group:** " + str(egg_group), inline=False)
                 embed.add_field(name="Stats", value="**+ HP:** " + str(hp) + "\n**+ Attack:** " + str(attack) + "\n**+ Defense:** " + str(defense) + "\n**+ SP Attack:** " + str(sp_atk) + "\n**+ SP Defense:** " + str(sp_def) + "\n**+ Total:** " + str(total), inline=False)
@@ -630,7 +630,7 @@ class Information(commands.Cog, description="Gather information easily without l
             r = requests.get(weblink)
             c = r.json()
 
-            embed=discord.Embed(title="Minecraft Account Info", color=0xff0000)
+            embed=discord.Embed(title="Minecraft Account Info", color=getembed.Common.COLOR)
             embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/880022933706260530/418cEZfh8-L.jpg")
             embed.add_field(name="Username", value=f"{c['username']}", inline=False)
@@ -676,7 +676,7 @@ class Information(commands.Cog, description="Gather information easily without l
                 embed = discord.Embed(
                     title = "No search argument!",
                     description = "You havent entered anything, so i couldnt find lyrics!",
-                    color=0xff0000
+                    color=getembed.Common.COLOR
                 )
                 try:
                     await loading_message.delete()
@@ -717,7 +717,7 @@ class Information(commands.Cog, description="Gather information easily without l
                 embed = discord.Embed(
                     title = songTitle,
                     description = chunk,
-                    color = 0xff0000,
+                    color = getembed.Common.COLOR,
                     timestamp = datetime.datetime.utcnow()
                 )
                 embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
@@ -972,7 +972,7 @@ class Information(commands.Cog, description="Gather information easily without l
                 covid_request_url = urllib.request.Request(f'https://api.covid19api.com/dayone/country/{country}')
                 request_result = json.loads(urllib.request.urlopen(covid_request_url).read().decode('utf-8'))
             except Exception as e:
-                embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+                embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
                 embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                 embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
                 embed3.add_field(name="Error:", value=f"{e}", inline=False)

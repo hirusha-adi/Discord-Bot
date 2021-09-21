@@ -133,9 +133,9 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
                 try:
                     jokeit = c["setup"]
                 except Exception as e:
-                    embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
+                    embed2=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
                     embed2.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-                    embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                    embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                     embed2.add_field(name="Error:", value=f"{e}", inline=False)
                     embed2.set_footer(text=f"Requested by {ctx.author.name}")
                     await loading_message.delete()

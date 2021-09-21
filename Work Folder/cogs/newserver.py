@@ -1,6 +1,9 @@
 import discord
 from discord.ext import commands
 
+import database.retrieve_embeds as getembed
+
+
 class ServerSetup(commands.Cog):
     def __init__(self, client: commands.Bot):
         self.client = client
@@ -9,10 +12,10 @@ class ServerSetup(commands.Cog):
         # self.start_time = None
         
         # This is the please-wait/Loading embed
-        self.please_wait_emb = discord.Embed(title="Please Wait", description="``` Processing Your Request ```", color=0xff0000)
-        self.please_wait_emb.set_author(name="YourBot")
-        self.please_wait_emb.set_thumbnail(url="https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif")
-        self.please_wait_emb.set_footer(text="Bot created by ZeaCeR#5641")
+        self.please_wait_emb = discord.Embed(title=getembed.PleaseWait.TITLE, description=f"``` {getembed.PleaseWait.DESCRIPTION} ```", color=getembed.PleaseWait.COLOR)
+        self.please_wait_emb.set_author(name=getembed.PleaseWait.AUTHOR_NAME, icon_url=getembed.PleaseWait.AUTHOR_LINK)
+        self.please_wait_emb.set_thumbnail(url=getembed.PleaseWait.THUMBNAIL)
+        self.please_wait_emb.set_footer(text=getembed.PleaseWait.FOOTER)
 
 
     @commands.has_permissions(administrator=True)
@@ -310,11 +313,11 @@ class ServerSetup(commands.Cog):
                     read_message_history=False)
                 await guild.create_role(name="Rookie", permissions=perms1)
             
-            embed = discord.Embed(title=f'Server Roles Starter Template', description=f'Requested by {ctx.author.mention}', color=0xff0000)
-            embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/856461730695217172/868832176496594944/Avatar.png")
+            embed = discord.Embed(title=f'Server Roles - Starter Template', description=f'Requested by {ctx.author.mention}', color=getembed.Common.COLOR)
+            embed.set_thumbnail(url=getembed.Common.AUTHOR_LINK)
             embed.add_field(name="Created Roles", value=f'Owner\nAdministrator\nBOT\nModerator\nSenior\nJunior\nRookie', inline=False)
+            embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             all_roles_in_server = ", ".join([str(r.mention) for r in ctx.guild.roles])
-            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
             embed.add_field(name="Roles in the server", value=f'{all_roles_in_server}', inline=False)
             embed.set_footer(text=f"Requested by {ctx.author.name}")
             # embed.set_footer(text=datetime.datetime.now())
@@ -322,13 +325,13 @@ class ServerSetup(commands.Cog):
             await ctx.send(embed=embed)
         
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
-            embed3.add_field(name="Error:", value=f"{e}", inline=False)
-            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            embed2=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed2.set_author(getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
+            embed2.add_field(name="Error:", value=f"{e}", inline=False)
+            embed2.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
-            await ctx.send(embed=embed3)
+            await ctx.send(embed=embed2)
 
 
 

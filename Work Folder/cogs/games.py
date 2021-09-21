@@ -44,7 +44,7 @@ class Games(commands.Cog):
                         'Maybe',
                         'There is a good chance']
 
-            answer = randomchoice(responses, color=0xff0000)
+            answer = randomchoice(responses, color=getembed.Common.COLOR)
             embed = discord.Embed()
             embed.add_field(name="Question", value=question, inline=False)
             embed.add_field(name="Answer", value=answer, inline=False)
@@ -97,7 +97,7 @@ class Games(commands.Cog):
                     "will get killed by stray dogs"
                     )
             if member == "none":
-                embed=discord.Embed(title="Death...??", color=0xff0000)
+                embed=discord.Embed(title="Death...??", color=getembed.Common.COLOR)
                 embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                 embed.set_footer(text=f"Requested by {ctx.author.name}")
                 embed.add_field(name=f"{ctx.author.name}", value=f"{randomchoice(dying_methods)}.", inline=False)
@@ -105,7 +105,7 @@ class Games(commands.Cog):
                 await ctx.send(embed=embed)
 
             else:
-                embed=discord.Embed(title="Death...??", color=0xff0000)
+                embed=discord.Embed(title="Death...??", color=getembed.Common.COLOR)
                 embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                 embed.set_footer(text="Requested by {ctx.author.name}")
                 embed.add_field(name=f"{member.name}", value=f"{randomchoice(dying_methods)}.", inline=False)
@@ -113,9 +113,9 @@ class Games(commands.Cog):
                 await ctx.send(embed=embed)
         
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
             embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
@@ -131,36 +131,20 @@ class Games(commands.Cog):
 
         try:
             responses = ["🍋" , "🍊", "🍉", ":seven:", ]
-            embed=discord.Embed(title="🎰 Slot Machine 🎰", description=randomchoice(responses) + randomchoice(responses) + randomchoice(responses), color=0xFF0000)
+            embed=discord.Embed(title="🎰 Slot Machine 🎰", description=randomchoice(responses) + randomchoice(responses) + randomchoice(responses), color=getembed.Common.COLOR)
             embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_footer(text="You need triple 7's to win.")
             await loading_message.delete()
             await ctx.send(embed=embed)
         
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
             embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed3)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

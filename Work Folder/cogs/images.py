@@ -35,7 +35,7 @@ class Images(commands.Cog):
             res = r.json()
 
             if user == None:
-                em = discord.Embed(description="User is not mentioned!", color=0xff0000)
+                em = discord.Embed(description="User is not mentioned!", color=getembed.Common.COLOR)
                 em.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                 em.set_footer(text=f"Requested by {ctx.author.name}")
                 em.set_image(url=res['url'])
@@ -43,7 +43,7 @@ class Images(commands.Cog):
                 await ctx.send(embed=em)
             
             else:
-                em = discord.Embed(description=user.mention, color=0xff0000)
+                em = discord.Embed(description=user.mention, color=getembed.Common.COLOR)
                 em.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                 em.set_footer(text=f"Requested by {ctx.author.name}")
                 em.set_image(url=res['url'])
@@ -69,7 +69,7 @@ class Images(commands.Cog):
             res = r.json()
 
             if user == None:
-                em = discord.Embed(description="User is not mentioned!", color=0xff0000)
+                em = discord.Embed(description="User is not mentioned!", color=getembed.Common.COLOR)
                 em.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                 em.set_footer(text=f"Requested by {ctx.author.name}")
                 em.set_image(url=res['url'])
@@ -77,7 +77,7 @@ class Images(commands.Cog):
                 await ctx.send(embed=em)
 
             else:
-                em = discord.Embed(description=user.mention, color=0xff0000)
+                em = discord.Embed(description=user.mention, color=getembed.Common.COLOR)
                 em.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                 em.set_footer(text=f"Requested by {ctx.author.name}")
                 em.set_image(url=res['url'])
@@ -104,14 +104,14 @@ class Images(commands.Cog):
             res = r.json()
 
             if user == None:
-                em = discord.Embed(description="User is not mentioned!", color=0xff0000)
+                em = discord.Embed(description="User is not mentioned!", color=getembed.Common.COLOR)
                 em.set_image(url=res['url'])
                 em.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                 em.set_footer(text=f"Requested by {ctx.author.name}")
                 await loading_message.delete()
                 await ctx.send(embed=em)
             else:
-                em = discord.Embed(description=user.mention, color=0xff0000)
+                em = discord.Embed(description=user.mention, color=getembed.Common.COLOR)
                 em.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                 em.set_footer(text=f"Requested by {ctx.author.name}")
                 em.set_image(url=res['url'])
@@ -137,7 +137,7 @@ class Images(commands.Cog):
             r = requests.get("https://nekos.life/api/v2/img/hug")
             res = r.json()
             if user == None:
-                em = discord.Embed(description="User is not mentioned!", color=0xff0000)
+                em = discord.Embed(description="User is not mentioned!", color=getembed.Common.COLOR)
                 em.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                 em.set_footer(text=f"Requested by {ctx.author.name}")
                 em.set_image(url=res['url'])
@@ -145,7 +145,7 @@ class Images(commands.Cog):
                 await ctx.send(embed=em)
 
             else:
-                em = discord.Embed(description="user.mention", color=0xff0000)
+                em = discord.Embed(description="user.mention", color=getembed.Common.COLOR)
                 em.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                 em.set_footer(text=f"Requested by {ctx.author.name}")
                 em.set_image(url=res['url'])
@@ -173,7 +173,7 @@ class Images(commands.Cog):
             res = r.json()
 
             if user == None:
-                em = discord.Embed(description="User is not mentioned!", color=0xff0000)
+                em = discord.Embed(description="User is not mentioned!", color=getembed.Common.COLOR)
                 em.set_image(url=res['url'])
                 em.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                 em.set_footer(text=f"Requested by {ctx.author.name}")
@@ -181,7 +181,7 @@ class Images(commands.Cog):
                 await ctx.send(embed=em)
 
             else:
-                em = discord.Embed(description=user.mention, color=0xff0000)
+                em = discord.Embed(description=user.mention, color=getembed.Common.COLOR)
                 em.set_image(url=res['url'])
                 em.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                 em.set_footer(text=f"Requested by {ctx.author.name}")
@@ -209,7 +209,7 @@ class Images(commands.Cog):
             res = r.json()
 
             if user == None:
-                em = discord.Embed(description="User is not mentioned!", color=0xff0000)
+                em = discord.Embed(description="User is not mentioned!", color=getembed.Common.COLOR)
                 em.set_image(url=res['url'])
                 em.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                 em.set_footer(text=f"Requested by {ctx.author.name}")
@@ -217,7 +217,7 @@ class Images(commands.Cog):
                 await ctx.send(embed=em)
 
             else:
-                em = discord.Embed(description=user.mention, color=0xff0000)
+                em = discord.Embed(description=user.mention, color=getembed.Common.COLOR)
                 em.set_image(url=res['url'])
                 em.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                 em.set_footer(text=f"Requested by {ctx.author.name}")
@@ -237,26 +237,26 @@ class Images(commands.Cog):
     description="send a Image/GIF",
     help="send a Image/GIF")
     async def erofeet(self, ctx):
-      loading_message = await ctx.send(embed=self.please_wait_emb)
-    
-      try:
-        r = requests.get("https://nekos.life/api/v2/img/erofeet")
-        res = r.json()
-        em = discord.Embed(color=0xff0000)
-        em.set_footer(text=f"Requested by {ctx.author.name}")
-        em.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-        em.set_image(url=res['url'])
-        await loading_message.delete()
-        await ctx.send(embed=em)
-    
-      except Exception as e:
-        embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-        embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-        embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
-        embed3.add_field(name="Error:", value=f"{e}", inline=False)
-        embed3.set_footer(text=f"Requested by {ctx.author.name}")
-        await loading_message.delete()
-        await ctx.send(embed=embed3)
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+        
+        try:
+            r = requests.get("https://nekos.life/api/v2/img/erofeet")
+            res = r.json()
+            em = discord.Embed(color=getembed.Common.COLOR)
+            em.set_footer(text=f"Requested by {ctx.author.name}")
+            em.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            em.set_image(url=res['url'])
+            await loading_message.delete()
+            await ctx.send(embed=em)
+        
+        except Exception as e:
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
     
 
     @commands.command(breif="send a Image/GIF",
@@ -270,7 +270,7 @@ class Images(commands.Cog):
             res = r.json()
 
             if user == None:
-                em = discord.Embed(description="User is not mentioned!", color=0xff0000)
+                em = discord.Embed(description="User is not mentioned!", color=getembed.Common.COLOR)
                 em.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                 em.set_footer(text=f"Requested by {ctx.author.name}")
                 em.set_image(url=res['url'])
@@ -278,7 +278,7 @@ class Images(commands.Cog):
                 await ctx.send(embed=em)
             
             else:
-                em = discord.Embed(description=user.mention, color=0xff0000)
+                em = discord.Embed(description=user.mention, color=getembed.Common.COLOR)
                 em.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                 em.set_footer(text=f"Requested by {ctx.author.name}")
                 em.set_image(url=res['url'])
@@ -304,7 +304,7 @@ class Images(commands.Cog):
         try:
             r = requests.get("https://some-random-api.ml/meme").json()
 
-            embed = discord.Embed(color=0xff0000)
+            embed = discord.Embed(color=getembed.Common.COLOR)
             embed.set_author(name="a Meme.", icon_url="https://freepngimg.com/thumb/internet_meme/3-2-troll-face-meme-png-thumb.png") 
             
             try:
@@ -337,7 +337,7 @@ class Images(commands.Cog):
             r = requests.get('https://some-random-api.ml/img/pikachu')
             c = r.json()
             fact = c["link"]
-            em = discord.Embed(title='a Pickachu', color=0xff0000)
+            em = discord.Embed(title='a Pickachu', color=getembed.Common.COLOR)
             em.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             em.set_image(url=fact)
             em.set_footer(text=f"Requested by {ctx.author.name}")
@@ -365,7 +365,7 @@ class Images(commands.Cog):
             r = requests.get('https://some-random-api.ml/animu/wink')
             c = r.json()
             fact = c["link"]
-            em = discord.Embed(title='a wink', color=0xff0000)
+            em = discord.Embed(title='a wink', color=getembed.Common.COLOR)
             em.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             em.set_image(url=fact)
             em.set_footer(text=f"Requested by {ctx.author.name}")
@@ -392,7 +392,7 @@ class Images(commands.Cog):
         try:
             weblink = 'https://some-random-api.ml/canvas/gay?avatar=' + messagelink
             r = requests.get(weblink)
-            em = discord.Embed(title='Gay Picture', color=0xff0000)
+            em = discord.Embed(title='Gay Picture', color=getembed.Common.COLOR)
             em.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             em.set_image(url=weblink)
             em.set_footer(text=f"Requested by {ctx.author.name}")
@@ -418,7 +418,7 @@ class Images(commands.Cog):
 
         try:
             weblink = 'https://some-random-api.ml/canvas/glass/?avatar=' + messagelink
-            em = discord.Embed(title='Glassy Picture', color=0xff0000)
+            em = discord.Embed(title='Glassy Picture', color=getembed.Common.COLOR)
             em.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             em.set_image(url=weblink)
             em.set_footer(text=f"Requested by {ctx.author.name}")
@@ -443,12 +443,12 @@ class Images(commands.Cog):
     breif="Add effects/overlays to a image",
     description="Add effects/overlays to any image given! the link of the image should be direct!",
     help="Add effects/overlays to any image given! the link of the image should be direct!")
-    async def wasted(self, ctx, *, messagelink, color=0xff0000):
+    async def wasted(self, ctx, *, messagelink, color=getembed.Common.COLOR):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
         try:
             weblink = 'https://some-random-api.ml/canvas/glass/?avatar=' + messagelink
-            em = discord.Embed(title='a Wasted Picture', color=0xff0000)
+            em = discord.Embed(title='a Wasted Picture', color=getembed.Common.COLOR)
             em.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             em.set_image(url=weblink)
             em.set_footer(text=f"Requested by {ctx.author.name}")
@@ -474,7 +474,7 @@ class Images(commands.Cog):
 
         try:
             weblink = 'https://some-random-api.ml/canvas/triggered?avatar=' + messagelink
-            em = discord.Embed(title='a TRIGGERED Picture', color=0xff0000)
+            em = discord.Embed(title='a TRIGGERED Picture', color=getembed.Common.COLOR)
             em.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             em.set_image(url=weblink)
             em.set_footer(text=f"Requested by {ctx.author.name}")
@@ -500,7 +500,7 @@ class Images(commands.Cog):
 
         try:
             weblink = 'https://some-random-api.ml/canvas/greyscale?avatar=' + messagelink
-            em = discord.Embed(title='a Black and White Picture', color=0xff0000)
+            em = discord.Embed(title='a Black and White Picture', color=getembed.Common.COLOR)
             em.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             em.set_image(url=weblink)
             em.set_footer(text=f"Requested by {ctx.author.name}")
@@ -526,7 +526,7 @@ class Images(commands.Cog):
 
         try:
             weblink = 'https://some-random-api.ml/canvas/invert?avatar=' + messagelink
-            em = discord.Embed(title='a Inverted Picture', color=0xff0000)
+            em = discord.Embed(title='a Inverted Picture', color=getembed.Common.COLOR)
             em.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             em.set_image(url=weblink)
             em.set_footer(text=f"Requested by {ctx.author.name}")
@@ -552,7 +552,7 @@ class Images(commands.Cog):
 
         try:
             weblink = 'https://some-random-api.ml/canvas/brightness?avatar=' + messagelink
-            em = discord.Embed(title='a Brightened Picture', color=0xff0000)
+            em = discord.Embed(title='a Brightened Picture', color=getembed.Common.COLOR)
             em.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             em.set_image(url=weblink)
             em.set_footer(text=f"Requested by {ctx.author.name}")
@@ -560,12 +560,11 @@ class Images(commands.Cog):
             await ctx.send(embed=em)
         
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
             embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
-            em.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed3)
 
@@ -579,7 +578,7 @@ class Images(commands.Cog):
 
         try:
             weblink = 'https://some-random-api.ml/canvas/threshold?avatar=' + messagelink
-            em = discord.Embed(title='a Threshold Picture', color=0xff0000)
+            em = discord.Embed(title='a Threshold Picture', color=getembed.Common.COLOR)
             em.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             em.set_image(url=weblink)
             em.set_footer(text=f"Requested by {ctx.author.name}")
@@ -587,12 +586,11 @@ class Images(commands.Cog):
             await ctx.send(embed=em)
 
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
             embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
-            em.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed3)
 
@@ -606,7 +604,7 @@ class Images(commands.Cog):
 
         try:
             weblink = 'https://some-random-api.ml/canvas/greyscale?avatar=' + messagelink
-            em = discord.Embed(title='a Sepia Picture', color=0xff0000)
+            em = discord.Embed(title='a Sepia Picture', color=getembed.Common.COLOR)
             em.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             em.set_image(url=weblink)
             em.set_footer(text=f"Requested by {ctx.author.name}")
@@ -632,7 +630,7 @@ class Images(commands.Cog):
 
         try:
             weblink = 'https://some-random-api.ml/canvas/red?avatar=' + messagelink
-            em = discord.Embed(title='a Red Picture', color=0xff0000)
+            em = discord.Embed(title='a Red Picture', color=getembed.Common.COLOR)
             em.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             em.set_image(url=weblink)
             em.set_footer(text=f"Requested by {ctx.author.name}")
@@ -658,7 +656,7 @@ class Images(commands.Cog):
 
         try:
             weblink = 'https://some-random-api.ml/canvas/green?avatar=' + messagelink
-            em = discord.Embed(title='a Green Picture', color=0xff0000)
+            em = discord.Embed(title='a Green Picture', color=getembed.Common.COLOR)
             em.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             em.set_image(url=weblink)
             em.set_footer(text=f"Requested by {ctx.author.name}")
@@ -684,7 +682,7 @@ class Images(commands.Cog):
 
         try:
             weblink = 'https://some-random-api.ml/canvas/blue?avatar=' + messagelink
-            em = discord.Embed(title='a Blue Picture', color=0xff0000)
+            em = discord.Embed(title='a Blue Picture', color=getembed.Common.COLOR)
             em.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             em.set_image(url=weblink)
             em.set_footer(text=f"Requested by {ctx.author.name}")
@@ -709,7 +707,7 @@ class Images(commands.Cog):
 
         try:
             weblink = 'https://some-random-api.ml/canvas/color?avatar=' + messagelink + "&color=%" + colorTotint
-            em = discord.Embed(title='a Tinted Picture', color=0xff0000)
+            em = discord.Embed(title='a Tinted Picture', color=getembed.Common.COLOR)
             embed_text = "Picture tinted in " + colorTotint
             em.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             em.set_image(url=weblink)
@@ -736,7 +734,7 @@ class Images(commands.Cog):
 
         try:
             weblink = 'https://some-random-api.ml/canvas/pixelate' + messagelink
-            em = discord.Embed(title='a Blue Picture', color=0xff0000)
+            em = discord.Embed(title='a Blue Picture', color=getembed.Common.COLOR)
             em.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             em.set_image(url=weblink)
             em.set_footer(text=f"Requested by {ctx.author.name}")
@@ -797,7 +795,7 @@ class Images(commands.Cog):
                 ctx.send(urrl)
 
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
+            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
             embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url="https://media.discordapp.net/attachments/877796755234783273/880745781966037032/new-scrabble-words-2018-beatdown-5657-57124c9f228c0258d65053fe7d3891491x.jpg")
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
