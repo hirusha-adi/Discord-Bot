@@ -37,6 +37,8 @@ except:
         os.system("pip3 install youtube-search-python")
     from youtubesearchpython import VideosSearch
 
+import database.retrieve_embeds as getembed
+
 
 class Tools(commands.Cog):
     def __init__(self, client: commands.Bot):
@@ -48,19 +50,22 @@ class Tools(commands.Cog):
         self.bot_inv_link = self.botconfigdata["invite-link"]
 
         # This is the please-wait/Loading embed
-        self.please_wait_emb = discord.Embed(title="Please Wait", description="``` Processing Your Request ```", color=0xff0000)
-        self.please_wait_emb.set_author(name="YourBot")
-        self.please_wait_emb.set_thumbnail(url="https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif")
-        self.please_wait_emb.set_footer(text="Bot created by ZeaCeR#5641")
+        self.please_wait_emb = discord.Embed(title=getembed.PleaseWait.TITLE, description=f"``` {getembed.PleaseWait.DESCRIPTION} ```", color=getembed.PleaseWait.COLOR)
+        self.please_wait_emb.set_author(name=getembed.PleaseWait.AUTHOR_NAME, icon_url=getembed.PleaseWait.AUTHOR_LINK)
+        self.please_wait_emb.set_thumbnail(url=getembed.PleaseWait.THUMBNAIL)
+        self.please_wait_emb.set_footer(text=getembed.PleaseWait.FOOTER)
 
         self.bot_email_addr = os.environ['EMAILA']
         self.bot_email_password = os.environ['EMAILP']
         
-        self.filepwdlist1 = open("pwds2.txt", "r")
+        self.filepwdlist1 = open("assets/pwds.txt", "r")
         self.lines = self.filepwdlist1.readlines()
 
 
-    @commands.command(aliases=["pwdc", "passwordcheck"])
+    @commands.command(aliases=["pwdc", "passwordcheck"],
+    breif="Password Check",
+    description="Check if the given password is in a list of 11 million passwords",
+    help="Check if the given password is in a list of 11 million passwords")
     async def pwdcheck(self, ctx, *, password):
         """
         Idea by discord user NoPe / The founder of TeamSDS | https://teamsds.net/
@@ -70,8 +75,8 @@ class Tools(commands.Cog):
 
         try:
             if password + "\n" in self.lines:
-                embed=discord.Embed(title="Password Checker!", color=0xff0000)
-                embed.set_author(name="NearBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                embed=discord.Embed(title="Password Checker!", color=getembed.Common.COLOR)
+                embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                 embed.set_thumbnail(url="https://media.discordapp.net/attachments/877796755234783273/881072664658214912/change-password.png?width=479&height=464")
                 embed.add_field(name=f"Your Passoword", value=f"{password}", inline=False)
                 embed.add_field(name=f"Safety", value=f"Not Safe. This password is in the list of most common 10 million passwords!", inline=False)
@@ -80,8 +85,8 @@ class Tools(commands.Cog):
                 await ctx.send(embed=embed)
 
             else:
-                embed=discord.Embed(title="Password Checker!", color=0xff0000)
-                embed.set_author(name="NearBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                embed=discord.Embed(title="Password Checker!", color=getembed.Common.COLOR)
+                embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                 embed.set_thumbnail(url="https://media.discordapp.net/attachments/877796755234783273/881072664658214912/change-password.png?width=479&height=464")
                 embed.add_field(name=f"Your Passoword", value=f"{password}", inline=False)
                 embed.add_field(name=f"Safety", value=f"Safe. This password is not in the list of most common 10 million passwords!", inline=False)
@@ -90,15 +95,18 @@ class Tools(commands.Cog):
                 await ctx.send(embed=embed)
 
         except Exception as e:
-            embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-            embed2.set_author(name="NearBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed2=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed2.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed2.add_field(name="Error:", value=f"{e}", inline=False)
             embed2.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed2)
     
-    @commands.command(aliases=["passowrd-strength-check", "pwdstrengthcheck", "pwdsc"])
+    @commands.command(aliases=["passowrd-strength-check", "pwdstrengthcheck", "pwdsc"],
+    breif="Password Strength Check",
+    description="Check if the given password is strong enough. If the strength is above `0.5`, its safe and its the most minimum recommended.",
+    help="Check if the given password is strong enough. If the strength is above `0.5`, its safe and its the most minimum recommended.")
     async def passwordstrentghcheck(self, ctx, *, passowrdhere):
         loading_message = await ctx.send(embed=self.please_wait_emb)
         """
@@ -108,16 +116,16 @@ class Tools(commands.Cog):
         """
         try:
             stats = PasswordStats(f'{passowrdhere}')
-            embed=discord.Embed(title="Password Strength Checker", color=0xff0000)
+            embed=discord.Embed(title="Password Strength Checker", color=getembed.Common.COLOR)
             embed.add_field(name="Strenth:", value=f"{stats.strength()}", inline=False)
             embed.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed)
         
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
@@ -125,7 +133,9 @@ class Tools(commands.Cog):
 
 
 
-    @commands.command()
+    @commands.command(breif="Shorten any link - tinyurl",
+    description="Shorten any given URL easily with tinyurl for a quick memmorable link!",
+    help="Shorten any given URL easily with tinyurl for a quick memmorable link!")
     async def tinyurl(self, ctx, *, link):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -133,31 +143,33 @@ class Tools(commands.Cog):
             # Using the public API of TinyURL
             r = requests.get(f'http://tinyurl.com/api-create.php?url={link}').text
 
-            em = discord.Embed(color=0xff0000)
+            em = discord.Embed(color=getembed.Common.COLOR)
             em.set_footer(text=f"Requested by {ctx.author.name}")
-            em.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            em.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             em.add_field(name="Shortened Link", value=r, inline=False)
             await loading_message.delete()
             await ctx.send(embed=em)
 
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed3)
     
-    @commands.command()
+    @commands.command(breif="Random Discord Nitro Codes",
+    description="All these codes are randomly generated and most of them will not work! if you are lucky, maybe you will get a chance!",
+    help="All these codes are randomly generated and most of them will not work! if you are lucky, maybe you will get a chance!")
     async def nitro(self, ctx, *, number_of_times):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
         try:
         # The limit is 20 to prevent spam
             if int(number_of_times) <= 20:
-                embed=discord.Embed(title="Nitro Code Generator", color=0xff0000)
-                embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                embed=discord.Embed(title="Nitro Code Generator", color=getembed.Common.COLOR)
+                embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                 embed.set_thumbnail(url="https://user-images.githubusercontent.com/36286877/127767330-d3e68d90-67a0-4672-b3e1-6193b323bc21.png")
                 embed.add_field(name="You have Requested:", value=f"{number_of_times} Nitro Codes", inline=False)
                 embed.set_footer(text=f"Requested by {ctx.author.name}")
@@ -170,8 +182,8 @@ class Tools(commands.Cog):
                     await asyncio.sleep(0.6)
 
             else:
-                embed=discord.Embed(title="Nitro Code Generator", color=0xff0000)
-                embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                embed=discord.Embed(title="Nitro Code Generator", color=getembed.Common.COLOR)
+                embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                 embed.set_thumbnail(url="https://www.nicepng.com/png/detail/214-2146883_4-fake-stamp-vector-fake-news-logo-png.png")
                 embed.add_field(name="Error", value="Please enter a value below 20; This is done to prevent spam!", inline=True)
                 embed.set_footer(text=f"Requested by {ctx.author.name}")
@@ -179,16 +191,18 @@ class Tools(commands.Cog):
                 await ctx.send(embed=embed)
 
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed3)
 
 
-    @commands.command()
+    @commands.command(breif="Create a hastebin",
+    description="Create a hastebin without any limitation (except for the message length given by discord) without leaving discord! this command will send you the link of the hastebin.",
+    help="Create a hastebin without any limitation (except for the message length given by discord) without leaving discord! this command will send you the link of the hastebin.")
     async def hastebin(self, ctx, *, message):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -196,8 +210,8 @@ class Tools(commands.Cog):
             r = requests.post("https://hastebin.com/documents", data=message).json()
 
             try:
-                embed=discord.Embed(title="Hastebin", color=0xff0000)
-                embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                embed=discord.Embed(title="Hastebin", color=getembed.Common.COLOR)
+                embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                 embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879586340520480768/large.png")
                 embed.add_field(name="Link", value=f"https://hastebin.com/{r['key']}", inline=False)
                 embed.add_field(name=f"Text by {ctx.author.name}", value=f"{message}", inline=False)
@@ -206,8 +220,8 @@ class Tools(commands.Cog):
                 await ctx.send(embed=embed)
             
             except:
-                embed=discord.Embed(title="Hastebin", color=0xff0000)
-                embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                embed=discord.Embed(title="Hastebin", color=getembed.Common.COLOR)
+                embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                 embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879586340520480768/large.png")
                 embed.add_field(name="Link", value=f"https://hastebin.com/{r['key']}", inline=False)
                 embed.set_footer(text=f"Requested by {ctx.author.name}")
@@ -215,16 +229,18 @@ class Tools(commands.Cog):
                 await ctx.send(embed=embed)
 
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed3)
 
 
-    @commands.command()
+    @commands.command(breif="ASCII Art v1",
+    description="Create an ASCII banner / art easily. `text` is what you want the banner to be.",
+    help="Create an ASCII banner / art easily. `text` is what you want the banner to be.")
     async def asciiart(self, ctx, *, text):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -233,9 +249,9 @@ class Tools(commands.Cog):
             
             # IF ITS MORE THAN 2000, it will send an error, the if statement is to stop it
             if len('```'+r+'```') > 2000:
-                embed=discord.Embed(title="ASCII ART", description="There was a problem!", color=0xff0000)
-                embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-                embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                embed=discord.Embed(title="ASCII ART", description="There was a problem!", color=getembed.Common.COLOR)
+                embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+                embed.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                 embed.add_field(name="Error:", value="The message has over 2000 characters", inline=False)
                 embed.add_field(name="Possible fix:", value="Enter something short", inline=True)
                 embed.set_footer(text=f"Requested by {ctx.author.name}")
@@ -249,38 +265,44 @@ class Tools(commands.Cog):
             await ctx.send(f"```{r}```")
 
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed3)
 
 
-    @commands.command()
+    @commands.command(breif="Reverse Text",
+    description="Reverse any given word or a sentence easily with this command!",
+    help="Reverse any given word or a sentence easily with this command!")
     async def reverse(self, ctx, *, message):
         loading_message = await ctx.send(embed=self.please_wait_emb)
         try:
             message = message[::-1]
 
-            embed=discord.Embed(title="Reverse Text!", color=0xff0000)
-            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed=discord.Embed(title="Reverse Text!", color=getembed.Common.COLOR)
+            embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879728497822687272/reverse.png")
             embed.add_field(name="Reversed", value="{message}", inline=False)
             embed.set_footer(text="Requested by {ctx.author.name}")
             await ctx.send(embed=embed)
 
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed3)
 
-    @commands.command(aliases=["e_base64"])
+
+    @commands.command(aliases=["e_base64"],
+    breif="to Base64",
+    description="Encode any given text to Base64",
+    help="Encode any given text to Base64")
     async def e_b64(self, ctx, *, args):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -289,8 +311,8 @@ class Tools(commands.Cog):
             enc = str(msg)
             enc = enc[2:len(enc)-1]
 
-            embed=discord.Embed(title="to Base64", color=0xff0000)
-            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed=discord.Embed(title="to Base64", color=getembed.Common.COLOR)
+            embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879955815602200586/base64-logo-352x200.jpg")
             embed.add_field(name="Query", value=f"{args}", inline=False)
             embed.add_field(name="Result", value=f"{enc}", inline=True)
@@ -299,16 +321,19 @@ class Tools(commands.Cog):
             await ctx.send(embed=embed)
 
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed3)
 
     
-    @commands.command()
+    @commands.command(
+    breif="to MD5",
+    description="any given text to Base64",
+    help="any given text to Base64")
     async def e_md5(self, ctx, *, args):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -316,8 +341,8 @@ class Tools(commands.Cog):
             msg = hashlib.md5(args.encode())
             slpake =  msg.hexdigest()
 
-            embed=discord.Embed(title="to MD5", color=0xff0000)
-            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed=discord.Embed(title="to MD5", color=getembed.Common.COLOR)
+            embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879956672771137546/MD5.png")
             embed.add_field(name="Query", value=f"{args}", inline=False)
             embed.add_field(name="Result", value=f"{slpake}", inline=True)
@@ -326,15 +351,18 @@ class Tools(commands.Cog):
             await ctx.send(embed=embed)
 
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed3)
 
-    @commands.command()
+    @commands.command(
+    breif="to SHA1",
+    description="any given text to SHA1",
+    help="any given text to SHA1")
     async def e_sha1(self, ctx, *, args):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -342,8 +370,8 @@ class Tools(commands.Cog):
             msg = hashlib.sha1(args.encode())
             slpuka =  msg.hexdigest()
 
-            embed=discord.Embed(title="to SHA1", color=0xff0000)
-            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed=discord.Embed(title="to SHA1", color=getembed.Common.COLOR)
+            embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879957622546108436/SHA1.png")
             embed.add_field(name="Query", value=f"{args}", inline=False)
             embed.add_field(name="Result", value=f"{slpuka}", inline=True)
@@ -352,16 +380,19 @@ class Tools(commands.Cog):
             await ctx.send(embed=embed)
         
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed3)
 
     
-    @commands.command()
+    @commands.command(
+    breif="to SHA224",
+    description="any given text to SHA224",
+    help="any given text to SHA224")
     async def e_sha224(self, ctx, *, args):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -369,8 +400,8 @@ class Tools(commands.Cog):
             msg = hashlib.sha3_224(args.encode())
             crnja =  msg.hexdigest()
 
-            embed=discord.Embed(title="to SHA224", color=0xff0000)
-            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed=discord.Embed(title="to SHA224", color=getembed.Common.COLOR)
+            embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879958751640191046/download.png")
             embed.add_field(name="Query", value=f"{args}", inline=False)
             embed.add_field(name="Result", value=f"{crnja}", inline=True)
@@ -379,16 +410,19 @@ class Tools(commands.Cog):
             await ctx.send(embed=embed)
         
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed3)
 
-    
-    @commands.command()
+
+    @commands.command(
+    breif="to SHA512",
+    description="any given text to SHA512",
+    help="any given text to SHA512")
     async def e_sha512(self, ctx, *, args):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -396,8 +430,8 @@ class Tools(commands.Cog):
             msg = hashlib.sha3_512(args.encode())
             crnja =  msg.hexdigest()
 
-            embed=discord.Embed(title="to SHA512", color=0xff0000)
-            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed=discord.Embed(title="to SHA512", color=getembed.Common.COLOR)
+            embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879960296863698944/download_1.png")
             embed.add_field(name="Query", value=f"{args}", inline=False)
             embed.add_field(name="Result", value=f"{crnja}", inline=True)
@@ -406,23 +440,26 @@ class Tools(commands.Cog):
             await ctx.send(embed=embed)
 
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed3)
 
-    @commands.command(aliases=["leet"])
+    @commands.command(aliases=["leet", "l33t"],
+    breif="to L33T",
+    description="any given text to L33T",
+    help="any given text to L33T")
     async def e_leet(self, ctx, *, args):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
         try:
             encoded = args.replace('e', '3').replace('a', '4').replace('i', '!').replace('u', '|_|').replace('U', '|_|').replace('E', '3').replace('I', '!').replace('A', '4').replace('o','0').replace('O','0').replace('t','7').replace('T','7').replace('l','1').replace('L','1').replace('k','|<').replace('K','|<').replace('CK','X').replace('ck','x').replace('Ck','X').replace('cK','x')
 
-            embed=discord.Embed(title="to LEET", color=0xff0000)
-            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed=discord.Embed(title="to LEET", color=getembed.Common.COLOR)
+            embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879961162895212574/download_2.png")
             embed.add_field(name="Query", value=f"{args}", inline=False)
             embed.add_field(name="Result", value=f"{encoded}", inline=True)
@@ -431,15 +468,18 @@ class Tools(commands.Cog):
             await ctx.send(embed=embed)
         
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed3)
 
-    @commands.command(aliases=["to-binary", "e_binary"])
+    @commands.command(aliases=["to-binary", "e_binary"],
+    breif="to Binary",
+    description="any given text to Binary",
+    help="any given text to Binary")
     async def binary(self, ctx, *, ToBinaryText):
         loading_message = await ctx.send(embed=self.please_wait_emb)
         try:
@@ -447,8 +487,8 @@ class Tools(commands.Cog):
             c = r.json()
             fact = c["binary"]
 
-            embed=discord.Embed(title="to Binary", color=0xff0000)
-            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed=discord.Embed(title="to Binary", color=getembed.Common.COLOR)
+            embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/880025172055314462/85-855085_binary-codes-on-data-sheet-with-magnifying-lens.png")
             embed.add_field(name="Query", value=f"{ToBinaryText}", inline=False)
             embed.add_field(name="Result", value=f"{fact}", inline=True)
@@ -457,15 +497,18 @@ class Tools(commands.Cog):
             await ctx.send(embed=embed)
         
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed3)
     
-    @commands.command(aliases=["e_cipher"])
+    @commands.command(aliases=["e_cipher"],
+    breif="to Ceaser Cipher",
+    description="any given text to Ceaser Cipher",
+    help="any given text to Ceaser Cipher")
     async def e_ceaser(self, ctx, *, ToCeaserCipher):
         loading_message = await ctx.send(embed=self.please_wait_emb)
         try:
@@ -480,8 +523,8 @@ class Tools(commands.Cog):
                     code = ord('A')
                 cipher += chr(code)
 
-            embed=discord.Embed(title="to Ceaser Cipher", color=0xff0000)
-            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed=discord.Embed(title="to Ceaser Cipher", color=getembed.Common.COLOR)
+            embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/880025172055314462/85-855085_binary-codes-on-data-sheet-with-magnifying-lens.png")
             embed.add_field(name="Query", value=f"{ToCeaserCipher}", inline=False)
             embed.add_field(name="Result", value=f"{cipher}", inline=True)
@@ -490,15 +533,18 @@ class Tools(commands.Cog):
             await ctx.send(embed=embed)
         
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed3)
     
-    @commands.command(aliases=["d_cipher"])
+    @commands.command(aliases=["d_cipher"],
+    breif="from Ceaser Cipher",
+    description="from Ceaser Cipher | DECODE",
+    help="from Ceaser Cipher | DEOCDE")
     async def d_ceaser(self, ctx, *, ToCeaserCipher):
         loading_message = await ctx.send(embed=self.please_wait_emb)
         try:
@@ -513,8 +559,8 @@ class Tools(commands.Cog):
                     code = ord('Z')
                 cipher += chr(code)
 
-            embed=discord.Embed(title="from Ceaser Cipher", color=0xff0000)
-            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed=discord.Embed(title="from Ceaser Cipher", color=getembed.Common.COLOR)
+            embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/880025172055314462/85-855085_binary-codes-on-data-sheet-with-magnifying-lens.png")
             embed.add_field(name="Query", value=f"{ToCeaserCipher}", inline=False)
             embed.add_field(name="Result", value=f"{cipher}", inline=True)
@@ -523,9 +569,9 @@ class Tools(commands.Cog):
             await ctx.send(embed=embed)
         
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
@@ -533,7 +579,10 @@ class Tools(commands.Cog):
 
 
 
-    @commands.command(aliases=["b2t", "d_binary", "decode_binary"])
+    @commands.command(aliases=["b2t", "d_binary", "decode_binary"],
+    breif="from Binary",
+    description="from Binary",
+    help="from Binary")
     async def b_2txt(self, ctx, *, ToTextBinary):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -542,8 +591,8 @@ class Tools(commands.Cog):
             c = r.json()
             fact = c["text"]
 
-            embed=discord.Embed(title="From Binary", color=0xff0000)
-            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed=discord.Embed(title="From Binary", color=getembed.Common.COLOR)
+            embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/880025172055314462/85-855085_binary-codes-on-data-sheet-with-magnifying-lens.png")
             embed.add_field(name="Query", value=f"{ToTextBinary}", inline=False)
             embed.add_field(name="Result", value=f"{fact}", inline=True)
@@ -552,16 +601,19 @@ class Tools(commands.Cog):
             await ctx.send(embed=embed)
         
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed3)
 
 
-    @commands.command(aliases=["b642t", "d_b64", "d_base64"])
+    @commands.command(aliases=["b642t", "d_b64", "d_base64"],
+    breif="from Base64",
+    description="from Base64",
+    help="from Base64")
     async def b64_2txt(self, ctx, *, ToTextBase64):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -570,8 +622,8 @@ class Tools(commands.Cog):
             c = r.json()
             fact = c["text"]
 
-            embed=discord.Embed(title="From Base64", color=0xff0000)
-            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed=discord.Embed(title="From Base64", color=getembed.Common.COLOR)
+            embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879955815602200586/base64-logo-352x200.jpg")
             embed.add_field(name="Query", value=f"{ToTextBase64}", inline=False)
             embed.add_field(name="Result", value=f"{fact}", inline=True)
@@ -580,9 +632,9 @@ class Tools(commands.Cog):
             await ctx.send(embed=embed)
         
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
@@ -590,7 +642,9 @@ class Tools(commands.Cog):
 
 
     
-    @commands.command()
+    @commands.command(breif="Shorten any link - cleanuri",
+    description="Shorten any given URL easily with cleanuri for a quick memmorable link!",
+    help="Shorten any given URL easily with cleanuri for a quick memmorable link!")
     async def cleanuri(self, ctx, *, websiteurl):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -600,8 +654,8 @@ class Tools(commands.Cog):
             r = requests.post(url, data = myobj).json()
             shorten_url = r['result_url']
             
-            embed=discord.Embed(title="URL Shortener", color=0xff0000)
-            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed=discord.Embed(title="URL Shortener", color=getembed.Common.COLOR)
+            embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/880028609924976690/828161_url_512x512.png")
             embed.add_field(name="Original Link", value=f"{websiteurl}", inline=False)
             embed.add_field(name="Shortened Link", value=f"{shorten_url}", inline=False)
@@ -610,9 +664,9 @@ class Tools(commands.Cog):
             await ctx.send(embed=embed)
         
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
@@ -620,8 +674,11 @@ class Tools(commands.Cog):
 
 
     
-    @commands.command(aliases=["generate-pwd", "gen-pwd", "generate-password", "gen-password", "newpassword", "password", "newpass", "passwordnew"])
-    async def genpwd(self, ctx, *, numberofcharacters=16):
+    @commands.command(aliases=["generate-pwd", "gen-pwd", "generate-password", "gen-password", "newpassword", "password", "newpass", "passwordnew"],
+    breif="Generate a password",
+    description="Generate a secure password with a max length of 40 characters.",
+    help="Generate a secure password with a max length of 40 characters.")
+    async def genpwd(self, ctx, *, numberofcharacters: int = 16):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
         try:
@@ -630,9 +687,9 @@ class Tools(commands.Cog):
                 numberofcharsinint = int(numberofcharacters)
 
             except Exception as e:
-                embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-                embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-                embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+                embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+                embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                 embed3.add_field(name="Error:", value=f"{e}", inline=False)
                 embed3.set_footer(text=f"Requested by {ctx.author.name}")
                 await loading_message.delete()
@@ -644,8 +701,8 @@ class Tools(commands.Cog):
                 r = requests.get(url)
                 c = r.json()
 
-                embed=discord.Embed(title="Password Generator", color=0xff0000)
-                embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                embed=discord.Embed(title="Password Generator", color=getembed.Common.COLOR)
+                embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                 embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/880031728369016832/704187.png")
                 embed.add_field(name="Password Length", value=f"{numberofcharacters}", inline=False)
                 embed.add_field(name="Password", value=f"{c['data']}", inline=False)
@@ -654,8 +711,8 @@ class Tools(commands.Cog):
                 await ctx.send(embed=embed)
 
             else:
-                embed=discord.Embed(title="Password Generator", description="An Error has occured!", color=0xff0000)
-                embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                embed=discord.Embed(title="Password Generator", description="An Error has occured!", color=getembed.Common.COLOR)
+                embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                 embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/880031728369016832/704187.png")
                 embed.add_field(name="Error", value="The value of the number is high", inline=False)
                 embed.add_field(name="Possible Fix", value="Enter a value below 40", inline=False)
@@ -664,20 +721,25 @@ class Tools(commands.Cog):
                 await ctx.send(embed=embed)
 
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed3)
 
-    @commands.command(aliases=["clearscreennodelete", "clear-screen-no-delete", "clearscreen"])
+    @commands.command(aliases=["clearscreennodelete", "clear-screen-no-delete", "clearscreen"],
+    breif="Get some Screen Space",
+    description="Get some Screen Space",
+    help="Get some Screen Space")
     async def csnd(self, ctx):
         await ctx.send(f'Clearing some screen space - \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRequested by {ctx.author.mention}')
 
     
-    @commands.command()
+    @commands.command(breif="profile picture of any instagram profile",
+    description="profile picture of any instagram profile. `ig_uname` should be the username of the user as in instagram!",
+    help="profile picture of any instagram profile. `ig_uname` should be the username of the user as in instagram!")
     async def ig_pfp(self, ctx, *, ig_uname):
         loading_message = await ctx.send(embed=self.please_wait_emb)
         try:
@@ -704,8 +766,8 @@ class Tools(commands.Cog):
 
             # NEW CODE
             file = discord.File(f'igtemp.jpg', filename="image.jpg")
-            embed=discord.Embed(title="Instagram Profile Picture", description=f"of {ig_uname}", color=0xff0000)
-            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed=discord.Embed(title="Instagram Profile Picture", description=f"of {ig_uname}", color=getembed.Common.COLOR)
+            embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed.add_field(name="Link", value=f"https://instagram.com/{ig_uname}", inline=False)
             embed.set_image(url="attachment://image.jpg")
             embed.set_footer(text=f"Requested by {ctx.author.name}")
@@ -720,13 +782,15 @@ class Tools(commands.Cog):
             await ctx.send(f"Error: {e}")
     
     
-    @commands.command()
+    @commands.command(breif="a simple poll",
+    description="Create a simple poll for people to vote on",
+    help="Create a simple poll for people to vote on")
     async def poll(self, ctx, *, message):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
         try:
-            emb = discord.Embed(title=" POLL ", description=f'{message}', color=0xff0000)
-            emb.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            emb = discord.Embed(title=" POLL ", description=f'{message}', color=getembed.Common.COLOR)
+            emb.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             emb.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             msg = await ctx.send(embed=emb)
@@ -734,16 +798,18 @@ class Tools(commands.Cog):
             await msg.add_reaction('👎')
 
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed3)
 
 
-    @commands.command()
+    @commands.command(breif="Ascii art",
+    description="Create an ascii banner / ascii art without requesting to a public api like the other command which similiar to this",
+    help="Create an ascii banner / ascii art without requesting to a public api like the other command which similiar to this")
     async def ascii(self, ctx, *, text):
         loading_message = await ctx.send(embed=self.please_wait_emb)
         try:
@@ -753,21 +819,23 @@ class Tools(commands.Cog):
             await ctx.send(f'``` {ascii_art_creating_function_get} ```')
         
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed3)
 
-    @commands.command()
+    @commands.command(breif="Google seach link",
+    description="Recieve a direct google search link easily!",
+    help="Recieve a direct google search link easily!")
     async def google(self, ctx, *, whatToSearch):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
         try:
-            embed=discord.Embed(title="Google Search", description="Link to query", color=0xFF0000)
-            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed=discord.Embed(title="Google Search", description="Link to query", color=getembed.Common.COLOR)
+            embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/880664487965900821/Google__G__Logo.svg.png")
             embed.add_field(name="Link", value=f"https://www.google.com/search?q={whatToSearch}", inline=True)
             embed.set_footer(text=f"Requested by {ctx.author.name}")
@@ -775,30 +843,33 @@ class Tools(commands.Cog):
             await ctx.send(embed=embed)
         
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed3)
 
     
-    @commands.command(aliases=["count-words", "countwords", "wordcount"])
+    @commands.command(aliases=["count-words", "countwords", "wordcount"],
+    breif="Word count",
+    description="Count the number of words in a given sentence. (each word is seperated by a SPACE)",
+    help="Count the number of words in a given sentence. (each word is seperated by a SPACE)")
     async def count(self, ctx, *, words):
         loading_message = await ctx.send(embed=self.please_wait_emb)
         try:
             spl = words.split(" ")
             no = len(spl)
-            embed = discord.Embed(title="Word Counter", color=0xFF0000)
+            embed = discord.Embed(title="Word Counter", color=getembed.Common.COLOR)
             embed.add_field(name="Number of Words:", value=f"{no}")
             await loading_message.delete()
             await ctx.send(embed=embed)
 
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
@@ -844,12 +915,15 @@ class Tools(commands.Cog):
     #     return
 
 
-    @commands.command()
+    @commands.command(
+    breif="Public Profiles",
+    description="Sends a list of all possible social platforms in which an account exist with the given username ( `usernametofind` ). NOT ALL LINKS WORK!",
+    help="Sends a list of all possible social platforms in which an account exist with the given username ( `usernametofind` ). NOT ALL LINKS WORK!")
     async def sherlock(self, ctx, *, usernametofind):
     # https://github.com/sherlock-project/sherlock
 
     # OLD, ORIGINAL CODE, WORKING AS INTENDED, VERY BUGGY, BOT WONT WORK WHILE THIS COMMAND IS RUNNING!
-    # lading_sherlock_stay = discord.Embed(title="```  Processing - This may take longer than usual.  ```", color=0xff0000)
+    # lading_sherlock_stay = discord.Embed(title="```  Processing - This may take longer than usual.  ```", color=getembed.Common.COLOR)
     # lading_sherlock_stay.set_author(name="YourBot")
     # lading_sherlock_stay.set_thumbnail(url="https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif")
     # lading_sherlock_stay.set_footer(text="Bot created by ZeaCeR#5641")
@@ -1065,62 +1139,62 @@ class Tools(commands.Cog):
         + Instagram: https://www.instagram.com/{usernametofind}
         + Tiktok: https://www.tiktok.com/@{usernametofind}
         """
-            embed1=discord.Embed(title="Sherlock!", color=0xff0000)
+            embed1=discord.Embed(title="Sherlock!", color=getembed.Common.COLOR)
             embed1.set_thumbnail(url="https://user-images.githubusercontent.com/27065646/53551960-ae4dff80-3b3a-11e9-9075-cef786c69364.png")
             embed1.add_field(name="All Possible Profiles!", value=all_possible_accounts_1, inline=False)
             embed1.set_footer(text="All links won't work! We will add a check real soon!")
 
-            embed2=discord.Embed(title="Sherlock! - 2", color=0xff0000)
+            embed2=discord.Embed(title="Sherlock! - 2", color=getembed.Common.COLOR)
             embed2.set_thumbnail(url="https://user-images.githubusercontent.com/27065646/53551960-ae4dff80-3b3a-11e9-9075-cef786c69364.png")
             embed2.add_field(name="All Possible Profiles!", value=all_possible_accounts_2, inline=False)
             embed2.set_footer(text="All links won't work! Part 2")
 
-            embed3=discord.Embed(title="Sherlock! - 3", color=0xff0000)
+            embed3=discord.Embed(title="Sherlock! - 3", color=getembed.Common.COLOR)
             embed3.set_thumbnail(url="https://user-images.githubusercontent.com/27065646/53551960-ae4dff80-3b3a-11e9-9075-cef786c69364.png")
             embed3.add_field(name="All Possible Profiles!", value=all_possible_accounts_3, inline=False)
             embed3.set_footer(text="All links won't work! Part 3")
 
-            embed4=discord.Embed(title="Sherlock! - 4", color=0xff0000)
+            embed4=discord.Embed(title="Sherlock! - 4", color=getembed.Common.COLOR)
             embed4.set_thumbnail(url="https://user-images.githubusercontent.com/27065646/53551960-ae4dff80-3b3a-11e9-9075-cef786c69364.png")
             embed4.add_field(name="All Possible Profiles!", value=all_possible_accounts_4, inline=False)
             embed4.set_footer(text="All links won't work! Part 4")
 
-            embed5=discord.Embed(title="Sherlock! - 5", color=0xff0000)
+            embed5=discord.Embed(title="Sherlock! - 5", color=getembed.Common.COLOR)
             embed5.set_thumbnail(url="https://user-images.githubusercontent.com/27065646/53551960-ae4dff80-3b3a-11e9-9075-cef786c69364.png")
             embed5.add_field(name="All Possible Profiles!", value=all_possible_accounts_5, inline=False)
             embed5.set_footer(text="All links won't work! Part 5")
 
-            embed6=discord.Embed(title="Sherlock! - 6", color=0xff0000)
+            embed6=discord.Embed(title="Sherlock! - 6", color=getembed.Common.COLOR)
             embed6.set_thumbnail(url="https://user-images.githubusercontent.com/27065646/53551960-ae4dff80-3b3a-11e9-9075-cef786c69364.png")
             embed6.add_field(name="All Possible Profiles!", value=all_possible_accounts_6, inline=False)
             embed6.set_footer(text="All links won't work! Part 6")
 
-            embed7=discord.Embed(title="Sherlock! - 7", color=0xff0000)
+            embed7=discord.Embed(title="Sherlock! - 7", color=getembed.Common.COLOR)
             embed7.set_thumbnail(url="https://user-images.githubusercontent.com/27065646/53551960-ae4dff80-3b3a-11e9-9075-cef786c69364.png")
             embed7.add_field(name="All Possible Profiles!", value=all_possible_accounts_7, inline=False)
             embed7.set_footer(text="All links won't work! Part 7")
 
-            embed8=discord.Embed(title="Sherlock! - 8", color=0xff0000)
+            embed8=discord.Embed(title="Sherlock! - 8", color=getembed.Common.COLOR)
             embed8.set_thumbnail(url="https://user-images.githubusercontent.com/27065646/53551960-ae4dff80-3b3a-11e9-9075-cef786c69364.png")
             embed8.add_field(name="All Possible Profiles!", value=all_possible_accounts_8, inline=False)
             embed8.set_footer(text="All links won't work! Part 8")
 
-            embed9=discord.Embed(title="Sherlock! - 9", color=0xff0000)
+            embed9=discord.Embed(title="Sherlock! - 9", color=getembed.Common.COLOR)
             embed9.set_thumbnail(url="https://user-images.githubusercontent.com/27065646/53551960-ae4dff80-3b3a-11e9-9075-cef786c69364.png")
             embed9.add_field(name="All Possible Profiles!", value=all_possible_accounts_9, inline=False)
             embed9.set_footer(text="All links won't work! Part 9")
 
-            embed10=discord.Embed(title="Sherlock! - 10", color=0xff0000)
+            embed10=discord.Embed(title="Sherlock! - 10", color=getembed.Common.COLOR)
             embed10.set_thumbnail(url="https://user-images.githubusercontent.com/27065646/53551960-ae4dff80-3b3a-11e9-9075-cef786c69364.png")
             embed10.add_field(name="All Possible Profiles!", value=all_possible_accounts_10, inline=False)
             embed10.set_footer(text="All links won't work! Part 10")
 
-            embed11=discord.Embed(title="Sherlock! - 11", color=0xff0000)
+            embed11=discord.Embed(title="Sherlock! - 11", color=getembed.Common.COLOR)
             embed11.set_thumbnail(url="https://user-images.githubusercontent.com/27065646/53551960-ae4dff80-3b3a-11e9-9075-cef786c69364.png")
             embed11.add_field(name="All Possible Profiles!", value=all_possible_accounts_11, inline=False)
             embed11.set_footer(text="All links won't work! Part 11")
 
-            embed12=discord.Embed(title="Sherlock! - 12", color=0xff0000)
+            embed12=discord.Embed(title="Sherlock! - 12", color=getembed.Common.COLOR)
             embed12.set_thumbnail(url="https://user-images.githubusercontent.com/27065646/53551960-ae4dff80-3b3a-11e9-9075-cef786c69364.png")
             embed12.add_field(name="All Possible Profiles!", value=all_possible_accounts_12, inline=False)
             embed12.set_footer(text="All links won't work! Part 12")
@@ -1140,16 +1214,19 @@ class Tools(commands.Cog):
             await ctx.send(embed=embed12)
         
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed3)
 
     
-    @commands.command(aliases=["download-audio", "ytd", "youtubedownload"])
+    @commands.command(aliases=["download-audio", "ytd", "youtubedownload"],
+    breif="Public Profiles",
+    description="Sends a list of all possible social platforms in which an account exist with the given username ( `usernametofind` ). NOT ALL LINKS WORK!",
+    help="Sends a list of all possible social platforms in which an account exist with the given username ( `usernametofind` ). NOT ALL LINKS WORK!")
     async def audio(self, ctx, *, ytvlink):
         DOWNLOAD_QUALITY = "320kbps"
         loading_message = await ctx.send(embed=self.please_wait_emb)
@@ -1170,9 +1247,9 @@ class Tools(commands.Cog):
                 try:
                     yt = YouTube(ytvlink)
                 except Exception as e:
-                    embed=discord.Embed(title="An error has occured!", color=0xff0000)
+                    embed=discord.Embed(title="An error has occured!", color=getembed.Common.COLOR)
                     embed.add_field(name="Error:", value=f"Unable to access the video!", inline=False)
-                    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                    embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                     embed.set_footer(text=f"Requested by {ctx.author.name}")
                     await loading_message.delete()
                     await ctx.send(embed=embed)
@@ -1185,9 +1262,9 @@ class Tools(commands.Cog):
                     try:
                         video = yt.streams.filter(only_audio=True).filter(file_extension="webm").first().download()
                     except Exception as e:
-                        embed=discord.Embed(title="An error has occured!", color=0xff0000)
+                        embed=discord.Embed(title="An error has occured!", color=getembed.Common.COLOR)
                         embed.add_field(name="Error:", value=f"{e}", inline=False)
-                        embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                        embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                         embed.set_footer(text=f"Requested by {ctx.author.name}")
                         await loading_message.delete()
                         await ctx.send(embed=embed)
@@ -1200,9 +1277,9 @@ class Tools(commands.Cog):
                     try:
                         os.rename("*.webm", "audio0001.webm")
                     except:
-                        embed=discord.Embed(title="An error has occured!", color=0xff0000)
+                        embed=discord.Embed(title="An error has occured!", color=getembed.Common.COLOR)
                         embed.add_field(name="Error:", value="Unable to rename file", inline=False)
-                        embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                        embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                         embed.set_footer(text=f"Requested by {ctx.author.name}")
                         try:
                             await loading_message.delete()
@@ -1231,9 +1308,9 @@ class Tools(commands.Cog):
                         await ctx.send(file=audiof)
 
                 except Exception as e:
-                    embed=discord.Embed(title="An error has occured!", color=0xff0000)
+                    embed=discord.Embed(title="An error has occured!", color=getembed.Common.COLOR)
                     embed.add_field(name="Error:", value=f"{e}", inline=False)
-                    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                    embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                     embed.set_footer(text=f"Requested by {ctx.author.name}")
                     try:
                         await loading_message.delete()
@@ -1242,9 +1319,9 @@ class Tools(commands.Cog):
                     await ctx.send(embed=embed)
             
             except Exception as e:
-                embed=discord.Embed(title="An error has occured!", color=0xff0000)
+                embed=discord.Embed(title="An error has occured!", color=getembed.Common.COLOR)
                 embed.add_field(name="Error:", value=f"{e}", inline=False)
-                embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                 embed.set_footer(text=f"Requested by {ctx.author.name}")
                 try:
                     await loading_message.delete()
@@ -1253,9 +1330,9 @@ class Tools(commands.Cog):
                 await ctx.send(embed=embed)
 
         except Exception as e:
-            embed=discord.Embed(title="An error has occured!", color=0xff0000)
+            embed=discord.Embed(title="An error has occured!", color=getembed.Common.COLOR)
             embed.add_field(name="Error:", value=f"{e}", inline=False)
-            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_footer(text=f"Requested by {ctx.author.name}")
             try:
                 await loading_message.delete()
@@ -1270,9 +1347,9 @@ class Tools(commands.Cog):
                 try:
                     os.system("rm -rf audio0001.webm")
                 except Exception as e:
-                    embed=discord.Embed(title="An error has occured!", color=0xff0000)
+                    embed=discord.Embed(title="An error has occured!", color=getembed.Common.COLOR)
                     embed.add_field(name="Error:", value=f"{e}", inline=False)
-                    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                    embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                     embed.set_footer(text=f"Requested by {ctx.author.name}")
                     try:
                         await loading_message.delete()
@@ -1286,9 +1363,9 @@ class Tools(commands.Cog):
             #     try:
             #         os.system("rm -rf audio0001.mp3")
             #     except Exception as e:
-            #         embed=discord.Embed(title="An error has occured!", color=0xff0000)
+            #         embed=discord.Embed(title="An error has occured!", color=getembed.Common.COLOR)
             #         embed.add_field(name="Error:", value=f"{e}", inline=False)
-            #         embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            #         embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             #         embed.set_footer(text=f"Requested by {ctx.author.name}")
             #         try:
             #             await loading_message.delete()
@@ -1300,7 +1377,7 @@ class Tools(commands.Cog):
 
 
 
-
+    # THE SAME CODE BUT WITH youtube_dl
     # @commands.command(aliases=["download-audio", "ytd", "youtubedownload"])
     # async def audio(self, ctx, *, ytvlink):
     #     loading_message = await ctx.send(embed=self.please_wait_emb)
@@ -1339,9 +1416,9 @@ class Tools(commands.Cog):
     #                             await loading_message.delete()
     #                             await ctx.send(file=audiof)
     #                     except Exception as e:
-    #                         embed=discord.Embed(title="An error has occured!", color=0xff0000)
+    #                         embed=discord.Embed(title="An error has occured!", color=getembed.Common.COLOR)
     #                         embed.add_field(name="Error:", value=f"{e}", inline=False)
-    #                         embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    #                         embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
     #                         embed.set_footer(text=f"Requested by {ctx.author.name}")
     #                         await loading_message.delete()
     #                         await ctx.send(embed=embed)
@@ -1350,9 +1427,9 @@ class Tools(commands.Cog):
     #                         try:
     #                             os.system(f"rm audio1.{file_extentsion_dlded}")
     #                         except Exception as e:
-    #                             embed=discord.Embed(title="An error has occured!", color=0xff0000)
+    #                             embed=discord.Embed(title="An error has occured!", color=getembed.Common.COLOR)
     #                             embed.add_field(name="Error:", value=f"{e}", inline=False)
-    #                             embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    #                             embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
     #                             embed.set_footer(text=f"Requested by {ctx.author.name}")
     #                             try:
     #                                 await loading_message.delete()
@@ -1361,17 +1438,17 @@ class Tools(commands.Cog):
     #                             await ctx.send(embed=embed)
                             
     #                 except Exception as e:
-    #                     embed=discord.Embed(title="An error has occured!", color=0xff0000)
+    #                     embed=discord.Embed(title="An error has occured!", color=getembed.Common.COLOR)
     #                     embed.add_field(name="Error:", value=f"{e}", inline=False)
-    #                     embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    #                     embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
     #                     embed.set_footer(text=f"Requested by {ctx.author.name}")
     #                     await loading_message.delete()
     #                     await ctx.send(embed=embed)
 
     #             except Exception as e:
-    #                 embed=discord.Embed(title="An error has occured!", color=0xff0000)
+    #                 embed=discord.Embed(title="An error has occured!", color=getembed.Common.COLOR)
     #                 embed.add_field(name="Error:", value=f"{e}", inline=False)
-    #                 embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    #                 embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
     #                 embed.set_footer(text=f"Requested by {ctx.author.name}")
     #                 try:
     #                     await loading_message.delete()
@@ -1383,9 +1460,9 @@ class Tools(commands.Cog):
     #                 try:
     #                     os.system(f"rm audio1.{file_extentsion_dlded}")
     #                 except Exception as e:
-    #                     embed=discord.Embed(title="An error has occured!", color=0xff0000)
+    #                     embed=discord.Embed(title="An error has occured!", color=getembed.Common.COLOR)
     #                     embed.add_field(name="Error:", value=f"{e}", inline=False)
-    #                     embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    #                     embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
     #                     embed.set_footer(text=f"Requested by {ctx.author.name}")
     #                     try:
     #                         await loading_message.delete()
@@ -1394,28 +1471,31 @@ class Tools(commands.Cog):
     #                     await ctx.send(embed=embed)
 
     #         else:
-    #             embed=discord.Embed(title="An error has occured!", color=0xff0000)
-    #             embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+    #             embed=discord.Embed(title="An error has occured!", color=getembed.Common.COLOR)
+    #             embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
     #             embed.set_footer(text=f"Requested by {ctx.author.name}")
     #             embed.add_field(name="Error:", value=f"Please enter a vliad youtube url!", inline=False)
     #             await ctx.send(embed=embed)
 
     #     except Exception as e:
-    #         embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-    #         embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-    #         embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    #         embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+    #         embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+    #         embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
     #         embed3.add_field(name="Error:", value=f"{e}", inline=False)
     #         embed3.set_footer(text=f"Requested by {ctx.author.name}")
     #         await loading_message.delete()
     #         await ctx.send(embed=embed3)
 
 
-    @commands.command(aliases=["sendmail"])
+    @commands.command(aliases=["sendmail"],
+    breif="Send emails to anyone",
+    description="Sends emails to anyone easily with YourBot Emails Service!",
+    help="Sends emails to anyone easily with YourBot Emails Service!")
     async def sendemail(self, ctx, senderemail, recieveremail, emailsubject="Hey", *, emailcontent="Hello There!"):
         verified_mails = ("gmail.com", "outlook.com", "yahoo.com")
-        embed=discord.Embed(title="Please Wait", description="``` This may take longer than usual! ```", color=0xff0000)
+        embed=discord.Embed(title="Please Wait", description="``` This may take longer than usual! ```", color=getembed.Common.COLOR)
         embed.set_thumbnail(url="https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif") 
-        embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+        embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
         embed.set_footer(text="Bot created by ZeaCeR#5641")
         loadingthing = await ctx.send(embed=embed)
         print(f"recieved args {emailsubject} | {emailcontent} | {recieveremail} | {senderemail}")        
@@ -1433,8 +1513,8 @@ class Tools(commands.Cog):
                         print("logged in")
 
                     except Exception as e:
-                        embede=discord.Embed(title="Something was wrong!", description="Your request did not complete due to an error!", color=0xff0000)
-                        embede.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                        embede=discord.Embed(title="Something was wrong!", description="Your request did not complete due to an error!", color=getembed.Common.COLOR)
+                        embede.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                         embede.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879668020006502440/SeekPng.com_envelope-icon-png_1336118.png")
                         embede.add_field(name="Error", value=f"{e}", inline=False)
                         embede.set_footer(text=f"Requested by {ctx.author.name}")
@@ -1462,8 +1542,8 @@ class Tools(commands.Cog):
                     print("closed server")
 
                     try:
-                        embed2=discord.Embed(title="Email Sent", description="Your requested email was sent suceessfully! ", color=0xff0000)
-                        embed2.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                        embed2=discord.Embed(title="Email Sent", description="Your requested email was sent suceessfully! ", color=getembed.Common.COLOR)
+                        embed2.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                         embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879668020006502440/SeekPng.com_envelope-icon-png_1336118.png")
                         embed2.add_field(name="Your Email Address", value=f"{senderemail}", inline=False)
                         embed2.add_field(name="Receiver Email Address", value=f"{recieveremail}", inline=False)
@@ -1486,9 +1566,9 @@ class Tools(commands.Cog):
                         await ctx.send("Email was sent successfully!")
 
                 except Exception as e:
-                    embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-                    embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-                    embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+                    embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+                    embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+                    embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                     embed3.add_field(name="Error:", value=f"{e}", inline=False)
                     embed3.set_footer(text=f"Requested by {ctx.author.name}")
                     try:
@@ -1499,8 +1579,8 @@ class Tools(commands.Cog):
                     print(e)
 
             else:
-                embed=discord.Embed(title="Something was wrong!", description="Your request did not complete due to an error!", color=0xff0000)
-                embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                embed=discord.Embed(title="Something was wrong!", description="Your request did not complete due to an error!", color=getembed.Common.COLOR)
+                embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                 embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879668020006502440/SeekPng.com_envelope-icon-png_1336118.png")
                 embed.add_field(name="Error", value="Invalid Email Address", inline=False)
                 embed.add_field(name="How to fix", value=f"Enter a email address that ends with {verified_mails}", inline=True)
@@ -1513,9 +1593,9 @@ class Tools(commands.Cog):
                 print("email is not valid")
         
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             try:
@@ -1526,7 +1606,10 @@ class Tools(commands.Cog):
             print(e)
 
 
-    @commands.command(aliases=["similarity", "closematch", "closematches"])
+    @commands.command(aliases=["similarity", "closematch", "closematches"],
+    breif="Text similarity finder",
+    description="Find the similarity of 2 given texts which sould be seperated by `||`",
+    help="Find the similarity of 2 given texts which sould be seperated by `||`")
     async def similiar(self, ctx, *, message):
         """
         The two messages ( strings ) will be divided by the 
@@ -1537,8 +1620,8 @@ class Tools(commands.Cog):
             message1, message2 = message.split('||')
             r = requests.get(f"https://some-random-api.ml/stringsimilarity?string1={message1}&string2={message2}").json()
 
-            embed=discord.Embed(title="Find Similarity", description="between two strings", color=0xff0000)
-            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed=discord.Embed(title="Find Similarity", description="between two strings", color=getembed.Common.COLOR)
+            embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(url="https://media.discordapp.net/attachments/877796755234783273/880742956552822794/mr-bean-avatar-character-cartoon-rowan-atkinson-png-image-33.png?width=454&height=584")
             embed.add_field(name="First", value=f"{message1}", inline=False)
             embed.add_field(name="Second", value=f"{message2}", inline=False)
@@ -1547,8 +1630,8 @@ class Tools(commands.Cog):
             await ctx.send(embed=embed)
         
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url="https://media.discordapp.net/attachments/877796755234783273/880745781966037032/new-scrabble-words-2018-beatdown-5657-57124c9f228c0258d65053fe7d3891491x.jpg")
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.add_field(name="Possible Fix:", value=f"You must have only one '||' part for the whole message for the bot to divide the string", inline=False)
@@ -1556,7 +1639,10 @@ class Tools(commands.Cog):
             await loading_message.delete()
             await ctx.send(embed=embed3)
     
-    @commands.command()
+    @commands.command(
+    breif="Youtube video search",
+    description="Enter what to search as `query` and the bot will send you the top result you will get if you search from youtube manually! (personalization excluded)",
+    help="Enter what to search as `query` and the bot will send you the top result you will get if you search from youtube manually! (personalization excluded)")
     async def youtube(self, ctx, *, query):
         loading_message = await ctx.send(embed=self.please_wait_emb)
         try:
@@ -1567,8 +1653,8 @@ class Tools(commands.Cog):
             await loading_message.delete()
             await ctx.send(video_link)
         except Exception as e:
-            embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url="https://media.discordapp.net/attachments/877796755234783273/880745781966037032/new-scrabble-words-2018-beatdown-5657-57124c9f228c0258d65053fe7d3891491x.jpg")
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.add_field(name="Possible Fix:", value=f"Search something valid", inline=False)
