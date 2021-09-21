@@ -2,6 +2,8 @@ import discord, requests, hashlib, urllib, base64
 from discord.ext import commands
 from json import load as loadjson
 from random import choice as randomchoice
+import database.retrieve_embeds as getembed
+
 
 class Games(commands.Cog):
     def __init__(self, client: commands.Bot, description="a set of simple commands"):
@@ -13,10 +15,10 @@ class Games(commands.Cog):
         self.bot_inv_link = self.botconfigdata["invite-link"]
 
         # This is the please-wait/Loading embed
-        self.please_wait_emb = discord.Embed(title="Please Wait", description="``` Processing Your Request ```", color=0xff0000)
-        self.please_wait_emb.set_author(name="YourBot")
-        self.please_wait_emb.set_thumbnail(url="https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif")
-        self.please_wait_emb.set_footer(text="Bot created by ZeaCeR#5641")
+        self.please_wait_emb = discord.Embed(title=getembed.PleaseWait.TITLE, description=f"``` {getembed.PleaseWait.DESCRIPTION} ```", color=getembed.PleaseWait.COLOR)
+        self.please_wait_emb.set_author(name=getembed.PleaseWait.AUTHOR_NAME, icon_url=getembed.PleaseWait.AUTHOR_LINK)
+        self.please_wait_emb.set_thumbnail(url=getembed.PleaseWait.THUMBNAIL)
+        self.please_wait_emb.set_footer(text=getembed.PleaseWait.FOOTER)
 
 
     @commands.command(aliases=["8ball", "eightball"],
@@ -48,18 +50,18 @@ class Games(commands.Cog):
             embed.add_field(name="Answer", value=answer, inline=False)
             embed.set_thumbnail(url="https://www.horoscope.com/images-US/games/game-magic-8-ball-no-text.png")
             embed.set_footer(text=f"Requested by {ctx.author.mention}")
-            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             await loading_message.delete()
             await ctx.send(embed=embed)
 
         except Exception as e:
-            embed2=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-            embed2.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            embed2.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
-            embed2.add_field(name="Error:", value=f"{e}", inline=False)
-            embed2.set_footer(text=f"Requested by {ctx.author.name}")
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
-            await ctx.send(embed=embed2)
+            await ctx.send(embed=embed3)
 
     @commands.command(
     breif="how does he/she die?",
@@ -96,7 +98,7 @@ class Games(commands.Cog):
                     )
             if member == "none":
                 embed=discord.Embed(title="Death...??", color=0xff0000)
-                embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                 embed.set_footer(text=f"Requested by {ctx.author.name}")
                 embed.add_field(name=f"{ctx.author.name}", value=f"{randomchoice(dying_methods)}.", inline=False)
                 await loading_message.delete()
@@ -104,7 +106,7 @@ class Games(commands.Cog):
 
             else:
                 embed=discord.Embed(title="Death...??", color=0xff0000)
-                embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+                embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                 embed.set_footer(text="Requested by {ctx.author.name}")
                 embed.add_field(name=f"{member.name}", value=f"{randomchoice(dying_methods)}.", inline=False)
                 await loading_message.delete()
@@ -112,7 +114,7 @@ class Games(commands.Cog):
         
         except Exception as e:
             embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
@@ -130,14 +132,14 @@ class Games(commands.Cog):
         try:
             responses = ["🍋" , "🍊", "🍉", ":seven:", ]
             embed=discord.Embed(title="🎰 Slot Machine 🎰", description=randomchoice(responses) + randomchoice(responses) + randomchoice(responses), color=0xFF0000)
-            embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_footer(text="You need triple 7's to win.")
             await loading_message.delete()
             await ctx.send(embed=embed)
         
         except Exception as e:
             embed3=discord.Embed(title=":red_square: Error!", description="The command was unable to run successfully! ", color=0xff0000)
-            embed3.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
