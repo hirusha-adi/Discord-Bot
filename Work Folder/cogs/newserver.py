@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 
 import database.retrieve_embeds as getembed
-
+import database.retrieve_base as getbase
 
 class ServerSetup(commands.Cog, description="Setup your new server easily with this!"):
     def __init__(self, client: commands.Bot):
@@ -10,6 +10,9 @@ class ServerSetup(commands.Cog, description="Setup your new server easily with t
         
         # Bot starting time, we find the time delta of this to send the uptime
         # self.start_time = None
+
+        self.bot_prefix = getbase.Main.MSG_PREFIX
+        self.bot_inv_link = getbase.Main.INVITE_LINK
         
         # This is the please-wait/Loading embed
         self.please_wait_emb = discord.Embed(title=getembed.PleaseWait.TITLE, description=f"``` {getembed.PleaseWait.DESCRIPTION} ```", color=getembed.PleaseWait.COLOR)

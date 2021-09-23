@@ -3,7 +3,6 @@ import discord
 from discord.ext import commands
 import database.retrieve_embeds as getembed
 
-
 class MyHelpCommand(commands.HelpCommand):
     def __init__(self, **options):
         super().__init__(**options)

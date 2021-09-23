@@ -32,6 +32,7 @@ from discord.ext import commands
 import random
 import json
 import datetime
+import database.retrieve_base as getbase
 
 # Imports for music command!
 if platform.system().lower().startswith('win'):
@@ -65,11 +66,10 @@ except Exception as e:
 #     os.system("pip3 install discord-custom-help")
 
 
-botconfigdata = json.load(open("config.json", "r"))
-bot_prefix = botconfigdata["msg-prefix"]
-bot_owner_id_zeacer = botconfigdata["ownerid"]
-bot_logging_commands_status = botconfigdata["log-user-data"]
-bot_logging_channel_id = botconfigdata["log-channel-id"]
+bot_prefix = getbase.Main.MSG_PREFIX
+bot_owner_id_zeacer = getbase.Main.OWNER_ID
+bot_logging_commands_status = getbase.Main.LOG_USER_DATA
+bot_logging_channel_id = getbase.Main.LOG_CHANNEL_ID
 
 
 token = os.environ['TOKEN']

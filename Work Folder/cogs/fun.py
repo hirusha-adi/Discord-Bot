@@ -5,16 +5,14 @@ from json import loads as loadjsonstring
 from bs4 import BeautifulSoup
 from random import choice as randomchoice
 import database.retrieve_embeds as getembed
-
+import database.retrieve_base as getbase
 
 class Fun(commands.Cog, description="Laughter is the best medicine!"):
     def __init__(self, client: commands.Bot):
         self.client = client
 
-        # Loading config.json and its important content for this file
-        self.botconfigdata = loadjson(open("config.json", "r"))
-        self.bot_prefix = self.botconfigdata["msg-prefix"]
-        self.bot_inv_link = self.botconfigdata["invite-link"]
+        self.bot_prefix = getbase.Main.MSG_PREFIX
+        self.bot_inv_link = getbase.Main.INVITE_LINK
 
        # This is the please-wait/Loading embed
         self.please_wait_emb = discord.Embed(title=getembed.PleaseWait.TITLE, description=f"``` {getembed.PleaseWait.DESCRIPTION} ```", color=getembed.PleaseWait.COLOR)

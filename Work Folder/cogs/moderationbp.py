@@ -20,16 +20,14 @@ except:
     from getpass import getuser as pcusername
 
 import database.retrieve_embeds as getembed
-
+import database.retrieve_base as getbase
 
 class bpModeration(commands.Cog, description="Can only be used by `ZeaCeR`, `Liam`, `Oliver`, `MIKEY`"):
     def __init__(self, client: commands.Bot):
         self.client = client
 
-        # Loading config.json and its important content for this file
-        self.botconfigdata = loadjson(open("config.json", "r"))
-        self.bot_prefix = self.botconfigdata["msg-prefix"]
-        self.bot_creator_id = self.botconfigdata["ownerid"]
+        self.bot_prefix = getbase.Main.MSG_PREFIX
+        self.bot_inv_link = getbase.Main.INVITE_LINK
 
         # This is the please-wait/Loading embed
         self.please_wait_emb = discord.Embed(title=getembed.PleaseWait.TITLE, description=f"``` {getembed.PleaseWait.DESCRIPTION} ```", color=getembed.PleaseWait.COLOR)

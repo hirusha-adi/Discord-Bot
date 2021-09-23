@@ -5,6 +5,7 @@ from platform import system as systemtype
 from os import system as systemruncmnd
 
 import database.retrieve_embeds as getembed
+import database.retrieve_base as getbase
 
 try:
     from faker import Faker
@@ -29,9 +30,7 @@ class FakeInformation(commands.Cog, description="Generate fake/random informatio
     def __init__(self, client: commands.Bot):
         self.client = client
 
-        # Loading config.json and its important content for this file
-        self.botconfigdata = loadjson(open("config.json", "r"))
-        self.bot_prefix = self.botconfigdata["msg-prefix"]
+        self.bot_prefix = getbase.Main.MSG_PREFIX
 
         # This is the please-wait/Loading embed
         self.please_wait_emb = discord.Embed(title=getembed.PleaseWait.TITLE, description=f"``` {getembed.PleaseWait.DESCRIPTION} ```", color=getembed.PleaseWait.COLOR)

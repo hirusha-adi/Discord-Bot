@@ -3,11 +3,14 @@ from discord.ext import commands
 from json import load as loadjson
 
 import database.retrieve_embeds as getembed
-
+import database.retrieve_base as getbase
 
 class Texts(commands.Cog, description="Text commands + Send simple texts"):
     def __init__(self, client: commands.Bot):
         self.client = client
+
+        self.bot_prefix = getbase.Main.MSG_PREFIX
+        self.bot_inv_link = getbase.Main.INVITE_LINK
 
         # This is the please-wait/Loading embed
         self.please_wait_emb = discord.Embed(title=getembed.PleaseWait.TITLE, description=f"``` {getembed.PleaseWait.DESCRIPTION} ```", color=getembed.PleaseWait.COLOR)

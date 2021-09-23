@@ -38,16 +38,14 @@ except:
     from youtubesearchpython import VideosSearch
 
 import database.retrieve_embeds as getembed
-
+import database.retrieve_base as getbase
 
 class Tools(commands.Cog, description="a set of tools built to make many acitivies easier and simpler!"):
     def __init__(self, client: commands.Bot):
         self.client = client
 
-        # Loading config.json and its important content for this file
-        self.botconfigdata = loadjson(open("config.json", "r"))
-        self.bot_prefix = self.botconfigdata["msg-prefix"]
-        self.bot_inv_link = self.botconfigdata["invite-link"]
+        self.bot_prefix = getbase.Main.MSG_PREFIX
+        self.bot_inv_link = getbase.Main.INVITE_LINK
 
         # This is the please-wait/Loading embed
         self.please_wait_emb = discord.Embed(title=getembed.PleaseWait.TITLE, description=f"``` {getembed.PleaseWait.DESCRIPTION} ```", color=getembed.PleaseWait.COLOR)

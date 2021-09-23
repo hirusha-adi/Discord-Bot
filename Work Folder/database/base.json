@@ -1,4 +1,11 @@
-{   
+{   "MAIN":{
+        "MSG_PREFIX":">",
+        "INVITE_LINK":"https://discord.com/api/oauth2/authorize?client_id=858303945167208448&permissions=8&scope=bot",
+        "OWNER_ID":584662127470575616,
+        "LOG_USER_DATA":"yes",
+        "LOG_CHANNEL_ID":861859505981489172
+    },
+
     "INFO":{
         "VERSION":"2.7"
     },
