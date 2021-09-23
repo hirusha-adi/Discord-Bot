@@ -5,7 +5,7 @@ from json import loads as loadjsonstring
 import database.retrieve_embeds as getembed
 
 
-class Mathematics(commands.Cog):
+class Mathematics(commands.Cog, description="Solve simple math easily! - more commands are being developed!"):
     def __init__(self, client: commands.Bot):
         self.client = client
 

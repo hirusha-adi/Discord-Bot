@@ -4,7 +4,7 @@ from discord.ext import commands
 import database.retrieve_embeds as getembed
 
 
-class ServerSetup(commands.Cog):
+class ServerSetup(commands.Cog, description="Setup your new server easily with this!"):
     def __init__(self, client: commands.Bot):
         self.client = client
         

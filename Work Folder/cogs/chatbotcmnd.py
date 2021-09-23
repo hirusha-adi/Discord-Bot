@@ -4,8 +4,8 @@ from json import load as loadjson
 import database.retrieve_embeds as getembed
 
 
-class ChatBot(commands.Cog):
-    def __init__(self, client: commands.Bot, description="Advance chatbot - manual setup by creator"):
+class ChatBot(commands.Cog, description="Advance chatbot - manual setup by creator"):
+    def __init__(self, client: commands.Bot):
         self.client = client
 
         # Loading config.json and its important content for this file

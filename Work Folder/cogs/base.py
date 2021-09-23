@@ -33,7 +33,7 @@ class Main(commands.Cog, description="For bot information"):
         print(f'Logged in as {self.client.user} | {self.client.user.id}')
         global start_time
         start_time = nowtime()
-        # Setting `Watching ` status
+        # https://stackoverflow.com/questions/59126137/how-to-change-discord-py-bot-activity
         await self.client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"{len(self.client.guilds)} servers!"))
         print(getbase.BotBase.BOT_READY_MESSAGE)
 

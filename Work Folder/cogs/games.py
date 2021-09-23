@@ -5,8 +5,8 @@ from random import choice as randomchoice
 import database.retrieve_embeds as getembed
 
 
-class Games(commands.Cog):
-    def __init__(self, client: commands.Bot, description="a set of simple commands"):
+class Games(commands.Cog, description="a set of simple games to spend time"):
+    def __init__(self, client: commands.Bot):
         self.client = client
 
         # Loading config.json and its important content for this file

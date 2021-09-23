@@ -40,7 +40,7 @@ except:
 import database.retrieve_embeds as getembed
 
 
-class Tools(commands.Cog):
+class Tools(commands.Cog, description="a set of tools built to make many acitivies easier and simpler!"):
     def __init__(self, client: commands.Bot):
         self.client = client
 
