@@ -52,6 +52,10 @@
         "COLOR":"red",
         "THUMBNAIL":"https://www.nicepng.com/png/detail/214-2146883_4-fake-stamp-vector-fake-news-logo-png.png",
         "TITLE":"Fake Information Generator"
+    },
+
+    "HELP":{
+        "COLOR":"ff0000"
     }
 
 }

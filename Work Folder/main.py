@@ -117,8 +117,11 @@ async def unloadex(ctx, extension):
 # Loading all the cogs at startup
 for filename in os.listdir('./cogs'):
   if filename.endswith('.py'):
-    client.load_extension(f'cogs.{filename[:-3]}')
-    print(f"[+] Loaded: cogs.{filename[:-3]}")
+    try:
+      client.load_extension(f'cogs.{filename[:-3]}')
+      print(f"[+] Loaded: cogs.{filename[:-3]}")
+    except Exception as excl:
+      print(f"[+] Unable to load: cogs.{filename[:-3]}  :  {excl}")
 
 
 # MUSIC BOT //////////////////////////////////////////////////////////////////////////////////////////

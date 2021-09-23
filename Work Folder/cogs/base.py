@@ -28,13 +28,13 @@ class Main(commands.Cog, description="For bot information"):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        BOT_ACTIVITY = discord.ActivityType.watching, name=f"{len(self.client.guilds)} servers!"
         print(f'Discord.py API version: {discord.__version__}')
         print(f'Python version: {platform.python_version()}')
         print(f'Logged in as {self.client.user} | {self.client.user.id}')
         global start_time
         start_time = nowtime()
-        await self.client.change_presence(activity=discord.Activity(type=BOT_ACTIVITY))
+        # Setting `Watching ` status
+        await self.client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"{len(self.client.guilds)} servers!"))
         print(getbase.BotBase.BOT_READY_MESSAGE)
 
 

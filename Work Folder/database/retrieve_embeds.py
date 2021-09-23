@@ -115,6 +115,12 @@ class FakeEmbeds:
         COLOR = 0x0000ff
 
 
+class Help:
+    # Opening the json file
+    with open("database/embeds.json", "r", encoding="utf8") as embedsf:
+        embeddata = json.load(embedsf)
 
+    # VARIABLES
+    COLOR = embeddata["HELP"]["COLOR"]
 
 
