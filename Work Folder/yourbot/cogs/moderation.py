@@ -1,6 +1,5 @@
 import discord, os, asyncio, io, aiohttp
 from discord.ext import commands
-from json import load as loadjson
 from requests import get as reqget
 from random import choices as rchoices
 from string import ascii_letters as asciiletters
