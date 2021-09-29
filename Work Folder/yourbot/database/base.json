@@ -1,0 +1,35 @@
+{   "MAIN":{
+        "MSG_PREFIX":">",
+        "INVITE_LINK":"https://discord.com/api/oauth2/authorize?client_id=858303945167208448&permissions=8&scope=bot",
+        "OWNER_ID":584662127470575616,
+        "LOG_USER_DATA":"yes",
+        "LOG_CHANNEL_ID":861859505981489172
+    },
+
+    "INFO":{
+        "VERSION":"2.7"
+    },
+
+    "CREATOR":{
+        "NAME":"ZeaCeR#5641",
+        "ID":584662127470575616
+    },
+
+    "LOGGING":{
+        "STATUS":"yes",
+        "CHANNEL_ID":861859505981489172
+    },
+
+    "INVITE":{
+        "MESSAGE":"```Hey there! Make sure you have me in your server too! Bot Invite link:```",
+        "LINK":"https://discord.com/api/oauth2/authorize?client_id=858303945167208448&permissions=8&scope=bot"
+    },
+
+    "STATUS":{
+        "SOURCE_LINK":"https://github.com/hirusha-adi/Discord-Bot",
+        "ANNOUNCEMENTS":"``` -YourBot {self.bot_current_version}- Hello! Its been nearly two months after the first release of this discord bot. Most of the commands are very stable now, but not all of them. Help me make this bot have 500+ commands. use {self.bot_prefix}help to check all the commands available! ```",
+        "ERRORS":"``` There is bug when the chatbot feature is being used simultaneously in many channels, This issue will be fixed soon!  ```"
+    },
+
+    "BOT_READY_MESSAGE":"Bot is ready!"
+}

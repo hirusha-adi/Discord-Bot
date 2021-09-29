@@ -1,80 +1,46 @@
-# MY FILES
-
-from keep_alive import keep_alive
-import installerm
-
-# OTHERS
-
-import platform
-import os
-
-try:
-  from prsaw import RandomStuffV2
-  os.system("pip3 install prsaw")
-except:
-  if platform.system().lower().startswith('win'):
-    os.system("pip install prsaw")
-  else:
-    os.system("pip3 install prsaw")
-  from prsaw import RandomStuffV2
+from yourbot.web.keep_alive import keep_alive
+import yourbot.others.installerm as ybinstaller
+import yourbot.database.retrieve_base as getbase
+import yourbot.database.retrieve_embeds as getembeds
 
 # The main module
 try:
   import discord
+  from discord.ext import commands
 except:
-  if platform.system().lower().startswith('win'):
-    os.system("pip install discord")
-  else:
-    os.system("pip3 install discord")
+  ybinstaller.pip_install("discord")
   import discord
+  from discord.ext import commands
 
-from discord.ext import commands
+# OTHERS
+import os
 import random
-import json
 import datetime
-import database.retrieve_base as getbase
+try:
+  from prsaw import RandomStuffV2
+except:
+  ybinstaller.pip_install("prsaw")
+  from prsaw import RandomStuffV2
 
 # Imports for music command!
-if platform.system().lower().startswith('win'):
-  os.system("pip install PyNaCl")
-else:
-  os.system("pip3 install PyNaCl")
-
 try:
   import nacl
 except:
-  if platform.system().lower().startswith('win'):
-    os.system("pip install PyNaCl")
-  else:
-    os.system("pip3 install PyNaCl")
+  ybinstaller.pip_install("PyNaCl")
   import nacl
 
 
-try:
-    if platform.system().lower().startswith('win'):
-            os.system("pip install dismusic==1.0.1")
-    else:
-            os.system("pip3 install dismusic==1.0.1")
-except Exception as e:
-  print("Error:", e)
-
-
-# FOR helpcmd cog
-# if platform.system().lower().startswith('win'):
-#     os.system("pip install discord-custom-help")
-# else:
-#     os.system("pip3 install discord-custom-help")
-
-
+# From yourbot/database/config.json
 bot_prefix = getbase.Main.MSG_PREFIX
 bot_owner_id_zeacer = getbase.Main.OWNER_ID
 bot_logging_commands_status = getbase.Main.LOG_USER_DATA
 bot_logging_channel_id = getbase.Main.LOG_CHANNEL_ID
 
-
+# From enviroment (as i host in replit)
 token = os.environ['TOKEN']
 bot_email_addr = os.environ['EMAILA']
 bot_email_password = os.environ['EMAILP']
+
 
 client = commands.Bot(command_prefix = bot_prefix)
 
@@ -82,16 +48,16 @@ client = commands.Bot(command_prefix = bot_prefix)
 @client.command()
 async def loadex(ctx, extension):
   if ctx.author.id == bot_owner_id_zeacer:
-    client.load_extension(f'cogs.{extension}')
-    embed=discord.Embed(title="SUCCESS", description=f"`ADDED cogs.{extension} from YourBot`", color=0xff0000)
-    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    client.load_extension(f'yourbot.cogs.{extension}')
+    embed=discord.Embed(title="SUCCESS", description=f"`ADDED cogs.{extension} from YourBot`", color=getembeds.Common.COLOR)
+    embed.set_author(name=getembeds.CogManage.AUTHOR_NAME, icon_url=getembeds.CogManage.AUTHOR_ICON)
+    embed.set_thumbnail(url=getembeds.CogManage.THUMBNAIL)
     await ctx.send(embed=embed)
     return
   else:
-    embed=discord.Embed(title="ERROR", description="`You don't have the permissions required to use this command!`", color=0xff0000)
-    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
+    embed=discord.Embed(title="ERROR", description="`You don't have the permissions required to use this command!`", color=getembeds.ErrorEmbeds.COLOR)
+    embed.set_author(name=getembeds.CogManage.AUTHOR_NAME, icon_url=getembeds.CogManage.AUTHOR_ICON)
+    embed.set_thumbnail(url=getembeds.CogManage.THUMBNAIL)
     await ctx.send(embed=embed)
     return
 
@@ -99,29 +65,30 @@ async def loadex(ctx, extension):
 @client.command()
 async def unloadex(ctx, extension):
   if ctx.author.id == bot_owner_id_zeacer:
-    try:
-      client.unload_extension(f'cogs.{extension}')
-      embed=discord.Embed(title="SUCCESS", description=f"`REMOVED cogs.{extension} from YourBot`", color=0xff0000)
-      embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-      embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
-      await ctx.send(embed=embed)
-      return
-    except:
-      embed=discord.Embed(title="ERROR", description="`You don't have the permissions required to use this command!`", color=0xff0000)
-      embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-      embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879298565380386846/sign-red-error-icon-1.png")
-      await ctx.send(embed=embed)
-      return
+    client.unload_extension(f'yourbot.cogs.{extension}')
+    embed=discord.Embed(title="SUCCESS", description=f"`REMOVED cogs.{extension} from YourBot`", color=getembeds.Common.COLOR)
+    embed.set_author(name=getembeds.CogManage.AUTHOR_NAME, icon_url=getembeds.CogManage.AUTHOR_ICON)
+    embed.set_thumbnail(url=getembeds.CogManage.THUMBNAIL)
+    await ctx.send(embed=embed)
+    return
+  else:
+    embed=discord.Embed(title="ERROR", description="`You don't have the permissions required to use this command!`", color=getembeds.ErrorEmbeds.COLOR)
+    embed.set_author(name=getembeds.CogManage.AUTHOR_NAME, icon_url=getembeds.CogManage.AUTHOR_ICON)
+    embed.set_thumbnail(url=getembeds.CogManage.THUMBNAIL)
+    await ctx.send(embed=embed)
+    return
+
 
 
 # Loading all the cogs at startup
-for filename in os.listdir('./cogs'):
-  if filename.endswith('.py'):
+for filename in os.listdir('./yourbot/cogs'):
+  if filename.endswith('.py'):  # cogs.musicplayer is not being loded in here
     try:
-      client.load_extension(f'cogs.{filename[:-3]}')
-      print(f"[+] Loaded: cogs.{filename[:-3]}")
+      client.load_extension(f'yourbot.cogs.{filename[:-3]}')
+      print(f"[+] Loaded: yourbot.cogs.{filename[:-3]}")
     except Exception as excl:
-      print(f"[+] Unable to load: cogs.{filename[:-3]}  :  {excl}")
+      print(f"[+] Unable to load: yourbot.cogs.{filename[:-3]}  :  {excl}")
+
 
 
 # MUSIC BOT //////////////////////////////////////////////////////////////////////////////////////////
@@ -139,7 +106,8 @@ client.lava_nodes = [
 ]
 
 # Adding the cog
-client.load_extension('dismusic')
+client.load_extension('yourbot.cogs.musicplayer')
+print("[+] Loaded: yourbot.cogs.musicplayer")
 
 
 
