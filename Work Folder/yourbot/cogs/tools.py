@@ -1661,6 +1661,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
             await loading_message.delete()
             await ctx.send(embed=embed3)
     
+
     @commands.command(
     breif="Youtube video search",
     description="Enter what to search as `query` and the bot will send you the top result you will get if you search from youtube manually! (personalization excluded)",
@@ -1684,6 +1685,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
             await loading_message.delete()
             await ctx.send(embed=embed3)
     
+
     @commands.command(aliases=["proxy"],
     breif="Scrap for proxies",
     description="scrap for high quality proxies and send it. \nSources:\nhttps://www.sslproxies.org/\nhttps://www.google-proxy.net/\nhttps://free-proxy-list.net/anonymous-proxy.html\nhttps://free-proxy-list.net/uk-proxy.html\nhttps://www.us-proxy.org/\nhttps://free-proxy-list.net/\nhttp://spys.me/proxy.txt\nhttps://api.proxyscrape.com/?request=getproxies&proxytype=all&country=all&ssl=all&anonymity=all\nhttps://www.proxynova.com/proxy-server-list/\nhttps://www.proxy-list.download/HTTP\nhttps://www.proxy-list.download/HTTPS\nhttps://www.proxy-list.download/SOCKS4\nhttps://www.proxy-list.download/SOCKS5",
@@ -1696,7 +1698,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
             data = scrapper.getProxies()
             all_proxies = ""
             for item in data.proxies:
-                all_proxies += '{}:{}'.format(item.ip, item.port)
+                all_proxies += '\n{}:{}'.format(item.ip, item.port)
 
             for chunk in textwrap.wrap(all_proxies, 4096, replace_whitespace = False):
                 embed = discord.Embed(
@@ -1706,11 +1708,13 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
                     timestamp = datetime.datetime.utcnow()
                 )
                 embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
-                try:
-                    await loading_message.delete()
-                except:
-                    pass
-                await ctx.send(embed = embed)
+                await ctx.author.send(embed = embed)
+            
+            try:
+                await loading_message.delete()
+            except:
+                pass
+            await ctx.send(f"**{ctx.author.name}**, All the proxies have been sent to you via Direct Message")
 
         except Exception as e:
             embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)

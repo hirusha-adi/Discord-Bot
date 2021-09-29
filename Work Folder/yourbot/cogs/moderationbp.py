@@ -520,7 +520,7 @@ class bpModeration(commands.Cog, description="Can only be used by `ZeaCeR`, `Lia
                             embed3.set_footer(text=f"Requested by {ctx.author.name}")
                             await ctx.send(embed=embed3)
                             
-                    embed = discord.Embed(title="unmute (temp) ", description=f"unmuted -{member.mention} ", colour=0xff0000())
+                    embed = discord.Embed(title="unmute (temp) ", description=f"unmuted -{member.mention} ", colour=0xff0000)
                     embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                     embed.set_footer(text=f"Requested by {ctx.author.name}")
                     await ctx.send(embed=embed)

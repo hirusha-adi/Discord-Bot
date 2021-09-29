@@ -6,8 +6,8 @@ from string import ascii_letters as asciiletters
 from string import digits as alldigits
 from datetime import datetime as datet
 from typing import Optional, Text
-import database.retrieve_embeds as getembed
-import database.retrieve_base as getbase
+import yourbot.database.retrieve_embeds as getembed
+import yourbot.database.retrieve_base as getbase
 import yourbot.others.installerm as ybinstaller
 
 from platform import system as pltfsys
@@ -665,7 +665,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                         embed3.set_footer(text=f"Requested by {ctx.author.name}")
                         await ctx.send(embed=embed3)
                         
-                embed = discord.Embed(title="unmute (temp) ", description=f"unmuted -{member.mention} ", colour=0xff0000())
+                embed = discord.Embed(title="unmute (temp) ", description=f"unmuted -{member.mention} ", colour=0xff0000)
                 embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                 embed.set_footer(text=f"Requested by {ctx.author.name}")
                 await ctx.send(embed=embed)

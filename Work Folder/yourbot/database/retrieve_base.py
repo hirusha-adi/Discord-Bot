@@ -4,7 +4,7 @@ import json
 class BotBase:
 
     # Opening the json file
-    with open("database/base.json", "r", encoding="utf8") as embedsf:
+    with open("yourbot/database/base.json", "r", encoding="utf8") as embedsf:
         embeddata = json.load(embedsf)
 
     BOT_VERSION = embeddata["INFO"]["VERSION"]
@@ -26,7 +26,7 @@ class BotBase:
 
 class Main:
     # Opening the json file
-    with open("database/base.json", "r", encoding="utf8") as embedsf:
+    with open("yourbot/database/base.json", "r", encoding="utf8") as embedsf:
         embeddata = json.load(embedsf)
     
     MSG_PREFIX = embeddata["MAIN"]["MSG_PREFIX"]

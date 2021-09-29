@@ -3,7 +3,7 @@ import json
 class PleaseWait:
 
     # Opening the json file
-    with open("database/embeds.json", "r", encoding="utf8") as embedsf:
+    with open("yourbot/database/embeds.json", "r", encoding="utf8") as embedsf:
         embeddata = json.load(embedsf)
 
     # VARIABLES - Same name as in json file
@@ -26,7 +26,7 @@ class PleaseWait:
 class Common:
 
     # Opening the json file
-    with open("database/embeds.json", "r", encoding="utf8") as embedsf:
+    with open("yourbot/database/embeds.json", "r", encoding="utf8") as embedsf:
         embeddata = json.load(embedsf)
         
     # VARIABLES - Same name as in json file
@@ -44,7 +44,7 @@ class Common:
 class ErrorEmbeds:
 
     # Opening the json file
-    with open("database/embeds.json", "r", encoding="utf8") as embedsf:
+    with open("yourbot/database/embeds.json", "r", encoding="utf8") as embedsf:
         embeddata = json.load(embedsf)
 
     # VARIABLES
@@ -97,7 +97,7 @@ class ErrorEmbeds:
 class FakeEmbeds:
 
     # Opening the json file
-    with open("database/embeds.json", "r", encoding="utf8") as embedsf:
+    with open("yourbot/database/embeds.json", "r", encoding="utf8") as embedsf:
         embeddata = json.load(embedsf)
 
     # VARIABLES
@@ -117,7 +117,7 @@ class FakeEmbeds:
 
 class Help:
     # Opening the json file
-    with open("database/embeds.json", "r", encoding="utf8") as embedsf:
+    with open("yourbot/database/embeds.json", "r", encoding="utf8") as embedsf:
         embeddata = json.load(embedsf)
 
     # VARIABLES
@@ -126,7 +126,7 @@ class Help:
 
 class CogManage:
     # Opening the json file
-    with open("database/embeds.json", "r", encoding="utf8") as embedsf:
+    with open("yourbot/database/embeds.json", "r", encoding="utf8") as embedsf:
         embeddata = json.load(embedsf)
 
     # VARIABLES
