@@ -8,6 +8,7 @@ import smtplib, textwrap, datetime
 import yourbot.database.retrieve_embeds as getembed
 import yourbot.database.retrieve_base as getbase
 import yourbot.others.installerm as ybinstaller
+from zxcvbn import zxcvbn
 
 try:
     import requests
@@ -211,6 +212,51 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
                 embed.set_footer(text=f"Requested by {ctx.author.name}")
                 await loading_message.delete()
                 await ctx.send(embed=embed)
+
+        except Exception as e:
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+
+
+    @commands.command(breif="Password Checker",
+    description="This command will send you very useful information about your password",
+    help="This command will send you very useful information about your password")
+    async def passwordc(self, ctx, *, password):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+
+        try:
+            results = zxcvbn('hirusha')
+            embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
+
+            embed3.add_field(name="Password", value=f"{password}", inline=False)
+            embed3.add_field(name="Guesses", value=f"Decimal: {results['guesses']}\nLog 10: {results['guesses_log10']}", inline=False)
+            
+            pat = ""
+            for seq in results['sequence']:
+                pat += f"\n-------\nPattern: {seq['pattern']}\ni: {seq['i']}\nj: {seq['j']}\nToken: {seq['token']}\nMatched Word: {seq['matched_word']}\nRank: {seq['rank']}\nDictionary Name: {seq['dictionary_name']}\nReversed: {seq['reversed']}\nl33t: {seq['l33t']}\nBase Guesses: {seq['base_guesses']}\nUppercase Variations: {seq['uppercase_variations']}\nl33t Variations: {seq['l33t_variations']}\nGuesses: {seq['guesses']}\nGuesses Log10: {seq['guesses_log10']}"
+            
+            embed3.add_field(name="Pattern: ", value=f"{pat}", inline=False)
+            embed3.add_field(name="Calculate Time: ", value=f"{results['calc_time']}", inline=False)
+            embed3.add_field(name="Crack Time Seconds: ", value=f"Online Throttling 100 Per Hour: {results['crack_times_seconds']['online_throttling_100_per_hour']}\nOnline no Throttling 10 Per Second: {results['crack_times_seconds']['online_no_throttling_10_per_second']}\nOffline Slow Hashing 1e4 Per Second: {results['crack_times_seconds']['offline_slow_hashing_1e4_per_second']}\nOffline Fast Hashing 1e10 Per Second: {results['crack_times_seconds']['offline_fast_hashing_1e10_per_second']}", inline=False)
+            embed3.add_field(name="Crack Times Display: ", value=f"Online Throttling 100 Per Hour: {results['crack_times_display']['online_throttling_100_per_hour']}\nOnline No Throttling 10 Per Second: {results['crack_times_display']['online_no_throttling_10_per_second']}\nOffline Slow Hashing 1e4 Per Second: {results['crack_times_display']['offline_slow_hashing_1e4_per_second']}\nOffline Fast Hashing 1e10 Per Second: {results['crack_times_display']['offline_fast_hashing_1e10_per_second']}", inline=False)
+            embed3.add_field(name="Score: ", value=f"{results['score']}", inline=False)
+            
+            fdb = ""
+            for feedbsug in results['feedback']['suggestions']:
+                fdb += f"{feedbsug}\n"
+
+            embed3.add_field(name="Feedback: ", value=f"{results['feedback']['warning']}\n{fdb}", inline=False)
+
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
 
         except Exception as e:
             embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
