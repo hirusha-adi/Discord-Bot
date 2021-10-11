@@ -17,8 +17,8 @@ except:
     ybinstaller.pip_install("requests")
     import urllib
 
-class Images(commands.Cog):
-    def __init__(self, client: commands.Bot, description="Send fun images | Add effects/overlays to images"):
+class Images(commands.Cog, description="Send fun images | Add effects/overlays to images"):
+    def __init__(self, client: commands.Bot):
         self.client = client
 
         self.bot_prefix = getbase.Main.MSG_PREFIX

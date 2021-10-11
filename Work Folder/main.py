@@ -2,6 +2,8 @@ from yourbot.web.keep_alive import keep_alive
 import yourbot.others.installerm as ybinstaller
 import yourbot.database.retrieve_base as getbase
 import yourbot.database.retrieve_embeds as getembeds
+import yourbot.database.chatbot_channels as getChatBot
+import yourbot.database.blacklistmgr as blacklistmgr
 
 # The main module
 try:
@@ -116,20 +118,32 @@ rs = RandomStuffV2()
 credits_wl = (
   "who made you", "developer", "who created you", "creator", "who is your owner", "your owner" "zeacer", "5641", "zeacer5641", "zeacer#5641", "your father", "your mother", "your creator", "develop", "who is your father", "who is your mother", "who is your zeacer", "who is your creator")
 credits_reply_wl = ( "I was created by ZeaCeR#5641", "ZeaCeR#5641 created me", "ZeaCeR#5641 is the creator of me", "ZeaCeR#5641 is person who created me")
-channel_lis = ( 863706778743341076, 874577378746175508, 874963358254780447, 874964067322822696)
+channel_lis = getChatBot.ChatBotChannels.channel_ids
 
 bp = bot_prefix
 
 @client.event
 async def on_message(message):
+  if client.user == message.author:
+    return
   
-  if message.channel.id in channel_lis:
-    if client.user == message.author:
-      return
+  # User Blacklist
+  if message.author.id in blacklistmgr.Users.blacklisted_users:
+    if message.content.startswith(f'{bp}'):
+      message.reply("[-] You are blacklisted from using this bot!")
+    return
+  
+  # Server Blacklist
+  if message.guild.name in blacklistmgr.Servers.blacklisted_servers:
+    if message.content.startswith(f'{bp}'):
+      message.reply("[-] The server you are trying to use the bot is blaclisted!")
+    return
 
+  # ChatBot in specified channels or if the message starts with `cb`
+  if (message.channel.id in channel_lis) or (message.content.lower().startswith('cb')):
     if message.content.lower() in credits_wl:
       await message.reply(f"{random.choice(credits_reply_wl)}")
-    elif message.content.startswith(f'{bp}help'):
+    elif message.content.startswith(f'{bp}help'): # so we can use the help command in set channels
       pass
     else:
       try:
@@ -138,10 +152,8 @@ async def on_message(message):
       except Exception as e:
         await message.reply(f'Error: {e}')
   
-  if client.user == message.author:
-    return
-  
-  # Logging user messages to YourBot log server
+
+  # Logging user messages to YourBot server's log channel (You need a role to see it and only i can give it to others)
   if bot_logging_commands_status == "yes":
     if message.content.startswith('>'):
       channel = client.get_channel(bot_logging_channel_id)

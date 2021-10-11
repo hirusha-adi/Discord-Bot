@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 import yourbot.database.retrieve_embeds as getembed
 import yourbot.database.retrieve_base as getbase
-
+import yourbot.database.chatbot_channels as getchatbot
 
 class ChatBot(commands.Cog, description="Advance chatbot - manual setup by creator"):
     def __init__(self, client: commands.Bot):
@@ -19,8 +19,8 @@ class ChatBot(commands.Cog, description="Advance chatbot - manual setup by creat
 
 
     @commands.command(breif="use a word from this list",
-    description="use a word from this list - olddays | main | history | list | help",
-    help="use a word from this list - olddays | main | history | list | help")
+    description="use a word from this list - olddays | main | history | list | help | setup",
+    help="use a word from this list - olddays | main | history | list | help | setup")
     async def chatbot(self, ctx, command="main"):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
@@ -38,9 +38,9 @@ class ChatBot(commands.Cog, description="Advance chatbot - manual setup by creat
                 await ctx.send(embed=emh1)
 
             elif command == "main":
-                emh2 = discord.Embed(title=f'Chat Bot', description=f'Setup', color=getembed.Common.COLOR)
+                emh2 = discord.Embed(title=f'Chat Bot', description=f'Main', color=getembed.Common.COLOR)
                 emh2.set_thumbnail(url=r"https://cdn.discordapp.com/attachments/863706778743341076/874579616210239488/Avatar.png")
-                emh2.add_field(name=f'How to start?', value=f'DM the Channel ID to `ZeaCeR#5641`', inline=True)
+                emh2.add_field(name=f'How to start?', value=f'Use `{bp}chatbot setup` in any channel to setup the chatbot!', inline=True)
                 emh2.add_field(name=f'Help', value=f'use `{bp}chatbot help` to Help', inline=True)
                 emh2.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                 emh2.set_footer(text=f"Requested by {ctx.author.name}")
@@ -66,7 +66,7 @@ class ChatBot(commands.Cog, description="Advance chatbot - manual setup by creat
                 await ctx.send(embed=emh4)
 
             elif command == "help":
-                emh2 = discord.Embed(title=f'Chat Bot - Help', description=f'Setup', color=getembed.Common.COLOR)
+                emh2 = discord.Embed(title=f'Chat Bot - Help', description=f'Help', color=getembed.Common.COLOR)
                 emh2.set_thumbnail(url=r"https://cdn.discordapp.com/attachments/863706778743341076/874579616210239488/Avatar.png")
                 emh2.add_field(name=f'History', value=f'`{bp}chatbot history` to see the beginning of the chatbot project', inline=True)
                 emh2.add_field(name=f'List Active Channels', value=f'`{bp}chatbot list` to see the list of active channels of chatbot', inline=True)
@@ -76,8 +76,16 @@ class ChatBot(commands.Cog, description="Advance chatbot - manual setup by creat
                 await loading_message.delete()
                 await ctx.send(embed=emh2)
             
+            elif command == "setup":
+                msg1 = await ctx.send(f"[+] Setting up Chat Bot to: **{ctx.channel.id}**")
+                getchatbot.add_channel(ctx.channel.id)
+                await loading_message.delete()
+                await ctx.channel.edit(slowmode_delay=getchatbot.ChatBotChannels.CHANNEL_SLEEP_TIME)
+                await msg1.delete()
+                await ctx.send(f"[+] **SUCCESS!** - Chat Bot is now working on this channel!")
+
             else:
-                emh2 = discord.Embed(title=f'Chat Bot - Help', description=f'Setup', color=getembed.Common.COLOR)
+                emh2 = discord.Embed(title=f'Chat Bot - Help', description=f'Help', color=getembed.Common.COLOR)
                 emh2.set_thumbnail(url=r"https://cdn.discordapp.com/attachments/863706778743341076/874579616210239488/Avatar.png")
                 emh2.add_field(name=f'History', value=f'`{bp}chatbot history` to see the beginning of the chatbot project', inline=True)
                 emh2.add_field(name=f'List Active Channels', value=f'`{bp}chatbot list` to see the list of active channels of chatbot', inline=True)

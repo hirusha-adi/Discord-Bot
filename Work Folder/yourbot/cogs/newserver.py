@@ -3,7 +3,7 @@ from discord.ext import commands
 import yourbot.database.retrieve_embeds as getembed
 import yourbot.database.retrieve_base as getbase
 
-class ServerSetup(commands.Cog, description="Setup your new server easily with this!"):
+class ServerSetup(commands.Cog, description="Setup your discord server easily with this!"):
     def __init__(self, client: commands.Bot):
         self.client = client
         
@@ -21,7 +21,9 @@ class ServerSetup(commands.Cog, description="Setup your new server easily with t
 
 
     @commands.has_permissions(administrator=True)
-    @commands.command()
+    @commands.command(breif="Create new roles for a server",
+    description="Create the basic roles needed for a server. This is like a server role template built to easiy setup newly created servers",
+    help="Create the basic roles needed for a server. This is like a server role template built to easiy setup newly created servers")
     async def make_server_new_roles(self, ctx):
 
         loading_message = await ctx.send(embed=self.please_wait_emb)
