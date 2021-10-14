@@ -4,6 +4,7 @@ import yourbot.database.retrieve_base as getbase
 import yourbot.database.retrieve_embeds as getembeds
 import yourbot.database.chatbot_channels as getChatBot
 import yourbot.database.blacklistmgr as blacklistmgr
+import yourbot.database.announcements.anncmgr as anncmgr
 
 # The main module
 try:
@@ -151,7 +152,31 @@ async def on_message(message):
           await message.reply(response['message'])
       except Exception as e:
         await message.reply(f'Error: {e}')
-  
+    
+  # Announcement channel check
+  if (message.channel.id in anncmgr.AnnouncementsManagingChannels.announcements_managing_channellist):
+    
+    """
+    How to write a proper announcement message?
+        This is the topic || This is the body, this can have all the needed information || https://image/link/for/embed
+    The Image Link is optional
+    """
+    
+    current_server_mgr_channel_index = anncmgr.AnnouncementsManagingChannels.announcements_managing_channellist.index(message.channel.id)
+    send_channel = client.get_channel(anncmgr.AnnouncementsSendingChannels.announcements_sending_channellist[int(current_server_mgr_channel_index)])
+    
+    embed = discord.Embed(title=f"THERES A NEW ANNOUNCEMENT", description="@everyone", colour=discord.Colour(0xff0000), timestamp=datetime.datetime.utcfromtimestamp(1629281713))
+    embed.set_thumbnail(url=f"{message.author.avatar_url}")
+    embed.set_author(name="YourBot", icon_url="https://cdn.discordapp.com/attachments/861861096512290836/877496519123677195/Avatar.png")
+    embed.add_field(name="Topic", value=f"**{message.content.split('||')[0]}**", inline=False)
+    embed.add_field(name="Description", value=f"```{message.content.split('||')[1]}```", inline=False)
+    try:
+      embed.set_image(url=f"{message.content.split('||')[2]}")
+    except:
+      pass
+    await send_channel.send(embed=embed)
+    await message.channel.send(f"**SUCCESS!** - Sent a message to <@{send_channel.id}>")
+
 
   # Logging user messages to YourBot server's log channel (You need a role to see it and only i can give it to others)
   if bot_logging_commands_status == "yes":
