@@ -12,7 +12,8 @@ with open("sherlock/resources/data.json", "r", encoding="utf-8") as data_file:
 
 with open("sites.md", "w") as site_file:
     data_length = len(data)
-    site_file.write(f'## List Of Supported Sites ({data_length} Sites In Total!)\n')
+    site_file.write(
+        f'## List Of Supported Sites ({data_length} Sites In Total!)\n')
 
     for social_network in data:
         url_main = data.get(social_network).get("urlMain")

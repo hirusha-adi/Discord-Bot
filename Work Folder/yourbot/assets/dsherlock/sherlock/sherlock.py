@@ -22,12 +22,10 @@ from torrequest import TorRequest
 from result import QueryStatus
 from result import QueryResult
 from notify import QueryNotifyPrint
-from sites  import SitesInformation
+from sites import SitesInformation
 
 module_name = "Sherlock: Find Usernames Across Social Networks"
 __version__ = "0.14.0"
-
-
 
 
 class SherlockFuturesSession(FuturesSession):
@@ -175,14 +173,13 @@ def sherlock(username, site_data, query_notify,
     # Limit number of workers to 20.
     # This is probably vastly overkill.
     if len(site_data) >= 20:
-        max_workers=20
+        max_workers = 20
     else:
-        max_workers=len(site_data)
+        max_workers = len(site_data)
 
     # Create multi-threaded session for all requests.
     session = SherlockFuturesSession(max_workers=max_workers,
                                      session=underlying_session)
-
 
     # Results from analysis of all sites
     results_total = {}
@@ -234,7 +231,7 @@ def sherlock(username, site_data, query_notify,
                 url_probe = url_probe.format(username)
 
             if (net_info["errorType"] == 'status_code' and
-                net_info.get("request_head_only", True) == True):
+                    net_info.get("request_head_only", True) == True):
                 # In most cases when we are detecting by status code,
                 # it is not necessary to get the entire body:  we can
                 # detect fine with just the HEAD response.
@@ -329,13 +326,13 @@ def sherlock(username, site_data, query_notify,
             # error_flag True denotes no error found in the HTML
             # error_flag False denotes error found in the HTML
             error_flag = True
-            errors=net_info.get("errorMsg")
+            errors = net_info.get("errorMsg")
             # errors will hold the error message
             # it can be string or list
             # by insinstance method we can detect that
             # and handle the case for strings as normal procedure
             # and if its list we can iterate the errors
-            if isinstance(errors,str):
+            if isinstance(errors, str):
                 # Checks if the error message is in the HTML
                 # if error is present we will set flag to False
                 if errors in r.text:
@@ -395,7 +392,6 @@ def sherlock(username, site_data, query_notify,
             raise ValueError(f"Unknown Error Type '{error_type}' for "
                              f"site '{social_network}'")
 
-
         # Notify caller about results of query.
         query_notify.update(result)
 
@@ -436,7 +432,8 @@ def timeout_check(value):
     except:
         raise ArgumentTypeError(f"Timeout '{value}' must be a number.")
     if timeout <= 0:
-        raise ArgumentTypeError(f"Timeout '{value}' must be greater than 0.0s.")
+        raise ArgumentTypeError(
+            f"Timeout '{value}' must be greater than 0.0s.")
     return timeout
 
 
@@ -492,15 +489,15 @@ def main():
                              "Default timeout is infinity. "
                              "A longer timeout will be more likely to get results from slow sites. "
                              "On the other hand, this may cause a long delay to gather all results."
-                       )
+                        )
     parser.add_argument("--print-all",
                         action="store_true", dest="print_all",
                         help="Output sites where the username was not found."
-                       )
+                        )
     parser.add_argument("--print-found",
                         action="store_false", dest="print_all", default=False,
                         help="Output sites where the username was found."
-                       )
+                        )
     parser.add_argument("--no-color",
                         action="store_true", dest="no_color", default=False,
                         help="Don't color terminal output"
@@ -522,7 +519,8 @@ def main():
 
     # Check for newer version of Sherlock. If it exists, let the user know about it
     try:
-        r = requests.get("https://raw.githubusercontent.com/sherlock-project/sherlock/master/sherlock/sherlock.py")
+        r = requests.get(
+            "https://raw.githubusercontent.com/sherlock-project/sherlock/master/sherlock/sherlock.py")
 
         remote_version = str(re.findall('__version__ = "(.*)"', r.text)[0])
         local_version = __version__
@@ -533,7 +531,6 @@ def main():
 
     except Exception as error:
         print(f"A problem occured while checking for an update: {error}")
-
 
     # Argument check
     # TODO regex check on args.proxy
@@ -558,11 +555,11 @@ def main():
         print("You can only use --output with a single username")
         sys.exit(1)
 
-
     # Create object with all information about sites we are aware of.
     try:
         if args.local:
-            sites = SitesInformation(os.path.join(os.path.dirname(__file__), 'resources/data.json'))
+            sites = SitesInformation(os.path.join(
+                os.path.dirname(__file__), 'resources/data.json'))
         else:
             sites = SitesInformation(args.json_file)
     except Exception as error:
@@ -596,7 +593,8 @@ def main():
                 site_missing.append(f"'{site}'")
 
         if site_missing:
-            print(f"Error: Desired sites not found: {', '.join(site_missing)}.")
+            print(
+                f"Error: Desired sites not found: {', '.join(site_missing)}.")
 
         if not site_data:
             sys.exit(1)
@@ -634,7 +632,8 @@ def main():
                 if dictionary.get("status").status == QueryStatus.CLAIMED:
                     exists_counter += 1
                     file.write(dictionary["url_user"] + "\n")
-            file.write(f"Total Websites Username Detected On : {exists_counter}\n")
+            file.write(
+                f"Total Websites Username Detected On : {exists_counter}\n")
 
         if args.csv:
             result_file = f"{username}.csv"

@@ -15,6 +15,7 @@ class QueryNotify():
     It is intended that other classes inherit from this base class and
     override the methods to implement specific functionality.
     """
+
     def __init__(self, result=None):
         """Create Query Notify Object.
 
@@ -110,6 +111,7 @@ class QueryNotifyPrint(QueryNotify):
 
     Query notify class that prints results.
     """
+
     def __init__(self, result=None, verbose=False, color=True, print_all=False):
         """Create Query Notify Print Object.
 
@@ -155,10 +157,10 @@ class QueryNotifyPrint(QueryNotify):
         title = "Checking username"
         if self.color:
             print(Style.BRIGHT + Fore.GREEN + "[" +
-                Fore.YELLOW + "*" +
-                Fore.GREEN + f"] {title}" +
-                Fore.WHITE + f" {message}" +
-                Fore.GREEN + " on:")
+                  Fore.YELLOW + "*" +
+                  Fore.GREEN + f"] {title}" +
+                  Fore.WHITE + f" {message}" +
+                  Fore.GREEN + " on:")
         else:
             print(f"[*] {title} {message} on:")
 
@@ -196,19 +198,21 @@ class QueryNotifyPrint(QueryNotify):
                        Style.RESET_ALL +
                        f"{self.result.site_url_user}"))
             else:
-                print(f"[+]{response_time_text} {self.result.site_name}: {self.result.site_url_user}")
+                print(
+                    f"[+]{response_time_text} {self.result.site_name}: {self.result.site_url_user}")
 
         elif result.status == QueryStatus.AVAILABLE:
             if self.print_all:
                 if self.color:
                     print((Style.BRIGHT + Fore.WHITE + "[" +
-                        Fore.RED + "-" +
-                        Fore.WHITE + "]" +
-                        response_time_text +
-                        Fore.GREEN + f" {self.result.site_name}:" +
-                        Fore.YELLOW + " Not Found!"))
+                           Fore.RED + "-" +
+                           Fore.WHITE + "]" +
+                           response_time_text +
+                           Fore.GREEN + f" {self.result.site_name}:" +
+                           Fore.YELLOW + " Not Found!"))
                 else:
-                    print(f"[-]{response_time_text} {self.result.site_name}: Not Found!")
+                    print(
+                        f"[-]{response_time_text} {self.result.site_name}: Not Found!")
 
         elif result.status == QueryStatus.UNKNOWN:
             if self.print_all:
@@ -220,7 +224,8 @@ class QueryNotifyPrint(QueryNotify):
                           Fore.RED + f" {self.result.context}" +
                           Fore.YELLOW + f" ")
                 else:
-                    print(f"[-] {self.result.site_name}: {self.result.context} ")
+                    print(
+                        f"[-] {self.result.site_name}: {self.result.context} ")
 
         elif result.status == QueryStatus.ILLEGAL:
             if self.print_all:

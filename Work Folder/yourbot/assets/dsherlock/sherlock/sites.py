@@ -49,13 +49,13 @@ class SiteInformation():
         Nothing.
         """
 
-        self.name                = name
-        self.url_home            = url_home
+        self.name = name
+        self.url_home = url_home
         self.url_username_format = url_username_format
 
-        self.username_claimed    = username_claimed
-        self.username_unclaimed  = username_unclaimed
-        self.information         = information
+        self.username_claimed = username_claimed
+        self.username_unclaimed = username_unclaimed
+        self.information = information
 
         return
 
@@ -115,9 +115,10 @@ class SitesInformation():
 
         # Ensure that specified data file has correct extension.
         if not data_file_path.lower().endswith(".json"):
-            raise FileNotFoundError(f"Incorrect JSON file extension for data file '{data_file_path}'.")
+            raise FileNotFoundError(
+                f"Incorrect JSON file extension for data file '{data_file_path}'.")
 
-        if "http://"  == data_file_path[:7].lower() or "https://" == data_file_path[:8].lower():
+        if "http://" == data_file_path[:7].lower() or "https://" == data_file_path[:8].lower():
             # Reference is to a URL.
             try:
                 response = requests.get(url=data_file_path)
@@ -125,18 +126,18 @@ class SitesInformation():
                 raise FileNotFoundError(f"Problem while attempting to access "
                                         f"data file URL '{data_file_path}':  "
                                         f"{str(error)}"
-                                       )
+                                        )
             if response.status_code == 200:
                 try:
                     site_data = response.json()
                 except Exception as error:
                     raise ValueError(f"Problem parsing json contents at "
                                      f"'{data_file_path}':  {str(error)}."
-                                    )
+                                     )
             else:
                 raise FileNotFoundError(f"Bad response while accessing "
                                         f"data file URL '{data_file_path}'."
-                                       )
+                                        )
         else:
             # Reference is to a file.
             try:
@@ -146,11 +147,11 @@ class SitesInformation():
                     except Exception as error:
                         raise ValueError(f"Problem parsing json contents at "
                                          f"'{data_file_path}':  {str(error)}."
-                                        )
+                                         )
             except FileNotFoundError as error:
                 raise FileNotFoundError(f"Problem while attempting to access "
                                         f"data file '{data_file_path}'."
-                                       )
+                                        )
 
         self.sites = {}
 
@@ -165,12 +166,12 @@ class SitesInformation():
                                     site_data[site_name]["username_claimed"],
                                     site_data[site_name]["username_unclaimed"],
                                     site_data[site_name]
-                                   )
+                                    )
             except KeyError as error:
                 raise ValueError(f"Problem parsing json contents at "
                                  f"'{data_file_path}':  "
                                  f"Missing attribute {str(error)}."
-                                )
+                                 )
 
         return
 
