@@ -24,19 +24,14 @@ class BotBase:
 
     BOT_READY_MESSAGE = embeddata["BOT_READY_MESSAGE"]
 
+
 class Main:
     # Opening the json file
     with open("yourbot/database/base.json", "r", encoding="utf8") as embedsf:
         embeddata = json.load(embedsf)
-    
+
     MSG_PREFIX = embeddata["MAIN"]["MSG_PREFIX"]
     INVITE_LINK = embeddata["MAIN"]["INVITE_LINK"]
     OWNER_ID = embeddata["MAIN"]["OWNER_ID"]
     LOG_USER_DATA = embeddata["MAIN"]["LOG_USER_DATA"]
     LOG_CHANNEL_ID = embeddata["MAIN"]["LOG_CHANNEL_ID"]
-
-
-
-
-
-

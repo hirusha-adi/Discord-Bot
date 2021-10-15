@@ -1,5 +1,6 @@
 import json
 
+
 class PleaseWait:
 
     # Opening the json file
@@ -13,7 +14,7 @@ class PleaseWait:
     AUTHOR_LINK = embeddata["PLASE_WAIT_EMBED"]["AUTHOR_LINK"]
     THUMBNAIL = embeddata["PLASE_WAIT_EMBED"]["THUMBNAIL"]
     FOOTER = embeddata["PLASE_WAIT_EMBED"]["FOOTER"]
-    
+
     if embeddata["PLASE_WAIT_EMBED"]["COLOR"] == "red":
         COLOR = 0xff0000
     elif embeddata["PLASE_WAIT_EMBED"]["COLOR"] == "green":
@@ -22,13 +23,12 @@ class PleaseWait:
         COLOR = 0x0000ff
 
 
-
 class Common:
 
     # Opening the json file
     with open("yourbot/database/embeds.json", "r", encoding="utf8") as embedsf:
         embeddata = json.load(embedsf)
-        
+
     # VARIABLES - Same name as in json file
     AUTHOR = embeddata["COMMON_FOR_ALL"]["AUTHOR"]
     AUTHOR_LINK = embeddata["COMMON_FOR_ALL"]["AUTHOR_LINK"]
@@ -93,7 +93,6 @@ class ErrorEmbeds:
         COLOR = 0x0000ff
 
 
-
 class FakeEmbeds:
 
     # Opening the json file
@@ -133,5 +132,3 @@ class CogManage:
     AUTHOR_NAME = embeddata["COG_MANAGE"]["AUTHOR_NAME"]
     AUTHOR_ICON = embeddata["COG_MANAGE"]["AUTHOR_ICON"]
     THUMBNAIL = embeddata["COG_MANAGE"]["THUMBNAIL"]
-
-

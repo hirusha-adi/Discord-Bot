@@ -9,17 +9,20 @@ def voice_connected():
             channel = ctx.author.voice.channel
             return True
         except AttributeError:
-            raise NotConnectedToVoice("You are not connected to any voice channel.")
+            raise NotConnectedToVoice(
+                "You are not connected to any voice channel.")
 
     return commands.check(predicate)
 
 
 def player_connected():
     def predicate(ctx):
-        player: DisPlayer = ctx.bot.wavelink.get_player(ctx.guild.id, cls=DisPlayer)
+        player: DisPlayer = ctx.bot.wavelink.get_player(
+            ctx.guild.id, cls=DisPlayer)
 
         if not player.is_connected:
-            raise PlayerNotConnected("Player is not connected to any voice channel.")
+            raise PlayerNotConnected(
+                "Player is not connected to any voice channel.")
         return True
 
     return commands.check(predicate)
@@ -27,10 +30,12 @@ def player_connected():
 
 def in_same_channel():
     def predicate(ctx):
-        player: DisPlayer = ctx.bot.wavelink.get_player(ctx.guild.id, cls=DisPlayer)
+        player: DisPlayer = ctx.bot.wavelink.get_player(
+            ctx.guild.id, cls=DisPlayer)
 
         if not player.is_connected:
-            raise PlayerNotConnected("Player is not connected to any voice channel.")
+            raise PlayerNotConnected(
+                "Player is not connected to any voice channel.")
 
         try:
             return player.channel_id == ctx.author.voice.channel.id

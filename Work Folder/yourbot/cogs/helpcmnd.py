@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import yourbot.database.retrieve_embeds as getembed
 
+
 class MyHelpCommand(commands.HelpCommand):
     def __init__(self, **options):
         super().__init__(**options)
@@ -12,7 +13,6 @@ class MyHelpCommand(commands.HelpCommand):
             self.color = discord.Color(color)
         except:
             self.color = discord.Color.blurple()
-
 
     async def send_bot_help(self, mapping):
         ctx = self.context
@@ -185,8 +185,6 @@ def setup(client):
     client.add_cog(Help(client))
 
 
-
-
 # import discord, os
 # from discord.ext import commands
 # from json import load as loadjson
@@ -211,8 +209,6 @@ def setup(client):
 #     os.system("pip3 install discord-custom-help")
 
 
-
-
 # GOOD OLD HELP
 
 # class Help(commands.Cog):
@@ -229,11 +225,11 @@ def setup(client):
 #         self.please_wait_emb.set_author(name=getembed.PleaseWait.AUTHOR_NAME, icon_url=getembed.PleaseWait.AUTHOR_LINK)
 #         self.please_wait_emb.set_thumbnail(url=getembed.PleaseWait.THUMBNAIL)
 #         self.please_wait_emb.set_footer(text=getembed.PleaseWait.FOOTER)
-    
+
 
 #         # FOR NEW HELP
 #         # self.menu = DefaultMenu('◀️', '▶️', '❌') # You can copy-paste any icons you want.
-#         # self.client.help_command = PrettyHelp(navigation=self.menu, color=discord.Colour.green()) 
+#         # self.client.help_command = PrettyHelp(navigation=self.menu, color=discord.Colour.green())
 
 
 #         # REMOVING THE DEFAULT HELP COMMAND!
@@ -244,43 +240,40 @@ def setup(client):
 #         os.environ['DCH_COLOR'] = 'ff0000' # Any hex color code
 #         self.client.load_extension('assets.dch006')
 
+    # LATEST COMMAND
+    # @commands.command()
+    # async def help(ctx, args=None):
+    #     help_embed = discord.Embed(title="My Bot's Help!")
+    #     command_names_list = [x.name for x in self.client.commands]
 
-        # LATEST COMMAND
-        # @commands.command()
-        # async def help(ctx, args=None):
-        #     help_embed = discord.Embed(title="My Bot's Help!")
-        #     command_names_list = [x.name for x in self.client.commands]
+    #     # If there are no arguments, just list the commands:
+    #     if not args:
+    #         help_embed.add_field(
+    #             name="List of supported commands:",
+    #             value="\n".join([str(i+1)+". "+x.name for i,x in enumerate(self.client.commands)]),
+    #             inline=False
+    #         )
+    #         help_embed.add_field(
+    #             name="Details",
+    #             value="Type `.help <command name>` for more details about each command.",
+    #             inline=False
+    #         )
 
-        #     # If there are no arguments, just list the commands:
-        #     if not args:
-        #         help_embed.add_field(
-        #             name="List of supported commands:",
-        #             value="\n".join([str(i+1)+". "+x.name for i,x in enumerate(self.client.commands)]),
-        #             inline=False
-        #         )
-        #         help_embed.add_field(
-        #             name="Details",
-        #             value="Type `.help <command name>` for more details about each command.",
-        #             inline=False
-        #         )
+    #     # If the argument is a command, get the help text from that command:
+    #     elif args in command_names_list:
+    #         help_embed.add_field(
+    #             name=args,
+    #             value=self.client.get_command(args).help
+    #         )
 
-        #     # If the argument is a command, get the help text from that command:
-        #     elif args in command_names_list:
-        #         help_embed.add_field(
-        #             name=args,
-        #             value=self.client.get_command(args).help
-        #         )
+    #     # If someone is just trolling:
+    #     else:
+    #         help_embed.add_field(
+    #             name="Nope.",
+    #             value="Don't think I got that command, boss!"
+    #         )
 
-        #     # If someone is just trolling:
-        #     else:
-        #         help_embed.add_field(
-        #             name="Nope.",
-        #             value="Don't think I got that command, boss!"
-        #         )
-
-        #     await ctx.send(embed=help_embed)
-    
-
+    #     await ctx.send(embed=help_embed)
 
     # OLD, ORIGINAL HELP
     # @commands.command(aliases=["show-help", "showhelp", "needhelp", "need-help", "pls-help", "plshelp", "help"])
@@ -336,7 +329,7 @@ def setup(client):
     #     {bp}csnd -> will send a message with some white spacing at middle to clear the screen of unwated stuff without deleting
     #     {bp}covid -> will send global covid information
     #     {bp}covidlow -> will send main global covid information
-    #     {bp}covidlk -> will send Sri Lankan Covid information 
+    #     {bp}covidlk -> will send Sri Lankan Covid information
     #     {bp}afk title -> UNDER DEVELOPMENT! NOT RECOMMENDED TO USE!
     #     {bp}slowmode 5 -> with change the channel slowdown to 5 seconds
     #     {bp}newemoji emoji_name https://emoji-link.emoji.png png -> the last parameter is for the file extension
@@ -494,7 +487,7 @@ def setup(client):
     #         em2.add_field(name=f'{bp}mute', value=f'`{bp}mute [@user]`- Mute a member', inline=True)
     #         await loading_message.delete()
     #         await ctx.send(embed=em2)
-            
+
     #     elif category.lower() in info_wl:
     #         em3 = discord.Embed(title=f'Information', description=f'use >Help [category]', color=0xff0000)
     #         em3.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
@@ -539,7 +532,7 @@ def setup(client):
     #         em4.add_field(name=f'{bp}daddy', value=f'`{bp}daddy` - Get something hot', inline=True)
     #         await loading_message.delete()
     #         await ctx.send(embed=em4)
-        
+
     #     elif category.lower() in others_wl:
     #         em5 = discord.Embed(title=f'Others', description=f'use >Help [category]', color=0xff0000)
     #         em5.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
@@ -616,7 +609,7 @@ def setup(client):
     #         em8.add_field(name=f'{bp}joke2', value=f'`{bp}joke2` - a Good Funni Joke', inline=True)
     #         await loading_message.delete()
     #         await ctx.send(embed=em8)
-        
+
     #     elif category.lower() in enc_wl:
     #         em9 = discord.Embed(title=f'Encoding and Decoding', description=f'use >Help [category]', color=0xff0000)
     #         em9.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
@@ -663,7 +656,7 @@ def setup(client):
     #         em11.add_field(name=f'{bp}twittercomment', value=f'`{bp}twittercomment [username] [display_name] [profile_picture_link] [comment]` - Create a fake image of a youtube comment, pfp link is not required', inline=True)
     #         await loading_message.delete()
     #         await ctx.send(embed=em11)
-        
+
     #     elif category.lower() in animals_wl:
     #         em12 = discord.Embed(title=f'Animals', description=f'use >Help [category]', color=0xff0000)
     #         em12.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
@@ -686,7 +679,7 @@ def setup(client):
     #         em12.add_field(name=f'{bp}whalefact', value=f'`{bp}whalefact` - Get a Fact', inline=True)
     #         await loading_message.delete()
     #         await ctx.send(embed=em12)
-        
+
     #     elif category.lower() in all_small_list:
     #         em13 = discord.Embed(title=f'Animals', description=f'use >Help [category]', color=0xff0000)
     #         em13.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
@@ -704,7 +697,7 @@ def setup(client):
     #         em13.add_field(name=f"Tools/Games", value=f"`{bp}genpwd [no-of-letters]` \n`{bp}pwdcheck [password_here]` - Thank you NoPe \n`{bp}pwdstrengthcheck [password_here]` \n`{bp}audio [yt-link]` \n`{bp}similiar [first] || [second]` \n`{bp}bottoken` \n `{bp}sendemail [your-email] [reciever-email] [subject-with-no-spaces] [email-content]` \n`ping` \n`{bp}8ball [question]` \n`{bp}inspire` \n`{bp}inv` \n`{bp}nitro [no-of-codes]` \n`{bp}bored` \n`{bp}color` \n`{bp}wiki [search-query]` \n`{bp}tinyurl [any-url]` \n`{bp}cleanuri [any-url]` \n`{bp}joke` \n`{bp}iconserver` \n`{bp}wyr [question]` \n`{bp}bastebin [text]` \n`{bp}ascii [text]` \n`{bp}asciiart [text]` \n`{bp}guessage [name]` \n`{bp}advice` \n`{bp}chuckjoke` \n`{bp}poll [question]` \n`{bp}csnd` \n`{bp}howdie [user]` \n`{bp}chatbot` \n`{bp}countryinfo [country-code]` ", inline=False)
     #         await loading_message.delete()
     #         await ctx.send(embed=em13)
-        
+
     #     elif category.lower() in music_cmnds_list:
     #         em14 = discord.Embed(title=f'Music (BETA)', description=f'use >Help [category]', color=0xff0000)
     #         em14.set_thumbnail(url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
@@ -725,27 +718,5 @@ def setup(client):
     #         await ctx.send(embed=em14)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 def setup(client: commands.Bot):
     client.add_cog(Help(client))
-
-

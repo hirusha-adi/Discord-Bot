@@ -8,10 +8,10 @@ class Users:
             try:
                 blacklisted_users.append(int(line))
             except ValueError:
-                print("[!!] Please check for empty lines in: chatbot_channel_list.txt")
+                print(
+                    "[!!] Please check for empty lines in: chatbot_channel_list.txt")
             except Exception as e:
                 print("Error", e)
-
 
 
 class Servers:
@@ -23,7 +23,8 @@ class Servers:
             try:
                 blacklisted_servers.append(int(line))
             except ValueError:
-                print("[!!] Please check for empty lines in: chatbot_channel_list.txt")
+                print(
+                    "[!!] Please check for empty lines in: chatbot_channel_list.txt")
             except Exception as e:
                 print("Error", e)
 
@@ -43,6 +44,3 @@ def blacklist_server(id: int = None):
 
     if not (int(id) in Servers.blacklisted_servers):
         Servers.blacklisted_servers.append(int(id))
-
-
-

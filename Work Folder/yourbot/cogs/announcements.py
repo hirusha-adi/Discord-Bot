@@ -4,6 +4,7 @@ import yourbot.database.retrieve_embeds as getembed
 import yourbot.database.retrieve_base as getbase
 import yourbot.database.announcements.anncmgr as anncmgr
 
+
 class Announcements(commands.Cog, description="Setup modmail in your server easily!"):
     def __init__(self, client: commands.Bot):
         self.client = client
@@ -12,11 +13,12 @@ class Announcements(commands.Cog, description="Setup modmail in your server easi
         self.bot_inv_link = getbase.Main.INVITE_LINK
 
         # This is the please-wait/Loading embed
-        self.please_wait_emb = discord.Embed(title=getembed.PleaseWait.TITLE, description=f"``` {getembed.PleaseWait.DESCRIPTION} ```", color=getembed.PleaseWait.COLOR)
-        self.please_wait_emb.set_author(name=getembed.PleaseWait.AUTHOR_NAME, icon_url=getembed.PleaseWait.AUTHOR_LINK)
+        self.please_wait_emb = discord.Embed(
+            title=getembed.PleaseWait.TITLE, description=f"``` {getembed.PleaseWait.DESCRIPTION} ```", color=getembed.PleaseWait.COLOR)
+        self.please_wait_emb.set_author(
+            name=getembed.PleaseWait.AUTHOR_NAME, icon_url=getembed.PleaseWait.AUTHOR_LINK)
         self.please_wait_emb.set_thumbnail(url=getembed.PleaseWait.THUMBNAIL)
         self.please_wait_emb.set_footer(text=getembed.PleaseWait.FOOTER)
-    
 
     @commands.has_permissions(administrator=True)
     @commands.command()
@@ -32,8 +34,10 @@ class Announcements(commands.Cog, description="Setup modmail in your server easi
             await ctx.send(f"Check <@{new_channel.id}> to easily manage modmails with embeds")
 
         except Exception as e:
-            embed2=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed2.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+            embed2 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
+                                   description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed2.set_author(name=getembed.Common.AUTHOR,
+                              icon_url=getembed.Common.AUTHOR_LINK)
             embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed2.add_field(name="Error:", value=f"{e}", inline=False)
             embed2.set_footer(text=f"Requested by {ctx.author.name}")
@@ -41,14 +45,5 @@ class Announcements(commands.Cog, description="Setup modmail in your server easi
             await ctx.send(embed=embed2)
 
 
-
-
-
-
-
-
-
-
 def setup(client: commands.Bot):
     client.add_cog(Announcements(client))
-
