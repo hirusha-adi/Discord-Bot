@@ -1992,6 +1992,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
             for item in data.proxies:
                 all_proxies += '\n{}:{}'.format(item.ip, item.port)
 
+            # this might need to be true... bruh
             for chunk in textwrap.wrap(all_proxies, 4096, replace_whitespace=False):
                 embed = discord.Embed(
                     title="Proxy Scraper",
@@ -2049,6 +2050,86 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.add_field(name="Possible Fix:",
                              value=f"Search something valid", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+
+    @commands.has_permissions(manage_messages=True)
+    @commands.command(aliases=["dump_msgs", "dump_msges", "dump_messages"],
+                      breif="Save Channel Messages",
+                      description="Save the mentioned number of messages send in the channel, save it to a text file and send it",
+                      help="Save the mentioned number of messages send in the channel, save it to a text file and send it")
+    async def dump_msg(self, ctx, number_of_messages=50):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+
+        try:
+
+            try:
+                if number_of_messages >= 1000:
+                    embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
+                                           description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+                    embed3.set_author(name=getembed.Common.AUTHOR,
+                                      icon_url=getembed.Common.AUTHOR_LINK)
+                    embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
+                    embed3.add_field(
+                        name="Error:", value=f"Please enter a value below 1000", inline=False)
+                    embed3.set_footer(text=f"Requested by {ctx.author.name}")
+                    await loading_message.delete()
+                    await ctx.send(embed=embed3)
+                    return
+            except:
+                embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
+                                       description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+                embed3.set_author(name=getembed.Common.AUTHOR,
+                                  icon_url=getembed.Common.AUTHOR_LINK)
+                embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
+                embed3.add_field(
+                    name="Error:", value=f"Please enter a valid value for `number_of_messages`. Please refer the help command for more information.", inline=False)
+                embed3.set_footer(text=f"Requested by {ctx.author.name}")
+                await loading_message.delete()
+                await ctx.send(embed=embed3)
+                return
+
+            try:
+                filename = f"{ctx.channel.name}.txt"
+                with open(filename, "w+") as file:
+                    async for msg in ctx.channel.history(limit=number_of_messages):
+                        file.write(
+                            f"{msg.created_at} - {msg.author.display_name}: {msg.clean_content}\n")
+            except:
+                filename = f"MessageDump.txt"
+                with open(filename, "w+") as file:
+                    async for msg in ctx.channel.history(limit=number_of_messages):
+                        file.write(
+                            f"{msg.created_at} - {msg.author.display_name}: {msg.clean_content}\n")
+
+            em = discord.Embed(title=getembed.Common.AUTHOR,
+                               color=getembed.Common.COLOR)
+            em.set_thumbnail(
+                url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
+            em.set_author(name=getembed.Common.AUTHOR,
+                          icon_url=getembed.Common.AUTHOR_LINK)
+            em.add_field(name="Number of messages in the log",
+                         value=f'{number_of_messages}')
+            em.add_field(name="Filename",
+                         value=f'{filename}')
+            em.set_footer(text=f"Requested by {ctx.author.name}")
+            try:
+                await loading_message.delete()
+            except:
+                pass
+            await ctx.send(embed=em)
+
+            with open(filename, "rb") as filec:
+                await ctx.send("Your file is:", file=discord.File(filec, f"{filename}"))
+
+        except Exception as e:
+            embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
+                                   description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR,
+                              icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed3)
