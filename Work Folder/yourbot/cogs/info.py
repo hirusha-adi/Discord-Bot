@@ -841,13 +841,14 @@ class Information(commands.Cog, description="Gather information easily without l
             if fortnite_response['status'] == 200:
                 # Images
                 fortnite_template_image = Image.open(
-                    'assets/fortnite_template.png')
+                    'yourbot/assets/fortnite_template.png')
                 # print("opened image")
 
                 # Fonts
                 username_font = ImageFont.truetype(
-                    'assets/theboldfont.ttf', 50)
-                stats_font = ImageFont.truetype('assets/theboldfont.ttf', 40)
+                    'yourbot/assets/theboldfont.ttf', 50)
+                stats_font = ImageFont.truetype(
+                    'yourbot/assets/theboldfont.ttf', 40)
                 # print("fonts - ok")
 
                 # Positions
