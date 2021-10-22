@@ -823,7 +823,7 @@ class Information(commands.Cog, description="Gather information easily without l
         try:
             username = list(args)
             format_player_name = '%20'.join(username)
-            print("recievd args")
+            # print("recievd args")
 
             try:
                 request_url = f'https://fortnite-api.com/v1/stats/br/v2?name={format_player_name}'
