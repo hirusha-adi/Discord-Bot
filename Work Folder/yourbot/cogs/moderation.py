@@ -1115,6 +1115,43 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
             await loading_message.delete()
             await ctx.send(embed=embed3)
 
+    @commands.has_permissions(manage_messages=True)
+    @commands.command(breif="Lock a channel",
+                      description="Lock a channel from the server!",
+                      help="Lock a channel from the server!")
+    async def lock(self, ctx):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+
+        try:
+            channel = ctx.channel
+            await channel.edit(name=f"🔒-{channel.name}")
+            perms = channel.overwrites_for(ctx.guild.default_role)
+            perms.send_messages = False
+            await channel.set_permissions(ctx.guild.default_role, overwrite=perms)
+
+            embed = discord.Embed(title="Lock Channel",
+                                  color=getembed.Common.COLOR)
+            embed.set_footer(text=f"Requested by {ctx.author.name}")
+            embed.set_author(name=getembed.Common.AUTHOR,
+                             icon_url=getembed.Common.AUTHOR_LINK)
+            embed.add_field(name="Channel Locked!",
+                            value=f"by {ctx.author.name}", inline=False)
+            embed.add_field(name="Time",
+                            value=f"{datet.now()}", inline=False)
+            await loading_message.delete()
+            await ctx.send(embed=embed)
+
+        except Exception as e:
+            embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
+                                   description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR,
+                              icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+
 
 def setup(client: commands.Bot):
     client.add_cog(Moderation(client))

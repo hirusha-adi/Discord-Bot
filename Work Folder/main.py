@@ -5,6 +5,7 @@ import yourbot.database.retrieve_embeds as getembeds
 import yourbot.database.chatbot_channels as getChatBot
 import yourbot.database.blacklistmgr as blacklistmgr
 import yourbot.database.announcements.anncmgr as anncmgr
+from yourbot.assets.tools.utils import getGuildPrefix, getConfig
 
 # The main module
 try:
@@ -19,12 +20,23 @@ except:
 import os
 import random
 import datetime
+import aiohttp
+from io import BytesIO
 try:
     from prsaw import RandomStuffV2
 except:
     ybinstaller.pip_install("prsaw")
     from prsaw import RandomStuffV2
-
+try:
+    from nude import Nude
+except:
+    ybinstaller.pip_install("nudepy")
+    from nude import Nude
+try:
+    from profanity_check import predict
+except:
+    ybinstaller.pip_install("profanity-check")
+    from profanity_check import predict
 # Imports for music command!
 try:
     import nacl
@@ -45,7 +57,8 @@ bot_email_addr = os.environ['EMAILA']
 bot_email_password = os.environ['EMAILP']
 
 
-client = commands.Bot(command_prefix=bot_prefix)
+# client = commands.Bot(command_prefix=getGuildPrefix)
+client = commands.Bot(getGuildPrefix)
 
 
 @client.command()
@@ -128,13 +141,21 @@ credits_reply_wl = ("I was created by ZeaCeR#5641", "ZeaCeR#5641 created me",
                     "ZeaCeR#5641 is the creator of me", "ZeaCeR#5641 is person who created me")
 channel_lis = getChatBot.ChatBotChannels.channel_ids
 
-bp = bot_prefix
-
 
 @client.event
 async def on_message(message):
     if client.user == message.author:
         return
+
+    if message.content == "" and len(message.attachments) == 0:
+        return
+
+    jsondata = getConfig(message.guild.id)
+    bp = jsondata["prefix"]
+    antinude = jsondata["antiNudity"]
+    antiprofanity = jsondata["antiProfanity"]
+    antispam = jsondata["antiSpam"]
+    allowSpam = jsondata["allowSpam"]
 
     # User Blacklist
     if message.author.id in blacklistmgr.Users.blacklisted_users:
@@ -148,6 +169,59 @@ async def on_message(message):
             message.reply(
                 "[-] The server you are trying to use the bot is blaclisted!")
         return
+
+    # Anti Nude
+    if antinude is True:
+        if (message.channel.nsfw is not True) and (len(message.attachments) > 0):
+            for i in message.attachments:
+                if i.filename.endswith((".png", ".jpg", ".jpeg")):
+                    async with aiohttp.ClientSession() as session:
+                        async with session.get(i.url) as response:
+                            image_bytes = await response.read()
+                    image_bytes = BytesIO(image_bytes)
+                    n = Nude(image_bytes)
+                    n.parse()
+                    if n.result is True:
+                        i.filename = f"SPOILER_{i.filename}"
+                        spoiler = await i.to_file()
+                        await message.delete()
+                        await message.channel.send(f"Do not send nude images to this channel!")
+
+    # Anti Profanity
+    if antiprofanity is True:
+        words = []
+        words.append(message.content)
+        profanity = predict(words)  # profanity2 = predict_prob(words)
+        if profanity[0] == 1:
+            await message.delete()
+            await message.channel.send("Do not insult anyone in this channel!")
+
+    # Anti Spam - Beta
+    if antispam is True:
+        def check(message):
+            return (message.author == message.author and (datetime.utcnow() - message.created_at).seconds < 15)
+
+        if message.author.guild_permissions.administrator:
+            return
+
+        if message.channel.id in allowSpam:
+            return
+
+        if len(list(filter(lambda m: check(m), client.cached_messages))) >= 8 and len(list(filter(lambda m: check(m), client.cached_messages))) < 12:
+            await message.channel.send(f"{message.author.mention} | {message.author.name}, Please stop spamming! You will get kicked!")
+        elif len(list(filter(lambda m: check(m), client.cached_messages))) >= 12:
+            embed = discord.Embed(
+                title="Kick User", desciption="for spamming", colour=discord.Colour(0xff0000))
+            embed.set_thumbnail(url=f"{message.author.avatar_url}")
+            embed.add_field(name="User",
+                            value=f"{message.author.name}", inline=True)
+            embed.add_field(name="Reason",
+                            value=f"Spamming", inline=True)
+            embed.set_author(
+                name="YourBot", icon_url="https://cdn.discordapp.com/attachments/861861096512290836/877496519123677195/Avatar.png")
+            await message.author.send(embed=embed)
+            await message.author.kick()
+            await message.channel.send(embed=embed)
 
     # ChatBot in specified channels or if the message starts with `cb`
     if (message.channel.id in channel_lis) or (message.content.lower().startswith('cb')):
@@ -165,13 +239,11 @@ async def on_message(message):
 
     # Announcement channel check
     if (message.channel.id in anncmgr.AnnouncementsManagingChannels.announcements_managing_channellist):
-
         """
         How to write a proper announcement message?
             This is the topic || This is the body, this can have all the needed information || https://image/link/for/embed
         The Image Link is optional
         """
-
         current_server_mgr_channel_index = anncmgr.AnnouncementsManagingChannels.announcements_managing_channellist.index(
             message.channel.id)
         send_channel = client.get_channel(
