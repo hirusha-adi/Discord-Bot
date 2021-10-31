@@ -1,8 +1,0 @@
-What i added:
-+ howpropose command
-+ asciiart command ( new style for the ascii command )
-+ ig_pfp command ( download instagram profile pictures with the username ) 
-
-What i removed:
-- Nothing
-
