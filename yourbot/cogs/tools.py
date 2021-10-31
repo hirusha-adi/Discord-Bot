@@ -2201,7 +2201,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
             }
 
             data = requests.get(
-                f"https://bypass.bot.nu/bypass2?url={link}", headers=headers)
+                f"https://bypass.bot.nu/bypass2?url={linkvertise_link}", headers=headers)
             bypassed_url = data.json()["destination"]
 
             embed = discord.Embed(
