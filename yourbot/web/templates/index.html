@@ -16,8 +16,14 @@
     />
     <meta name="theme-color" content="#eb1a1a" />
     <title>YourBot</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/custom.css" rel="stylesheet" />
+    <link
+      href="{{ url_for('static',filename='styles/bootstrap.min.css') }}"
+      rel="stylesheet"
+    />
+    <link
+      href="{{ url_for('static',filename='styles/custom.css') }}"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
@@ -347,10 +353,10 @@
       </div>
     </div>
 
-    <script src="js/jquery-1.11.3.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.easing.min.js"></script>
-    <script src="js/custom.js"></script>
+    <script src="{{ url_for('static',filename='js/jquery-1.11.3.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/jquery.easing.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/custom.js') }}"></script>
   </body>
 </html>
 
