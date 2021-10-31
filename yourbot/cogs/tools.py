@@ -10,6 +10,7 @@ from email.message import EmailMessage
 import smtplib
 import textwrap
 import datetime
+from urllib.request import urlopen
 import yourbot.database.retrieve_embeds as getembed
 import yourbot.database.retrieve_base as getbase
 import yourbot.others.installerm as ybinstaller
@@ -2130,6 +2131,99 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+
+    @commands.command(breif="Bypass Adfly Links",
+                      description="Bypass any Adfly Link easily",
+                      help="Bypass any Adfly Link easily")
+    async def adfly_bypass(self, ctx, adfly_link):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+        try:
+
+            def decrypt(code):
+                zeros, ones = '', ''
+                for num, letter in enumerate(code):
+                    if num % 2 == 0:
+                        zeros += code[num]
+                    else:
+                        ones = code[num] + ones
+                key = zeros + ones
+                key = base64.decode(key.encode("utf-8"))
+                return key[2:].decode('utf-8')
+
+            if "http" not in adfly_link:
+                url = "http://" + adfly_link
+            adfly_data = urlopen(url).read()
+            ysmm = adfly_data.split(b"ysmm = '")[1].split(
+                b"';")[0]  # Find encrypted URL code in URL source
+            bypassed_url = decrypt(ysmm.decode('utf-8'))
+
+            embed = discord.Embed(
+                title="Adfly URL Bypass", color=getembed.Common.COLOR)
+            embed.set_author(name=getembed.Common.AUTHOR,
+                             icon_url=getembed.Common.AUTHOR_LINK)
+            embed.add_field(name="Bypassed Link: ",
+                            value=f"{bypassed_url}", inline=False)
+            embed.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed)
+
+        except Exception as e:
+            embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
+                                   description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR,
+                              icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(
+                url="https://media.discordapp.net/attachments/877796755234783273/880745781966037032/new-scrabble-words-2018-beatdown-5657-57124c9f228c0258d65053fe7d3891491x.jpg")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.add_field(name="Possible Fix:",
+                             value=f"Search something valid", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+
+    @commands.command(breif="Bypass Adfly Links",
+                      description="Bypass any Adfly Link easily",
+                      help="Bypass any Adfly Link easily")
+    async def linkvertise_bypass(self, ctx, linkvertise_link):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+        try:
+            headers = {
+                "Host": "bypass.bot.nu",
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0",
+                "Accept": "*/*",
+                "Accept-Language": "en-US,en;q=0.5",
+                "Accept-Encoding": "gzip, deflate, br",
+                "Referer": "https://bypass.bot.nu/",
+                "Connection": "keep-alive",
+            }
+
+            data = requests.get(
+                f"https://bypass.bot.nu/bypass2?url={link}", headers=headers)
+            bypassed_url = data.json()["destination"]
+
+            embed = discord.Embed(
+                title="Adfly URL Bypass", color=getembed.Common.COLOR)
+            embed.set_author(name=getembed.Common.AUTHOR,
+                             icon_url=getembed.Common.AUTHOR_LINK)
+            embed.add_field(name="Bypassed Link: ",
+                            value=f"{bypassed_url}", inline=False)
+            embed.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed)
+
+        except Exception as e:
+            embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
+                                   description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=getembed.Common.AUTHOR,
+                              icon_url=getembed.Common.AUTHOR_LINK)
+            embed3.set_thumbnail(
+                url="https://media.discordapp.net/attachments/877796755234783273/880745781966037032/new-scrabble-words-2018-beatdown-5657-57124c9f228c0258d65053fe7d3891491x.jpg")
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.add_field(name="Possible Fix:",
+                             value=f"Search something valid", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed3)
