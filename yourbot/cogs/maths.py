@@ -23,10 +23,14 @@ class Mathematics(commands.Cog, description="Solve simple math easily! - more co
                       breif="Addition",
                       description="Add two numbers easily!",
                       help="Add two numbers easily!")
-    async def add(self, ctx, number_1: int, number_2: int):
+    async def add(self, ctx, numbers):
         loading_message = await ctx.send(embed=self.please_wait_emb)
         try:
-            ans = float(number_1) + float(number_2)
+            final_value = 0
+            final_operation_string = "0 "
+            for one_number in numbers.split(","):
+                final_value += int(one_number)
+                final_operation_string += f"+ {one_number}"
 
             embed = discord.Embed(
                 title="Addition", color=getembed.Common.COLOR)
@@ -35,8 +39,8 @@ class Mathematics(commands.Cog, description="Solve simple math easily! - more co
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/877796755234783273/879962889509806080/addition-icon-3.jpg")
             embed.add_field(
-                name="Query", value=f"{number_1} + {number_2}", inline=False)
-            embed.add_field(name="Result", value=f"{ans}", inline=True)
+                name="Query", value=f"final_operation_string", inline=False)
+            embed.add_field(name="Result", value=f"{final_value}", inline=True)
             embed.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed)
@@ -56,11 +60,15 @@ class Mathematics(commands.Cog, description="Solve simple math easily! - more co
                       breif="Substraction",
                       description="substract two numbers easily!",
                       help="substract two numbers easily!")
-    async def subs(self, ctx, number_1: int, number_2: int):
+    async def subs(self, ctx, numbers):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
         try:
-            ans = float(number_1) - float(number_2)
+            final_value = 0
+            final_operation_string = "0 "
+            for one_number in numbers.split(","):
+                final_value -= int(one_number)
+                final_operation_string += f"- {one_number}"
 
             embed = discord.Embed(title="Substraction",
                                   color=getembed.Common.COLOR)
@@ -69,8 +77,8 @@ class Mathematics(commands.Cog, description="Solve simple math easily! - more co
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/877796755234783273/879964954806083604/1043.png")
             embed.add_field(
-                name="Query", value=f"{number_1} - {number_2}", inline=False)
-            embed.add_field(name="Result", value=f"{ans}", inline=True)
+                name="Query", value=f"final_operation_string", inline=False)
+            embed.add_field(name="Result", value=f"{final_value}", inline=True)
             embed.set_footer(text=f"Requested by {ctx.author.name}")
             await ctx.send(embed=embed)
 
@@ -89,11 +97,15 @@ class Mathematics(commands.Cog, description="Solve simple math easily! - more co
                       breif="Multiplication",
                       description="multiply two numbers easily!",
                       help="multiply two numbers easily!")
-    async def mul(self, ctx, number_1: int, number_2: int):
+    async def mul(self, ctx, numbers):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
         try:
-            ans = float(number_1) * float(number_2)
+            final_value = 0
+            final_operation_string = "0 "
+            for one_number in numbers.split(","):
+                final_value -= int(one_number)
+                final_operation_string += f"- {one_number}"
 
             embed = discord.Embed(title="Multiplication",
                                   color=getembed.Common.COLOR)
@@ -102,8 +114,8 @@ class Mathematics(commands.Cog, description="Solve simple math easily! - more co
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/877796755234783273/879965848603869214/43165.png")
             embed.add_field(
-                name="Query", value=f"{number_1} x {number_2}", inline=False)
-            embed.add_field(name="Result", value=f"{ans}", inline=True)
+                name="Query", value=f"{final_operation_string}", inline=False)
+            embed.add_field(name="Result", value=f"{final_value}", inline=True)
             embed.set_footer(text="Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed)
@@ -123,11 +135,15 @@ class Mathematics(commands.Cog, description="Solve simple math easily! - more co
                       breif="Division",
                       description="divide two numbers easily!",
                       help="divide two numbers easily!")
-    async def div(self, ctx, number_1: int, number_2: int):
+    async def div(self, ctx, numbers):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
         try:
-            ans = float(number_1) / float(number_2)
+            final_value = 0
+            final_operation_string = "0 "
+            for one_number in numbers.split(","):
+                final_value -= int(one_number)
+                final_operation_string += f"- {one_number}"
 
             embed = discord.Embed(
                 title="Division", color=getembed.Common.COLOR)
@@ -136,8 +152,8 @@ class Mathematics(commands.Cog, description="Solve simple math easily! - more co
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/877796755234783273/879966441502294026/674233_mathematics_512x512.png")
             embed.add_field(
-                name="Query", value=f"{number_1} / {number_2}", inline=False)
-            embed.add_field(name="Result", value=f"{ans}", inline=True)
+                name="Query", value=f"{final_operation_string}", inline=False)
+            embed.add_field(name="Result", value=f"{final_value}", inline=True)
             embed.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed)
