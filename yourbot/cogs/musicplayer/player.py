@@ -2,7 +2,7 @@ import asyncio
 import discord
 import async_timeout
 from wavelink import Player
-import yourbot.database.retrieve_embeds as getembeds
+import yourbot.database.embeds.retrieve_embeds as getembeds
 
 
 class DisPlayer(Player):

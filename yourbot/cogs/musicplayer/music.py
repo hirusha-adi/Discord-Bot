@@ -5,7 +5,7 @@ import wavelink
 from .player import DisPlayer
 from discord.ext import commands
 from .checks import in_same_channel, player_connected, voice_connected
-import yourbot.database.retrieve_embeds as getembeds
+import yourbot.database.embeds.retrieve_embeds as getembeds
 
 
 class Music(commands.Cog, name="Music", description="Play any music easily!"):

@@ -8,7 +8,7 @@ class ChatBotChannels:
     CHANNEL_SLEEP_TIME = int(embeddata["CHANNEL_SLEEP_TIME"])
 
     channel_ids = []
-    with open("yourbot/database/chatbot_channel_list.txt", "r") as file:
+    with open("yourbot/database/chatbot/chatbot_channel_list.txt", "r") as file:
         lines = file.readlines()
         for line in lines:
             try:
