@@ -5,6 +5,7 @@ The simple multi purpose discord bot
 <p align="center">
     <img src="https://raw.githubusercontent.com/hirusha-adi/yourbot/main/images/background4.gif" alt="BACKGROUND_IMAGE">
     <br>
+    <img src="https://github.com/GIScience/badges/raw/master/status/archive.svg" alt="Current-Status">
     <img src="https://img.shields.io/github/license/hirusha-adi/Discord-Bot" alt="Lisence">
     <img src="https://img.shields.io/github/last-commit/hirusha-adi/Discord-Bot" alt="Last Commit">
     <img src="https://img.shields.io/github/contributors/hirusha-adi/Discord-Bot" alt="Contributors">
@@ -24,13 +25,14 @@ The simple multi purpose discord bot
         - Files (this is the Music cog, it has multiple files)
       - Others (cogs for yourbot, all the .py files (cogs) in this folder will be loaded automatically)
     - `database`
-      - `announcements`
-        - Files (including the database itself(its just a text file lmao) with a manager (getter, sort of) for it)
       - `blacklist`
         - Files (text files with blacklister user and server IDs)
-      - `scinfo`
-        - Files (for server specific settings and information)
-      - Files (mostly managers(getters, sort of) for other databse files)
+      - `chatbot`
+        - Files (settings for the chatbot are stored here)
+      - `embeds`
+        - Files (embed settings)
+      - `main`
+        - Files (General / Main settings)
     - `others`
       - File (mainly for handling dependencies simply and automatically)
     - `web`
