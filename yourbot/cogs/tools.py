@@ -1783,16 +1783,13 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
 
         try:
             if senderemail.split('@')[-1].lower() in verified_mails:
-                # print("email is valid")
                 try:
                     server = smtplib.SMTP('smtp.gmail.com', 587)
                     server.starttls()
-                    # print("created server")
 
                     try:
                         server.login(self.bot_email_addr,
                                      self.bot_email_password)
-                        # print("logged in")
 
                     except Exception as e:
                         embede = discord.Embed(
@@ -1810,11 +1807,9 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
                         except:
                             pass
                         await ctx.send(embed=embede)
-                        # print("unable to login")
                         return
 
                     email = EmailMessage()
-                    # print("writing email")
                     whoasktosend = ctx.author.name
                     whoasktosendid = ctx.author.id
                     emailcontentfinal = f"""This message it being sent from the discord bot named YourBot and was requested by the user {whoasktosend} / {whoasktosendid} / {senderemail}. The message: {emailcontent}   | Thank You. Have a Nice day, Stay safe! - YourBot"""
@@ -1824,9 +1819,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
                     email['Subject'] = emailsubject
                     email.set_content(emailcontentfinal)
                     server.send_message(email)
-                    # print("email sent")
                     server.close()
-                    # print("closed server")
 
                     try:
                         embed2 = discord.Embed(
@@ -1857,7 +1850,6 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
                             await loadingthing.delete()
                         except:
                             pass
-                        # print("sent embed")
                         await ctx.send("Email was sent successfully!")
 
                 except Exception as e:
