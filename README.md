@@ -5,10 +5,11 @@ The simple multi purpose discord bot
 <p align="center">
     <img src="https://raw.githubusercontent.com/hirusha-adi/yourbot/main/images/background4.gif" alt="BACKGROUND_IMAGE">
     <br>
-    <img src="https://github.com/GIScience/badges/raw/master/status/archive.svg" alt="Current-Status">
-    <img src="https://img.shields.io/github/license/hirusha-adi/Discord-Bot" alt="Lisence">
-    <img src="https://img.shields.io/github/last-commit/hirusha-adi/Discord-Bot" alt="Last Commit">
-    <img src="https://img.shields.io/github/contributors/hirusha-adi/Discord-Bot" alt="Contributors">
+    <img src="https://img.shields.io/badge/status-discontinued-red?style=for-the-badge" alt="Current-Status">
+    <br>
+    <img src="https://img.shields.io/github/license/hirusha-adi/Discord-Bot?style=for-the-badge" alt="Lisence">
+    <img src="https://img.shields.io/github/last-commit/hirusha-adi/Discord-Bot?style=for-the-badge" alt="Last Commit">
+    <img src="https://img.shields.io/github/contributors/hirusha-adi/Discord-Bot?style=for-the-badge" alt="Contributors">
 </p>
 <!-- Discord-Bot -->
 
