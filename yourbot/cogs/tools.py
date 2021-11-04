@@ -1059,7 +1059,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/877796755234783273/880664487965900821/Google__G__Logo.svg.png")
             embed.add_field(
-                name="Link", value=f"https://www.google.com/search?q={whatToSearch}", inline=True)
+                name="Link", value=f"https://www.google.com/search?q={str(whatToSearch).replace(' ', '%20')}", inline=True)
             embed.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed)
