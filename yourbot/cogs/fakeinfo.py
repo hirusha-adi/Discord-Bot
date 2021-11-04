@@ -3,8 +3,8 @@ import requests
 from discord.ext import commands
 from platform import system as systemtype
 from os import system as systemruncmnd
-import yourbot.database.retrieve_embeds as getembed
-import yourbot.database.retrieve_base as getbase
+import yourbot.database.embeds.retrieve_embeds as getembed
+import yourbot.database.main.retrieve_base as getbase
 
 try:
     from faker import Faker

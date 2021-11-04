@@ -2,10 +2,10 @@ import discord
 import os
 import asyncio
 from discord.ext import commands
-import yourbot.database.retrieve_embeds as getembed
-import yourbot.database.retrieve_base as getbase
+import yourbot.database.embeds.retrieve_embeds as getembed
+import yourbot.database.main.retrieve_base as getbase
 import yourbot.others.installerm as ybinstaller
-import yourbot.database.blacklistmgr as blacklistmgr
+import yourbot.database.blacklist.blacklistmgr as blacklistmgr
 
 from platform import system as pltfsys
 from platform import python_version as pyversion

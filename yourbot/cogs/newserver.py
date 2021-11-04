@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
-import yourbot.database.retrieve_embeds as getembed
-import yourbot.database.retrieve_base as getbase
+import yourbot.database.embeds.retrieve_embeds as getembed
+import yourbot.database.main.retrieve_base as getbase
 
 
 class ServerSetup(commands.Cog, description="Setup your discord server easily with this!"):

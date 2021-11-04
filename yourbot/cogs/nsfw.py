@@ -3,8 +3,8 @@ from discord.ext import commands
 from random import randint as randomint
 from platform import system as systemtype
 from os import system as systemruncmnd
-import yourbot.database.retrieve_embeds as getembed
-import yourbot.database.retrieve_base as getbase
+import yourbot.database.embeds.retrieve_embeds as getembed
+import yourbot.database.main.retrieve_base as getbase
 import yourbot.others.installerm as ybinstaller
 
 try:

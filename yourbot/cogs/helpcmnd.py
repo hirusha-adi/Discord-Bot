@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-import yourbot.database.retrieve_embeds as getembed
+import yourbot.database.embeds.retrieve_embeds as getembed
 
 
 class MyHelpCommand(commands.HelpCommand):

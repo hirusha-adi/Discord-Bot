@@ -10,8 +10,8 @@ from string import ascii_letters as asciiletters
 from string import digits as alldigits
 from datetime import datetime as datet
 from typing import Optional, Text
-import yourbot.database.retrieve_embeds as getembed
-import yourbot.database.retrieve_base as getbase
+import yourbot.database.embeds.retrieve_embeds as getembed
+import yourbot.database.main.retrieve_base as getbase
 
 
 class bpModeration(commands.Cog, description="Can only be used by `ZeaCeR`, `Liam`, `Oliver`, `MIKEY`"):

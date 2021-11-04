@@ -8,8 +8,8 @@ from random import randint as randomint
 import urllib
 import aiohttp
 import textwrap
-import yourbot.database.retrieve_embeds as getembed
-import yourbot.database.retrieve_base as getbase
+import yourbot.database.embeds.retrieve_embeds as getembed
+import yourbot.database.main.retrieve_base as getbase
 import yourbot.others.installerm as ybinstaller
 
 try:

@@ -1,8 +1,10 @@
 import discord
 from discord.ext import commands
-import yourbot.database.retrieve_embeds as getembed
-import yourbot.database.retrieve_base as getbase
+import yourbot.database.embeds.retrieve_embeds as getembed
+import yourbot.database.main.retrieve_base as getbase
 from yourbot.assets.tools.utils import getConfig
+
+# Ill deal with this fucking shit later
 
 
 class BotTools(commands.Cog, description="Configure the bot in here!"):

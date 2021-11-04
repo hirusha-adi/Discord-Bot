@@ -1,8 +1,8 @@
 import discord
 from discord.ext import commands
 from random import choice as randomchoice
-import yourbot.database.retrieve_embeds as getembed
-import yourbot.database.retrieve_base as getbase
+import yourbot.database.embeds.retrieve_embeds as getembed
+import yourbot.database.main.retrieve_base as getbase
 
 
 class Games(commands.Cog, description="a set of simple games to spend time"):

@@ -1,8 +1,8 @@
 import discord
 from discord.ext import commands
 from os import remove as osremovef
-import yourbot.database.retrieve_embeds as getembed
-import yourbot.database.retrieve_base as getbase
+import yourbot.database.embeds.retrieve_embeds as getembed
+import yourbot.database.main.retrieve_base as getbase
 import yourbot.others.installerm as ybinstaller
 
 try:

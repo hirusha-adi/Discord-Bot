@@ -11,8 +11,8 @@ import smtplib
 import textwrap
 import datetime
 from urllib.request import urlopen
-import yourbot.database.retrieve_embeds as getembed
-import yourbot.database.retrieve_base as getbase
+import yourbot.database.embeds.retrieve_embeds as getembed
+import yourbot.database.main.retrieve_base as getbase
 import yourbot.others.installerm as ybinstaller
 try:
     from zxcvbn import zxcvbn
