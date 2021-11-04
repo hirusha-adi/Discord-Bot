@@ -1,8 +1,8 @@
 from yourbot.web.keep_alive import keep_alive
 import yourbot.others.installerm as ybinstaller
-import yourbot.database.retrieve_base as getbase
-import yourbot.database.retrieve_embeds as getembeds
-import yourbot.database.chatbot_channels as getChatBot
+import yourbot.database.main.retrieve_base as getbase
+import yourbot.database.embeds.retrieve_embeds as getembeds
+import yourbot.database.chatbot.chatbot_channels as getChatBot
 import yourbot.database.blacklist.blacklistmgr as blacklistmgr
 
 # The main module
