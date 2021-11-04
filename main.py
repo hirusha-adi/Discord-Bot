@@ -3,7 +3,7 @@ import yourbot.others.installerm as ybinstaller
 import yourbot.database.retrieve_base as getbase
 import yourbot.database.retrieve_embeds as getembeds
 import yourbot.database.chatbot_channels as getChatBot
-import yourbot.database.blacklistmgr as blacklistmgr
+import yourbot.database.blacklist.blacklistmgr as blacklistmgr
 
 # The main module
 try:
