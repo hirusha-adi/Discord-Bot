@@ -44,7 +44,7 @@ class Main(commands.Cog, description="For bot information"):
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
         if isinstance(error, commands.MissingPermissions):
-            embed = discord.Embed(title=getembed.ErrorEmbeds.PERM_TITLEE,
+            embed = discord.Embed(title=getembed.ErrorEmbeds.PERM_TITLE,
                                   description=getembed.ErrorEmbeds.PERM_DESCRIPTION, color=getembed.ErrorEmbeds.PERM_COLOR)
             embed.set_author(name=getembed.ErrorEmbeds.PERM_AUTHOR_NAME,
                              icon_url=getembed.ErrorEmbeds.PERM_AUTHOR_LINK)
