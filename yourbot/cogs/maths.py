@@ -1,7 +1,7 @@
 import discord
-from discord.ext import commands
 import yourbot.database.embeds.retrieve_embeds as getembed
 import yourbot.database.main.retrieve_base as getbase
+from discord.ext import commands
 
 
 class Mathematics(commands.Cog, description="Solve simple math easily! - more commands are being developed!"):

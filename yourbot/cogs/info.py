@@ -1,16 +1,17 @@
-import discord
-import os
-import json
 import datetime
-from discord.ext import commands
+import json
+import os
+import textwrap
+import urllib
 from platform import system as pltfsys
 from random import randint as randomint
-import urllib
+
 import aiohttp
-import textwrap
+import discord
 import yourbot.database.embeds.retrieve_embeds as getembed
 import yourbot.database.main.retrieve_base as getbase
 import yourbot.others.installerm as ybinstaller
+from discord.ext import commands
 
 try:
     import requests
@@ -39,10 +40,10 @@ except:
     import wikipedia
 
 try:
-    from PIL import Image, ImageFont, ImageDraw
+    from PIL import Image, ImageDraw, ImageFont
 except:
     ybinstaller.pip_install("Pillow")
-    from PIL import Image, ImageFont, ImageDraw
+    from PIL import Image, ImageDraw, ImageFont
 
 
 class Information(commands.Cog, description="Gather information easily without leaving discord!"):

@@ -1,21 +1,22 @@
-import discord
-import os
 import asyncio
 import io
-import aiohttp
-from discord.ext import commands
-from requests import get as reqget
+import os
+from datetime import datetime as datet
+from platform import python_version as pyversion
+from platform import system as pltfsys
 from random import choices as rchoices
 from string import ascii_letters as asciiletters
 from string import digits as alldigits
-from datetime import datetime as datet
 from typing import Optional, Text
+
+import aiohttp
+import discord
 import yourbot.database.embeds.retrieve_embeds as getembed
 import yourbot.database.main.retrieve_base as getbase
 import yourbot.others.installerm as ybinstaller
+from discord.ext import commands
+from requests import get as reqget
 
-from platform import system as pltfsys
-from platform import python_version as pyversion
 try:
     from getpass import getuser as pcusername
 except:
