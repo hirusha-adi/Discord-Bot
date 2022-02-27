@@ -1,7 +1,7 @@
 import discord
+from discord.ext import commands
 import yourbot.database.embeds.retrieve_embeds as getembed
 import yourbot.database.main.retrieve_base as getbase
-from discord.ext import commands
 
 
 class Texts(commands.Cog, description="Text commands + Send simple texts"):

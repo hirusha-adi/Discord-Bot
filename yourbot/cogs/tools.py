@@ -1,21 +1,19 @@
-import asyncio
-import base64
-import datetime
-import os
+import discord
 import platform
-import smtplib
-import textwrap
-from email.message import EmailMessage
+import base64
+import asyncio
+import os
+from discord.ext import commands
 from random import choices as randomchoices
 from string import ascii_letters, digits
+from email.message import EmailMessage
+import smtplib
+import textwrap
+import datetime
 from urllib.request import urlopen
-
-import discord
 import yourbot.database.embeds.retrieve_embeds as getembed
 import yourbot.database.main.retrieve_base as getbase
 import yourbot.others.installerm as ybinstaller
-from discord.ext import commands
-
 try:
     from zxcvbn import zxcvbn
 except:

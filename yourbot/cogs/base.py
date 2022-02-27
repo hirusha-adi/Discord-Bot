@@ -1,11 +1,10 @@
-import datetime
-import platform
-from time import time as nowtime
-
 import discord
+import datetime
+from discord.ext import commands
+from time import time as nowtime
+import platform
 import yourbot.database.embeds.retrieve_embeds as getembed
 import yourbot.database.main.retrieve_base as getbase
-from discord.ext import commands
 
 
 class Main(commands.Cog, description="For bot information"):

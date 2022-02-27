@@ -1,10 +1,9 @@
-from os import remove as osremovef
-
 import discord
+from discord.ext import commands
+from os import remove as osremovef
 import yourbot.database.embeds.retrieve_embeds as getembed
 import yourbot.database.main.retrieve_base as getbase
 import yourbot.others.installerm as ybinstaller
-from discord.ext import commands
 
 try:
     import requests

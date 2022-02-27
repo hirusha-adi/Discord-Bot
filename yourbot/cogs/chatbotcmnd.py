@@ -1,8 +1,8 @@
 import discord
-import yourbot.database.chatbot.chatbot_channels as getchatbot
+from discord.ext import commands
 import yourbot.database.embeds.retrieve_embeds as getembed
 import yourbot.database.main.retrieve_base as getbase
-from discord.ext import commands
+import yourbot.database.chatbot.chatbot_channels as getchatbot
 
 
 class ChatBot(commands.Cog, description="Advance chatbot - manual setup by creator"):
