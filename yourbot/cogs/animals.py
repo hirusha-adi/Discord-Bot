@@ -162,11 +162,51 @@ class Animals(commands.Cog, description="Images/Facts about animals"):
     async def cat(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
         try:
-            r = requests.get("https://some-random-api.ml/img/cat").json()
-            embed = discord.Embed(color=getembed.Common.COLOR)
+            async with aiohttp.ClientSession() as pornSession:
+                async with pornSession.get("https://some-random-api.ml/img/cat") as jsondata:
+                    if not 300 > jsondata.status >= 200:
+                        embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
+                                               description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+                        embed3.set_author(name=str(self.client.user.name),
+                                          icon_url=str(self.client.user.avatar_url))
+                        embed3.set_thumbnail(
+                            url=getembed.ErrorEmbeds.THUMBNAIL)
+                        embed3.add_field(
+                            name="Error:", value=f"Bad status code from API", inline=False)
+                        embed3.set_footer(
+                            text=f"Requested by {ctx.author.name}")
+                        await loading_message.delete()
+                        await ctx.send(embed=embed3)
+                        return
+
+                    try:
+                        result = await jsondata.json()
+                    except Exception as e:
+                        embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
+                                               description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+                        embed3.set_author(name=str(self.client.user.name),
+                                          icon_url=str(self.client.user.avatar_url))
+                        embed3.set_thumbnail(
+                            url=getembed.ErrorEmbeds.THUMBNAIL)
+                        embed3.add_field(
+                            name="Error:", value=f"Unable to convert the fetched API results to JSON: {e}", inline=False)
+                        embed3.set_footer(
+                            text=f"Requested by {ctx.author.name}")
+                        await loading_message.delete()
+                        await ctx.send(embed=embed3)
+                        return
+
+            embed = discord.Embed(title="a Cat",
+                                  color=getembed.Common.COLOR,
+                                  timestamp=datetime.utcnow())
             embed.set_author(
-                name="a Cat.", icon_url="https://i.pinimg.com/736x/d6/0c/7e/d60c7e8983fdbd7c7a27fd42fb3d61ba.jpg")
-            embed.set_image(url=str(r["link"]))
+                name=str(self.client.user.name),
+                icon_url=str(self.client.user.avatar_url))
+            embed.set_image(url=str(result["link"]))
+            embed.set_footer(
+                text=f"Requested by {ctx.author.name}",
+                icon_url="https://i.pinimg.com/736x/d6/0c/7e/d60c7e8983fdbd7c7a27fd42fb3d61ba.jpg"
+            )
             await loading_message.delete()
             await ctx.send(embed=embed)
 
