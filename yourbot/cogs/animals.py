@@ -156,6 +156,7 @@ class Animals(commands.Cog, description="Images/Facts about animals"):
     async def dogfact(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
         try:
+<<<<<<< HEAD
             async with aiohttp.ClientSession() as pornSession:
                 async with pornSession.get("https://some-random-api.ml/facts/dog") as jsondata:
                     if not 300 > jsondata.status >= 200:
@@ -198,6 +199,39 @@ class Animals(commands.Cog, description="Images/Facts about animals"):
                 name=str(self.client.user.name),
                 icon_url=str(self.client.user.avatar_url))
 =======
+=======
+            r = requests.get("https://some-random-api.ml/img/cat").json()
+            embed = discord.Embed(color=getembed.Common.COLOR)
+            embed.set_author(
+                name="a Cat.", icon_url="https://i.pinimg.com/736x/d6/0c/7e/d60c7e8983fdbd7c7a27fd42fb3d61ba.jpg")
+            embed.set_image(url=str(r["link"]))
+            await loading_message.delete()
+            await ctx.send(embed=embed)
+
+        except Exception as e:
+            embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
+                                   description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
+            embed3.set_author(name=str(self.client.user.name),
+                              icon_url=str(self.client.user.avatar_url))
+            embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
+            embed3.set_footer(text=f"Requested by {ctx.author.name}")
+            await loading_message.delete()
+            await ctx.send(embed=embed3)
+
+    @commands.command(aliases=["dog-facts", "dogfacts", "dog-fact"],
+                      breif="Fact about dogs",
+                      description="Send a fact about dogs. Works on both DM and on servers",
+                      help="Send a fact about dogs. Works on both DM and on servers")
+    async def dogfact(self, ctx):
+        loading_message = await ctx.send(embed=self.please_wait_emb)
+
+        try:
+            r = requests.get('https://some-random-api.ml/facts/dog')
+            c = r.json()
+            fact = c["fact"]
+
+>>>>>>> parent of aa4fb42 (cat)
             embed = discord.Embed(
                 title="Dog Fact", color=getembed.Common.COLOR)
             embed.set_author(name=getembed.Common.AUTHOR,
