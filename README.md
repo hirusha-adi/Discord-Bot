@@ -2,6 +2,10 @@
 
 The simple multi purpose discord bot
 
+## NOTE
+
+I made this bot while i started to learn python3 and the code is really bad and i dont feel about making it better
+
 <p align="center">
     <img src="https://raw.githubusercontent.com/hirusha-adi/yourbot/main/images/background4.gif" alt="BACKGROUND_IMAGE">
     <br>
