@@ -155,6 +155,7 @@ class Animals(commands.Cog, description="Images/Facts about animals"):
                       help="Send a fact about dogs. Works on both DM and on servers")
     async def dogfact(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
+<<<<<<< HEAD
         try:
 <<<<<<< HEAD
             async with aiohttp.ClientSession() as pornSession:
@@ -237,15 +238,22 @@ class Animals(commands.Cog, description="Images/Facts about animals"):
             embed.set_author(name=getembed.Common.AUTHOR,
                              icon_url=getembed.Common.AUTHOR_LINK)
 >>>>>>> parent of cc54fdd (better request sending)
+=======
+
+        try:
+            r = requests.get('https://some-random-api.ml/facts/dog')
+            c = r.json()
+            fact = c["fact"]
+
+            embed = discord.Embed(
+                title="Dog Fact", color=getembed.Common.COLOR)
+            embed.set_author(name=str(self.client.user.name),
+                             icon_url=str(self.client.user.avatar_url))
+>>>>>>> parent of ed265e1 (dog fact)
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/877796755234783273/880010039581102110/322868_1100-800x825.jpg")
-            embed.add_field(name="Fact",
-                            value=str(result["fact"]),
-                            inline=False)
-            embed.set_footer(
-                text=f"Requested by {ctx.author.name}",
-                icon_url="https://i.pinimg.com/736x/d6/0c/7e/d60c7e8983fdbd7c7a27fd42fb3d61ba.jpg"
-            )
+            embed.add_field(name="Fact", value=f"{fact}", inline=False)
+            embed.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed)
 
