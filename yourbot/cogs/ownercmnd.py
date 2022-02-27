@@ -41,7 +41,7 @@ class OwnerOnly(commands.Cog, description="These commands can only be used by th
             try:
                 embed2 = discord.Embed(
                     title="Cleared Screen", description="The command ran successfully! ", color=getembed.Common.COLOR)
-                embed2.set_author(name=getembed.Common.AUTHOR,
+                embed2.set_author(name=str(self.client.user.name),
                                   icon_url=getembed.Common.AUTHOR_LINK)
                 embed2.add_field(name="Operating System",
                                  value=f"```{pltfsys()}```", inline=False)
@@ -61,7 +61,7 @@ class OwnerOnly(commands.Cog, description="These commands can only be used by th
             except Exception as e:
                 embed2 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                        description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-                embed2.set_author(name=getembed.Common.AUTHOR,
+                embed2.set_author(name=str(self.client.user.name),
                                   icon_url=getembed.Common.AUTHOR_LINK)
                 embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                 embed2.add_field(name="Error:", value=f"{e}", inline=False)
@@ -72,7 +72,7 @@ class OwnerOnly(commands.Cog, description="These commands can only be used by th
         else:
             embed2 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed2.set_author(name=getembed.Common.AUTHOR,
+            embed2.set_author(name=str(self.client.user.name),
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed2.add_field(
@@ -102,7 +102,7 @@ class OwnerOnly(commands.Cog, description="These commands can only be used by th
                             embed2 = discord.Embed(
                                 title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
                             embed2.set_author(
-                                name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+                                name=str(self.client.user.name), icon_url=getembed.Common.AUTHOR_LINK)
                             embed2.set_thumbnail(
                                 url=getembed.ErrorEmbeds.THUMBNAIL)
                             embed2.add_field(
@@ -116,7 +116,7 @@ class OwnerOnly(commands.Cog, description="These commands can only be used by th
                         embed2 = discord.Embed(
                             title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
                         embed2.set_author(
-                            name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
+                            name=str(self.client.user.name), icon_url=getembed.Common.AUTHOR_LINK)
                         embed2.set_thumbnail(
                             url=getembed.ErrorEmbeds.THUMBNAIL)
                         embed2.add_field(
@@ -129,7 +129,7 @@ class OwnerOnly(commands.Cog, description="These commands can only be used by th
             except Exception as e:
                 embed2 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                        description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-                embed2.set_author(name=getembed.Common.AUTHOR,
+                embed2.set_author(name=str(self.client.user.name),
                                   icon_url=getembed.Common.AUTHOR_LINK)
                 embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                 embed2.add_field(name="Error:", value=f"{e}", inline=False)
@@ -140,7 +140,7 @@ class OwnerOnly(commands.Cog, description="These commands can only be used by th
         else:
             embed2 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed2.set_author(name=getembed.Common.AUTHOR,
+            embed2.set_author(name=str(self.client.user.name),
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed2.add_field(
@@ -169,7 +169,7 @@ class OwnerOnly(commands.Cog, description="These commands can only be used by th
 
                 embed2 = discord.Embed(
                     title="Cleared Screen", description="The command ran successfully! ", color=getembed.Common.COLOR)
-                embed2.set_author(name=getembed.Common.AUTHOR,
+                embed2.set_author(name=str(self.client.user.name),
                                   icon_url=getembed.Common.AUTHOR_LINK)
                 embed2.add_field(name="OS", value=f"{ostype}", inline=False)
                 embed2.add_field(
@@ -180,7 +180,7 @@ class OwnerOnly(commands.Cog, description="These commands can only be used by th
             except Exception as e:
                 embed2 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                        description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-                embed2.set_author(name=getembed.Common.AUTHOR,
+                embed2.set_author(name=str(self.client.user.name),
                                   icon_url=getembed.Common.AUTHOR_LINK)
                 embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                 embed2.add_field(name="Error:", value=f"{e}", inline=False)
@@ -191,7 +191,7 @@ class OwnerOnly(commands.Cog, description="These commands can only be used by th
         else:
             embed2 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed2.set_author(name=getembed.Common.AUTHOR,
+            embed2.set_author(name=str(self.client.user.name),
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed2.add_field(
@@ -211,7 +211,7 @@ class OwnerOnly(commands.Cog, description="These commands can only be used by th
                 if member == None:
                     embed2 = discord.Embed(
                         title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-                    embed2.set_author(name=getembed.Common.AUTHOR,
+                    embed2.set_author(name=str(self.client.user.name),
                                       icon_url=getembed.Common.AUTHOR_LINK)
                     embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                     embed2.add_field(
@@ -231,7 +231,7 @@ class OwnerOnly(commands.Cog, description="These commands can only be used by th
             except Exception as e:
                 embed2 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                        description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-                embed2.set_author(name=getembed.Common.AUTHOR,
+                embed2.set_author(name=str(self.client.user.name),
                                   icon_url=getembed.Common.AUTHOR_LINK)
                 embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                 embed2.add_field(name="Error:", value=f"{e}", inline=False)
@@ -242,7 +242,7 @@ class OwnerOnly(commands.Cog, description="These commands can only be used by th
         else:
             embed2 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed2.set_author(name=getembed.Common.AUTHOR,
+            embed2.set_author(name=str(self.client.user.name),
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed2.add_field(
@@ -267,7 +267,7 @@ class OwnerOnly(commands.Cog, description="These commands can only be used by th
             except Exception as e:
                 embed2 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                        description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-                embed2.set_author(name=getembed.Common.AUTHOR,
+                embed2.set_author(name=str(self.client.user.name),
                                   icon_url=getembed.Common.AUTHOR_LINK)
                 embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                 embed2.add_field(name="Error:", value=f"{e}", inline=False)
@@ -278,7 +278,7 @@ class OwnerOnly(commands.Cog, description="These commands can only be used by th
         else:
             embed2 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed2.set_author(name=getembed.Common.AUTHOR,
+            embed2.set_author(name=str(self.client.user.name),
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed2.add_field(
@@ -298,7 +298,7 @@ class OwnerOnly(commands.Cog, description="These commands can only be used by th
                 if id == None:
                     embed2 = discord.Embed(
                         title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-                    embed2.set_author(name=getembed.Common.AUTHOR,
+                    embed2.set_author(name=str(self.client.user.name),
                                       icon_url=getembed.Common.AUTHOR_LINK)
                     embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                     embed2.add_field(
@@ -318,7 +318,7 @@ class OwnerOnly(commands.Cog, description="These commands can only be used by th
             except Exception as e:
                 embed2 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                        description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-                embed2.set_author(name=getembed.Common.AUTHOR,
+                embed2.set_author(name=str(self.client.user.name),
                                   icon_url=getembed.Common.AUTHOR_LINK)
                 embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                 embed2.add_field(name="Error:", value=f"{e}", inline=False)
@@ -329,7 +329,7 @@ class OwnerOnly(commands.Cog, description="These commands can only be used by th
         else:
             embed2 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed2.set_author(name=getembed.Common.AUTHOR,
+            embed2.set_author(name=str(self.client.user.name),
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed2.add_field(

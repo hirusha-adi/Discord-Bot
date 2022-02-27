@@ -35,7 +35,7 @@ class Texts(commands.Cog, description="Text commands + Send simple texts"):
             member.send(messagedm)
             embed = discord.Embed(
                 title="Direct Message sent", description=f"to {member.name}", color=getembed.Common.COLOR)
-            embed.set_author(name=getembed.Common.AUTHOR,
+            embed.set_author(name=str(self.client.user.name),
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.add_field(name="Message", value=f"{messagedm}", inline=False)
             embed.set_footer(text=f"Requested by {ctx.author.name}")
@@ -45,7 +45,7 @@ class Texts(commands.Cog, description="Text commands + Send simple texts"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=getembed.Common.AUTHOR,
+            embed3.set_author(name=str(self.client.user.name),
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -65,7 +65,7 @@ class Texts(commands.Cog, description="Text commands + Send simple texts"):
             member.send(final_msg)
             embed = discord.Embed(
                 title="Direct Message sent", description=f"to {member.name}", color=getembed.Common.COLOR)
-            embed.set_author(name=getembed.Common.AUTHOR,
+            embed.set_author(name=str(self.client.user.name),
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.add_field(name="Message", value=f"{final_msg}", inline=False)
             embed.set_footer(text=f"Requested by {ctx.author.name}")
@@ -75,7 +75,7 @@ class Texts(commands.Cog, description="Text commands + Send simple texts"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=getembed.Common.AUTHOR,
+            embed3.set_author(name=str(self.client.user.name),
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)

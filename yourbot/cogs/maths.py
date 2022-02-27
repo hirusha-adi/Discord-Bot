@@ -34,7 +34,7 @@ class Mathematics(commands.Cog, description="Solve simple math easily! - more co
 
             embed = discord.Embed(
                 title="Addition", color=getembed.Common.COLOR)
-            embed.set_author(name=getembed.Common.AUTHOR,
+            embed.set_author(name=str(self.client.user.name),
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/877796755234783273/879962889509806080/addition-icon-3.jpg")
@@ -48,7 +48,7 @@ class Mathematics(commands.Cog, description="Solve simple math easily! - more co
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=getembed.Common.AUTHOR,
+            embed3.set_author(name=str(self.client.user.name),
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -72,7 +72,7 @@ class Mathematics(commands.Cog, description="Solve simple math easily! - more co
 
             embed = discord.Embed(title="Substraction",
                                   color=getembed.Common.COLOR)
-            embed.set_author(name=getembed.Common.AUTHOR,
+            embed.set_author(name=str(self.client.user.name),
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/877796755234783273/879964954806083604/1043.png")
@@ -85,7 +85,7 @@ class Mathematics(commands.Cog, description="Solve simple math easily! - more co
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=getembed.Common.AUTHOR,
+            embed3.set_author(name=str(self.client.user.name),
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -109,7 +109,7 @@ class Mathematics(commands.Cog, description="Solve simple math easily! - more co
 
             embed = discord.Embed(title="Multiplication",
                                   color=getembed.Common.COLOR)
-            embed.set_author(name=getembed.Common.AUTHOR,
+            embed.set_author(name=str(self.client.user.name),
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/877796755234783273/879965848603869214/43165.png")
@@ -123,7 +123,7 @@ class Mathematics(commands.Cog, description="Solve simple math easily! - more co
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=getembed.Common.AUTHOR,
+            embed3.set_author(name=str(self.client.user.name),
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -147,7 +147,7 @@ class Mathematics(commands.Cog, description="Solve simple math easily! - more co
 
             embed = discord.Embed(
                 title="Division", color=getembed.Common.COLOR)
-            embed.set_author(name=getembed.Common.AUTHOR,
+            embed.set_author(name=str(self.client.user.name),
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/877796755234783273/879966441502294026/674233_mathematics_512x512.png")
@@ -161,7 +161,7 @@ class Mathematics(commands.Cog, description="Solve simple math easily! - more co
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=getembed.Common.AUTHOR,
+            embed3.set_author(name=str(self.client.user.name),
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)

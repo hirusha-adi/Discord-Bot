@@ -81,7 +81,7 @@ class Main(commands.Cog, description="For bot information"):
         try:
             embed = discord.Embed(title="Response Time",
                                   color=getembed.Common.COLOR)
-            embed.set_author(name=getembed.Common.AUTHOR,
+            embed.set_author(name=str(self.client.user.name),
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/877796755234783273/879311068097290320/PngItem_1526969.png")
@@ -94,7 +94,7 @@ class Main(commands.Cog, description="For bot information"):
         except Exception as e:
             embed2 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed2.set_author(name=getembed.Common.AUTHOR,
+            embed2.set_author(name=str(self.client.user.name),
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed2.add_field(name="Error:", value=f"{e}", inline=False)
@@ -110,11 +110,11 @@ class Main(commands.Cog, description="For bot information"):
         loading_message = await ctx.send(embed=self.please_wait_emb)
 
         try:
-            em = discord.Embed(title=getembed.Common.AUTHOR,
+            em = discord.Embed(title=str(self.client.user.name),
                                color=getembed.Common.COLOR)
             em.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            em.set_author(name=getembed.Common.AUTHOR,
+            em.set_author(name=str(self.client.user.name),
                           icon_url=getembed.Common.AUTHOR_LINK)
             em.add_field(name="Version", value=f'{self.bot_current_version}')
             em.add_field(name="Creator", value=f'{self.bot_creator_name}')
@@ -127,7 +127,7 @@ class Main(commands.Cog, description="For bot information"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=getembed.Common.AUTHOR,
+            embed3.set_author(name=str(self.client.user.name),
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -155,7 +155,7 @@ class Main(commands.Cog, description="For bot information"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=getembed.Common.AUTHOR,
+            embed3.set_author(name=str(self.client.user.name),
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -195,7 +195,7 @@ class Main(commands.Cog, description="For bot information"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=getembed.Common.AUTHOR,
+            embed3.set_author(name=str(self.client.user.name),
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)

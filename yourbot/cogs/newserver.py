@@ -324,7 +324,7 @@ class ServerSetup(commands.Cog, description="Setup your discord server easily wi
             embed.set_thumbnail(url=getembed.Common.AUTHOR_LINK)
             embed.add_field(
                 name="Created Roles", value=f'Owner\nAdministrator\nBOT\nModerator\nSenior\nJunior\nRookie', inline=False)
-            embed.set_author(name=getembed.Common.AUTHOR,
+            embed.set_author(name=str(self.client.user.name),
                              icon_url=getembed.Common.AUTHOR_LINK)
             all_roles_in_server = ", ".join(
                 [str(r.mention) for r in ctx.guild.roles])
@@ -338,7 +338,7 @@ class ServerSetup(commands.Cog, description="Setup your discord server easily wi
         except Exception as e:
             embed2 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed2.set_author(getembed.Common.AUTHOR,
+            embed2.set_author(str(self.client.user.name),
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed2.add_field(name="Error:", value=f"{e}", inline=False)
