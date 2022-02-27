@@ -42,7 +42,7 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
             quote = json_data[0]['q'] + " - " + json_data[0]['a']
             embed = discord.Embed(
                 title="Inspirational isn't it?", color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
+            embed.set_author(name=getembed.Common.AUTHOR,
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/877796755234783273/879382016041291828/NicePng_light-streak-png_395357.png")
@@ -55,7 +55,7 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -75,7 +75,7 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
             what_to_do_when_bored = f'[+] Activity: {data["activity"]} \n[+] Type: {data["type"]} \n[+] Participants: {data["participants"]} \n[+] Key: {data["key"]} \n[+] Accessibility: {data["accessibility"]} '
             embed = discord.Embed(title="Heres an Activity for you",
                                   description="If you are bored, consider doing this", color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
+            embed.set_author(name=getembed.Common.AUTHOR,
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.add_field(name="Activity",
                             value=f"{data['activity']}", inline=False)
@@ -94,7 +94,7 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -119,7 +119,7 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
 
             embed = discord.Embed(title="a Dad Joke",
                                   color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
+            embed.set_author(name=getembed.Common.AUTHOR,
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(
                 url="https://user-images.githubusercontent.com/36286877/127767330-d3e68d90-67a0-4672-b3e1-6193b323bc21.png")
@@ -131,7 +131,7 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -158,7 +158,7 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
                 except Exception as e:
                     embed2 = discord.Embed(
                         title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-                    embed2.set_author(name=str(self.client.user.name),
+                    embed2.set_author(name=getembed.Common.AUTHOR,
                                       icon_url=getembed.Common.AUTHOR_LINK)
                     embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                     embed2.add_field(name="Error:", value=f"{e}", inline=False)
@@ -169,7 +169,7 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
 
             embed = discord.Embed(title=":grin: a Joke",
                                   color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
+            embed.set_author(name=getembed.Common.AUTHOR,
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/877796755234783273/879303282139463680/480px-Happy_smiley_face.png")
@@ -183,7 +183,7 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -209,7 +209,7 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
 
             embed = discord.Embed(title="Would You Rather",
                                   color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
+            embed.set_author(name=getembed.Common.AUTHOR,
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/877796755234783273/879583873527332904/Would-You-Rather_Questions-680x430.jpg")
@@ -224,7 +224,7 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -244,7 +244,7 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
 
             embed = discord.Embed(
                 title="an Adive", color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
+            embed.set_author(name=getembed.Common.AUTHOR,
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/877796755234783273/880034306720956456/download_1.jfif")
@@ -256,7 +256,7 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -280,7 +280,7 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
 
             embed = discord.Embed(title="Chuck Joke",
                                   color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
+            embed.set_author(name=getembed.Common.AUTHOR,
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/877796755234783273/880035248820342824/chuck-norris.png")
@@ -295,7 +295,7 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -328,7 +328,7 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
 
             embed = discord.Embed(
                 title="Guess Age", color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
+            embed.set_author(name=getembed.Common.AUTHOR,
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/877796755234783273/880027346478968872/image.jfif")
@@ -342,7 +342,7 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -373,7 +373,7 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -392,7 +392,7 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
             r = requests.get("https://some-random-api.ml/joke").json()
 
             embed = discord.Embed(title="a Joke", color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
+            embed.set_author(name=getembed.Common.AUTHOR,
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(
                 url="https://media.discordapp.net/attachments/877796755234783273/880742956552822794/mr-bean-avatar-character-cartoon-rowan-atkinson-png-image-33.png?width=454&height=584")
@@ -404,7 +404,7 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -426,7 +426,7 @@ class Fun(commands.Cog, description="Laughter is the best medicine!"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)

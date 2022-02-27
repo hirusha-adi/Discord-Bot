@@ -113,7 +113,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
             if password + "\n" in self.lines:
                 embed = discord.Embed(
                     title="Password Checker!", color=getembed.Common.COLOR)
-                embed.set_author(name=str(self.client.user.name),
+                embed.set_author(name=getembed.Common.AUTHOR,
                                  icon_url=getembed.Common.AUTHOR_LINK)
                 embed.set_thumbnail(
                     url="https://media.discordapp.net/attachments/877796755234783273/881072664658214912/change-password.png?width=479&height=464")
@@ -128,7 +128,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
             else:
                 embed = discord.Embed(
                     title="Password Checker!", color=getembed.Common.COLOR)
-                embed.set_author(name=str(self.client.user.name),
+                embed.set_author(name=getembed.Common.AUTHOR,
                                  icon_url=getembed.Common.AUTHOR_LINK)
                 embed.set_thumbnail(
                     url="https://media.discordapp.net/attachments/877796755234783273/881072664658214912/change-password.png?width=479&height=464")
@@ -143,7 +143,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
         except Exception as e:
             embed2 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed2.set_author(name=str(self.client.user.name),
+            embed2.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed2.add_field(name="Error:", value=f"{e}", inline=False)
@@ -175,7 +175,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -196,7 +196,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
 
             em = discord.Embed(color=getembed.Common.COLOR)
             em.set_footer(text=f"Requested by {ctx.author.name}")
-            em.set_author(name=str(self.client.user.name),
+            em.set_author(name=getembed.Common.AUTHOR,
                           icon_url=getembed.Common.AUTHOR_LINK)
             em.add_field(name="Shortened Link", value=r, inline=False)
             await loading_message.delete()
@@ -205,7 +205,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -224,7 +224,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
             if int(number_of_times) <= 20:
                 embed = discord.Embed(
                     title="Nitro Code Generator", color=getembed.Common.COLOR)
-                embed.set_author(name=str(self.client.user.name),
+                embed.set_author(name=getembed.Common.AUTHOR,
                                  icon_url=getembed.Common.AUTHOR_LINK)
                 embed.set_thumbnail(
                     url="https://user-images.githubusercontent.com/36286877/127767330-d3e68d90-67a0-4672-b3e1-6193b323bc21.png")
@@ -242,7 +242,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
             else:
                 embed = discord.Embed(
                     title="Nitro Code Generator", color=getembed.Common.COLOR)
-                embed.set_author(name=str(self.client.user.name),
+                embed.set_author(name=getembed.Common.AUTHOR,
                                  icon_url=getembed.Common.AUTHOR_LINK)
                 embed.set_thumbnail(
                     url="https://www.nicepng.com/png/detail/214-2146883_4-fake-stamp-vector-fake-news-logo-png.png")
@@ -255,7 +255,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -273,7 +273,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
             results = zxcvbn('hirusha')
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
 
@@ -310,7 +310,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -331,7 +331,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
             try:
                 embed = discord.Embed(
                     title="Hastebin", color=getembed.Common.COLOR)
-                embed.set_author(name=str(self.client.user.name),
+                embed.set_author(name=getembed.Common.AUTHOR,
                                  icon_url=getembed.Common.AUTHOR_LINK)
                 embed.set_thumbnail(
                     url="https://cdn.discordapp.com/attachments/877796755234783273/879586340520480768/large.png")
@@ -346,7 +346,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
             except:
                 embed = discord.Embed(
                     title="Hastebin", color=getembed.Common.COLOR)
-                embed.set_author(name=str(self.client.user.name),
+                embed.set_author(name=getembed.Common.AUTHOR,
                                  icon_url=getembed.Common.AUTHOR_LINK)
                 embed.set_thumbnail(
                     url="https://cdn.discordapp.com/attachments/877796755234783273/879586340520480768/large.png")
@@ -359,7 +359,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -381,7 +381,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
             if len('```'+r+'```') > 2000:
                 embed = discord.Embed(
                     title="ASCII ART", description="There was a problem!", color=getembed.Common.COLOR)
-                embed.set_author(name=str(self.client.user.name),
+                embed.set_author(name=getembed.Common.AUTHOR,
                                  icon_url=getembed.Common.AUTHOR_LINK)
                 embed.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                 embed.add_field(
@@ -401,7 +401,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -419,7 +419,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
 
             embed = discord.Embed(title="Reverse Text!",
                                   color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
+            embed.set_author(name=getembed.Common.AUTHOR,
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/877796755234783273/879728497822687272/reverse.png")
@@ -430,7 +430,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -452,7 +452,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
 
             embed = discord.Embed(
                 title="to Base64", color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
+            embed.set_author(name=getembed.Common.AUTHOR,
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/877796755234783273/879955815602200586/base64-logo-352x200.jpg")
@@ -465,7 +465,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -485,7 +485,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
             slpake = msg.hexdigest()
 
             embed = discord.Embed(title="to MD5", color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
+            embed.set_author(name=getembed.Common.AUTHOR,
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/877796755234783273/879956672771137546/MD5.png")
@@ -498,7 +498,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -518,7 +518,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
             slpuka = msg.hexdigest()
 
             embed = discord.Embed(title="to SHA1", color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
+            embed.set_author(name=getembed.Common.AUTHOR,
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/877796755234783273/879957622546108436/SHA1.png")
@@ -531,7 +531,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -552,7 +552,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
 
             embed = discord.Embed(
                 title="to SHA224", color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
+            embed.set_author(name=getembed.Common.AUTHOR,
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/877796755234783273/879958751640191046/download.png")
@@ -565,7 +565,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -586,7 +586,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
 
             embed = discord.Embed(
                 title="to SHA512", color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
+            embed.set_author(name=getembed.Common.AUTHOR,
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/877796755234783273/879960296863698944/download_1.png")
@@ -599,7 +599,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -619,7 +619,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
                 'O', '0').replace('t', '7').replace('T', '7').replace('l', '1').replace('L', '1').replace('k', '|<').replace('K', '|<').replace('CK', 'X').replace('ck', 'x').replace('Ck', 'X').replace('cK', 'x')
 
             embed = discord.Embed(title="to LEET", color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
+            embed.set_author(name=getembed.Common.AUTHOR,
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/877796755234783273/879961162895212574/download_2.png")
@@ -632,7 +632,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -654,7 +654,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
 
             embed = discord.Embed(
                 title="to Binary", color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
+            embed.set_author(name=getembed.Common.AUTHOR,
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/877796755234783273/880025172055314462/85-855085_binary-codes-on-data-sheet-with-magnifying-lens.png")
@@ -668,7 +668,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -696,7 +696,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
 
             embed = discord.Embed(title="to Ceaser Cipher",
                                   color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
+            embed.set_author(name=getembed.Common.AUTHOR,
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/877796755234783273/880025172055314462/85-855085_binary-codes-on-data-sheet-with-magnifying-lens.png")
@@ -710,7 +710,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -738,7 +738,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
 
             embed = discord.Embed(title="from Ceaser Cipher",
                                   color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
+            embed.set_author(name=getembed.Common.AUTHOR,
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/877796755234783273/880025172055314462/85-855085_binary-codes-on-data-sheet-with-magnifying-lens.png")
@@ -752,7 +752,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -775,7 +775,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
 
             embed = discord.Embed(title="From Binary",
                                   color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
+            embed.set_author(name=getembed.Common.AUTHOR,
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/877796755234783273/880025172055314462/85-855085_binary-codes-on-data-sheet-with-magnifying-lens.png")
@@ -789,7 +789,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -812,7 +812,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
 
             embed = discord.Embed(title="From Base64",
                                   color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
+            embed.set_author(name=getembed.Common.AUTHOR,
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/877796755234783273/879955815602200586/base64-logo-352x200.jpg")
@@ -826,7 +826,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -848,7 +848,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
 
             embed = discord.Embed(title="URL Shortener",
                                   color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
+            embed.set_author(name=getembed.Common.AUTHOR,
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/877796755234783273/880028609924976690/828161_url_512x512.png")
@@ -863,7 +863,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -887,7 +887,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
             except Exception as e:
                 embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                        description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-                embed3.set_author(name=str(self.client.user.name),
+                embed3.set_author(name=getembed.Common.AUTHOR,
                                   icon_url=getembed.Common.AUTHOR_LINK)
                 embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                 embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -903,7 +903,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
 
                 embed = discord.Embed(
                     title="Password Generator", color=getembed.Common.COLOR)
-                embed.set_author(name=str(self.client.user.name),
+                embed.set_author(name=getembed.Common.AUTHOR,
                                  icon_url=getembed.Common.AUTHOR_LINK)
                 embed.set_thumbnail(
                     url="https://cdn.discordapp.com/attachments/877796755234783273/880031728369016832/704187.png")
@@ -918,7 +918,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
             else:
                 embed = discord.Embed(
                     title="Password Generator", description="An Error has occured!", color=getembed.Common.COLOR)
-                embed.set_author(name=str(self.client.user.name),
+                embed.set_author(name=getembed.Common.AUTHOR,
                                  icon_url=getembed.Common.AUTHOR_LINK)
                 embed.set_thumbnail(
                     url="https://cdn.discordapp.com/attachments/877796755234783273/880031728369016832/704187.png")
@@ -933,7 +933,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -979,7 +979,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
             file = discord.File(f'igtemp.jpg', filename="image.jpg")
             embed = discord.Embed(title="Instagram Profile Picture",
                                   description=f"of {ig_uname}", color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
+            embed.set_author(name=getembed.Common.AUTHOR,
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.add_field(
                 name="Link", value=f"https://instagram.com/{ig_uname}", inline=False)
@@ -1004,7 +1004,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
         try:
             emb = discord.Embed(
                 title=" POLL ", description=f'{message}', color=getembed.Common.COLOR)
-            emb.set_author(name=str(self.client.user.name),
+            emb.set_author(name=getembed.Common.AUTHOR,
                            icon_url=getembed.Common.AUTHOR_LINK)
             emb.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
@@ -1015,7 +1015,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -1037,7 +1037,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -1054,7 +1054,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
         try:
             embed = discord.Embed(
                 title="Google Search", description="Link to query", color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
+            embed.set_author(name=getembed.Common.AUTHOR,
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/877796755234783273/880664487965900821/Google__G__Logo.svg.png")
@@ -1067,7 +1067,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -1093,7 +1093,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -1476,7 +1476,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -1512,7 +1512,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
                         title="An error has occured!", color=getembed.Common.COLOR)
                     embed.add_field(
                         name="Error:", value=f"Unable to access the video!", inline=False)
-                    embed.set_author(name=str(self.client.user.name),
+                    embed.set_author(name=getembed.Common.AUTHOR,
                                      icon_url=getembed.Common.AUTHOR_LINK)
                     embed.set_footer(text=f"Requested by {ctx.author.name}")
                     await loading_message.delete()
@@ -1533,7 +1533,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
                         embed.add_field(
                             name="Error:", value=f"{e}", inline=False)
                         embed.set_author(
-                            name=str(self.client.user.name), icon_url=getembed.Common.AUTHOR_LINK)
+                            name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                         embed.set_footer(
                             text=f"Requested by {ctx.author.name}")
                         await loading_message.delete()
@@ -1552,7 +1552,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
                         embed.add_field(
                             name="Error:", value="Unable to rename file", inline=False)
                         embed.set_author(
-                            name=str(self.client.user.name), icon_url=getembed.Common.AUTHOR_LINK)
+                            name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                         embed.set_footer(
                             text=f"Requested by {ctx.author.name}")
                         try:
@@ -1585,7 +1585,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
                     embed = discord.Embed(
                         title="An error has occured!", color=getembed.Common.COLOR)
                     embed.add_field(name="Error:", value=f"{e}", inline=False)
-                    embed.set_author(name=str(self.client.user.name),
+                    embed.set_author(name=getembed.Common.AUTHOR,
                                      icon_url=getembed.Common.AUTHOR_LINK)
                     embed.set_footer(text=f"Requested by {ctx.author.name}")
                     try:
@@ -1598,7 +1598,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
                 embed = discord.Embed(
                     title="An error has occured!", color=getembed.Common.COLOR)
                 embed.add_field(name="Error:", value=f"{e}", inline=False)
-                embed.set_author(name=str(self.client.user.name),
+                embed.set_author(name=getembed.Common.AUTHOR,
                                  icon_url=getembed.Common.AUTHOR_LINK)
                 embed.set_footer(text=f"Requested by {ctx.author.name}")
                 try:
@@ -1611,7 +1611,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
             embed = discord.Embed(
                 title="An error has occured!", color=getembed.Common.COLOR)
             embed.add_field(name="Error:", value=f"{e}", inline=False)
-            embed.set_author(name=str(self.client.user.name),
+            embed.set_author(name=getembed.Common.AUTHOR,
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_footer(text=f"Requested by {ctx.author.name}")
             try:
@@ -1630,7 +1630,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
                     embed = discord.Embed(
                         title="An error has occured!", color=getembed.Common.COLOR)
                     embed.add_field(name="Error:", value=f"{e}", inline=False)
-                    embed.set_author(name=str(self.client.user.name),
+                    embed.set_author(name=getembed.Common.AUTHOR,
                                      icon_url=getembed.Common.AUTHOR_LINK)
                     embed.set_footer(text=f"Requested by {ctx.author.name}")
                     try:
@@ -1647,7 +1647,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
             #     except Exception as e:
             #         embed=discord.Embed(title="An error has occured!", color=getembed.Common.COLOR)
             #         embed.add_field(name="Error:", value=f"{e}", inline=False)
-            #         embed.set_author(name=str(self.client.user.name), icon_url=getembed.Common.AUTHOR_LINK)
+            #         embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             #         embed.set_footer(text=f"Requested by {ctx.author.name}")
             #         try:
             #             await loading_message.delete()
@@ -1696,7 +1696,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
     #                     except Exception as e:
     #                         embed=discord.Embed(title="An error has occured!", color=getembed.Common.COLOR)
     #                         embed.add_field(name="Error:", value=f"{e}", inline=False)
-    #                         embed.set_author(name=str(self.client.user.name), icon_url=getembed.Common.AUTHOR_LINK)
+    #                         embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
     #                         embed.set_footer(text=f"Requested by {ctx.author.name}")
     #                         await loading_message.delete()
     #                         await ctx.send(embed=embed)
@@ -1707,7 +1707,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
     #                         except Exception as e:
     #                             embed=discord.Embed(title="An error has occured!", color=getembed.Common.COLOR)
     #                             embed.add_field(name="Error:", value=f"{e}", inline=False)
-    #                             embed.set_author(name=str(self.client.user.name), icon_url=getembed.Common.AUTHOR_LINK)
+    #                             embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
     #                             embed.set_footer(text=f"Requested by {ctx.author.name}")
     #                             try:
     #                                 await loading_message.delete()
@@ -1718,7 +1718,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
     #                 except Exception as e:
     #                     embed=discord.Embed(title="An error has occured!", color=getembed.Common.COLOR)
     #                     embed.add_field(name="Error:", value=f"{e}", inline=False)
-    #                     embed.set_author(name=str(self.client.user.name), icon_url=getembed.Common.AUTHOR_LINK)
+    #                     embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
     #                     embed.set_footer(text=f"Requested by {ctx.author.name}")
     #                     await loading_message.delete()
     #                     await ctx.send(embed=embed)
@@ -1726,7 +1726,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
     #             except Exception as e:
     #                 embed=discord.Embed(title="An error has occured!", color=getembed.Common.COLOR)
     #                 embed.add_field(name="Error:", value=f"{e}", inline=False)
-    #                 embed.set_author(name=str(self.client.user.name), icon_url=getembed.Common.AUTHOR_LINK)
+    #                 embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
     #                 embed.set_footer(text=f"Requested by {ctx.author.name}")
     #                 try:
     #                     await loading_message.delete()
@@ -1740,7 +1740,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
     #                 except Exception as e:
     #                     embed=discord.Embed(title="An error has occured!", color=getembed.Common.COLOR)
     #                     embed.add_field(name="Error:", value=f"{e}", inline=False)
-    #                     embed.set_author(name=str(self.client.user.name), icon_url=getembed.Common.AUTHOR_LINK)
+    #                     embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
     #                     embed.set_footer(text=f"Requested by {ctx.author.name}")
     #                     try:
     #                         await loading_message.delete()
@@ -1750,14 +1750,14 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
 
     #         else:
     #             embed=discord.Embed(title="An error has occured!", color=getembed.Common.COLOR)
-    #             embed.set_author(name=str(self.client.user.name), icon_url=getembed.Common.AUTHOR_LINK)
+    #             embed.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
     #             embed.set_footer(text=f"Requested by {ctx.author.name}")
     #             embed.add_field(name="Error:", value=f"Please enter a vliad youtube url!", inline=False)
     #             await ctx.send(embed=embed)
 
     #     except Exception as e:
     #         embed3=discord.Embed(title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-    #         embed3.set_author(name=str(self.client.user.name), icon_url=getembed.Common.AUTHOR_LINK)
+    #         embed3.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
     #         embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
     #         embed3.add_field(name="Error:", value=f"{e}", inline=False)
     #         embed3.set_footer(text=f"Requested by {ctx.author.name}")
@@ -1774,7 +1774,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
             title="Please Wait", description="``` This may take longer than usual! ```", color=getembed.Common.COLOR)
         embed.set_thumbnail(
             url="https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif")
-        embed.set_author(name=str(self.client.user.name),
+        embed.set_author(name=getembed.Common.AUTHOR,
                          icon_url=getembed.Common.AUTHOR_LINK)
         embed.set_footer(text="Bot created by ZeaCeR#5641")
         loadingthing = await ctx.send(embed=embed)
@@ -1795,7 +1795,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
                         embede = discord.Embed(
                             title="Something was wrong!", description="Your request did not complete due to an error!", color=getembed.Common.COLOR)
                         embede.set_author(
-                            name=str(self.client.user.name), icon_url=getembed.Common.AUTHOR_LINK)
+                            name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                         embede.set_thumbnail(
                             url="https://cdn.discordapp.com/attachments/877796755234783273/879668020006502440/SeekPng.com_envelope-icon-png_1336118.png")
                         embede.add_field(
@@ -1825,7 +1825,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
                         embed2 = discord.Embed(
                             title="Email Sent", description="Your requested email was sent suceessfully! ", color=getembed.Common.COLOR)
                         embed2.set_author(
-                            name=str(self.client.user.name), icon_url=getembed.Common.AUTHOR_LINK)
+                            name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                         embed2.set_thumbnail(
                             url="https://cdn.discordapp.com/attachments/877796755234783273/879668020006502440/SeekPng.com_envelope-icon-png_1336118.png")
                         embed2.add_field(
@@ -1855,7 +1855,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
                 except Exception as e:
                     embed3 = discord.Embed(
                         title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-                    embed3.set_author(name=str(self.client.user.name),
+                    embed3.set_author(name=getembed.Common.AUTHOR,
                                       icon_url=getembed.Common.AUTHOR_LINK)
                     embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                     embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -1870,7 +1870,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
             else:
                 embed = discord.Embed(
                     title="Something was wrong!", description="Your request did not complete due to an error!", color=getembed.Common.COLOR)
-                embed.set_author(name=str(self.client.user.name),
+                embed.set_author(name=getembed.Common.AUTHOR,
                                  icon_url=getembed.Common.AUTHOR_LINK)
                 embed.set_thumbnail(
                     url="https://cdn.discordapp.com/attachments/877796755234783273/879668020006502440/SeekPng.com_envelope-icon-png_1336118.png")
@@ -1889,7 +1889,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -1918,7 +1918,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
 
             embed = discord.Embed(
                 title="Find Similarity", description="between two strings", color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
+            embed.set_author(name=getembed.Common.AUTHOR,
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(
                 url="https://media.discordapp.net/attachments/877796755234783273/880742956552822794/mr-bean-avatar-character-cartoon-rowan-atkinson-png-image-33.png?width=454&height=584")
@@ -1932,7 +1932,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(
                 url="https://media.discordapp.net/attachments/877796755234783273/880745781966037032/new-scrabble-words-2018-beatdown-5657-57124c9f228c0258d65053fe7d3891491x.jpg")
@@ -1959,7 +1959,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(
                 url="https://media.discordapp.net/attachments/877796755234783273/880745781966037032/new-scrabble-words-2018-beatdown-5657-57124c9f228c0258d65053fe7d3891491x.jpg")
@@ -1993,7 +1993,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
                     color=getembed.Common.COLOR,
                     timestamp=datetime.datetime.utcnow()
                 )
-                embed.set_author(name=str(self.client.user.name),
+                embed.set_author(name=getembed.Common.AUTHOR,
                                  icon_url=getembed.Common.AUTHOR_LINK)
                 await ctx.author.send(embed=embed)
 
@@ -2006,7 +2006,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(
                 url="https://media.discordapp.net/attachments/877796755234783273/880745781966037032/new-scrabble-words-2018-beatdown-5657-57124c9f228c0258d65053fe7d3891491x.jpg")
@@ -2026,7 +2026,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
         try:
             embed = discord.Embed(
                 title="HQ Proxies - Sources", color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
+            embed.set_author(name=getembed.Common.AUTHOR,
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.add_field(name="Links:", value="https://www.sslproxies.org/\nhttps://www.google-proxy.net/\nhttps://free-proxy-list.net/anonymous-proxy.html\nhttps://free-proxy-list.net/uk-proxy.html\nhttps://www.us-proxy.org/\nhttps://free-proxy-list.net/\nhttp://spys.me/proxy.txt\nhttps://api.proxyscrape.com/?request=getproxies&proxytype=all&country=all&ssl=all&anonymity=all\nhttps://www.proxynova.com/proxy-server-list/\nhttps://www.proxy-list.download/HTTP\nhttps://www.proxy-list.download/HTTPS\nhttps://www.proxy-list.download/SOCKS4\nhttps://www.proxy-list.download/SOCKS5\nhttps://free-proxy-list.net/\nhttps://api.proxyscrape.com/v2/?request=getproxies&protocol=socks4&timeout=10000&country=all\nhttps://api.proxyscrape.com/v2/?request=getproxies&protocol=http&timeout=10000&country=all&ssl=all&anonymity=all\nhttps://api.proxyscrape.com/v2/?request=getproxies&protocol=socks5&timeout=10000&country=all", inline=False)
             embed.set_footer(text=f"Requested by {ctx.author.name}")
@@ -2036,7 +2036,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(
                 url="https://media.discordapp.net/attachments/877796755234783273/880745781966037032/new-scrabble-words-2018-beatdown-5657-57124c9f228c0258d65053fe7d3891491x.jpg")
@@ -2061,7 +2061,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
                 if number_of_messages >= 1000:
                     embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                            description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-                    embed3.set_author(name=str(self.client.user.name),
+                    embed3.set_author(name=getembed.Common.AUTHOR,
                                       icon_url=getembed.Common.AUTHOR_LINK)
                     embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                     embed3.add_field(
@@ -2073,7 +2073,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
             except:
                 embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                        description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-                embed3.set_author(name=str(self.client.user.name),
+                embed3.set_author(name=getembed.Common.AUTHOR,
                                   icon_url=getembed.Common.AUTHOR_LINK)
                 embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                 embed3.add_field(
@@ -2096,11 +2096,11 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
                         file.write(
                             f"{msg.created_at} - {msg.author.display_name}: {msg.clean_content}\n")
 
-            em = discord.Embed(title=str(self.client.user.name),
+            em = discord.Embed(title=getembed.Common.AUTHOR,
                                color=getembed.Common.COLOR)
             em.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/877796755234783273/879295069834850324/Avatar.png")
-            em.set_author(name=str(self.client.user.name),
+            em.set_author(name=getembed.Common.AUTHOR,
                           icon_url=getembed.Common.AUTHOR_LINK)
             em.add_field(name="Number of messages in the log",
                          value=f'{number_of_messages}')
@@ -2119,7 +2119,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -2154,7 +2154,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
 
             embed = discord.Embed(
                 title="Adfly URL Bypass", color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
+            embed.set_author(name=getembed.Common.AUTHOR,
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.add_field(name="Bypassed Link: ",
                             value=f"{bypassed_url}", inline=False)
@@ -2165,7 +2165,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(
                 url="https://media.discordapp.net/attachments/877796755234783273/880745781966037032/new-scrabble-words-2018-beatdown-5657-57124c9f228c0258d65053fe7d3891491x.jpg")
@@ -2198,7 +2198,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
 
             embed = discord.Embed(
                 title="Adfly URL Bypass", color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
+            embed.set_author(name=getembed.Common.AUTHOR,
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.add_field(name="Bypassed Link: ",
                             value=f"{bypassed_url}", inline=False)
@@ -2209,7 +2209,7 @@ class Tools(commands.Cog, description="a set of tools built to make many acitivi
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(
                 url="https://media.discordapp.net/attachments/877796755234783273/880745781966037032/new-scrabble-words-2018-beatdown-5657-57124c9f228c0258d65053fe7d3891491x.jpg")

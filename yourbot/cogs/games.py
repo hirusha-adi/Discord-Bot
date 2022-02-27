@@ -50,7 +50,7 @@ class Games(commands.Cog, description="a set of simple games to spend time"):
             embed.set_thumbnail(
                 url="https://www.horoscope.com/images-US/games/game-magic-8-ball-no-text.png")
             embed.set_footer(text=f"Requested by {ctx.author.mention}")
-            embed.set_author(name=str(self.client.user.name),
+            embed.set_author(name=getembed.Common.AUTHOR,
                              icon_url=getembed.Common.AUTHOR_LINK)
             await loading_message.delete()
             await ctx.send(embed=embed)
@@ -58,7 +58,7 @@ class Games(commands.Cog, description="a set of simple games to spend time"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -102,7 +102,7 @@ class Games(commands.Cog, description="a set of simple games to spend time"):
             if member == "none":
                 embed = discord.Embed(title="Death...??",
                                       color=getembed.Common.COLOR)
-                embed.set_author(name=str(self.client.user.name),
+                embed.set_author(name=getembed.Common.AUTHOR,
                                  icon_url=getembed.Common.AUTHOR_LINK)
                 embed.set_footer(text=f"Requested by {ctx.author.name}")
                 embed.add_field(
@@ -113,7 +113,7 @@ class Games(commands.Cog, description="a set of simple games to spend time"):
             else:
                 embed = discord.Embed(title="Death...??",
                                       color=getembed.Common.COLOR)
-                embed.set_author(name=str(self.client.user.name),
+                embed.set_author(name=getembed.Common.AUTHOR,
                                  icon_url=getembed.Common.AUTHOR_LINK)
                 embed.set_footer(text="Requested by {ctx.author.name}")
                 embed.add_field(
@@ -124,7 +124,7 @@ class Games(commands.Cog, description="a set of simple games to spend time"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -142,7 +142,7 @@ class Games(commands.Cog, description="a set of simple games to spend time"):
             responses = ["🍋", "🍊", "🍉", ":seven:", ]
             embed = discord.Embed(title="🎰 Slot Machine 🎰", description=randomchoice(
                 responses) + randomchoice(responses) + randomchoice(responses), color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
+            embed.set_author(name=getembed.Common.AUTHOR,
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_footer(text="You need triple 7's to win.")
             await loading_message.delete()
@@ -151,7 +151,7 @@ class Games(commands.Cog, description="a set of simple games to spend time"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)

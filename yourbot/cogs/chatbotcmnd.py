@@ -38,7 +38,7 @@ class ChatBot(commands.Cog, description="Advance chatbot - manual setup by creat
                     name=f'NOTICE', value=f'This project is now seperate from this!', inline=True)
                 emh1.add_field(
                     name=f'Invite Link', value=f'https://discord.com/api/oauth2/authorize?client_id=863712001724776488&permissions=139653925952&scope=bot', inline=True)
-                emh1.set_author(name=str(self.client.user.name),
+                emh1.set_author(name=getembed.Common.AUTHOR,
                                 icon_url=getembed.Common.AUTHOR_LINK)
                 emh1.set_footer(text=f"Requested by {ctx.author.name}")
                 await loading_message.delete()
@@ -53,7 +53,7 @@ class ChatBot(commands.Cog, description="Advance chatbot - manual setup by creat
                     name=f'How to start?', value=f'Use `{bp}chatbot setup` in any channel to setup the chatbot!', inline=True)
                 emh2.add_field(
                     name=f'Help', value=f'use `{bp}chatbot help` to Help', inline=True)
-                emh2.set_author(name=str(self.client.user.name),
+                emh2.set_author(name=getembed.Common.AUTHOR,
                                 icon_url=getembed.Common.AUTHOR_LINK)
                 emh2.set_footer(text=f"Requested by {ctx.author.name}")
                 await loading_message.delete()
@@ -66,7 +66,7 @@ class ChatBot(commands.Cog, description="Advance chatbot - manual setup by creat
                     url=r"https://cdn.discordapp.com/attachments/863706778743341076/874579616210239488/Avatar.png")
                 emh3.add_field(
                     name=f'History', value=f'First Started as `Lonely Bot#7613`', inline=True)
-                emh3.set_author(name=str(self.client.user.name),
+                emh3.set_author(name=getembed.Common.AUTHOR,
                                 icon_url=getembed.Common.AUTHOR_LINK)
                 emh3.set_footer(text=f"Requested by {ctx.author.name}")
                 await loading_message.delete()
@@ -79,7 +79,7 @@ class ChatBot(commands.Cog, description="Advance chatbot - manual setup by creat
                     url=r"https://cdn.discordapp.com/attachments/863706778743341076/874579616210239488/Avatar.png")
                 emh4.add_field(
                     name=f'List', value='863706778743341076 \n874577378746175508\n', inline=True)
-                emh4.set_author(name=str(self.client.user.name),
+                emh4.set_author(name=getembed.Common.AUTHOR,
                                 icon_url=getembed.Common.AUTHOR_LINK)
                 emh4.set_footer(text=f"Requested by {ctx.author.name}")
                 await loading_message.delete()
@@ -94,7 +94,7 @@ class ChatBot(commands.Cog, description="Advance chatbot - manual setup by creat
                     name=f'History', value=f'`{bp}chatbot history` to see the beginning of the chatbot project', inline=True)
                 emh2.add_field(name=f'List Active Channels',
                                value=f'`{bp}chatbot list` to see the list of active channels of chatbot', inline=True)
-                emh2.set_author(name=str(self.client.user.name),
+                emh2.set_author(name=getembed.Common.AUTHOR,
                                 icon_url=getembed.Common.AUTHOR_LINK)
                 emh2.set_footer(text=f"Requested by {ctx.author.name}")
                 emh2.add_field(name=f'Old Days',
@@ -119,7 +119,7 @@ class ChatBot(commands.Cog, description="Advance chatbot - manual setup by creat
                     name=f'History', value=f'`{bp}chatbot history` to see the beginning of the chatbot project', inline=True)
                 emh2.add_field(name=f'List Active Channels',
                                value=f'`{bp}chatbot list` to see the list of active channels of chatbot', inline=True)
-                emh2.set_author(name=str(self.client.user.name),
+                emh2.set_author(name=getembed.Common.AUTHOR,
                                 icon_url=getembed.Common.AUTHOR_LINK)
                 emh2.set_footer(text=f"Requested by {ctx.author.name}")
                 emh2.add_field(name=f'Old Days',
@@ -130,7 +130,7 @@ class ChatBot(commands.Cog, description="Advance chatbot - manual setup by creat
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)

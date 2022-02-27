@@ -46,7 +46,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
             if user == None:
                 em = discord.Embed(
                     description="User is not mentioned!", color=getembed.Common.COLOR)
-                em.set_author(name=str(self.client.user.name),
+                em.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
                 em.set_footer(text=f"Requested by {ctx.author.name}")
                 em.set_image(url=res['url'])
@@ -56,7 +56,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
             else:
                 em = discord.Embed(description=user.mention,
                                    color=getembed.Common.COLOR)
-                em.set_author(name=str(self.client.user.name),
+                em.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
                 em.set_footer(text=f"Requested by {ctx.author.name}")
                 em.set_image(url=res['url'])
@@ -66,7 +66,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -86,7 +86,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
             if user == None:
                 em = discord.Embed(
                     description="User is not mentioned!", color=getembed.Common.COLOR)
-                em.set_author(name=str(self.client.user.name),
+                em.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
                 em.set_footer(text=f"Requested by {ctx.author.name}")
                 em.set_image(url=res['url'])
@@ -96,7 +96,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
             else:
                 em = discord.Embed(description=user.mention,
                                    color=getembed.Common.COLOR)
-                em.set_author(name=str(self.client.user.name),
+                em.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
                 em.set_footer(text=f"Requested by {ctx.author.name}")
                 em.set_image(url=res['url'])
@@ -106,7 +106,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -128,7 +128,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
                 em = discord.Embed(
                     description="User is not mentioned!", color=getembed.Common.COLOR)
                 em.set_image(url=res['url'])
-                em.set_author(name=str(self.client.user.name),
+                em.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
                 em.set_footer(text=f"Requested by {ctx.author.name}")
                 await loading_message.delete()
@@ -136,7 +136,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
             else:
                 em = discord.Embed(description=user.mention,
                                    color=getembed.Common.COLOR)
-                em.set_author(name=str(self.client.user.name),
+                em.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
                 em.set_footer(text=f"Requested by {ctx.author.name}")
                 em.set_image(url=res['url'])
@@ -146,7 +146,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -166,7 +166,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
             if user == None:
                 em = discord.Embed(
                     description="User is not mentioned!", color=getembed.Common.COLOR)
-                em.set_author(name=str(self.client.user.name),
+                em.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
                 em.set_footer(text=f"Requested by {ctx.author.name}")
                 em.set_image(url=res['url'])
@@ -176,7 +176,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
             else:
                 em = discord.Embed(description="user.mention",
                                    color=getembed.Common.COLOR)
-                em.set_author(name=str(self.client.user.name),
+                em.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
                 em.set_footer(text=f"Requested by {ctx.author.name}")
                 em.set_image(url=res['url'])
@@ -186,7 +186,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -208,7 +208,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
                 em = discord.Embed(
                     description="User is not mentioned!", color=getembed.Common.COLOR)
                 em.set_image(url=res['url'])
-                em.set_author(name=str(self.client.user.name),
+                em.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
                 em.set_footer(text=f"Requested by {ctx.author.name}")
                 await loading_message.delete()
@@ -218,7 +218,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
                 em = discord.Embed(description=user.mention,
                                    color=getembed.Common.COLOR)
                 em.set_image(url=res['url'])
-                em.set_author(name=str(self.client.user.name),
+                em.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
                 em.set_footer(text=f"Requested by {ctx.author.name}")
                 await loading_message.delete()
@@ -227,7 +227,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -249,7 +249,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
                 em = discord.Embed(
                     description="User is not mentioned!", color=getembed.Common.COLOR)
                 em.set_image(url=res['url'])
-                em.set_author(name=str(self.client.user.name),
+                em.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
                 em.set_footer(text=f"Requested by {ctx.author.name}")
                 await loading_message.delete()
@@ -259,7 +259,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
                 em = discord.Embed(description=user.mention,
                                    color=getembed.Common.COLOR)
                 em.set_image(url=res['url'])
-                em.set_author(name=str(self.client.user.name),
+                em.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
                 em.set_footer(text=f"Requested by {ctx.author.name}")
                 await loading_message.delete()
@@ -268,7 +268,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -287,7 +287,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
             res = r.json()
             em = discord.Embed(color=getembed.Common.COLOR)
             em.set_footer(text=f"Requested by {ctx.author.name}")
-            em.set_author(name=str(self.client.user.name),
+            em.set_author(name=getembed.Common.AUTHOR,
                           icon_url=getembed.Common.AUTHOR_LINK)
             em.set_image(url=res['url'])
             await loading_message.delete()
@@ -296,7 +296,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -317,7 +317,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
             if user == None:
                 em = discord.Embed(
                     description="User is not mentioned!", color=getembed.Common.COLOR)
-                em.set_author(name=str(self.client.user.name),
+                em.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
                 em.set_footer(text=f"Requested by {ctx.author.name}")
                 em.set_image(url=res['url'])
@@ -327,7 +327,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
             else:
                 em = discord.Embed(description=user.mention,
                                    color=getembed.Common.COLOR)
-                em.set_author(name=str(self.client.user.name),
+                em.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
                 em.set_footer(text=f"Requested by {ctx.author.name}")
                 em.set_image(url=res['url'])
@@ -337,7 +337,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -372,7 +372,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -392,7 +392,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
             c = r.json()
             fact = c["link"]
             em = discord.Embed(title='a Pickachu', color=getembed.Common.COLOR)
-            em.set_author(name=str(self.client.user.name),
+            em.set_author(name=getembed.Common.AUTHOR,
                           icon_url=getembed.Common.AUTHOR_LINK)
             em.set_image(url=fact)
             em.set_footer(text=f"Requested by {ctx.author.name}")
@@ -402,7 +402,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -422,7 +422,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
             c = r.json()
             fact = c["link"]
             em = discord.Embed(title='a wink', color=getembed.Common.COLOR)
-            em.set_author(name=str(self.client.user.name),
+            em.set_author(name=getembed.Common.AUTHOR,
                           icon_url=getembed.Common.AUTHOR_LINK)
             em.set_image(url=fact)
             em.set_footer(text=f"Requested by {ctx.author.name}")
@@ -432,7 +432,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -452,7 +452,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
             r = requests.get(weblink)
             em = discord.Embed(title='Gay Picture',
                                color=getembed.Common.COLOR)
-            em.set_author(name=str(self.client.user.name),
+            em.set_author(name=getembed.Common.AUTHOR,
                           icon_url=getembed.Common.AUTHOR_LINK)
             em.set_image(url=weblink)
             em.set_footer(text=f"Requested by {ctx.author.name}")
@@ -462,7 +462,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -481,7 +481,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
             weblink = 'https://some-random-api.ml/canvas/glass/?avatar=' + messagelink
             em = discord.Embed(title='Glassy Picture',
                                color=getembed.Common.COLOR)
-            em.set_author(name=str(self.client.user.name),
+            em.set_author(name=getembed.Common.AUTHOR,
                           icon_url=getembed.Common.AUTHOR_LINK)
             em.set_image(url=weblink)
             em.set_footer(text=f"Requested by {ctx.author.name}")
@@ -491,7 +491,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -510,7 +510,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
             weblink = 'https://some-random-api.ml/canvas/glass/?avatar=' + messagelink
             em = discord.Embed(title='a Wasted Picture',
                                color=getembed.Common.COLOR)
-            em.set_author(name=str(self.client.user.name),
+            em.set_author(name=getembed.Common.AUTHOR,
                           icon_url=getembed.Common.AUTHOR_LINK)
             em.set_image(url=weblink)
             em.set_footer(text=f"Requested by {ctx.author.name}")
@@ -520,7 +520,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -539,7 +539,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
             weblink = 'https://some-random-api.ml/canvas/triggered?avatar=' + messagelink
             em = discord.Embed(title='a TRIGGERED Picture',
                                color=getembed.Common.COLOR)
-            em.set_author(name=str(self.client.user.name),
+            em.set_author(name=getembed.Common.AUTHOR,
                           icon_url=getembed.Common.AUTHOR_LINK)
             em.set_image(url=weblink)
             em.set_footer(text=f"Requested by {ctx.author.name}")
@@ -549,7 +549,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -568,7 +568,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
             weblink = 'https://some-random-api.ml/canvas/greyscale?avatar=' + messagelink
             em = discord.Embed(title='a Black and White Picture',
                                color=getembed.Common.COLOR)
-            em.set_author(name=str(self.client.user.name),
+            em.set_author(name=getembed.Common.AUTHOR,
                           icon_url=getembed.Common.AUTHOR_LINK)
             em.set_image(url=weblink)
             em.set_footer(text=f"Requested by {ctx.author.name}")
@@ -578,7 +578,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -597,7 +597,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
             weblink = 'https://some-random-api.ml/canvas/invert?avatar=' + messagelink
             em = discord.Embed(title='a Inverted Picture',
                                color=getembed.Common.COLOR)
-            em.set_author(name=str(self.client.user.name),
+            em.set_author(name=getembed.Common.AUTHOR,
                           icon_url=getembed.Common.AUTHOR_LINK)
             em.set_image(url=weblink)
             em.set_footer(text=f"Requested by {ctx.author.name}")
@@ -607,7 +607,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -626,7 +626,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
             weblink = 'https://some-random-api.ml/canvas/brightness?avatar=' + messagelink
             em = discord.Embed(title='a Brightened Picture',
                                color=getembed.Common.COLOR)
-            em.set_author(name=str(self.client.user.name),
+            em.set_author(name=getembed.Common.AUTHOR,
                           icon_url=getembed.Common.AUTHOR_LINK)
             em.set_image(url=weblink)
             em.set_footer(text=f"Requested by {ctx.author.name}")
@@ -636,7 +636,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -655,7 +655,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
             weblink = 'https://some-random-api.ml/canvas/threshold?avatar=' + messagelink
             em = discord.Embed(title='a Threshold Picture',
                                color=getembed.Common.COLOR)
-            em.set_author(name=str(self.client.user.name),
+            em.set_author(name=getembed.Common.AUTHOR,
                           icon_url=getembed.Common.AUTHOR_LINK)
             em.set_image(url=weblink)
             em.set_footer(text=f"Requested by {ctx.author.name}")
@@ -665,7 +665,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -684,7 +684,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
             weblink = 'https://some-random-api.ml/canvas/greyscale?avatar=' + messagelink
             em = discord.Embed(title='a Sepia Picture',
                                color=getembed.Common.COLOR)
-            em.set_author(name=str(self.client.user.name),
+            em.set_author(name=getembed.Common.AUTHOR,
                           icon_url=getembed.Common.AUTHOR_LINK)
             em.set_image(url=weblink)
             em.set_footer(text=f"Requested by {ctx.author.name}")
@@ -694,7 +694,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -713,7 +713,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
             weblink = 'https://some-random-api.ml/canvas/red?avatar=' + messagelink
             em = discord.Embed(title='a Red Picture',
                                color=getembed.Common.COLOR)
-            em.set_author(name=str(self.client.user.name),
+            em.set_author(name=getembed.Common.AUTHOR,
                           icon_url=getembed.Common.AUTHOR_LINK)
             em.set_image(url=weblink)
             em.set_footer(text=f"Requested by {ctx.author.name}")
@@ -723,7 +723,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -742,7 +742,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
             weblink = 'https://some-random-api.ml/canvas/green?avatar=' + messagelink
             em = discord.Embed(title='a Green Picture',
                                color=getembed.Common.COLOR)
-            em.set_author(name=str(self.client.user.name),
+            em.set_author(name=getembed.Common.AUTHOR,
                           icon_url=getembed.Common.AUTHOR_LINK)
             em.set_image(url=weblink)
             em.set_footer(text=f"Requested by {ctx.author.name}")
@@ -752,7 +752,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -771,7 +771,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
             weblink = 'https://some-random-api.ml/canvas/blue?avatar=' + messagelink
             em = discord.Embed(title='a Blue Picture',
                                color=getembed.Common.COLOR)
-            em.set_author(name=str(self.client.user.name),
+            em.set_author(name=getembed.Common.AUTHOR,
                           icon_url=getembed.Common.AUTHOR_LINK)
             em.set_image(url=weblink)
             em.set_footer(text=f"Requested by {ctx.author.name}")
@@ -780,7 +780,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -801,7 +801,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
             em = discord.Embed(title='a Tinted Picture',
                                color=getembed.Common.COLOR)
             embed_text = "Picture tinted in " + colorTotint
-            em.set_author(name=str(self.client.user.name),
+            em.set_author(name=getembed.Common.AUTHOR,
                           icon_url=getembed.Common.AUTHOR_LINK)
             em.set_image(url=weblink)
             em.set_footer(text=f"Requested by {ctx.author.name}")
@@ -811,7 +811,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -830,7 +830,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
             weblink = 'https://some-random-api.ml/canvas/pixelate' + messagelink
             em = discord.Embed(title='a Blue Picture',
                                color=getembed.Common.COLOR)
-            em.set_author(name=str(self.client.user.name),
+            em.set_author(name=getembed.Common.AUTHOR,
                           icon_url=getembed.Common.AUTHOR_LINK)
             em.set_image(url=weblink)
             em.set_footer(text=f"Requested by {ctx.author.name}")
@@ -840,7 +840,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -868,7 +868,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -898,7 +898,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
         except Exception as e:
             embed3 = discord.Embed(
                 title=":red_square: Error!", description="The command was unable to run successfully! ", color=getembed.Common.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(
                 url="https://media.discordapp.net/attachments/877796755234783273/880745781966037032/new-scrabble-words-2018-beatdown-5657-57124c9f228c0258d65053fe7d3891491x.jpg")
@@ -932,7 +932,7 @@ class Images(commands.Cog, description="Send fun images | Add effects/overlays t
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)

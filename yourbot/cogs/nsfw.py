@@ -41,7 +41,7 @@ class NSFW(commands.Cog, description="NSFW `images`/`gifs`/`videos`/`link`"):
             em = discord.Embed(color=getembed.Common.COLOR)
             em.set_image(url=res['url'])
             em.set_footer(text=f"Requested by {ctx.author.name}")
-            em.set_author(name=str(self.client.user.name),
+            em.set_author(name=getembed.Common.AUTHOR,
                           icon_url=getembed.Common.AUTHOR_LINK)
             await loading_message.delete()
             await ctx.send(embed=em)
@@ -49,7 +49,7 @@ class NSFW(commands.Cog, description="NSFW `images`/`gifs`/`videos`/`link`"):
         except Exception as e:
             embed3 = discord.Embed(
                 getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -68,7 +68,7 @@ class NSFW(commands.Cog, description="NSFW `images`/`gifs`/`videos`/`link`"):
             res = r.json()
             em = discord.Embed(color=getembed.Common.COLOR)
             em.set_footer(text=f"Requested by {ctx.author.name}")
-            em.set_author(name=str(self.client.user.name),
+            em.set_author(name=getembed.Common.AUTHOR,
                           icon_url=getembed.Common.AUTHOR_LINK)
             em.set_image(url=res['url'])
             await loading_message.delete()
@@ -77,7 +77,7 @@ class NSFW(commands.Cog, description="NSFW `images`/`gifs`/`videos`/`link`"):
         except Exception as e:
             embed3 = discord.Embed(
                 getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -96,7 +96,7 @@ class NSFW(commands.Cog, description="NSFW `images`/`gifs`/`videos`/`link`"):
             res = r.json()
             em = discord.Embed(color=getembed.Common.COLOR)
             em.set_footer(text=f"Requested by {ctx.author.name}")
-            em.set_author(name=str(self.client.user.name),
+            em.set_author(name=getembed.Common.AUTHOR,
                           icon_url=getembed.Common.AUTHOR_LINK)
             em.set_image(url=res['url'])
             await loading_message.delete()
@@ -105,7 +105,7 @@ class NSFW(commands.Cog, description="NSFW `images`/`gifs`/`videos`/`link`"):
         except Exception as e:
             embed3 = discord.Embed(
                 getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -124,7 +124,7 @@ class NSFW(commands.Cog, description="NSFW `images`/`gifs`/`videos`/`link`"):
             res = r.json()
             em = discord.Embed(color=getembed.Common.COLOR)
             em.set_footer(text=f"Requested by {ctx.author.name}")
-            em.set_author(name=str(self.client.user.name),
+            em.set_author(name=getembed.Common.AUTHOR,
                           icon_url=getembed.Common.AUTHOR_LINK)
             em.set_image(url=res['url'])
             await loading_message.delete()
@@ -133,7 +133,7 @@ class NSFW(commands.Cog, description="NSFW `images`/`gifs`/`videos`/`link`"):
         except Exception as e:
             embed3 = discord.Embed(
                 getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -153,7 +153,7 @@ class NSFW(commands.Cog, description="NSFW `images`/`gifs`/`videos`/`link`"):
             em = discord.Embed(color=getembed.Common.COLOR)
             em.set_image(url=res['url'])
             em.set_footer(text=f"Requested by {ctx.author.name}")
-            em.set_author(name=str(self.client.user.name),
+            em.set_author(name=getembed.Common.AUTHOR,
                           icon_url=getembed.Common.AUTHOR_LINK)
             await loading_message.delete()
             await ctx.send(embed=em)
@@ -161,7 +161,7 @@ class NSFW(commands.Cog, description="NSFW `images`/`gifs`/`videos`/`link`"):
         except Exception as e:
             embed3 = discord.Embed(
                 getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -181,7 +181,7 @@ class NSFW(commands.Cog, description="NSFW `images`/`gifs`/`videos`/`link`"):
             em = discord.Embed(color=getembed.Common.COLOR)
             em.set_image(url=res['url'])
             em.set_footer(text=f"Requested by {ctx.author.name}")
-            em.set_author(name=str(self.client.user.name),
+            em.set_author(name=getembed.Common.AUTHOR,
                           icon_url=getembed.Common.AUTHOR_LINK)
             await loading_message.delete()
             await ctx.send(embed=em)
@@ -189,7 +189,7 @@ class NSFW(commands.Cog, description="NSFW `images`/`gifs`/`videos`/`link`"):
         except Exception as e:
             embed3 = discord.Embed(
                 getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -208,7 +208,7 @@ class NSFW(commands.Cog, description="NSFW `images`/`gifs`/`videos`/`link`"):
             res = r.json()
             em = discord.Embed(color=getembed.Common.COLOR)
             em.set_footer(text=f"Requested by {ctx.author.name}")
-            em.set_author(name=str(self.client.user.name),
+            em.set_author(name=getembed.Common.AUTHOR,
                           icon_url=getembed.Common.AUTHOR_LINK)
             em.set_image(url=res['url'])
             await loading_message.delete()
@@ -217,7 +217,7 @@ class NSFW(commands.Cog, description="NSFW `images`/`gifs`/`videos`/`link`"):
         except Exception as e:
             embed3 = discord.Embed(
                 getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -237,7 +237,7 @@ class NSFW(commands.Cog, description="NSFW `images`/`gifs`/`videos`/`link`"):
             em = discord.Embed(color=getembed.Common.COLOR)
             em.set_image(url=res['url'])
             em.set_footer(text=f"Requested by {ctx.author.name}")
-            em.set_author(name=str(self.client.user.name),
+            em.set_author(name=getembed.Common.AUTHOR,
                           icon_url=getembed.Common.AUTHOR_LINK)
             await loading_message.delete()
             await ctx.send(embed=em)
@@ -245,7 +245,7 @@ class NSFW(commands.Cog, description="NSFW `images`/`gifs`/`videos`/`link`"):
         except Exception as e:
             embed3 = discord.Embed(
                 getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -275,7 +275,7 @@ class NSFW(commands.Cog, description="NSFW `images`/`gifs`/`videos`/`link`"):
                 centim = inch * 2.54
                 embed = discord.Embed(
                     title="D!ck size", description=f"of {user}", color=getembed.Common.COLOR)
-                embed.set_author(name=str(self.client.user.name),
+                embed.set_author(name=getembed.Common.AUTHOR,
                                  icon_url=getembed.Common.AUTHOR_LINK)
                 embed.set_thumbnail(
                     url="https://cdn.discordapp.com/attachments/877796755234783273/879744998805999656/download.png")
@@ -294,7 +294,7 @@ class NSFW(commands.Cog, description="NSFW `images`/`gifs`/`videos`/`link`"):
                 centim = inch * 2.54
                 embed = discord.Embed(
                     title="D!ck size", description=f"of {user}", color=getembed.Common.COLOR)
-                embed.set_author(name=str(self.client.user.name),
+                embed.set_author(name=getembed.Common.AUTHOR,
                                  icon_url=getembed.Common.AUTHOR_LINK)
                 embed.set_thumbnail(
                     url="https://cdn.discordapp.com/attachments/877796755234783273/879744998805999656/download.png")
@@ -310,7 +310,7 @@ class NSFW(commands.Cog, description="NSFW `images`/`gifs`/`videos`/`link`"):
         except Exception as e:
             embed3 = discord.Embed(
                 getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -331,7 +331,7 @@ class NSFW(commands.Cog, description="NSFW `images`/`gifs`/`videos`/`link`"):
 
             em = discord.Embed(title="YOU LIL PERVERT!",
                                color=getembed.Common.COLOR)
-            em.set_author(name=str(self.client.user.name),
+            em.set_author(name=getembed.Common.AUTHOR,
                           icon_url=getembed.Common.AUTHOR_LINK)
             em.set_footer(text=f"Requested by {ctx.author.name}")
             em.set_image(url=res['url'])
@@ -343,7 +343,7 @@ class NSFW(commands.Cog, description="NSFW `images`/`gifs`/`videos`/`link`"):
         except Exception as e:
             embed3 = discord.Embed(
                 getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -364,7 +364,7 @@ class NSFW(commands.Cog, description="NSFW `images`/`gifs`/`videos`/`link`"):
             index_to_give = randomint(1, 60)
             em = discord.Embed(title="Pornographic Content",
                                description="Here is a video for you!", color=getembed.Common.COLOR)
-            em.set_author(name=str(self.client.user.name),
+            em.set_author(name=getembed.Common.AUTHOR,
                           icon_url=getembed.Common.AUTHOR_LINK)
             em.set_image(url=resultjson["videos"]
                          [index_to_give]["default_thumb"]["src"])
@@ -390,7 +390,7 @@ class NSFW(commands.Cog, description="NSFW `images`/`gifs`/`videos`/`link`"):
         except Exception as e:
             embed3 = discord.Embed(
                 getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -413,7 +413,7 @@ class NSFW(commands.Cog, description="NSFW `images`/`gifs`/`videos`/`link`"):
                 emchannels = discord.Embed(
                     title="Pornographic Content", description="```Please check your Direct Messages```", color=getembed.Common.COLOR)
                 emchannels.set_author(
-                    name=str(self.client.user.name), icon_url=getembed.Common.AUTHOR_LINK)
+                    name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                 emchannels.set_footer(text=f"Requested by {ctx.author.name}")
                 await loading_message.delete()
                 await ctx.send(embed=emchannels)
@@ -421,7 +421,7 @@ class NSFW(commands.Cog, description="NSFW `images`/`gifs`/`videos`/`link`"):
                 for index_to_give in range(int(howmany)):
                     em = discord.Embed(
                         title="Pornographic Content", description="Here are some videos for you!", color=getembed.Common.COLOR)
-                    em.set_author(name=str(self.client.user.name),
+                    em.set_author(name=getembed.Common.AUTHOR,
                                   icon_url=getembed.Common.AUTHOR_LINK)
                     em.set_image(
                         url=resultjson["videos"][index_to_give]["default_thumb"]["src"])
@@ -445,7 +445,7 @@ class NSFW(commands.Cog, description="NSFW `images`/`gifs`/`videos`/`link`"):
             else:
                 embed3 = discord.Embed(
                     getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-                embed3.set_author(name=str(self.client.user.name),
+                embed3.set_author(name=getembed.Common.AUTHOR,
                                   icon_url=getembed.Common.AUTHOR_LINK)
                 embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                 embed3.add_field(
@@ -459,7 +459,7 @@ class NSFW(commands.Cog, description="NSFW `images`/`gifs`/`videos`/`link`"):
         except Exception as e:
             embed3 = discord.Embed(
                 getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)

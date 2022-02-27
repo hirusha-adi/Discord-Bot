@@ -50,7 +50,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
             embeddmlol = discord.Embed(
                 title="YOU HAVE BEEN NUKED!", description=f"```{reason}```", color=getembed.Common.COLOR)
             embeddmlol.set_author(
-                name=str(self.client.user.name), icon_url=getembed.Common.AUTHOR_LINK)
+                name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             embeddmlol.set_image(
                 url="https://tenor.com/view/bill-gates-cake-face-cake-smash-gif-14539940")
             embeddmlol.set_footer(text=f"by {ctx.author.name}")
@@ -61,7 +61,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
 
             embed = discord.Embed(
                 title=f":boom: Kicked {member.name}", color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
+            embed.set_author(name=getembed.Common.AUTHOR,
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(
                 url=f"https://cdn.discordapp.com/attachments/877796755234783273/879296561413259294/toppng.com-this-is-an-image-of-a-person-kicking-kick-1085x1335.png")
@@ -75,7 +75,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         except Exception as e:
             embed2 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed2.set_author(name=str(self.client.user.name),
+            embed2.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed2.add_field(name="Error:", value=f"{e}", inline=False)
@@ -96,7 +96,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
 
             embed = discord.Embed(
                 title=f":boom: Kicked {member.name}", color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
+            embed.set_author(name=getembed.Common.AUTHOR,
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(
                 url=f"https://cdn.discordapp.com/attachments/877796755234783273/879296561413259294/toppng.com-this-is-an-image-of-a-person-kicking-kick-1085x1335.png")
@@ -110,7 +110,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         except Exception as e:
             embed2 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed2.set_author(name=str(self.client.user.name),
+            embed2.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed2.add_field(name="Error:", value=f"{e}", inline=False)
@@ -128,7 +128,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
             await user.ban(reason=reason)
             embed = discord.Embed(
                 title=f":boom: Banned {user.name}", color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
+            embed.set_author(name=getembed.Common.AUTHOR,
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(
                 url=f"https://cdn.discordapp.com/attachments/877796755234783273/879296561413259294/toppng.com-this-is-an-image-of-a-person-kicking-kick-1085x1335.png")
@@ -141,7 +141,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         except Exception as e:
             embed2 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed2.set_author(name=str(self.client.user.name),
+            embed2.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed2.add_field(name="Error:", value=f"{e}", inline=False)
@@ -160,7 +160,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
             embeddmlol = discord.Embed(
                 title="YOU HAVE BEEN NUKED!", description=f"```{reason}```", color=getembed.Common.COLOR)
             embeddmlol.set_author(
-                name=str(self.client.user.name), icon_url=getembed.Common.AUTHOR_LINK)
+                name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             # embeddmlol.set_image(url="https://tenor.com/view/rage-broccoli-nuke-gachibrocc-gachi-gif-21547004")
             embeddmlol.set_image(
                 url="https://tenor.com/view/nope-orbital-laser-nuke-it-from-orbit-gif-14464332")
@@ -172,7 +172,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
 
             embed = discord.Embed(
                 title=f":boom: Nuked {user.name} lol", color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
+            embed.set_author(name=getembed.Common.AUTHOR,
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(
                 url=f"https://cdn.discordapp.com/attachments/877796755234783273/879296561413259294/toppng.com-this-is-an-image-of-a-person-kicking-kick-1085x1335.png")
@@ -186,7 +186,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         except Exception as e:
             embed2 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed2.set_author(name=str(self.client.user.name),
+            embed2.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed2.add_field(name="Error:", value=f"{e}", inline=False)
@@ -215,7 +215,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
 
                     embed = discord.Embed(
                         title=":hammer: Unbanned User", description=f"{user.mention}", color=getembed.Common.COLOR)
-                    embed.set_author(name=str(self.client.user.name),
+                    embed.set_author(name=getembed.Common.AUTHOR,
                                      icon_url=getembed.Common.AUTHOR_LINK)
                     embed.set_footer(text=f"Requested by {ctx.author.name}")
                     await loading_message.delete()
@@ -225,7 +225,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         except Exception as e:
             embed2 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed2.set_author(name=str(self.client.user.name),
+            embed2.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed2.add_field(name="Error:", value=f"{e}", inline=False)
@@ -250,7 +250,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
 
                 embed = discord.Embed(
                     title="Success!", color=getembed.Common.COLOR)
-                embed.set_author(name=str(self.client.user.name),
+                embed.set_author(name=getembed.Common.AUTHOR,
                                  icon_url=getembed.Common.AUTHOR_LINK)
                 embed.add_field(
                     name="Action", value=f"Deleted {amount} {msgtxt}!", inline=False)
@@ -267,7 +267,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
 
                 embed = discord.Embed(
                     title="Success!", color=getembed.Common.COLOR)
-                embed.set_author(name=str(self.client.user.name),
+                embed.set_author(name=getembed.Common.AUTHOR,
                                  icon_url=getembed.Common.AUTHOR_LINK)
                 embed.add_field(
                     name="Action", value=f"Deleted {amount} {msgtxt}!", inline=False)
@@ -277,7 +277,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         except Exception as e:
             embed2 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed2.set_author(name=str(self.client.user.name),
+            embed2.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed2.add_field(name="Error:", value=f"{e}", inline=False)
@@ -301,7 +301,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
 
                 embed = discord.Embed(
                     title="Success!", color=getembed.Common.COLOR)
-                embed.set_author(name=str(self.client.user.name),
+                embed.set_author(name=getembed.Common.AUTHOR,
                                  icon_url=getembed.Common.AUTHOR_LINK)
                 embed.add_field(
                     name="Action", value=f"Deleted {amount} {msgtxt} sent by YourBot!", inline=False)
@@ -311,7 +311,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
             else:
                 embed2 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                        description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-                embed2.set_author(name=str(self.client.user.name),
+                embed2.set_author(name=getembed.Common.AUTHOR,
                                   icon_url=getembed.Common.AUTHOR_LINK)
                 embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                 embed2.add_field(
@@ -322,7 +322,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         except Exception as e:
             embed2 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed2.set_author(name=str(self.client.user.name),
+            embed2.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed2.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed2.add_field(name="Error:", value=f"{e}", inline=False)
@@ -340,7 +340,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         try:
             embed = discord.Embed(
                 title="Change Nickname", description="Completed successfully!", color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
+            embed.set_author(name=getembed.Common.AUTHOR,
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/877796755234783273/880035248820342824/chuck-norris.png")
@@ -352,7 +352,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
             except:
                 embed = discord.Embed(
                     title="Change Nickname", description="an Error has occured!", color=getembed.Common.COLOR)
-                embed.set_author(name=str(self.client.user.name),
+                embed.set_author(name=getembed.Common.AUTHOR,
                                  icon_url=getembed.Common.AUTHOR_LINK)
                 embed.set_thumbnail(
                     url="https://cdn.discordapp.com/attachments/877796755234783273/880035248820342824/chuck-norris.png")
@@ -371,7 +371,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -395,7 +395,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
             embed = discord.Embed(color=getembed.Common.COLOR)
             embed.add_field(name="Channel Settings - Slowmode",
                             value=f"**+ Set slow mode to:** {seconds} {sec}\n**+ By:** {ctx.author.mention}", inline=False)
-            embed.set_author(name=str(self.client.user.name),
+            embed.set_author(name=getembed.Common.AUTHOR,
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
@@ -404,7 +404,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -432,7 +432,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                 em = discord.Embed(title="New Emoji Added",
                                    color=getembed.Common.COLOR)
                 em.set_thumbnail(url=link)
-                em.set_author(name=str(self.client.user.name),
+                em.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
                 em.add_field(name="Name", value=f'{name}')
                 em.set_footer(text=f"Requested by {ctx.author.name}")
@@ -452,7 +452,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -486,7 +486,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
             await member.add_roles(role)
 
             em = discord.Embed(title="Mute", color=getembed.Common.COLOR)
-            em.set_author(name=str(self.client.user.name),
+            em.set_author(name=getembed.Common.AUTHOR,
                           icon_url=getembed.Common.AUTHOR_LINK)
             em.add_field(name=f"✅ {member} was muted",
                          value=f"by {ctx.author.mention}", inline=False)
@@ -498,7 +498,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
             await member.add_roles(role)
 
             em = discord.Embed(title="Mute", color=getembed.Common.COLOR)
-            em.set_author(name=str(self.client.user.name),
+            em.set_author(name=getembed.Common.AUTHOR,
                           icon_url=getembed.Common.AUTHOR_LINK)
             em.add_field(name=f"✅ {member} was muted",
                          value=f"by {ctx.author.mention}", inline=False)
@@ -522,7 +522,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         try:
             await member.remove_roles(role)
             em = discord.Embed(title="Unmute", color=getembed.Common.COLOR)
-            em.set_author(name=str(self.client.user.name),
+            em.set_author(name=getembed.Common.AUTHOR,
                           icon_url=getembed.Common.AUTHOR_LINK)
             em.add_field(name=f"✅ {member} was unmuted",
                          value=f"by {ctx.author.mention}")
@@ -533,7 +533,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -559,7 +559,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                 embed.add_field(name="reason:", value=reason, inline=False)
                 embed.add_field(name="time left for the mute:",
                                 value=f"{time}{d}", inline=False)
-                embed.set_author(name=str(self.client.user.name),
+                embed.set_author(name=getembed.Common.AUTHOR,
                                  icon_url=getembed.Common.AUTHOR_LINK)
                 embed.set_footer(text=f"Requested by {ctx.author.name}")
                 await loading_message.delete()
@@ -573,7 +573,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                         embed3 = discord.Embed(
                             title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
                         embed3.set_author(
-                            name=str(self.client.user.name), icon_url=getembed.Common.AUTHOR_LINK)
+                            name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                         embed3.set_thumbnail(
                             url=getembed.ErrorEmbeds.THUMBNAIL)
                         embed3.add_field(
@@ -590,7 +590,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                         embed3 = discord.Embed(
                             title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
                         embed3.set_author(
-                            name=str(self.client.user.name), icon_url=getembed.Common.AUTHOR_LINK)
+                            name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                         embed3.set_thumbnail(
                             url=getembed.ErrorEmbeds.THUMBNAIL)
                         embed3.add_field(
@@ -607,7 +607,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                         embed3 = discord.Embed(
                             title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
                         embed3.set_author(
-                            name=str(self.client.user.name), icon_url=getembed.Common.AUTHOR_LINK)
+                            name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                         embed3.set_thumbnail(
                             url=getembed.ErrorEmbeds.THUMBNAIL)
                         embed3.add_field(
@@ -618,7 +618,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
 
                 embed = discord.Embed(
                     title="unmute (temp) ", description=f"unmuted -{member.mention} ", colour=0xff0000)
-                embed.set_author(name=str(self.client.user.name),
+                embed.set_author(name=getembed.Common.AUTHOR,
                                  icon_url=getembed.Common.AUTHOR_LINK)
                 embed.set_footer(text=f"Requested by {ctx.author.name}")
                 await ctx.send(embed=embed)
@@ -634,7 +634,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
             if member == None:
                 embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                        description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-                embed3.set_author(name=str(self.client.user.name),
+                embed3.set_author(name=getembed.Common.AUTHOR,
                                   icon_url=getembed.Common.AUTHOR_LINK)
                 embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                 embed3.add_field(
@@ -648,7 +648,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                 if rolename == None:
                     embed3 = discord.Embed(
                         title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-                    embed3.set_author(name=str(self.client.user.name),
+                    embed3.set_author(name=getembed.Common.AUTHOR,
                                       icon_url=getembed.Common.AUTHOR_LINK)
                     embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                     embed3.add_field(
@@ -666,7 +666,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                             embed3 = discord.Embed(
                                 title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
                             embed3.set_author(
-                                name=str(self.client.user.name), icon_url=getembed.Common.AUTHOR_LINK)
+                                name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                             embed3.set_thumbnail(
                                 url=getembed.ErrorEmbeds.THUMBNAIL)
                             embed3.add_field(
@@ -682,7 +682,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                             embed = discord.Embed(
                                 title="Added Role!", color=getembed.Common.COLOR)
                             embed.set_author(
-                                name=str(self.client.user.name), icon_url=getembed.Common.AUTHOR_LINK)
+                                name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                             embed.add_field(
                                 name="Member Name", value=f"f{member.name}", inline=False)
                             embed.add_field(name="Member ID",
@@ -699,7 +699,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                             embed3 = discord.Embed(
                                 title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
                             embed3.set_author(
-                                name=str(self.client.user.name), icon_url=getembed.Common.AUTHOR_LINK)
+                                name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                             embed3.set_thumbnail(
                                 url=getembed.ErrorEmbeds.THUMBNAIL)
                             embed3.add_field(
@@ -713,7 +713,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -731,7 +731,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
             if member == None:
                 embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                        description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-                embed3.set_author(name=str(self.client.user.name),
+                embed3.set_author(name=getembed.Common.AUTHOR,
                                   icon_url=getembed.Common.AUTHOR_LINK)
                 embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                 embed3.add_field(
@@ -745,7 +745,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                 if rolename == None:
                     embed3 = discord.Embed(
                         title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-                    embed3.set_author(name=str(self.client.user.name),
+                    embed3.set_author(name=getembed.Common.AUTHOR,
                                       icon_url=getembed.Common.AUTHOR_LINK)
                     embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
                     embed3.add_field(
@@ -763,7 +763,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                             embed3 = discord.Embed(
                                 title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
                             embed3.set_author(
-                                name=str(self.client.user.name), icon_url=getembed.Common.AUTHOR_LINK)
+                                name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                             embed3.set_thumbnail(
                                 url=getembed.ErrorEmbeds.THUMBNAIL)
                             embed3.add_field(
@@ -779,7 +779,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                             embed = discord.Embed(
                                 title="Removed Role!", color=getembed.Common.COLOR)
                             embed.set_author(
-                                name=str(self.client.user.name), icon_url=getembed.Common.AUTHOR_LINK)
+                                name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                             embed.add_field(
                                 name="Member Name", value=f"f{member.name}", inline=False)
                             embed.add_field(name="Member ID",
@@ -796,7 +796,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                             embed3 = discord.Embed(
                                 title=getembed.ErrorEmbeds.TITLE, description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
                             embed3.set_author(
-                                name=str(self.client.user.name), icon_url=getembed.Common.AUTHOR_LINK)
+                                name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
                             embed3.set_thumbnail(
                                 url=getembed.ErrorEmbeds.THUMBNAIL)
                             embed3.add_field(
@@ -810,7 +810,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -838,7 +838,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                 embednw = discord.Embed(
                     title="NO PERMISSIONS", color=getembed.Common.COLOR)
                 embednw.set_footer(text=f"Requested by {ctx.author.name}")
-                embednw.set_author(name=str(self.client.user.name),
+                embednw.set_author(name=getembed.Common.AUTHOR,
                                    icon_url=getembed.Common.AUTHOR_LINK)
                 embednw.add_field(
                     name="LOL NOPE!", value="You have no permission to use this command!", inline=True)
@@ -847,7 +847,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -866,7 +866,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
             embed = discord.Embed(title="Spam Messages!",
                                   color=getembed.Common.COLOR)
             embed.set_footer(text=f"Requested by {ctx.author.name}")
-            embed.set_author(name=str(self.client.user.name),
+            embed.set_author(name=getembed.Common.AUTHOR,
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.add_field(name="Requested by: ",
                             value=f"{ctx.author}", inline=False)
@@ -885,7 +885,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -920,7 +920,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -966,7 +966,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
             embed.add_field(name="Invites", value=len(await ctx.guild.invites()))
             embed.set_footer(text=f"Requested by {ctx.author.name}")
             embed.set_thumbnail(url=f"{ctx.guild.icon_url}")
-            embed.set_author(name=str(self.client.user.name),
+            embed.set_author(name=getembed.Common.AUTHOR,
                              icon_url=getembed.Common.AUTHOR_LINK)
             await loading_message.delete()
             await ctx.send(embed=embed)
@@ -974,7 +974,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -1007,7 +1007,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -1045,7 +1045,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
                 embed.add_field(name=name, value=value, inline=inline)
 
             embed.set_thumbnail(url=f"{target.avatar_url}")
-            embed.set_author(name=str(self.client.user.name),
+            embed.set_author(name=getembed.Common.AUTHOR,
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
@@ -1054,7 +1054,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -1073,7 +1073,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
             em = discord.Embed(title=ctx.guild.name)
             em.set_footer(text=f"Requested by {ctx.author.name}")
             em.set_author(name=ctx.guild.name, icon_url=ctx.guild.icon_url)
-            # em.set_author(name=str(self.client.user.name), icon_url=getembed.Common.AUTHOR_LINK)
+            # em.set_author(name=getembed.Common.AUTHOR, icon_url=getembed.Common.AUTHOR_LINK)
             em.set_image(url=ctx.guild.icon_url)
             em.add_field(name="Server Name:",
                          value=f"{ctx.guild.name}", inline=False)
@@ -1083,7 +1083,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -1107,7 +1107,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
@@ -1132,7 +1132,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
             embed = discord.Embed(title="Lock Channel",
                                   color=getembed.Common.COLOR)
             embed.set_footer(text=f"Requested by {ctx.author.name}")
-            embed.set_author(name=str(self.client.user.name),
+            embed.set_author(name=getembed.Common.AUTHOR,
                              icon_url=getembed.Common.AUTHOR_LINK)
             embed.add_field(name="Channel Locked!",
                             value=f"by {ctx.author.name}", inline=False)
@@ -1144,7 +1144,7 @@ class Moderation(commands.Cog, description="Moderate your server easily"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
+            embed3.set_author(name=getembed.Common.AUTHOR,
                               icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
