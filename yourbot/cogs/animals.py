@@ -1,4 +1,3 @@
-import aiohttp
 import discord
 from discord.ext import commands
 import yourbot.database.embeds.retrieve_embeds as getembed
@@ -6,9 +5,12 @@ import yourbot.database.main.retrieve_base as getbase
 import yourbot.others.installerm as ybinstaller
 <<<<<<< HEAD
 from discord.ext import commands
+<<<<<<< HEAD
 from datetime import datetime
 =======
 >>>>>>> parent of 49ac5b1 (sorted imports)
+=======
+>>>>>>> parent of cc54fdd (better request sending)
 
 try:
     import requests
@@ -37,62 +39,25 @@ class Animals(commands.Cog, description="Images/Facts about animals"):
                       help="Send an image of a panda. Works on both DM and on servers")
     async def panda(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
+
         try:
-            async with aiohttp.ClientSession() as pornSession:
-                async with pornSession.get("https://some-random-api.ml/img/panda") as jsondata:
-                    if not 300 > jsondata.status >= 200:
-                        embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
-                                               description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-                        embed3.set_author(name=str(self.client.user.name),
-                                          icon_url=str(self.client.user.avatar_url))
-                        embed3.set_thumbnail(
-                            url=getembed.ErrorEmbeds.THUMBNAIL)
-                        embed3.add_field(
-                            name="Error:", value=f"Bad status code from API", inline=False)
-                        embed3.set_footer(
-                            text=f"Requested by {ctx.author.name}")
-                        await loading_message.delete()
-                        await ctx.send(embed=embed3)
-                        return
+            r = requests.get("https://some-random-api.ml/img/panda").json()
 
-                    try:
-                        result = await jsondata.json()
-                    except Exception as e:
-                        embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
-                                               description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-                        embed3.set_author(name=str(self.client.user.name),
-                                          icon_url=str(self.client.user.avatar_url))
-                        embed3.set_thumbnail(
-                            url=getembed.ErrorEmbeds.THUMBNAIL)
-                        embed3.add_field(
-                            name="Error:", value=f"Unable to convert the fetched API results to JSON: {e}", inline=False)
-                        embed3.set_footer(
-                            text=f"Requested by {ctx.author.name}")
-                        await loading_message.delete()
-                        await ctx.send(embed=embed3)
-                        return
-
-            embed = discord.Embed(title="a Panda",
-                                  color=getembed.Common.COLOR,
-                                  timestamp=datetime.utcnow())
+            embed = discord.Embed(color=getembed.Common.COLOR)
             embed.set_author(
-                name=str(self.client.user.name),
-                icon_url=str(self.client.user.avatar_url))
-            embed.set_image(url=str(result["link"]))
-            embed.set_footer(
-                text=f"Requested by {ctx.author.name}",
-                icon_url="https://cdn.freebiesupply.com/logos/large/2x/panda-7-logo-png-transparent.png"
-            )
+                name="a Panda.", icon_url="https://cdn.freebiesupply.com/logos/large/2x/panda-7-logo-png-transparent.png")
+            embed.set_image(url=str(r["link"]))
+            embed.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed)
 
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
-                              icon_url=str(self.client.user.avatar_url))
+            embed3.set_author(name=getembed.Common.AUTHOR,
+                              icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
-            embed3.add_field(name="Error:", value=str(e), inline=False)
+            embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
             await ctx.send(embed=embed3)
@@ -103,59 +68,18 @@ class Animals(commands.Cog, description="Images/Facts about animals"):
     async def dog(self, ctx):
         loading_message = await ctx.send(embed=self.please_wait_emb)
         try:
-            async with aiohttp.ClientSession() as pornSession:
-                async with pornSession.get("https://some-random-api.ml/img/dog") as jsondata:
-                    if not 300 > jsondata.status >= 200:
-                        embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
-                                               description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-                        embed3.set_author(name=str(self.client.user.name),
-                                          icon_url=str(self.client.user.avatar_url))
-                        embed3.set_thumbnail(
-                            url=getembed.ErrorEmbeds.THUMBNAIL)
-                        embed3.add_field(
-                            name="Error:", value=f"Bad status code from API", inline=False)
-                        embed3.set_footer(
-                            text=f"Requested by {ctx.author.name}")
-                        await loading_message.delete()
-                        await ctx.send(embed=embed3)
-                        return
-
-                    try:
-                        result = await jsondata.json()
-                    except Exception as e:
-                        embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
-                                               description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-                        embed3.set_author(name=str(self.client.user.name),
-                                          icon_url=str(self.client.user.avatar_url))
-                        embed3.set_thumbnail(
-                            url=getembed.ErrorEmbeds.THUMBNAIL)
-                        embed3.add_field(
-                            name="Error:", value=f"Unable to convert the fetched API results to JSON: {e}", inline=False)
-                        embed3.set_footer(
-                            text=f"Requested by {ctx.author.name}")
-                        await loading_message.delete()
-                        await ctx.send(embed=embed3)
-                        return
-
-            embed = discord.Embed(title="a Dog",
-                                  color=getembed.Common.COLOR,
-                                  timestamp=datetime.utcnow())
+            r = requests.get("https://some-random-api.ml/img/dog").json()
+            embed = discord.Embed(color=getembed.Common.COLOR)
             embed.set_author(
-                name=str(self.client.user.name),
-                icon_url=str(self.client.user.avatar_url))
-            embed.set_image(url=str(result["link"]))
-            embed.set_footer(
-                text=f"Requested by {ctx.author.name}",
-                icon_url="https://t4.ftcdn.net/jpg/03/66/78/13/360_F_366781345_oEr9wc8yWhYRPZe6CGyFWS6QolZIf2fJ.jpgg"
-            )
+                name="a Dog.", icon_url="https://t4.ftcdn.net/jpg/03/66/78/13/360_F_366781345_oEr9wc8yWhYRPZe6CGyFWS6QolZIf2fJ.jpg")
+            embed.set_image(url=str(r["link"]))
             await loading_message.delete()
             await ctx.send(embed=embed)
-
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
-                              icon_url=str(self.client.user.avatar_url))
+            embed3.set_author(name=getembed.Common.AUTHOR,
+                              icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
@@ -217,8 +141,8 @@ class Animals(commands.Cog, description="Images/Facts about animals"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
-                              icon_url=str(self.client.user.avatar_url))
+            embed3.set_author(name=getembed.Common.AUTHOR,
+                              icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
@@ -249,6 +173,7 @@ class Animals(commands.Cog, description="Images/Facts about animals"):
                         await ctx.send(embed=embed3)
                         return
 
+<<<<<<< HEAD
                     try:
                         result = await jsondata.json()
                     except Exception as e:
@@ -272,6 +197,12 @@ class Animals(commands.Cog, description="Images/Facts about animals"):
             embed.set_author(
                 name=str(self.client.user.name),
                 icon_url=str(self.client.user.avatar_url))
+=======
+            embed = discord.Embed(
+                title="Dog Fact", color=getembed.Common.COLOR)
+            embed.set_author(name=getembed.Common.AUTHOR,
+                             icon_url=getembed.Common.AUTHOR_LINK)
+>>>>>>> parent of cc54fdd (better request sending)
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/877796755234783273/880010039581102110/322868_1100-800x825.jpg")
             embed.add_field(name="Fact",
@@ -287,8 +218,8 @@ class Animals(commands.Cog, description="Images/Facts about animals"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
-                              icon_url=str(self.client.user.avatar_url))
+            embed3.set_author(name=getembed.Common.AUTHOR,
+                              icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
@@ -309,8 +240,8 @@ class Animals(commands.Cog, description="Images/Facts about animals"):
 
             embed = discord.Embed(
                 title="Cat Fact", color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
-                             icon_url=str(self.client.user.avatar_url))
+            embed.set_author(name=getembed.Common.AUTHOR,
+                             icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/877796755234783273/880010397392969788/3683.jpg")
             embed.add_field(name="Fact", value=f"{fact}", inline=False)
@@ -321,8 +252,8 @@ class Animals(commands.Cog, description="Images/Facts about animals"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
-                              icon_url=str(self.client.user.avatar_url))
+            embed3.set_author(name=getembed.Common.AUTHOR,
+                              icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
@@ -343,8 +274,8 @@ class Animals(commands.Cog, description="Images/Facts about animals"):
 
             embed = discord.Embed(title="Elephant Fact",
                                   color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
-                             icon_url=str(self.client.user.avatar_url))
+            embed.set_author(name=getembed.Common.AUTHOR,
+                             icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/877796755234783273/880010717913309204/WW187785.jpg")
             embed.add_field(name="Fact", value=f"{fact}", inline=False)
@@ -355,8 +286,8 @@ class Animals(commands.Cog, description="Images/Facts about animals"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
-                              icon_url=str(self.client.user.avatar_url))
+            embed3.set_author(name=getembed.Common.AUTHOR,
+                              icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
@@ -377,8 +308,8 @@ class Animals(commands.Cog, description="Images/Facts about animals"):
 
             embed = discord.Embed(title="Panda Fact",
                                   color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
-                             icon_url=str(self.client.user.avatar_url))
+            embed.set_author(name=getembed.Common.AUTHOR,
+                             icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/877796755234783273/880011140816576552/BabyGiantPanda.jpg")
             embed.add_field(name="Fact", value=f"{fact}", inline=False)
@@ -389,8 +320,8 @@ class Animals(commands.Cog, description="Images/Facts about animals"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
-                              icon_url=str(self.client.user.avatar_url))
+            embed3.set_author(name=getembed.Common.AUTHOR,
+                              icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
@@ -411,8 +342,8 @@ class Animals(commands.Cog, description="Images/Facts about animals"):
 
             embed = discord.Embed(
                 title="Fox Fact", color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
-                             icon_url=str(self.client.user.avatar_url))
+            embed.set_author(name=getembed.Common.AUTHOR,
+                             icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/877796755234783273/880011829194153984/im-355811.jfif")
             embed.add_field(name="Fact", value=f"{fact}", inline=False)
@@ -423,8 +354,8 @@ class Animals(commands.Cog, description="Images/Facts about animals"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
-                              icon_url=str(self.client.user.avatar_url))
+            embed3.set_author(name=getembed.Common.AUTHOR,
+                              icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
@@ -445,8 +376,8 @@ class Animals(commands.Cog, description="Images/Facts about animals"):
 
             embed = discord.Embed(
                 title="Bird Fact", color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
-                             icon_url=str(self.client.user.avatar_url))
+            embed.set_author(name=getembed.Common.AUTHOR,
+                             icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/877796755234783273/880012668084305930/DCTM_Penguin_UK_DK_AL526630_wkmzns.jpg")
             embed.add_field(name="Fact", value=f"{fact}", inline=False)
@@ -457,8 +388,8 @@ class Animals(commands.Cog, description="Images/Facts about animals"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
-                              icon_url=str(self.client.user.avatar_url))
+            embed3.set_author(name=getembed.Common.AUTHOR,
+                              icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
@@ -479,8 +410,8 @@ class Animals(commands.Cog, description="Images/Facts about animals"):
 
             embed = discord.Embed(title="Koala Fact",
                                   color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
-                             icon_url=str(self.client.user.avatar_url))
+            embed.set_author(name=getembed.Common.AUTHOR,
+                             icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/877796755234783273/880013091897770014/Koala.jpg")
             embed.add_field(name="Fact", value=f"{fact}", inline=False)
@@ -491,8 +422,8 @@ class Animals(commands.Cog, description="Images/Facts about animals"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
-                              icon_url=str(self.client.user.avatar_url))
+            embed3.set_author(name=getembed.Common.AUTHOR,
+                              icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
@@ -513,8 +444,8 @@ class Animals(commands.Cog, description="Images/Facts about animals"):
 
             embed = discord.Embed(title="Red Panda Fact",
                                   color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
-                             icon_url=str(self.client.user.avatar_url))
+            embed.set_author(name=getembed.Common.AUTHOR,
+                             icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/877796755234783273/880013593465217034/16071828377_85109fdee4_o.0.0.jpg")
             embed.add_field(name="Fact", value=f"{fact}", inline=False)
@@ -525,8 +456,8 @@ class Animals(commands.Cog, description="Images/Facts about animals"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
-                              icon_url=str(self.client.user.avatar_url))
+            embed3.set_author(name=getembed.Common.AUTHOR,
+                              icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
@@ -555,8 +486,8 @@ class Animals(commands.Cog, description="Images/Facts about animals"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
-                              icon_url=str(self.client.user.avatar_url))
+            embed3.set_author(name=getembed.Common.AUTHOR,
+                              icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
@@ -584,8 +515,8 @@ class Animals(commands.Cog, description="Images/Facts about animals"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
-                              icon_url=str(self.client.user.avatar_url))
+            embed3.set_author(name=getembed.Common.AUTHOR,
+                              icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
@@ -604,8 +535,8 @@ class Animals(commands.Cog, description="Images/Facts about animals"):
 
             embed = discord.Embed(
                 title="a Raccoon", color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
-                             icon_url=str(self.client.user.avatar_url))
+            embed.set_author(name=getembed.Common.AUTHOR,
+                             icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_image(url=str(r["image"]))
             embed.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
@@ -614,8 +545,8 @@ class Animals(commands.Cog, description="Images/Facts about animals"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
-                              icon_url=str(self.client.user.avatar_url))
+            embed3.set_author(name=getembed.Common.AUTHOR,
+                              icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
@@ -634,8 +565,8 @@ class Animals(commands.Cog, description="Images/Facts about animals"):
 
             embed = discord.Embed(title="a Raccoon Fact",
                                   color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
-                             icon_url=str(self.client.user.avatar_url))
+            embed.set_author(name=getembed.Common.AUTHOR,
+                             icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(url=str(r["image"]))
             embed.add_field(name="Fact", value=str(r["fact"]), inline=False)
             embed.set_footer(text=f"Requested by {ctx.author.name}")
@@ -645,8 +576,8 @@ class Animals(commands.Cog, description="Images/Facts about animals"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
-                              icon_url=str(self.client.user.avatar_url))
+            embed3.set_author(name=getembed.Common.AUTHOR,
+                              icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
@@ -665,8 +596,8 @@ class Animals(commands.Cog, description="Images/Facts about animals"):
 
             embed = discord.Embed(title="a Kangaroo",
                                   color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
-                             icon_url=str(self.client.user.avatar_url))
+            embed.set_author(name=getembed.Common.AUTHOR,
+                             icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_image(url=str(r["image"]))
             embed.set_footer(text=f"Requested by {ctx.author.name}")
             await loading_message.delete()
@@ -675,8 +606,8 @@ class Animals(commands.Cog, description="Images/Facts about animals"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
-                              icon_url=str(self.client.user.avatar_url))
+            embed3.set_author(name=getembed.Common.AUTHOR,
+                              icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
@@ -695,8 +626,8 @@ class Animals(commands.Cog, description="Images/Facts about animals"):
 
             embed = discord.Embed(title="a Kangaroo Fact",
                                   color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
-                             icon_url=str(self.client.user.avatar_url))
+            embed.set_author(name=getembed.Common.AUTHOR,
+                             icon_url=getembed.Common.AUTHOR_LINK)
             embed.set_thumbnail(url=str(r["image"]))
             embed.add_field(name="Fact", value=str(r["fact"]), inline=False)
             embed.set_footer(text=f"Requested by {ctx.author.name}")
@@ -706,8 +637,8 @@ class Animals(commands.Cog, description="Images/Facts about animals"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
-                              icon_url=str(self.client.user.avatar_url))
+            embed3.set_author(name=getembed.Common.AUTHOR,
+                              icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(url=getembed.ErrorEmbeds.THUMBNAIL)
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
             embed3.set_footer(text=f"Requested by {ctx.author.name}")
@@ -725,8 +656,8 @@ class Animals(commands.Cog, description="Images/Facts about animals"):
 
             embed = discord.Embed(title="a Whale Fact",
                                   color=getembed.Common.COLOR)
-            embed.set_author(name=str(self.client.user.name),
-                             icon_url=str(self.client.user.avatar_url))
+            embed.set_author(name=getembed.Common.AUTHOR,
+                             icon_url=getembed.Common.AUTHOR_LINK)
             embed.add_field(name="Fact", value=f"{r['fact']}", inline=True)
             embed.set_thumbnail(
                 url="https://media.discordapp.net/attachments/877796755234783273/880809109052588052/167291_web.jpg?width=759&height=504")
@@ -737,8 +668,8 @@ class Animals(commands.Cog, description="Images/Facts about animals"):
         except Exception as e:
             embed3 = discord.Embed(title=getembed.ErrorEmbeds.TITLE,
                                    description=getembed.ErrorEmbeds.DESCRIPTION, color=getembed.ErrorEmbeds.COLOR)
-            embed3.set_author(name=str(self.client.user.name),
-                              icon_url=str(self.client.user.avatar_url))
+            embed3.set_author(name=getembed.Common.AUTHOR,
+                              icon_url=getembed.Common.AUTHOR_LINK)
             embed3.set_thumbnail(
                 url="https://media.discordapp.net/attachments/877796755234783273/880745781966037032/new-scrabble-words-2018-beatdown-5657-57124c9f228c0258d65053fe7d3891491x.jpg")
             embed3.add_field(name="Error:", value=f"{e}", inline=False)
